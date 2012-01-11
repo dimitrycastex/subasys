@@ -34,31 +34,156 @@ public class Postgresql {
     
     public static void main(String[] args) {
         // TODO code application logic here
+       /* ArrayList lista = new ArrayList();
+        lista.add("rol");
+        lista.add("receptor");
+        lista.add("abogado");
+        lista.add("caratulado_como");
+        lista.add("juzgado");
+        lista.add(12345);
+        Causa.setUpdate("rol", lista);
+        
+        lista = Causa.getDatos("rol");
+        for (Iterator it = lista.iterator(); it.hasNext();) {
+            Object object = it.next();
+            System.out.println(object);
+        
+        }*/
+        Update();
     }
     
      public static void crearDBASE() {
-
-       
-     try { Class.forName("org.sqlite.JDBC"); } catch (ClassNotFoundException error_driver) {
-          JOptionPane.showMessageDialog(null, error_driver, "ERROR DRIVER", JOptionPane.WARNING_MESSAGE);
-          System.exit(1);
-          }
-     
-        Connection conn  =null;
+   
+        Connection conn  = DB_CONNECTION;
         try {
-        
-        conn = DriverManager.getConnection("jdbc:sqlite:DB_MP.s3db");
+
 
         java.sql.Statement stat = conn.createStatement();
 
-        String planilla1 = "CREATE TABLE i_p(investigador TEXT NOT NULL,proyecto TEXT NOT NULL)";
-        String planilla2 = "CREATE TABLE p_ip(proyecto TEXT NOT NULL,iprincipal TEXT NOT NULL)";
-        String planilla3 = "CREATE TABLE i_ip(investigador TEXT NOT NULL,iprincipal TEXT NOT NULL )";
 
-        stat.executeUpdate(planilla1);
-        stat.executeUpdate(planilla2);
-        stat.executeUpdate(planilla3);
-             
+        stat.executeUpdate( "CREATE TABLE Cliente ("+
+	"RUT varchar NOT NULL,"+
+	"ApellidoM varchar,"+
+	"ApellidoP varchar,"+
+	"Nombre varchar,"+
+	"Email varchar,"+
+	"Web varchar,"+
+	"TelefonoMovil varchar,"+
+	"CodigoPostal int4,"+
+	"Direccion varchar,"+
+	"Ciudad varchar,"+
+	"Comuna int4,"+
+	"PRIMARY KEY(RUT));");
+        
+        stat.executeUpdate("CREATE TABLE Recepcion_Voluntaria ("+
+	"ID_RV int4 NOT NULL,"+
+	"Fecha_Ingreso date,"+
+	"Direccion varchar,"+
+	"Nombre varchar,"+
+	"PRIMARY KEY(ID_RV));");
+        
+        stat.executeUpdate("CREATE TABLE Causa ("+
+	"ROL varchar NOT NULL,"+
+	"Receptor varchar,"+
+	"Abogado varchar,"+
+	"Caratulado_como varchar,"+
+	"Juzgado varchar,"+
+	"ID_RJ int4 NOT NULL,"+
+	"PRIMARY KEY(ROL));");
+         
+        stat.executeUpdate("CREATE TABLE Remate ("+
+	"ID_REMATE int4 NOT NULL,"+
+	"Lugar varchar,"+
+	"Diario varchar,"+
+	"Fecha date,"+
+	"Descripcion varchar,"+
+	"Comision int4,"+
+	"Ciudad varchar,"+
+	"ID_PRODUCTO int4 NOT NULL,"+
+	"PRIMARY KEY(ID_REMATE));");
+         
+        stat.executeUpdate("CREATE TABLE Producto ("+
+	"ID_PRODUCTO int4 NOT NULL,"+
+	"Descripcion varchar,"+
+	"Cantidad int4,"+
+	"Precio_Unitario int4,"+
+	"Total int4,"+
+	"Garantia int4,"+
+	"PRIMARY KEY(ID_PRODUCTO));");
+         
+        stat.executeUpdate("CREATE TABLE Factura ("+
+	"ID_FACTURA int4 NOT NULL,"+
+	"Total float4,"+
+	"Garantia int4,"+
+	"Fecha_Emision date,"+
+	"Estado varchar,"+
+	"Exento varchar,"+
+	"Neto float4,"+
+	"Impuestos float4,"+
+	"Comision float4,"+
+	"IVA float4,"+
+	"Comision_Factura float4,"+
+	"PRIMARY KEY(ID_FACTURA));");
+        
+        stat.executeUpdate("CREATE TABLE Factura_has_Producto ("+
+	"NMID SERIAL NOT NULL,"+
+	"ID_FACTURA int4 NOT NULL,"+
+	"ID_PRODUCTO int4 NOT NULL,"+
+	"PRIMARY KEY(NMID));");
+        
+        stat.executeUpdate("CREATE TABLE Recepcion_Judicial ("+
+	"ID_RJ int4 NOT NULL,"+
+	"Fecha_Ingreso date,"+
+	"Fecha_Devolucion date,"+
+	"Demandante varchar,"+
+	"Demandado varchar,"+
+	"Bodegaje_Pagado int4,"+
+	"PRIMARY KEY(ID_RJ));");
+         
+        stat.executeUpdate("CREATE TABLE Recepcion_Judicial_has_Producto ("+
+	"NMID SERIAL NOT NULL,"+
+	"ID_RJ int4 NOT NULL,"+
+	"ID_PRODUCTO int4 NOT NULL,"+
+	"PRIMARY KEY(NMID));");
+        
+        stat.executeUpdate("CREATE TABLE Remate_has_Causa ("+
+	"NMID SERIAL NOT NULL,"+
+	"ID_REMATE int4 NOT NULL,"+
+	"ROL varchar NOT NULL,"+
+	"PRIMARY KEY(NMID));");
+        
+        stat.executeUpdate("CREATE TABLE Cliente_has_Factura ("+
+	"NMID SERIAL NOT NULL,"+
+	"RUT varchar NOT NULL,"+
+	"ID_FACTURA int4 NOT NULL,"+
+	"PRIMARY KEY(NMID));");
+        
+        stat.executeUpdate("CREATE TABLE Cliente_has_Recepcion_Voluntaria ("+
+	"NMID SERIAL NOT NULL,"+
+	"RUT varchar NOT NULL,"+
+	"ID_RV int4 NOT NULL,"+
+	"PRIMARY KEY(NMID));");
+        
+        stat.executeUpdate("CREATE TABLE Remate_has_Factura ("+
+	"NMID SERIAL NOT NULL,"+
+	"ID_REMATE int4 NOT NULL,"+
+	"ID_FACTURA int4 NOT NULL,"+
+	"PRIMARY KEY(NMID));");
+        
+        stat.executeUpdate("CREATE TABLE Remate_has_Producto ("+
+	"NMID SERIAL NOT NULL,"+
+	"ID_REMATE int4 NOT NULL,"+
+	"ID_PRODUCTO int4 NOT NULL,"+
+	"Lote int4,"+
+	"PRIMARY KEY(NMID));");
+        
+        stat.executeUpdate("CREATE TABLE Recepcion_Voluntaria_has_Producto ("+
+	"NMID SERIAL NOT NULL,"+
+	"ID_RV int4 NOT NULL,"+
+	"ID_PRODUCTO int4 NOT NULL,"+
+	"PRIMARY KEY(NMID));");
+ 
+        
         conn.close();
         
         } catch (SQLException error_conexion) {
@@ -66,9 +191,9 @@ public class Postgresql {
           System.exit(1);
         }
 
-    }
+     }
    
-      public static Connection getConnection(){
+     public static Connection getConnection(){
       
      String driver = "org.postgresql.Driver";
      String dbname = "Subasys";
@@ -93,6 +218,24 @@ public class Postgresql {
      
   }
     
-    
-     
+     public static boolean Update() {
+
+        try {
+
+        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+
+        stat.executeUpdate("ALTER TABLE integrantes ALTER COLUMN ci TYPE varchar(25);");
+      
+        
+        return true;
+
+        } catch (SQLException ex) {
+
+        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
+        return false;
+        }
+
+    }
+
+
 }
