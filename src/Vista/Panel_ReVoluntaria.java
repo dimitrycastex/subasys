@@ -72,11 +72,13 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
         jButton_Limpiar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButton_Limpiar.setText("Limpiar Datos");
 
+        jTextField_Nombre.setEditable(false);
         jTextField_Nombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         jLabel_Nombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel_Nombre.setText("Nombre");
 
+        jTextField_Direccion.setEditable(false);
         jTextField_Direccion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         jLabel_Direccion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -114,19 +116,18 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jButton_Limpiar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel_FeIngreso)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_FeIngreso)
-                                .addGap(69, 69, 69))
+                                .addComponent(jTextField_FeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(Label_ID)
                                 .addGap(18, 18, 18)
-                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(14, 14, 14)
                         .addComponent(jButton_BuscarRec)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_ModificarRec)))
                 .addContainerGap(244, Short.MAX_VALUE))
         );
