@@ -24,7 +24,15 @@ public class formato
     public static Paragraph titulo(String t)
     {
             Paragraph pp = new Paragraph(t,new Font(FontFamily.TIMES_ROMAN, 20, Font.BOLD));
-            pp.setAlignment(Element.ALIGN_MIDDLE);
+            pp.setAlignment(Element.ALIGN_CENTER);
+            return(pp);
+    }
+    
+    //formato de subtitulo @param t: texto a mostrar
+    public static Paragraph subtitulo(String t)
+    {
+            Paragraph pp = new Paragraph(t,new Font(FontFamily.TIMES_ROMAN, 8, Font.BOLD));
+            pp.setAlignment(Element.ALIGN_CENTER);
             return(pp);
     }
     
