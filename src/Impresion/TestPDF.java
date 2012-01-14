@@ -21,10 +21,9 @@ public class TestPDF {
     
     public static void main(String[] args) throws DocumentException, FileNotFoundException
     {
-        String path="C:/";
+        String path="D:/DB/";
         //Imprimir_Lista_Remates.imprimir(path);
         //Imprimir_Lista_Clientes.imprimir(path);
-        Imprimir_Caja_Remate.imprimir(path);
     }
 
 }
