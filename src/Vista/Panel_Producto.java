@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.SpinnerNumberModel;
+
 /**
  *
  * @author bastian
@@ -15,6 +19,34 @@ public class Panel_Producto extends javax.swing.JPanel {
      */
     public Panel_Producto() {
         initComponents();
+    }
+    
+    private void Limpiar(){
+        
+        this.TextField_ID.setText("");
+        this.jTextField_Garantia.setText("");
+        this.jTextArea_Descripcion.setText("");
+        this.jTextField_PrecioT.setText("");
+        this.jTextField_PrecioU.setText("");
+        this.jSpinner_Cantidad.setValue(1);
+        this.jSpinner_NumLote.setValue(1);
+        
+        this.jSpinner_Cantidad.setModel(new SpinnerNumberModel(1, 1, 1000, 1));
+        this.jSpinner_NumLote.setModel(new SpinnerNumberModel(1, 1, 1000, 1));
+    }
+    
+    public ArrayList getDatos(){
+    
+        ArrayList datos = new ArrayList();
+        
+        datos.add(this.TextField_ID.getText());
+        datos.add(this.jTextArea_Descripcion.getText());
+        datos.add(this.jSpinner_Cantidad.getValue());
+        datos.add(this.jTextField_PrecioU.getText());
+        datos.add(this.jTextField_PrecioT.getText());
+        datos.add(this.jTextField_Garantia.getText());
+        
+        return datos;
     }
 
     /**
@@ -32,7 +64,7 @@ public class Panel_Producto extends javax.swing.JPanel {
         jButton_Buscar = new javax.swing.JButton();
         Label_ID = new javax.swing.JLabel();
         jButton_Modificar = new javax.swing.JButton();
-        TextField_RUT = new javax.swing.JTextField();
+        TextField_ID = new javax.swing.JTextField();
         jLabel_PrecioU = new javax.swing.JLabel();
         jTextField_PrecioU = new javax.swing.JTextField();
         jLabel_PrecioT = new javax.swing.JLabel();
@@ -44,58 +76,105 @@ public class Panel_Producto extends javax.swing.JPanel {
         jTextField_Garantia = new javax.swing.JTextField();
         jLabel_NumLote = new javax.swing.JLabel();
         jSpinner_NumLote = new javax.swing.JSpinner();
+        jButton_Cancelar = new javax.swing.JButton();
+        jButton_Aceptar = new javax.swing.JButton();
 
         setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         setMaximumSize(new java.awt.Dimension(800, 500));
         setMinimumSize(new java.awt.Dimension(800, 500));
         setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jLabel_Producto.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
+        jLabel_Producto.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel_Producto.setText("Producto");
 
-        jLabel_Cantidad.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel_Cantidad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Cantidad.setText("Cantidad");
 
-        jSpinner_Cantidad.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jSpinner_Cantidad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jSpinner_Cantidad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner_CantidadStateChanged(evt);
+            }
+        });
 
-        jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_Buscar.setText("Buscar");
 
-        Label_ID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label_ID.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_ID.setText("ID");
 
-        jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_Modificar.setText("Modificar");
 
-        TextField_RUT.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        TextField_ID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_ID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_IDKeyTyped(evt);
+            }
+        });
 
-        jLabel_PrecioU.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel_PrecioU.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_PrecioU.setText("Precio Unitario");
 
-        jTextField_PrecioU.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextField_PrecioU.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField_PrecioU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_PrecioUKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField_PrecioUKeyReleased(evt);
+            }
+        });
 
-        jLabel_PrecioT.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel_PrecioT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_PrecioT.setText("Precio Total");
 
-        jTextField_PrecioT.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextField_PrecioT.setEditable(false);
+        jTextField_PrecioT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        jLabel_Descripcion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel_Descripcion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Descripcion.setText("Descripción (máximo 1000 caracteres)");
 
         jTextArea_Descripcion.setColumns(20);
         jTextArea_Descripcion.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTextArea_Descripcion.setRows(5);
+        jTextArea_Descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextArea_DescripcionKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextArea_Descripcion);
 
-        jLabel_Garantia.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel_Garantia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Garantia.setText("Garantía");
 
-        jTextField_Garantia.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextField_Garantia.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField_Garantia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_GarantiaKeyTyped(evt);
+            }
+        });
 
-        jLabel_NumLote.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel_NumLote.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_NumLote.setText("Nº Lote");
 
-        jSpinner_NumLote.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jSpinner_NumLote.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Cancelar.setText("Cancelar");
+        jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarActionPerformed(evt);
+            }
+        });
+
+        jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Aceptar.setText("Aceptar");
+        jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -105,39 +184,44 @@ public class Panel_Producto extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton_Aceptar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_Cancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_Producto)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel_Cantidad)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinner_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_PrecioU)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField_PrecioU, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel_PrecioT)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField_PrecioT, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(Label_ID)
                                 .addGap(18, 18, 18)
-                                .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
+                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton_Buscar)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton_Modificar))
                             .addComponent(jLabel_Descripcion)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel_Garantia)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField_Garantia, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(jTextField_Garantia, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
                                 .addComponent(jLabel_NumLote)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSpinner_NumLote, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 123, Short.MAX_VALUE)))
+                                .addComponent(jSpinner_NumLote, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel_Cantidad)
+                                .addGap(18, 18, 18)
+                                .addComponent(jSpinner_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel_PrecioU)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField_PrecioU, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel_PrecioT)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField_PrecioT, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 60, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -145,16 +229,16 @@ public class Panel_Producto extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel_Producto)
-                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(20, 20, 20)
                         .addComponent(Label_ID))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton_Buscar)
-                    .addComponent(jButton_Modificar))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_Buscar)
+                            .addComponent(jButton_Modificar))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_Cantidad)
@@ -169,17 +253,96 @@ public class Panel_Producto extends javax.swing.JPanel {
                     .addComponent(jTextField_Garantia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_NumLote)
                     .addComponent(jSpinner_NumLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jLabel_Descripcion)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+                .addComponent(jLabel_Descripcion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Aceptar)
+                    .addComponent(jButton_Cancelar))
+                .addContainerGap())
         );
+
+        this.jSpinner_Cantidad.setModel(new SpinnerNumberModel(1, 1, 1000, 1));
+        this.jSpinner_NumLote.setModel(new SpinnerNumberModel(1, 1, 1000, 1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
+        // TODO add your handling code here:
+        this.Limpiar();
+    }//GEN-LAST:event_jButton_CancelarActionPerformed
+
+    private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
+        // TODO add your handling code here:
+        //ENVIAR INFORMACION
+
+   }//GEN-LAST:event_jButton_AceptarActionPerformed
+
+    private void jTextField_PrecioUKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PrecioUKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c) || this.jTextField_PrecioU.getText().length()>10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField_PrecioUKeyTyped
+
+    private void jTextField_GarantiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_GarantiaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c) || this.jTextField_Garantia.getText().length()>10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField_GarantiaKeyTyped
+
+    private void jTextArea_DescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea_DescripcionKeyTyped
+        // TODO add your handling code here:
+        if(this.jTextArea_Descripcion.getText().length()>1000){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextArea_DescripcionKeyTyped
+
+    private void jSpinner_CantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner_CantidadStateChanged
+        // TODO add your handling code here:
+        long x;
+        Number temp = (Number)this.jSpinner_Cantidad.getValue();
+        int n = temp.intValue();
+        if(n > 0 && !this.jTextField_PrecioU.getText().isEmpty()){
+            x = Long.parseLong(this.jTextField_PrecioU.getText()) * n;
+            this.jTextField_PrecioT.setText(Long.toString(x));
+        }
+    }//GEN-LAST:event_jSpinner_CantidadStateChanged
+
+    private void TextField_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_IDKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if(!Character.isDigit(c) || this.TextField_ID.getText().length()>10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextField_IDKeyTyped
+
+    private void jTextField_PrecioUKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PrecioUKeyReleased
+        // TODO add your handling code here:
+        long x;
+        Number temp = (Number)this.jSpinner_Cantidad.getValue();
+        int n = temp.intValue();
+        if(n > 0 && !this.jTextField_PrecioU.getText().isEmpty()){
+            x = Long.parseLong(this.jTextField_PrecioU.getText()) * n;
+            this.jTextField_PrecioT.setText(Long.toString(x));
+        }
+        
+        else if(this.jTextField_PrecioU.getText().isEmpty()){
+            this.jTextField_PrecioT.setText("");
+        }
+    }//GEN-LAST:event_jTextField_PrecioUKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_ID;
-    private javax.swing.JTextField TextField_RUT;
+    private javax.swing.JTextField TextField_ID;
+    private javax.swing.JButton jButton_Aceptar;
     private javax.swing.JButton jButton_Buscar;
+    private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_Modificar;
     private javax.swing.JLabel jLabel_Cantidad;
     private javax.swing.JLabel jLabel_Descripcion;

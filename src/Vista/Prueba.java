@@ -17,7 +17,7 @@ public class Prueba extends javax.swing.JFrame {
      */
     public Prueba() {
         initComponents();
-        JPanel pa = new Panel_Producto();
+        JPanel pa = new Panel_Remate();
         //this.add(pa);
         this.setContentPane(pa);
         pa.setVisible(true);
@@ -66,7 +66,7 @@ public class Prueba extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

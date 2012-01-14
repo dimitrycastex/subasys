@@ -4,6 +4,9 @@
  */
 package Vista;
 
+import java.awt.event.ItemEvent;
+import java.util.ArrayList;
+
 /**
  *
  * @author bastian
@@ -15,6 +18,27 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
      */
     public Panel_ReVoluntaria() {
         initComponents();
+    }
+    
+    private void Limpiar(){
+        this.TextField_ID.setText("");
+        this.TextField_RUT.setText("");
+        this.jTextField_Nombre.setText("");
+        this.jTextField_Direccion.setText("");
+        this.jRadioButton_Agregar.setSelected(false);
+        this.jRadioButton_Buscar.setSelected(false);
+        this.jDateChooser_Fecha.setDate(null);
+    }
+    
+    public ArrayList getDatos(){
+        ArrayList datos = new ArrayList();
+        
+        datos.add(this.TextField_ID.getText());
+        datos.add(this.jDateChooser_Fecha.getDate());
+        datos.add(this.jTextField_Direccion.getText());
+        datos.add(this.jTextField_Nombre.getText());
+        
+        return datos;
     }
 
     /**
@@ -29,12 +53,10 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
         jLabel_ReVoluntaria = new javax.swing.JLabel();
         jButton_ModificarRec = new javax.swing.JButton();
         jLabel_FeIngreso = new javax.swing.JLabel();
-        jTextField_FeIngreso = new javax.swing.JTextField();
         jButton_BuscarRec = new javax.swing.JButton();
         Label_ID = new javax.swing.JLabel();
         TextField_ID = new javax.swing.JTextField();
         jButton_Agregar = new javax.swing.JButton();
-        jButton_Limpiar = new javax.swing.JButton();
         jTextField_Nombre = new javax.swing.JTextField();
         jLabel_Nombre = new javax.swing.JLabel();
         jTextField_Direccion = new javax.swing.JTextField();
@@ -42,152 +64,296 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
         jButton_BuscarRUT = new javax.swing.JButton();
         Label_RUT = new javax.swing.JLabel();
         TextField_RUT = new javax.swing.JTextField();
+        jRadioButton_Agregar = new javax.swing.JRadioButton();
+        jRadioButton_Buscar = new javax.swing.JRadioButton();
+        jButton_Aceptar = new javax.swing.JButton();
+        jButton_Cancelar = new javax.swing.JButton();
+        jDateChooser_Fecha = new com.toedter.calendar.JDateChooser();
 
         setMaximumSize(new java.awt.Dimension(800, 500));
         setMinimumSize(new java.awt.Dimension(800, 500));
         setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jLabel_ReVoluntaria.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
+        jLabel_ReVoluntaria.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel_ReVoluntaria.setText("Recepcion Voluntaria");
 
-        jButton_ModificarRec.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_ModificarRec.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_ModificarRec.setText("Modificar");
 
-        jLabel_FeIngreso.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel_FeIngreso.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_FeIngreso.setText("Fecha Ingreso");
 
-        jTextField_FeIngreso.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-
-        jButton_BuscarRec.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_BuscarRec.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_BuscarRec.setText("Buscar");
 
-        Label_ID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label_ID.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_ID.setText("ID Recepción");
 
-        TextField_ID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        TextField_ID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_ID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_IDKeyTyped(evt);
+            }
+        });
 
-        jButton_Agregar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_Agregar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_Agregar.setText("Agregar");
 
-        jButton_Limpiar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton_Limpiar.setText("Limpiar Datos");
-
         jTextField_Nombre.setEditable(false);
-        jTextField_Nombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextField_Nombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        jLabel_Nombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel_Nombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Nombre.setText("Nombre");
 
         jTextField_Direccion.setEditable(false);
-        jTextField_Direccion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jTextField_Direccion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        jLabel_Direccion.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel_Direccion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Direccion.setText("Dirección");
 
-        jButton_BuscarRUT.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_BuscarRUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_BuscarRUT.setText("Buscar");
 
-        Label_RUT.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label_RUT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_RUT.setText("RUT");
 
-        TextField_RUT.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        TextField_RUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_RUT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_RUTKeyTyped(evt);
+            }
+        });
+
+        jRadioButton_Agregar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRadioButton_Agregar.setText("Agregar Cliente");
+        jRadioButton_Agregar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jRadioButton_AgregarItemStateChanged(evt);
+            }
+        });
+
+        jRadioButton_Buscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRadioButton_Buscar.setText("Buscar Cliente");
+        jRadioButton_Buscar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jRadioButton_BuscarItemStateChanged(evt);
+            }
+        });
+
+        jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Aceptar.setText("Aceptar");
+        jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AceptarActionPerformed(evt);
+            }
+        });
+
+        jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Cancelar.setText("Cancelar");
+        jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarActionPerformed(evt);
+            }
+        });
+
+        jDateChooser_Fecha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jDateChooser_Fecha.setMaxSelectableDate(new java.util.Date(253370779303000L));
+        jDateChooser_Fecha.setMinSelectableDate(new java.util.Date(1262318503000L));
+        jDateChooser_Fecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jDateChooser_FechaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel_ReVoluntaria)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel_Nombre)
-                        .addComponent(jTextField_Nombre)
-                        .addComponent(jTextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel_Direccion)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Label_RUT)
+                        .addComponent(Label_ID)
                         .addGap(18, 18, 18)
-                        .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton_BuscarRUT)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Agregar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Limpiar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel_FeIngreso)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField_FeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(Label_ID)
-                                .addGap(18, 18, 18)
-                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(14, 14, 14)
+                        .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_BuscarRec)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_ModificarRec))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel_FeIngreso)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_ModificarRec)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                        .addComponent(jDateChooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioButton_Agregar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_Agregar))
+                    .addComponent(jRadioButton_Buscar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel_Direccion)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_Nombre)
+                            .addComponent(Label_RUT))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jButton_BuscarRUT))
+                            .addComponent(jTextField_Nombre))))
+                .addGap(217, 217, 217))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton_Aceptar)
+                .addGap(8, 8, 8)
+                .addComponent(jButton_Cancelar)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel_ReVoluntaria)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
+                        .addGap(21, 21, 21)
                         .addComponent(Label_ID))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton_BuscarRec)
-                        .addComponent(jButton_ModificarRec)))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_BuscarRec)
+                            .addComponent(jButton_ModificarRec))))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_FeIngreso)
-                    .addComponent(jTextField_FeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton_Agregar)
+                    .addComponent(jButton_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addComponent(jRadioButton_Buscar)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(6, 6, 6)
                         .addComponent(Label_RUT))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton_BuscarRUT)
-                        .addComponent(jButton_Agregar)
-                        .addComponent(jButton_Limpiar)))
+                    .addComponent(jButton_BuscarRUT))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel_Nombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel_Direccion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel_Nombre))
+                    .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel_Direccion))
+                    .addComponent(jTextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Aceptar)
+                    .addComponent(jButton_Cancelar))
+                .addContainerGap())
         );
+
+        jRadioButton_Agregar.setSelected(false);
+        this.jButton_Agregar.setVisible(false);
+        jRadioButton_Buscar.setSelected(false);
+        this.TextField_RUT.setVisible(false);
+        this.Label_RUT.setVisible(false);
+        this.jButton_BuscarRUT.setVisible(false);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
+        // TODO add your handling code here:
+        //ENVIAR INFORMACION
+    }//GEN-LAST:event_jButton_AceptarActionPerformed
+
+    private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
+        // TODO add your handling code here:
+        this.Limpiar();
+    }//GEN-LAST:event_jButton_CancelarActionPerformed
+
+    private void jRadioButton_AgregarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton_AgregarItemStateChanged
+        // TODO add your handling code here:
+        if(evt.getStateChange() == ItemEvent.SELECTED){
+            this.jRadioButton_Buscar.setSelected(false);
+            this.jButton_Agregar.setVisible(true);
+        }
+               
+        if(evt.getStateChange() == ItemEvent.DESELECTED){
+            this.jButton_Agregar.setVisible(false);
+        }
+    }//GEN-LAST:event_jRadioButton_AgregarItemStateChanged
+
+    private void jRadioButton_BuscarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton_BuscarItemStateChanged
+        // TODO add your handling code here:
+        if(evt.getStateChange() == ItemEvent.SELECTED){
+            this.jRadioButton_Agregar.setSelected(false);
+            this.TextField_RUT.setText("");
+            this.Label_RUT.setVisible(true);
+            this.TextField_RUT.setVisible(true);
+            this.jButton_BuscarRUT.setVisible(true);
+        }
+               
+        if(evt.getStateChange() == ItemEvent.DESELECTED){
+            this.Label_RUT.setVisible(false);
+            this.TextField_RUT.setVisible(false);
+            this.jButton_BuscarRUT.setVisible(false);
+            this.TextField_RUT.setText("");
+        }
+    }//GEN-LAST:event_jRadioButton_BuscarItemStateChanged
+
+    private void TextField_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_IDKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if(!Character.isDigit(c) || this.TextField_ID.getText().length()>10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextField_IDKeyTyped
+
+    private void TextField_RUTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_RUTKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextField_RUTKeyTyped
+
+    private void jDateChooser_FechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDateChooser_FechaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != '-') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jDateChooser_FechaKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_ID;
     private javax.swing.JLabel Label_RUT;
     private javax.swing.JTextField TextField_ID;
     private javax.swing.JTextField TextField_RUT;
+    private javax.swing.JButton jButton_Aceptar;
     private javax.swing.JButton jButton_Agregar;
     private javax.swing.JButton jButton_BuscarRUT;
     private javax.swing.JButton jButton_BuscarRec;
-    private javax.swing.JButton jButton_Limpiar;
+    private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_ModificarRec;
+    private com.toedter.calendar.JDateChooser jDateChooser_Fecha;
     private javax.swing.JLabel jLabel_Direccion;
     private javax.swing.JLabel jLabel_FeIngreso;
     private javax.swing.JLabel jLabel_Nombre;
     private javax.swing.JLabel jLabel_ReVoluntaria;
+    private javax.swing.JRadioButton jRadioButton_Agregar;
+    private javax.swing.JRadioButton jRadioButton_Buscar;
     private javax.swing.JTextField jTextField_Direccion;
-    private javax.swing.JTextField jTextField_FeIngreso;
     private javax.swing.JTextField jTextField_Nombre;
     // End of variables declaration//GEN-END:variables
 }

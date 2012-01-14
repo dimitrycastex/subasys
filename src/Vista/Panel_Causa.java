@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author bastian
@@ -15,6 +17,29 @@ public class Panel_Causa extends javax.swing.JPanel {
      */
     public Panel_Causa() {
         initComponents();
+    }
+    
+    private void Limpiar(){
+        this.TextField_Abogado.setText("");
+        this.TextField_Caratulado.setText("");
+        this.TextField_ID.setText("");
+        this.TextField_Juzgado.setText("");
+        this.TextField_ROL.setText("");
+        this.TextField_Receptor.setText("");
+    }
+    
+    public ArrayList getDatos(){
+        ArrayList datos = new ArrayList();
+        
+        datos.add(this.TextField_ROL.getText());
+        datos.add(this.TextField_Receptor.getText());
+        datos.add(this.TextField_Abogado.getText());
+        datos.add(this.TextField_Caratulado.getText());
+        datos.add(this.TextField_Juzgado.getText());
+        datos.add(this.TextField_ID.getText());
+        
+        return datos;
+    
     }
 
     /**
@@ -42,93 +67,154 @@ public class Panel_Causa extends javax.swing.JPanel {
         TextField_Juzgado = new javax.swing.JTextField();
         TextField_Caratulado = new javax.swing.JTextField();
         Label_Caratulado = new javax.swing.JLabel();
+        jButton_Cancelar = new javax.swing.JButton();
+        jButton_Aceptar = new javax.swing.JButton();
 
         setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         setMaximumSize(new java.awt.Dimension(800, 500));
         setMinimumSize(new java.awt.Dimension(800, 500));
 
-        jLabel_Causa.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
+        jLabel_Causa.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel_Causa.setText("Causa");
 
-        TextField_ROL.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        TextField_ROL.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_ROL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_ROLKeyTyped(evt);
+            }
+        });
 
-        jButton_ModificarROL.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_ModificarROL.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_ModificarROL.setText("Modificar");
 
-        Label_ROL.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label_ROL.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_ROL.setText("ROL");
 
-        jButton_BuscarROL.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_BuscarROL.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_BuscarROL.setText("Buscar");
 
-        jButton_BuscarID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_BuscarID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_BuscarID.setText("Buscar");
 
-        Label_ID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label_ID.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_ID.setText("ID Recepcion");
 
-        TextField_ID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        TextField_ID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_ID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_IDKeyTyped(evt);
+            }
+        });
 
-        Label_Receptor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label_Receptor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Receptor.setText("Receptor");
 
-        TextField_Receptor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        TextField_Receptor.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_Receptor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_ReceptorKeyTyped(evt);
+            }
+        });
 
-        Label_Abogado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label_Abogado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Abogado.setText("Abogado");
 
-        TextField_Abogado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        TextField_Abogado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_Abogado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_AbogadoKeyTyped(evt);
+            }
+        });
 
-        Label_Juzgado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label_Juzgado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Juzgado.setText("Juzgado");
 
-        TextField_Juzgado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        TextField_Juzgado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_Juzgado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_JuzgadoKeyTyped(evt);
+            }
+        });
 
-        TextField_Caratulado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        TextField_Caratulado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_Caratulado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_CaratuladoKeyTyped(evt);
+            }
+        });
 
-        Label_Caratulado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        Label_Caratulado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Caratulado.setText("Caratulado como");
+
+        jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Cancelar.setText("Cancelar");
+        jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarActionPerformed(evt);
+            }
+        });
+
+        jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Aceptar.setText("Aceptar");
+        jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel_Causa)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton_Aceptar)
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton_Cancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Label_ID)
-                            .addComponent(Label_ROL))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(TextField_ROL, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton_BuscarROL)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton_ModificarROL))
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_Causa)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Label_ID)
+                                            .addComponent(Label_ROL))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jButton_BuscarID))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(TextField_ROL, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jButton_BuscarROL)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jButton_ModificarROL))))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton_BuscarID))))
-                    .addComponent(Label_Receptor)
-                    .addComponent(Label_Abogado)
-                    .addComponent(TextField_Receptor)
-                    .addComponent(TextField_Abogado)
-                    .addComponent(TextField_Juzgado)
-                    .addComponent(Label_Juzgado)
-                    .addComponent(Label_Caratulado)
-                    .addComponent(TextField_Caratulado))
-                .addContainerGap(320, Short.MAX_VALUE))
+                                .addGap(96, 96, 96)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Label_Receptor)
+                                    .addComponent(Label_Abogado)
+                                    .addComponent(TextField_Abogado)
+                                    .addComponent(TextField_Juzgado)
+                                    .addComponent(Label_Juzgado)
+                                    .addComponent(Label_Caratulado)
+                                    .addComponent(TextField_Receptor, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                                    .addComponent(TextField_Caratulado))))
+                        .addGap(0, 86, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel_Causa)
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Label_ROL)
                     .addComponent(TextField_ROL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +228,7 @@ public class Panel_Causa extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton_BuscarID)))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(Label_Receptor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextField_Receptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,9 +244,76 @@ public class Panel_Causa extends javax.swing.JPanel {
                 .addComponent(Label_Caratulado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextField_Caratulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Aceptar)
+                    .addComponent(jButton_Cancelar))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
+        // TODO add your handling code here:
+        this.Limpiar();
+    }//GEN-LAST:event_jButton_CancelarActionPerformed
+
+    private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
+        // TODO add your handling code here:
+        //ENVIAR INFORMACION
+    }//GEN-LAST:event_jButton_AceptarActionPerformed
+
+    private void TextField_ROLKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_ROLKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if( !Character.isDigit(c) || this.TextField_ROL.getText().length()>10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextField_ROLKeyTyped
+
+    private void TextField_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_IDKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c) || this.TextField_ID.getText().length()>10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextField_IDKeyTyped
+
+    private void TextField_ReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_ReceptorKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if( (!Character.isWhitespace(c) &&
+                !Character.isLetter(c) )|| this.TextField_Receptor.getText().length()>100){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextField_ReceptorKeyTyped
+
+    private void TextField_AbogadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_AbogadoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if( (!Character.isWhitespace(c) &&
+                !Character.isLetter(c) )|| this.TextField_Abogado.getText().length()>100){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextField_AbogadoKeyTyped
+
+    private void TextField_JuzgadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_JuzgadoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if( (!Character.isWhitespace(c) &&
+                !Character.isLetter(c) )|| this.TextField_Juzgado.getText().length()>100){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextField_JuzgadoKeyTyped
+
+    private void TextField_CaratuladoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_CaratuladoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if( (!Character.isWhitespace(c) &&
+                !Character.isLetter(c) )|| this.TextField_Caratulado.getText().length()>100){
+            evt.consume();
+        }
+    }//GEN-LAST:event_TextField_CaratuladoKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_Abogado;
     private javax.swing.JLabel Label_Caratulado;
@@ -174,8 +327,10 @@ public class Panel_Causa extends javax.swing.JPanel {
     private javax.swing.JTextField TextField_Juzgado;
     private javax.swing.JTextField TextField_ROL;
     private javax.swing.JTextField TextField_Receptor;
+    private javax.swing.JButton jButton_Aceptar;
     private javax.swing.JButton jButton_BuscarID;
     private javax.swing.JButton jButton_BuscarROL;
+    private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_ModificarROL;
     private javax.swing.JLabel jLabel_Causa;
     // End of variables declaration//GEN-END:variables
