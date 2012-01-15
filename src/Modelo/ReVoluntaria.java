@@ -28,12 +28,11 @@ public class ReVoluntaria {
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
-            "insert into Recepcion_Voluntaria values (?,?,?,?);");
-             
-            //prep.setInt(1, Integer.parseInt(unaLista.get(0).toString())); 
-            prep.setDate(2, fechaIngreso);
+            "insert into Recepcion_Voluntaria (Fecha_Ingreso,Direccion,Nombre) values (?,?,?);");
+
+            prep.setDate(1, fechaIngreso);
+            prep.setString(2, unaLista.get(2).toString());  
             prep.setString(3, unaLista.get(3).toString());  
-            prep.setString(4, unaLista.get(4).toString());  
             prep.executeUpdate();
             
             } catch (SQLException ex) {
@@ -56,8 +55,6 @@ public class ReVoluntaria {
           ReVoluntaria.add(rs.getString("Direccion"));
           ReVoluntaria.add(rs.getString("Nombre"));
 
-
-
           flag=true;
           }
           rs.close();
@@ -72,26 +69,25 @@ public class ReVoluntaria {
          return ReVoluntaria;
     }
     
-  public static boolean setUpdate(String ID_RV,ArrayList unaLista) {
-
-        java.util.Date fecha1 = (Date)unaLista.get(1);
-
+  public static void setUpdate(ArrayList unaLista)
+ {
+       java.util.Date fecha = (java.sql.Date)unaLista.get(1);
+       java.sql.Date fechaIngreso = new java.sql.Date(fecha.getTime());
+            
         try {
 
-        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "update Recepcion_Voluntaria set Fecha_Ingreso=?,Direccion=?,Nombre=?"
+                    + " where ID_RV="+unaLista.get(0)+";");
 
-        stat.executeUpdate("update Recepcion_Voluntaria set Fecha_Ingreso='"+fecha1.getTime()+"' where ID_RV = "+ID_RV+"");
-        stat.executeUpdate("update Recepcion_Voluntaria set Direccion='"+unaLista.get(3).toString()+"' where ID_RV = "+ID_RV+"");
-        stat.executeUpdate("update Recepcion_Voluntaria set Nombre='"+unaLista.get(4).toString()+"' where ID_RV = "+ID_RV+"");
-       
-        return true;
-
-        } catch (SQLException ex) {
-
-        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
-        return false;
+            prep.setDate(1, fechaIngreso);
+            prep.setString(2, unaLista.get(2).toString());  
+            prep.setString(3, unaLista.get(3).toString());  
+            prep.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println(ex);
         }
-
     }
   
     

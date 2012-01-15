@@ -27,15 +27,15 @@ public class Remate {
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
-            "insert into Remate values (?,?,?,?,?,?,?);");
-             
-            //prep.setInt(1, Integer.parseInt(unaLista.get(0).toString()));
-            prep.setString(2, unaLista.get(1).toString());
-            prep.setString(3, unaLista.get(2).toString());  
-            prep.setDate(4, fecha);
-            prep.setString(5, unaLista.get(4).toString());  
-            prep.setInt(6, Integer.parseInt(unaLista.get(5).toString()));
-            prep.setString(7, unaLista.get(6).toString());  
+            "insert into Remate (Lugar,Diario,Fecha,Descripcion,Comision,Ciudad)"
+                    + " values (?,?,?,?,?,?);");
+
+            prep.setString(1, unaLista.get(1).toString());
+            prep.setString(2, unaLista.get(2).toString());  
+            prep.setDate(3, fecha);
+            prep.setString(4, unaLista.get(4).toString());  
+            prep.setInt(5, Integer.parseInt(unaLista.get(5).toString()));
+            prep.setString(6, unaLista.get(6).toString());  
 
           
             prep.executeUpdate();
@@ -78,28 +78,30 @@ public class Remate {
          return remate;
     }
     
-  public static boolean setUpdate(String ID_REMATE,ArrayList unaLista) {
-
-        java.util.Date fecha = (Date)unaLista.get(3);
+    public static void setUpdate(ArrayList unaLista)
+ {
+        java.sql.Date fecha =  new java.sql.Date( new java.util.Date(unaLista.get(3).toString()).getTime());
+      
+            
         try {
 
-        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "update Remate set Lugar=?,Diario=?,Fecha=?,Descripcion=?,Comision=?,Ciudad=?"
+                    + " where ID_REMATE="+unaLista.get(0)+";");
+             
+            prep.setString(1, unaLista.get(1).toString());
+            prep.setString(2, unaLista.get(2).toString());  
+            prep.setDate(3, fecha);
+            prep.setString(4, unaLista.get(4).toString());  
+            prep.setInt(5, Integer.parseInt(unaLista.get(5).toString()));
+            prep.setString(6, unaLista.get(6).toString());  
 
-        stat.executeUpdate("update Remate set Lugar='"+unaLista.get(1).toString()+"' where ID_REMATE = "+ID_REMATE+"");
-        stat.executeUpdate("update Remate set Diario='"+unaLista.get(2).toString()+"' where ID_REMATE = "+ID_REMATE+"");
-        stat.executeUpdate("update Remate set Fecha='"+fecha.getTime()+"' where ID_REMATE = "+ID_REMATE+"");
-        stat.executeUpdate("update Remate set Descripcion='"+unaLista.get(4).toString()+"' where ID_REMATE = "+ID_REMATE+"");
-        stat.executeUpdate("update Remate set Comision="+Integer.parseInt(unaLista.get(5).toString())+" where ID_REMATE = "+"'"+ID_REMATE+"'");
-        stat.executeUpdate("update Remate set Descripcion='"+unaLista.get(6).toString()+"' where ID_REMATE = "+ID_REMATE+"");
-       
-        return true;
-
-        } catch (SQLException ex) {
-
-        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
-        return false;
+          
+            prep.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println(ex);
         }
-
     }
   
 }

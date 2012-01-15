@@ -36,15 +36,15 @@ public class Postgresql {
     public static void main(String[] args) {
         // TODO code application logic here
         ArrayList lista = new ArrayList();
-        lista.add("rol5");
-        lista.add("receptor");
+        lista.add("rol2");
+        lista.add("receptor2");
         lista.add("abogado");
         lista.add("caratulado_como");
         lista.add("juzgado");
         lista.add(1234567);
-        //Causa.setUpdate("rol", lista);
+        Causa.setUpdate(lista);
         //Causa.nueva(lista);
-        lista = Causa.getDatos("rol5");
+        lista = Causa.getDatos("rol2");
         for (Iterator it = lista.iterator(); it.hasNext();) {
             Object object = it.next();
             System.out.println(object);

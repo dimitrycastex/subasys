@@ -29,7 +29,7 @@ public class Factura {
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
             "insert into Factura values (?,?,?,?,?,?,?,?,?,?,?);");
              
-            //prep.setInt(1, Integer.parseInt(unaLista.get(0).toString()));
+            prep.setInt(1, Integer.parseInt(unaLista.get(0).toString()));
             prep.setLong(2, Long.parseLong(unaLista.get(1).toString()));
             prep.setLong(3, Long.parseLong(unaLista.get(2).toString()));
             prep.setDate(4, fechaIngreso);
@@ -47,14 +47,14 @@ public class Factura {
         }
     }
    
-   public static ArrayList getDatos(String RUT){
+   public static ArrayList getDatos(String ID_FACTURA){
 
         factura.clear();
         boolean flag = false;
         try {
 
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-          ResultSet rs = stat.executeQuery("select * from Factura where RUT='"+RUT+"'");
+          ResultSet rs = stat.executeQuery("select * from Factura where ID_FACTURA="+ID_FACTURA+"");
           
           while (rs.next()) {
           factura.add(rs.getInt("RUT"));
@@ -84,35 +84,33 @@ public class Factura {
          return factura;
     }
     
-  public static boolean setUpdate(String RUT,ArrayList unaLista) {
-
-        java.util.Date fecha1 = (Date)unaLista.get(3);
-        
+    public static void setUpdate(ArrayList unaLista)
+ {
+       java.util.Date fecha = (java.sql.Date)unaLista.get(3);
+       java.sql.Date fechaIngreso = new java.sql.Date(fecha.getTime());
+       
         try {
 
-        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-
-        
-        
-        stat.executeUpdate("update Factura set Total='"+Long.parseLong(unaLista.get(1).toString())+"' where RUT = "+RUT+"");
-        stat.executeUpdate("update Factura set Garantia='"+Long.parseLong(unaLista.get(2).toString())+"' where RUT = "+RUT+"");
-        stat.executeUpdate("update Factura set Fecha_Emision='"+fecha1.getTime()+"' where RUT = "+RUT+"");
-        stat.executeUpdate("update Factura set Estado='"+unaLista.get(4).toString()+"' where RUT = "+RUT+"");
-        stat.executeUpdate("update Factura set Exento='"+unaLista.get(5).toString()+"' where RUT = "+RUT+"");
-        stat.executeUpdate("update Factura set Neto='"+Long.parseLong(unaLista.get(6).toString())+"' where RUT = "+RUT+"");
-        stat.executeUpdate("update Factura set Impuestos="+Integer.parseInt(unaLista.get(7).toString())+" where RUT = "+"'"+RUT+"'");
-        stat.executeUpdate("update Factura set Comision="+Integer.parseInt(unaLista.get(8).toString())+" where RUT = "+"'"+RUT+"'");
-        stat.executeUpdate("update Factura set IVA="+Integer.parseInt(unaLista.get(9).toString())+" where RUT = "+"'"+RUT+"'");
-        stat.executeUpdate("update Factura set Comision_Factura="+Integer.parseInt(unaLista.get(10).toString())+" where RUT = "+"'"+RUT+"'");
-       
-        return true;
-
-        } catch (SQLException ex) {
-
-        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
-        return false;
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "update Factura set Total=?,Garantia=?,Fecha_Emision=?,Estado=?,"
+                    + "Exento=?,Neto=?,Impuestos=?,Comision=?,IVA=?,"
+                    + "Comision_Factura=? where ID_FACTURA="+unaLista.get(0)+";");
+            
+            prep.setLong(1, Long.parseLong(unaLista.get(1).toString()));
+            prep.setLong(2, Long.parseLong(unaLista.get(2).toString()));
+            prep.setDate(3, fechaIngreso);
+            prep.setString(4, unaLista.get(4).toString());  
+            prep.setString(5, unaLista.get(5).toString());
+            prep.setLong(6, Long.parseLong(unaLista.get(6).toString()));
+            prep.setInt(7, Integer.parseInt(unaLista.get(7).toString()));
+            prep.setInt(8, Integer.parseInt(unaLista.get(8).toString()));
+            prep.setInt(9, Integer.parseInt(unaLista.get(9).toString()));
+            prep.setInt(10, Integer.parseInt(unaLista.get(10).toString()));
+            prep.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println(ex);
         }
-
     }
   
 }

@@ -70,26 +70,28 @@ public class Causa {
          return causa;
     }
     
-  public static boolean setUpdate(String ROL,ArrayList unaLista) {
-
+  
+   public static void setUpdate(ArrayList unaLista)
+ {
+                
         try {
 
-        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-
-        stat.executeUpdate("update Causa set Receptor='"+unaLista.get(1).toString()+"' where ROL = "+"'"+ROL+"'");
-        stat.executeUpdate("update Causa set Abogado='"+unaLista.get(2).toString()+"' where ROL = "+"'"+ROL+"'");
-        stat.executeUpdate("update Causa set Caratulado_como='"+unaLista.get(3).toString()+"' where ROL = "+"'"+ROL+"'");
-        stat.executeUpdate("update Causa set Juzgado='"+unaLista.get(4).toString()+"' where ROL = "+"'"+ROL+"'");
-        stat.executeUpdate("update Causa set ID_RJ="+Integer.parseInt(unaLista.get(5).toString())+" where ROL = "+"'"+ROL+"'");
-        
-        return true;
-
-        } catch (SQLException ex) {
-
-        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
-        return false;
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "UPDATE Causa set Receptor=?,Abogado=?,Caratulado_como=?,Juzgado=?,ID_RJ=? "
+                    + "where ROL='"+unaLista.get(0)+"'");
+             
+            prep.setString(1, unaLista.get(1).toString());
+            prep.setString(2, unaLista.get(2).toString());
+            prep.setString(3, unaLista.get(3).toString());
+            prep.setString(4, unaLista.get(4).toString());
+            prep.setInt(5, Integer.parseInt(unaLista.get(5).toString()));           
+            prep.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println(ex);
         }
-
     }
+  
+  
       
 }

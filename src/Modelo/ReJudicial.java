@@ -29,14 +29,14 @@ public class ReJudicial {
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
-            "insert into Recepcion_Judicial values (?,?,?,?,?,?);");
-             
-            //prep.setInt(1, Integer.parseInt(unaLista.get(0).toString())); 
-            prep.setDate(2, fechaIngreso);
-            prep.setDate(3, fechaDevolucion);
-            prep.setString(4, unaLista.get(3).toString());  
-            prep.setString(5, unaLista.get(4).toString());  
-            prep.setInt(6, Integer.parseInt(unaLista.get(5).toString()));
+            "insert into Recepcion_Judicial (Fecha_Ingreso,Fecha_Devolucion,"
+                    + "Demandante,Demandado,Bodegaje_Pagado) values (?,?,?,?,?);");
+
+            prep.setDate(1, fechaIngreso);
+            prep.setDate(2, fechaDevolucion);
+            prep.setString(3, unaLista.get(3).toString());  
+            prep.setString(4, unaLista.get(4).toString());  
+            prep.setInt(5, Integer.parseInt(unaLista.get(5).toString()));
             prep.executeUpdate();
             
             } catch (SQLException ex) {
@@ -77,29 +77,29 @@ public class ReJudicial {
          return ReJudicial;
     }
     
-  public static boolean setUpdate(String ID_RJ,ArrayList unaLista) {
-
-        java.util.Date fecha1 = (Date)unaLista.get(1);
-        java.util.Date fecha2 = (Date)unaLista.get(2);
+  public static void setUpdate(ArrayList unaLista)
+ {
+        java.util.Date fecha = (java.sql.Date)unaLista.get(1);
+        java.sql.Date fechaIngreso = new java.sql.Date(fecha.getTime());
+        fecha = (java.sql.Date)unaLista.get(2);
+        java.sql.Date fechaDevolucion =  new java.sql.Date(fecha.getTime());
+            
         try {
 
-        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "update Recepcion_Judicial Fecha_Ingreso=?,Fecha_Devolucion=?,Demandante=?,"
+                    + "Demandado=?,Bodegaje_Pagado=? where ID_RJ="+unaLista.get(0)+";");
 
-        stat.executeUpdate("update Recepcion_Judicial set Fecha_Ingreso='"+fecha1.getTime()+"' where ID_RJ = "+ID_RJ+"");
-        stat.executeUpdate("update Recepcion_Judicial set Fecha_Devolucion='"+fecha2.getTime()+"' where ID_RJ = "+ID_RJ+"");
-        stat.executeUpdate("update Recepcion_Judicial set Demandante='"+unaLista.get(3).toString()+"' where ID_RJ = "+ID_RJ+"");
-        stat.executeUpdate("update Recepcion_Judicial set Demandado='"+unaLista.get(4).toString()+"' where ID_RJ = "+ID_RJ+"");
-        stat.executeUpdate("update Recepcion_Judicial set Bodegaje_Pagado="+Integer.parseInt(unaLista.get(5).toString())+" where ID_RJ = "+"'"+ID_RJ+"'");
-        
-       
-        return true;
-
-        } catch (SQLException ex) {
-
-        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
-        return false;
+            prep.setDate(1, fechaIngreso);
+            prep.setDate(2, fechaDevolucion);
+            prep.setString(3, unaLista.get(3).toString());  
+            prep.setString(4, unaLista.get(4).toString());  
+            prep.setInt(5, Integer.parseInt(unaLista.get(5).toString()));
+            prep.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println(ex);
         }
-
     }
   
 }
