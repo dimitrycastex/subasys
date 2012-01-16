@@ -5,13 +5,19 @@
 package Vista;
 
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
  * @author bastian
  */
 public class Panel_Remate extends javax.swing.JPanel {
-
+    
+    private VentanaPrincipal V_Principal;
+    
+    public void setFrame(JFrame f){
+        this.V_Principal= (VentanaPrincipal) f;
+    }
     /**
      * Creates new form Panel_Remate
      */
@@ -41,6 +47,21 @@ public class Panel_Remate extends javax.swing.JPanel {
         datos.add(this.jTextField_Ciudad.getText());
         
         return datos;
+    }
+    
+    protected void RemateNuevo(boolean b){
+        this.Limpiar();
+        
+        this.jButton_Buscar.setVisible(!b);
+        this.jButton_Modificar.setVisible(!b);
+        this.TextField_ID.setEditable(!b);
+        
+        this.jTextField_Ciudad.setEditable(b);
+        this.jTextField_Comision.setEditable(b);
+        this.jTextField_Diario.setEditable(b);
+        this.jTextField_Lugar.setEditable(b);
+        this.jTextArea_Descripcion.setEditable(b);
+        this.jDateChooser_Fecha.setEnabled(b);
     
     }
 
@@ -286,6 +307,7 @@ public class Panel_Remate extends javax.swing.JPanel {
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
         // TODO add your handling code here:
         this.Limpiar();
+        V_Principal.removePanel_Remate();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
     private void TextField_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_IDKeyTyped

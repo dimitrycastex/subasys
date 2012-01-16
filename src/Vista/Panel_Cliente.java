@@ -6,6 +6,7 @@ package Vista;
 
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,6 +19,12 @@ public class Panel_Cliente extends javax.swing.JPanel {
      */
     public Panel_Cliente() {
         initComponents();
+    }
+    
+    private VentanaPrincipal V_Principal;
+    
+    public void setFrame(JFrame f){
+        this.V_Principal= (VentanaPrincipal) f;
     }
     
     public ArrayList getDatos(){
@@ -49,7 +56,29 @@ public class Panel_Cliente extends javax.swing.JPanel {
         this.TextField_Direccion.setText("");
         this.TextField_Ciudad.setText("");
         this.TextField_Comuna.setText("");
+        this.jRadioButton_CodPostal.setSelected(false);
+        this.jRadioButton_Email.setSelected(false);
+        this.jRadioButton_Web.setSelected(false);
     
+    }
+    
+    protected void ClienteNuevo(boolean b){
+        this.Limpiar();
+        this.jButton_Modificar.setVisible(!b);
+        this.jButton_Buscar.setVisible(!b);
+        this.TextField_Nombre.setEditable(b);
+        this.TextField_ApPaterno.setEditable(b);
+        this.TextField_ApMaterno.setEditable(b);
+        this.TextField_Direccion.setEditable(b);
+        this.TextField_Ciudad.setEditable(b);
+        this.TextField_Comuna.setEditable(b);
+        this.TextField_Telefono.setEditable(b);
+        this.TextField_Email.setEditable(b);
+        this.TextField_Web.setEditable(b);
+        this.TextField_CodPostal.setEditable(b);
+        this.jRadioButton_CodPostal.setEnabled(b);
+        this.jRadioButton_Email.setEnabled(b);
+        this.jRadioButton_Web.setEnabled(b);
     }
 
     /**
@@ -459,6 +488,8 @@ public class Panel_Cliente extends javax.swing.JPanel {
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
         // TODO add your handling code here:
         this.Limpiar();
+        V_Principal.removePanel_Cliente();
+        
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed

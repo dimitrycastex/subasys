@@ -5,6 +5,7 @@
 package Vista;
 
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -17,6 +18,12 @@ public class Panel_Causa extends javax.swing.JPanel {
      */
     public Panel_Causa() {
         initComponents();
+    }
+    
+    private VentanaPrincipal V_Principal;
+    
+    public void setFrame(JFrame f){
+        this.V_Principal= (VentanaPrincipal) f;
     }
     
     private void Limpiar(){
@@ -40,6 +47,20 @@ public class Panel_Causa extends javax.swing.JPanel {
         
         return datos;
     
+    }
+    
+    protected void CausaNueva(boolean b){
+        this.Limpiar();
+        this.TextField_ROL.setEditable(!b);
+        this.jButton_BuscarROL.setEnabled(!b);
+        this.jButton_ModificarROL.setEnabled(!b);
+        
+        this.TextField_ID.setEditable(b);
+        this.jButton_BuscarID.setEnabled(b);
+        this.TextField_Abogado.setEditable(b);
+        this.TextField_Caratulado.setEditable(b);
+        this.TextField_Juzgado.setEditable(b);
+        this.TextField_Receptor.setEditable(b);
     }
 
     /**
@@ -255,6 +276,7 @@ public class Panel_Causa extends javax.swing.JPanel {
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
         // TODO add your handling code here:
         this.Limpiar();
+        V_Principal.removePanel_Causa();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed

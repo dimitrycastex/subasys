@@ -5,6 +5,7 @@
 package Vista;
 
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -17,6 +18,12 @@ public class Panel_ReJudicial extends javax.swing.JPanel {
      */
     public Panel_ReJudicial() {
         initComponents();
+    }
+    
+    private VentanaPrincipal V_Principal;
+    
+    public void setFrame(JFrame f){
+        this.V_Principal= (VentanaPrincipal) f;
     }
     
     private void Limpiar(){
@@ -40,6 +47,22 @@ public class Panel_ReJudicial extends javax.swing.JPanel {
         datos.add(this.jTextField_Bodegaje.getText());
         
         return datos;
+    }
+    
+    protected void ReJudicialNueva(boolean b){
+        this.Limpiar();
+        this.jButton_Buscar.setEnabled(!b);
+        this.jButton_Modificar.setEnabled(!b);
+        this.TextField_ID.setEditable(!b);
+        
+        this.jDateChooser_FeIngreso.setEnabled(b);
+        this.jDateChooser_FeDevolucion.setEnabled(b);
+        this.jTextField_Bodegaje.setEditable(b);
+        this.jTextField_Demandante.setEditable(b);
+        this.jTextField_Demandado.setEditable(b);
+        
+    
+    
     }
 
     /**
@@ -245,6 +268,7 @@ public class Panel_ReJudicial extends javax.swing.JPanel {
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
         // TODO add your handling code here:
         this.Limpiar();
+        V_Principal.removePanel_ReJudicial();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed

@@ -6,6 +6,7 @@ package Vista;
 
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,6 +19,12 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
      */
     public Panel_ReVoluntaria() {
         initComponents();
+    }
+    
+    private VentanaPrincipal V_Principal;
+    
+    public void setFrame(JFrame f){
+        this.V_Principal= (VentanaPrincipal) f;
     }
     
     private void Limpiar(){
@@ -39,6 +46,17 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
         datos.add(this.jTextField_Nombre.getText());
         
         return datos;
+    }
+    
+    protected void ReVoluntariaNueva(boolean b){
+        this.Limpiar();
+        this.TextField_ID.setEditable(!b);
+        this.jButton_BuscarRec.setEnabled(!b);
+        this.jButton_ModificarRec.setEnabled(!b);
+        this.jRadioButton_Buscar.setSelected(!b);
+        
+        this.jRadioButton_Agregar.setSelected(b);
+        this.TextField_RUT.setEditable(b);
     }
 
     /**
@@ -282,6 +300,7 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
         // TODO add your handling code here:
         this.Limpiar();
+        V_Principal.removePanel_ReVoluntaria();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
     private void jRadioButton_AgregarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton_AgregarItemStateChanged

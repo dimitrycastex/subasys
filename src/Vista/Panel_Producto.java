@@ -6,6 +6,7 @@ package Vista;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JFrame;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -19,6 +20,12 @@ public class Panel_Producto extends javax.swing.JPanel {
      */
     public Panel_Producto() {
         initComponents();
+    }
+    
+    private VentanaPrincipal V_Principal;
+    
+    public void setFrame(JFrame f){
+        this.V_Principal= (VentanaPrincipal) f;
     }
     
     private void Limpiar(){
@@ -47,6 +54,19 @@ public class Panel_Producto extends javax.swing.JPanel {
         datos.add(this.jTextField_Garantia.getText());
         
         return datos;
+    }
+    
+    protected void ProductoNuevo(boolean b){
+        this.Limpiar();
+        this.TextField_ID.setEditable(!b);
+        this.jButton_Buscar.setEnabled(!b);
+        this.jButton_Modificar.setEnabled(!b);
+        
+        this.jSpinner_Cantidad.setEnabled(b);
+        this.jSpinner_NumLote.setEnabled(b);
+        this.jTextField_Garantia.setEditable(b);
+        this.jTextField_PrecioU.setEditable(b);
+        this.jTextArea_Descripcion.setEditable(b);
     }
 
     /**
@@ -271,6 +291,7 @@ public class Panel_Producto extends javax.swing.JPanel {
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
         // TODO add your handling code here:
         this.Limpiar();
+        V_Principal.removePanel_Producto();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
