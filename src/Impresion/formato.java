@@ -68,4 +68,7 @@ public class formato
             return(c);
     }
     
+
+    
+    
 }
