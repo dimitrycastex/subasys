@@ -21,7 +21,7 @@ public class Factura {
    
    public static void nuevo(ArrayList unaLista)
  {
-       java.util.Date fecha = (java.sql.Date)unaLista.get(3);
+       java.util.Date fecha = (java.util.Date)unaLista.get(3);
        java.sql.Date fechaIngreso = new java.sql.Date(fecha.getTime());
        
         try {

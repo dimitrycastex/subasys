@@ -35,7 +35,10 @@ public class Postgresql {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        ArrayList lista = new ArrayList();
+      
+        //Excel_to_SQL.cliente("-", "-", "-", "-","-", "-", "-", "-");
+       crearDBASE();
+        /*  ArrayList lista = new ArrayList();
         lista.add("rol2");
         lista.add("receptor2");
         lista.add("abogado");
@@ -49,7 +52,9 @@ public class Postgresql {
             Object object = it.next();
             System.out.println(object);
         
-        }
+        }*/
+        
+        
         /*
         java.util.Date fecha = new Date();
         Object ob1 = fecha;
@@ -70,20 +75,20 @@ public class Postgresql {
 
         stat.executeUpdate( "CREATE TABLE Cliente ("+
 	"RUT varchar NOT NULL,"+
-	"ApellidoM varchar,"+
 	"ApellidoP varchar,"+
+	"ApellidoM varchar,"+
 	"Nombre varchar,"+
 	"Email varchar,"+
 	"Web varchar,"+
-	"TelefonoMovil varchar,"+
+	"Telefono varchar,"+
 	"CodigoPostal int4,"+
 	"Direccion varchar,"+
 	"Ciudad varchar,"+
-	"Comuna int4,"+
+	"Comuna varchar,"+
 	"PRIMARY KEY(RUT));");
         
         stat.executeUpdate("CREATE TABLE Recepcion_Voluntaria ("+
-	"ID_RV int4 NOT NULL,"+
+	"ID_RV SERIAL NOT NULL,"+
 	"Fecha_Ingreso date,"+
 	"Direccion varchar,"+
 	"Nombre varchar,"+
@@ -99,7 +104,7 @@ public class Postgresql {
 	"PRIMARY KEY(ROL));");
          
         stat.executeUpdate("CREATE TABLE Remate ("+
-	"ID_REMATE int4 NOT NULL,"+
+	"ID_REMATE varchar NOT NULL,"+
 	"Lugar varchar,"+
 	"Diario varchar,"+
 	"Fecha date,"+
@@ -110,12 +115,13 @@ public class Postgresql {
 	"PRIMARY KEY(ID_REMATE));");
          
         stat.executeUpdate("CREATE TABLE Producto ("+
-	"ID_PRODUCTO int4 NOT NULL,"+
+	"ID_PRODUCTO SERIAL NOT NULL,"+
 	"Descripcion varchar,"+
 	"Cantidad int4,"+
 	"Precio_Unitario int4,"+
 	"Total int4,"+
 	"Garantia int4,"+
+        "Descripcion_Larga varchar,"+
 	"PRIMARY KEY(ID_PRODUCTO));");
          
         stat.executeUpdate("CREATE TABLE Factura ("+
@@ -139,7 +145,7 @@ public class Postgresql {
 	"PRIMARY KEY(NMID));");
         
         stat.executeUpdate("CREATE TABLE Recepcion_Judicial ("+
-	"ID_RJ int4 NOT NULL,"+
+	"ID_RJ SERIAL NOT NULL,"+
 	"Fecha_Ingreso date,"+
 	"Fecha_Devolucion date,"+
 	"Demandante varchar,"+
@@ -155,7 +161,7 @@ public class Postgresql {
         
         stat.executeUpdate("CREATE TABLE Remate_has_Causa ("+
 	"NMID SERIAL NOT NULL,"+
-	"ID_REMATE int4 NOT NULL,"+
+	"ID_REMATE varchar NOT NULL,"+
 	"ROL varchar NOT NULL,"+
 	"PRIMARY KEY(NMID));");
         
@@ -172,14 +178,14 @@ public class Postgresql {
 	"PRIMARY KEY(NMID));");
         
         stat.executeUpdate("CREATE TABLE Remate_has_Factura ("+
-	"NMID SERIAL NOT NULL,"+
-	"ID_REMATE int4 NOT NULL,"+
+	"NMID varchar NOT NULL,"+
+	"ID_REMATE varchar NOT NULL,"+
 	"ID_FACTURA int4 NOT NULL,"+
 	"PRIMARY KEY(NMID));");
         
         stat.executeUpdate("CREATE TABLE Remate_has_Producto ("+
 	"NMID SERIAL NOT NULL,"+
-	"ID_REMATE int4 NOT NULL,"+
+	"ID_REMATE varchar NOT NULL,"+
 	"ID_PRODUCTO int4 NOT NULL,"+
 	"Lote int4,"+
 	"PRIMARY KEY(NMID));");

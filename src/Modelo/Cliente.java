@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 public class Cliente {
     
-    public static ArrayList cliente = new ArrayList();
+  public static ArrayList cliente = new ArrayList();
    
    public static void nuevo(ArrayList unaLista)
  {
@@ -44,6 +44,9 @@ public class Cliente {
         }
     }
    
+   
+    
+     
    public static ArrayList getDatos(String RUT){
 
         cliente.clear();
@@ -55,12 +58,12 @@ public class Cliente {
           
           while (rs.next()) {
           cliente.add(rs.getInt("RUT"));
-          cliente.add(rs.getString("ApellidoM"));
           cliente.add(rs.getString("ApellidoP"));
+          cliente.add(rs.getString("ApellidoM"));
           cliente.add(rs.getString("Nombre"));
           cliente.add(rs.getString("Email"));
           cliente.add(rs.getString("Web"));
-          cliente.add(rs.getString("TelefonoMovil"));         
+          cliente.add(rs.getString("Telefono"));         
           cliente.add(rs.getInt("CodigoPostal"));
           cliente.add(rs.getString("Direccion")); 
           cliente.add(rs.getString("Ciudad"));
@@ -86,7 +89,7 @@ public class Cliente {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
             "update Cliente set ApellidoP=?,ApellidoM=?,Nombre=?,Email=?,"
-                    + "Web=?,TelefonoMovil=?,CodigoPostal=?,Direccion=?,"
+                    + "Web=?,Telefono=?,CodigoPostal=?,Direccion=?,"
                     + "Ciudad=?,Comuna=? where RUT='"+unaLista.get(0)+"';");
              
             prep.setString(1, unaLista.get(1).toString());

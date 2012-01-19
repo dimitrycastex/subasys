@@ -27,15 +27,15 @@ public class Remate {
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
-            "insert into Remate (Lugar,Diario,Fecha,Descripcion,Comision,Ciudad)"
-                    + " values (?,?,?,?,?,?);");
-
-            prep.setString(1, unaLista.get(1).toString());
-            prep.setString(2, unaLista.get(2).toString());  
-            prep.setDate(3, fecha);
-            prep.setString(4, unaLista.get(4).toString());  
-            prep.setInt(5, Integer.parseInt(unaLista.get(5).toString()));
-            prep.setString(6, unaLista.get(6).toString());  
+            "insert into Remate (ID_REMATE,Lugar,Diario,Fecha,Descripcion,Comision,Ciudad)"
+                    + " values (?,?,?,?,?,?,?);");
+            prep.setString(1, unaLista.get(0).toString());
+            prep.setString(2, unaLista.get(1).toString());
+            prep.setString(3, unaLista.get(2).toString());  
+            prep.setDate(4, fecha);
+            prep.setString(5, unaLista.get(4).toString());  
+            prep.setInt(6, Integer.parseInt(unaLista.get(5).toString()));
+            prep.setString(7, unaLista.get(6).toString());  
 
           
             prep.executeUpdate();
