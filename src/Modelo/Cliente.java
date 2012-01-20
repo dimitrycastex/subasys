@@ -109,4 +109,41 @@ public class Cliente {
         }
     }
    
+   public static ArrayList get_Lista(){
+
+        ArrayList lista_clientes = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select * from Cliente;");
+          
+          while (rs.next()) {
+          cliente.clear();
+          cliente.add(rs.getInt("RUT"));
+          cliente.add(rs.getString("ApellidoP"));
+          cliente.add(rs.getString("ApellidoM"));
+          cliente.add(rs.getString("Nombre"));
+          cliente.add(rs.getString("Email"));
+          cliente.add(rs.getString("Web"));
+          cliente.add(rs.getString("Telefono"));         
+          cliente.add(rs.getInt("CodigoPostal"));
+          cliente.add(rs.getString("Direccion")); 
+          cliente.add(rs.getString("Ciudad"));
+          cliente.add(rs.getString("Comuna"));
+          lista_clientes.add(cliente);
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el cliente", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_clientes;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_clientes;
+    }
+   
 }

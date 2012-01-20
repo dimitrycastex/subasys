@@ -103,5 +103,40 @@ public class Remate {
             System.out.println(ex);
         }
     }
+    
+    
+    public static ArrayList get_Lista(){
+
+        ArrayList lista_remate = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select * from Remate ;");
+          
+          while (rs.next()) {
+          remate.clear();
+          remate.add(rs.getInt("ID_REMATE"));
+          remate.add(rs.getString("Lugar"));
+          remate.add(rs.getInt("Diario"));
+          remate.add(rs.getDate("Fecha"));
+          remate.add(rs.getString("Descripcion"));
+          remate.add(rs.getInt("Comision"));
+          remate.add(rs.getString("Ciudad"));
+
+          lista_remate.add(remate);
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el remate", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_remate;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_remate;
+    }
   
 }

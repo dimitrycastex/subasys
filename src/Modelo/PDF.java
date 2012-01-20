@@ -17,43 +17,32 @@ import javax.swing.JOptionPane;
 
 public class PDF {
     
-     static ArrayList<String[]> lista_clientes = new ArrayList();
-    
-     public static ArrayList getDatos(String ROL){
-
-        lista_clientes.clear();
-        boolean flag = false;
-        try {
-
-          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-          ResultSet rs = stat.executeQuery("select * from Cliente");
-          
-          while (rs.next()) {
-          
-          lista_clientes.add(new String[]{
-          rs.getString("RUT"),
-          rs.getString("ApellidoP")+" "+
-          rs.getString("ApellidoM")+" "+
-          rs.getString("Nombre"),
-          rs.getString("TelefonoMovil"),
-          rs.getString("Direccion"),
-          rs.getString("Ciudad"),
-          rs.getString("Comuna"),
-          rs.getString("Email"),
-          });
-         
-          flag=true;
-          }
-          rs.close();
-          
-          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro la lista_clientes", "Error", JOptionPane.WARNING_MESSAGE);
-          
-         return lista_clientes;
-
-         } catch (SQLException ex) { 
-         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
-         }
-         return lista_clientes;
-    }
+ public static ArrayList get_Lista_Clientes(){
+     
+     return Modelo.Cliente.get_Lista();
+ }
+ 
+ public static ArrayList get_Lista_Productos(){
+     
+     return Modelo.Producto.get_Lista();
+ }
+ 
+ public static ArrayList get_Lista_Recepcion_Judicial(){
+     
+     return Modelo.ReJudicial.get_Lista();
+ }
+ 
+ public static ArrayList get_Lista_Recepcion_Voluntaria(){
+     
+     return Modelo.ReVoluntaria.get_Lista();
+ }
+ 
+ public static ArrayList get_Lista_Remate(){
+     
+     return Modelo.Remate.get_Lista();
+ }
+     
+     
+  
      
 }

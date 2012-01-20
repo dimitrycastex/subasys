@@ -95,4 +95,38 @@ public class Producto {
         }
     }
   
+  public static ArrayList get_Lista(){
+
+        ArrayList lista_productos = new ArrayList();
+
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select * from Producto;");
+          
+          while (rs.next()) {
+          producto.clear();
+          producto.add(rs.getInt("ID_PRODUCTO"));
+          producto.add(rs.getString("Descripcion"));
+          producto.add(rs.getInt("Cantidad"));
+          producto.add(rs.getInt("Precio_Unitario"));
+          producto.add(rs.getInt("Total"));
+          producto.add(rs.getInt("Garantia"));
+          producto.add(rs.getString("Descripcion_Larga"));
+          lista_productos.add(producto);
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_productos;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_productos;
+    }
+  
 }

@@ -102,4 +102,38 @@ public class ReJudicial {
         }
     }
   
+  public static ArrayList get_Lista(){
+
+       ArrayList lista_rjudicial = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select * from Recepcion_Judicial;");
+          
+          while (rs.next()) {
+           ReJudicial.clear();
+          ReJudicial.add(rs.getInt("ID_RJ"));    
+          ReJudicial.add(rs.getDate("Fecha_Ingreso"));
+          ReJudicial.add(rs.getDate("Fecha_Devolucion"));
+          ReJudicial.add(rs.getString("Demandante"));
+          ReJudicial.add(rs.getString("Demandante"));
+          ReJudicial.add(rs.getInt("Demandado"));         
+          ReJudicial.add(rs.getInt("Bodegaje_Pagado"));
+          lista_rjudicial.add(ReJudicial);
+
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_rjudicial;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_rjudicial;
+    }
+  
 }

@@ -90,5 +90,35 @@ public class ReVoluntaria {
         }
     }
   
+  public static ArrayList get_Lista(){
+
+        ArrayList lista_rvoluntaria = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select * from Recepcion_Voluntaria;");
+          
+          while (rs.next()) {
+          ReVoluntaria.clear();
+          ReVoluntaria.add(rs.getInt("ID_RV"));    
+          ReVoluntaria.add(rs.getDate("Fecha_Ingreso"));
+          ReVoluntaria.add(rs.getString("Direccion"));
+          ReVoluntaria.add(rs.getString("Nombre"));
+          lista_rvoluntaria.add(ReVoluntaria);
+                  
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_rvoluntaria;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_rvoluntaria;
+    }
     
 }
