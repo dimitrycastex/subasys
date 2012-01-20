@@ -28,12 +28,14 @@ public class TestPDF {
         Imprimir_Lista_RolesCausas.imprimir(path);
         Imprimir_Caja_Remate.imprimir(path);
         Imprimir_Caja_Remate.imprimir(path);
-        Imprimir_Nota_Creditos.imprimir(path);
-        Imprimir_Gastos_RolCausa.imprimir(path);
-        Detalle_Lotes_Rematados.imprimir(path);
-        Detalle_Lotes_Rematados.imprimir(path);
-        Imprimir_Gastos_Remate.imprimir(path);
-        Imprimir_Factura.imprimir(path);
+        Imprimir_Lista_Productos.imprimir(path);
+        Imprimir_Recepcion_Judicial.imprimir(path);
+        Imprimir_Lista_Recepciones_Judiciales.imprimir(path);
+        Imprimir_Recepcion_Voluntaria.imprimir(path);
+        Imprimir_Lista_Recepciones_Voluntarias.imprimir(path);
+        Imprimir_Planilla_Remate.imprimir(path);
+        Imprimir_Listado_Planilla_Remate.imprimir(path);
+        
     }
 
 }
