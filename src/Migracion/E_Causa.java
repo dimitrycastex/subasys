@@ -54,7 +54,6 @@ causa[columna]=convert(data);
 
 }
 
-System.out.println("-> "+convertNumber(causa[0]));
 Excel_to_SQL.causa(causa[2],causa[1],causa[3]);
 Excel_to_SQL.remate_has_causa(causa[0], causa[2]);
 
@@ -75,7 +74,7 @@ public static String convert(String unString){
     int aux = 0;
     for (int i = 0; i < unString.length(); i++) {
         aux = unString.charAt(i);
-        if(aux>=65 & aux<=90 || aux>=48 & aux<=59 || aux==' ' || aux=='-'){
+        if(aux>=65 & aux<=90 || aux>=48 & aux<=59 || aux==' ' || aux=='-' || aux=='/'){
         buffer+=unString.charAt(i);}
         
     }

@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Excel_to_SQL {
@@ -82,13 +84,20 @@ public class Excel_to_SQL {
     }
       
       
- public static void factura(String[] lista) throws ParseException
+ public static void factura(String[] lista)
  {
+     
        String fecha=lista[1]; 
         SimpleDateFormat sdf= new SimpleDateFormat("dd-MM-yyyy"); 
-        java.util.Date d=sdf.parse(fecha); 
-       java.sql.Date fechaEmision = new java.sql.Date(d.getTime());
-       
+        System.out.println("asdasdasdasdasdasdasdasdasdasdasdasdasd");
+        java.util.Date d = null; 
+        try {
+            d = sdf.parse(fecha);
+        } catch (ParseException ex) {
+            System.out.println("asdasdasdasdasdasdasdasdasdasdasdasdasd");
+        }
+      
+        java.sql.Date fechaEmision = new java.sql.Date(d.getTime());
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
@@ -156,13 +165,20 @@ public class Excel_to_SQL {
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
             "insert into Producto (Descripcion,Cantidad,Precio_Unitario,"
                     + "Total,Garantia,Descripcion_Larga) values (?,?,?,?,?,?);");
-
+            /*
             prep.setString(1, lista[3]);               
             prep.setInt(2,Integer.parseInt(lista[4]) );
             prep.setInt(3,Integer.parseInt(lista[5]));
             prep.setInt(4,Integer.parseInt(lista[7]));
             prep.setInt(5,Integer.parseInt(lista[6]) );
-            prep.setString(6, "");    
+            prep.setString(6, "");    */
+            
+             prep.setString(1, lista[2]);               
+            prep.setInt(2,1 );
+            prep.setInt(3,0);
+            prep.setInt(4,0);
+            prep.setInt(5,0 );
+            prep.setString(6, "");
             prep.executeUpdate();
             
             } catch (SQLException ex) {
@@ -204,7 +220,184 @@ public class Excel_to_SQL {
             System.out.println(ex);
         }
     }
+  
+  
+   public static void remate(String[] lista) throws ParseException
+ {
+       String fecha=lista[2]; 
+       SimpleDateFormat sdf= new SimpleDateFormat("dd-MM-yyyy"); 
+       java.util.Date d=sdf.parse(fecha); 
+       java.sql.Date fechaEmision = new java.sql.Date(d.getTime());
+      
+            
+        try {
+
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "insert into Remate (ID_REMATE,Lugar,Diario,Fecha,Descripcion,Comision,Ciudad)"
+                    + " values (?,?,?,?,?,?,?);");
+            prep.setString(1, lista[0]);
+            prep.setString(2, lista[3]);
+            prep.setString(3, lista[6]);  
+            prep.setDate(4, fechaEmision);
+            prep.setString(5, lista[1]);  
+            prep.setInt(6, Integer.parseInt(lista[4]));
+            prep.setString(7, lista[5]);  
+
+          
+            prep.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+   
+   public static ArrayList getDatos(){
+
+        ArrayList list = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select Causa.ROL,Causa.Caratulado_como from Causa;");
+          int i=1;
+          while (rs.next()) {
+          recepcion_judicial(rs.getString("Caratulado_como"));
+          i++;
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el cliente", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return list;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return list;
+    }
+   
+   public static void setUpdate(String ROL,int ID_RJ)
+ {
+                
+        try {
+
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "UPDATE Causa set ID_RJ=? "
+                    + "where ROL='"+ROL+"'");
+             
+            prep.setInt(1,ID_RJ );
+                   
+            prep.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+   
+   
+     public static void recepcion_judicial(String caratulado_como)
+ {
+        
+        //java.sql.Date fechaIngreso = new java.sql.Date(fecha.getTime());
+        
+        String demandante = "";
+        String demandado = "";
+        
+        if(caratulado_como.contains("/") && caratulado_como.split("/").length==2){
+        String[] aux = caratulado_como.split("/");
+        demandante+=aux[0];
+        demandado+=aux[1];
+        }
+
+        try {
+
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "insert into Recepcion_Judicial (Demandante,Demandado) values (?,?);");
+
+            prep.setString(1, demandante);  
+            prep.setString(2, demandado);  
+            prep.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+     
+     
+      public static int getDatosID_PRODUCTO(String id_remate,int lote){
+
+       int aux = 0;
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select ID_PRODUCTO from Remate_has_Producto "
+                  + "where Lote="+lote+" and ID_REMATE='"+id_remate+"';");
+          int i=1;
+          while (rs.next()) {
+          aux=rs.getInt("ID_PRODUCTO");
+          i++;
+          flag=true;
+          }
+          rs.close();
+          
+         if(!flag)
+                System.out.println(lote+"-"+id_remate);
+          
+         return aux;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return aux;
+    }
+   
+      public static int getDatosID_RJ(String rol){
+
+       int aux = 0;
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select ID_RJ from Causa "
+                  + "where ROL='"+rol+"';");
+          int i=1;
+          while (rs.next()) {
+          aux=rs.getInt("ID_RJ");
+          i++;
+          flag=true;
+          }
+          rs.close();
+   
+         return aux;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return aux;
+    }
+      
+        public static void recepcion_judicial_has_producto(int ID_RJ,int ID_PRODUCTO)
+ {
+                
+        try {
+
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "insert into Recepcion_Judicial_has_Producto (ID_RJ,ID_PRODUCTO) values (?,?);");
+             
+            prep.setInt(1, ID_RJ);
+            prep.setInt(2, ID_PRODUCTO);
+            prep.executeUpdate();
+            
+            } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
          
 }
+
+
+
 
 

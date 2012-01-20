@@ -14,7 +14,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class E_Factura { 
+public class E_Factura_has_Producto { 
 ArrayList<String> Lista = new ArrayList();
 
 
@@ -53,9 +53,8 @@ System.out.println("Columna "+columna+":"+data);
 factura[columna]=convert(data);
 
 }
-Excel_to_SQL.factura(factura);
-Excel_to_SQL.cliente_has_factura(factura[3], convertNumber(factura[0]));
-Excel_to_SQL.remate_has_factura(factura[2], convertNumber(factura[0]));
+Excel_to_SQL.factura_has_producto(convertNumber(factura[0]),
+        Excel_to_SQL.getDatosID_PRODUCTO(factura[1],convertNumber(factura[2])));
 } 
 }
 return Lista;
@@ -98,8 +97,8 @@ public static int convertNumber(String unString){
 }
 
 public static void main(String arg[]) { 
-E_Factura excelDGA = new E_Factura(); 
-ArrayList<String> ListaDGA = excelDGA.leerArchivoExcel("Cliente_has_Factura.xls"); 
+E_Factura_has_Producto excelDGA = new E_Factura_has_Producto(); 
+ArrayList<String> ListaDGA = excelDGA.leerArchivoExcel("Factura_has_Producto.xls"); 
 } 
 
 public static String corrijeString(String unString){

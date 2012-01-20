@@ -37,7 +37,7 @@ public class Postgresql {
         // TODO code application logic here
       
         //Excel_to_SQL.cliente("-", "-", "-", "-","-", "-", "-", "-");
-       crearDBASE();
+        crearDBASE();
         /*  ArrayList lista = new ArrayList();
         lista.add("rol2");
         lista.add("receptor2");
@@ -111,7 +111,6 @@ public class Postgresql {
 	"Descripcion varchar,"+
 	"Comision int4,"+
 	"Ciudad varchar,"+
-	"ID_PRODUCTO int4 NOT NULL,"+
 	"PRIMARY KEY(ID_REMATE));");
          
         stat.executeUpdate("CREATE TABLE Producto ("+
@@ -178,7 +177,7 @@ public class Postgresql {
 	"PRIMARY KEY(NMID));");
         
         stat.executeUpdate("CREATE TABLE Remate_has_Factura ("+
-	"NMID varchar NOT NULL,"+
+	"NMID SERIAL NOT NULL,"+
 	"ID_REMATE varchar NOT NULL,"+
 	"ID_FACTURA int4 NOT NULL,"+
 	"PRIMARY KEY(NMID));");

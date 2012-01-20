@@ -14,7 +14,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class E_Factura { 
+public class E_Producto { 
 ArrayList<String> Lista = new ArrayList();
 
 
@@ -42,20 +42,22 @@ System.out.println("Nombre de la Hoja\t"
 for (int fila = 1; fila < numFilas; fila++) { // Recorre cada 
 // fila de la 
 // hoja
-String[] factura = new String[]{"","","","","","","","","","","","","","",""};
+String[] producto = new String[]{"","","","","","","","",""};
 System.out.println("FILA: "+fila);
+int k=0;
 for (int columna = 0; columna < numColumnas; columna++) { // Recorre                                                                                
 
 data = hoja.getCell(columna, fila).getContents(); 
 //System.out.println(data + " "+data.length()+" "+convert(data)+" "+convert(data).length()+" "+convert(data).equals("NE-0401-11")); 
 
-System.out.println("Columna "+columna+":"+data);
-factura[columna]=convert(data);
+System.out.println("Columna "+columna+":"+data);k++;
+producto[columna]=convert(data);
 
 }
-Excel_to_SQL.factura(factura);
-Excel_to_SQL.cliente_has_factura(factura[3], convertNumber(factura[0]));
-Excel_to_SQL.remate_has_factura(factura[2], convertNumber(factura[0]));
+Excel_to_SQL.producto(producto);
+Excel_to_SQL.remate_has_producto(producto[0], fila, convertNumber(producto[1]));
+
+
 } 
 }
 return Lista;
@@ -98,8 +100,8 @@ public static int convertNumber(String unString){
 }
 
 public static void main(String arg[]) { 
-E_Factura excelDGA = new E_Factura(); 
-ArrayList<String> ListaDGA = excelDGA.leerArchivoExcel("Cliente_has_Factura.xls"); 
+E_Producto excelDGA = new E_Producto(); 
+ArrayList<String> ListaDGA = excelDGA.leerArchivoExcel("Causa_has_Producto.xls"); 
 } 
 
 public static String corrijeString(String unString){
