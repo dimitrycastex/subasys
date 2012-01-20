@@ -5,8 +5,6 @@
 package Impresion;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
@@ -34,7 +32,7 @@ public class Imprimir_Caja_Remate
       document.add(formato.titulo("CAJA DEL REMATE"));
       document.add(new Phrase(""));//espacio
       
-      document.add(formato.subtitulo("REMATE N° : JUDICIAL COQUIMBO"));
+      document.add(formato.subtitulo("REMATE N°120 : JUDICIAL COQUIMBO"));
       document.add(new Phrase(""));//espacio
       
       document.add(formato.subtitulo("Comision : 10%"));
@@ -68,11 +66,10 @@ public class Imprimir_Caja_Remate
             
             
             // 
-            table.addCell(formato.celda_normal("Total"));
-            
+            table.addCell(formato.celda_normal("Total Garantias"));
             table.addCell(formato.celda_normal("$234.465",2,Element.ALIGN_RIGHT));
             
-            table.addCell(formato.celda_normal("Total"));
+            table.addCell(formato.celda_normal("Total Exento"));
             table.addCell(formato.celda_normal("$234.465",2,Element.ALIGN_RIGHT));
             
             table.addCell(formato.celda_normal("Comision"));

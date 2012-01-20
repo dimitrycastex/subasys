@@ -42,6 +42,14 @@ public class formato
             return(pp);
     }
     
+    //formato de parrafo @param t: texto a mostrar
+    public static Paragraph parrafo(String t,int alin)
+    {
+            Paragraph pp = new Paragraph(t,new Font(FontFamily.TIMES_ROMAN, 12));
+            pp.setAlignment(alin);
+            return(pp);
+    }
+    
     //formato de celda_titulo @param t: texto a mostrar
     public static PdfPCell celda_titulo(String t)
     {
@@ -55,6 +63,17 @@ public class formato
     {
             PdfPCell c = new PdfPCell(new Phrase(t,new Font(FontFamily.TIMES_ROMAN, 8, Font.BOLD)));
             c.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            c.setColspan(colspan);
+            return(c);
+    }
+    
+    //formato de celda_titulo @param t: texto a mostrar ; colspan: espaciado 
+    public static PdfPCell celda_titulo(String t,int colspan,int alin)
+    {
+            PdfPCell c = new PdfPCell(new Phrase(t,new Font(FontFamily.TIMES_ROMAN, 8, Font.BOLD)));
+            c.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            // aliniación del texto en la celda
+            c.setHorizontalAlignment(alin);
             c.setColspan(colspan);
             return(c);
     }
@@ -77,6 +96,7 @@ public class formato
     public static PdfPCell celda_normal(String t,int colspan,int alin)
     {
             PdfPCell c = new PdfPCell(new Phrase(t,new Font(FontFamily.TIMES_ROMAN, 8)));
+            // unir celdas
             c.setColspan(colspan);
             // aliniación del texto en la celda
             c.setHorizontalAlignment(alin);

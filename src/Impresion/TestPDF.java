@@ -28,6 +28,12 @@ public class TestPDF {
         Imprimir_Lista_RolesCausas.imprimir(path);
         Imprimir_Caja_Remate.imprimir(path);
         Imprimir_Caja_Remate.imprimir(path);
+        Imprimir_Nota_Creditos.imprimir(path);
+        Imprimir_Gastos_RolCausa.imprimir(path);
+        Detalle_Lotes_Rematados.imprimir(path);
+        Detalle_Lotes_Rematados.imprimir(path);
+        Imprimir_Gastos_Remate.imprimir(path);
+        Imprimir_Factura.imprimir(path);
     }
 
 }
