@@ -36,6 +36,7 @@ public class TestPDF {
         Imprimir_Planilla_Remate.imprimir(path);
         Imprimir_Listado_Planilla_Remate.imprimir(path);
         
+        Imprimir_Planilla_Remate_Lote.imprimir(path);
     }
 
 }

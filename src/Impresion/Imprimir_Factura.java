@@ -59,30 +59,46 @@ public class Imprimir_Factura {
             table.setHorizontalAlignment(Element.ALIGN_CENTER);
             
             
+            table.addCell(celda_normal(" ",1,Element.ALIGN_UNDEFINED));
+            table.addCell(celda_normal("EDUARDO REYES TAPIA",11,Element.ALIGN_LEFT));
             
-            table.addCell(celda_normal("EDUARDO REYES TAPIA",Element.ALIGN_UNDEFINED));
-            table.addCell(celda_normal(" ",Element.ALIGN_UNDEFINED));
+            table.addCell(celda_normal(" ",1,Element.ALIGN_UNDEFINED));
+            table.addCell(celda_normal("PARADERO 44 GRAN PASADA",11,Element.ALIGN_LEFT));
             
-            table.addCell(celda_normal(" ",Element.ALIGN_UNDEFINED));
-            table.addCell(celda_normal(" ",Element.ALIGN_UNDEFINED));
+            table.addCell(celda_normal(" ",1,Element.ALIGN_UNDEFINED));
+            table.addCell(celda_normal("ANTOFAGASTA",5,Element.ALIGN_LEFT));
+            table.addCell(celda_normal("SIERRA GORDA",6,Element.ALIGN_LEFT));
             
-            table.addCell(celda_normal("SALVADOR DALHI 1346",Element.ALIGN_UNDEFINED));
-            table.addCell(celda_normal("CHIMBARONGO",Element.ALIGN_CENTER));
+            table.addCell(celda_normal(" ",1,Element.ALIGN_UNDEFINED));
+            table.addCell(celda_normal("3456781-6",11,Element.ALIGN_LEFT));
             
-            table.addCell(celda_normal(" ",Element.ALIGN_UNDEFINED));
-            table.addCell(celda_normal(" ",Element.ALIGN_UNDEFINED));
+            table.addCell(celda_normal(" ",12,Element.ALIGN_UNDEFINED));
             
-            table.addCell(celda_normal("SAN FERNANDO",Element.ALIGN_UNDEFINED));
-            table.addCell(celda_normal("12111333-3",Element.ALIGN_CENTER));
+            table.addCell(celda_normal(" ",2,Element.ALIGN_UNDEFINED));
+            table.addCell(celda_normal("Garantia : 0",5,Element.ALIGN_LEFT));
+            table.addCell(celda_normal("Saldo : 6.987",5,Element.ALIGN_UNDEFINED));
+            
+            table.addCell(celda_normal(" ",12,Element.ALIGN_UNDEFINED));
+            table.addCell(celda_normal(" ",12,Element.ALIGN_UNDEFINED));
+            
+            for (int i = 0; i < 10; i++) {
+                table.addCell(celda_normal(""+(i+1),1,Element.ALIGN_LEFT));
+                table.addCell(celda_normal(""+(i*3),1,Element.ALIGN_LEFT));
+                table.addCell(celda_normal("FAX BROTHER INTELLIFAX 77"+i,6,Element.ALIGN_LEFT));
+                table.addCell(celda_normal("5.600",2,Element.ALIGN_LEFT));
+                table.addCell(celda_normal("5.600",2,Element.ALIGN_LEFT));
+            }
             
             return table;
         }
     
-    public static PdfPCell celda_normal(String t,int alin)
+    public static PdfPCell celda_normal(String t,int colspan,int alin)
     {
-            PdfPCell c = new PdfPCell(new Phrase(t,new Font(FontFamily.TIMES_ROMAN, 10)));
+            PdfPCell c = new PdfPCell(new Phrase(t,new Font(FontFamily.TIMES_ROMAN, 10, Font.BOLD)));
             // sin lineas en el borde de la tabla
             c.setBorder(Rectangle.NO_BORDER);
+            // unir celdas
+            c.setColspan(colspan);
             // aliniación del texto en la celda
             c.setHorizontalAlignment(alin);
             return(c);
