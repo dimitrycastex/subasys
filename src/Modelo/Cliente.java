@@ -57,7 +57,7 @@ public class Cliente {
           ResultSet rs = stat.executeQuery("select * from Cliente where RUT="+"'"+RUT+"'");
           
           while (rs.next()) {
-          cliente.add(rs.getInt("RUT"));
+          cliente.add(rs.getString("RUT"));
           cliente.add(rs.getString("ApellidoP"));
           cliente.add(rs.getString("ApellidoM"));
           cliente.add(rs.getString("Nombre"));
@@ -120,7 +120,7 @@ public class Cliente {
           
           while (rs.next()) {
           cliente.clear();
-          cliente.add(rs.getInt("RUT"));
+          cliente.add(rs.getString("RUT"));
           cliente.add(rs.getString("ApellidoP"));
           cliente.add(rs.getString("ApellidoM"));
           cliente.add(rs.getString("Nombre"));
