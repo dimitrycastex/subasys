@@ -32,7 +32,8 @@ public class Panel_Producto extends javax.swing.JPanel {
         
         this.TextField_ID.setText("");
         this.jTextField_Garantia.setText("");
-        this.jTextArea_Descripcion.setText("");
+        this.jTextArea_DeLarga.setText("");
+        this.jTextField_Descripcion.setText("");
         this.jTextField_PrecioT.setText("");
         this.jTextField_PrecioU.setText("");
         this.jSpinner_Cantidad.setValue(1);
@@ -47,11 +48,12 @@ public class Panel_Producto extends javax.swing.JPanel {
         ArrayList datos = new ArrayList();
         
         datos.add(this.TextField_ID.getText());
-        datos.add(this.jTextArea_Descripcion.getText());
+        datos.add(this.jTextField_Descripcion.getText());
         datos.add(this.jSpinner_Cantidad.getValue());
         datos.add(this.jTextField_PrecioU.getText());
         datos.add(this.jTextField_PrecioT.getText());
         datos.add(this.jTextField_Garantia.getText());
+        datos.add(this.jTextArea_DeLarga.getText());
         
         return datos;
     }
@@ -66,7 +68,8 @@ public class Panel_Producto extends javax.swing.JPanel {
         this.jSpinner_NumLote.setEnabled(b);
         this.jTextField_Garantia.setEditable(b);
         this.jTextField_PrecioU.setEditable(b);
-        this.jTextArea_Descripcion.setEditable(b);
+        this.jTextArea_DeLarga.setEditable(b);
+        this.jTextField_Descripcion.setEditable(b);
     }
 
     /**
@@ -89,20 +92,22 @@ public class Panel_Producto extends javax.swing.JPanel {
         jTextField_PrecioU = new javax.swing.JTextField();
         jLabel_PrecioT = new javax.swing.JLabel();
         jTextField_PrecioT = new javax.swing.JTextField();
-        jLabel_Descripcion = new javax.swing.JLabel();
+        jLabel_DeLarga = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea_Descripcion = new javax.swing.JTextArea();
+        jTextArea_DeLarga = new javax.swing.JTextArea();
         jLabel_Garantia = new javax.swing.JLabel();
         jTextField_Garantia = new javax.swing.JTextField();
         jLabel_NumLote = new javax.swing.JLabel();
         jSpinner_NumLote = new javax.swing.JSpinner();
         jButton_Cancelar = new javax.swing.JButton();
         jButton_Aceptar = new javax.swing.JButton();
+        jTextField_Descripcion = new javax.swing.JTextField();
+        jLabel_Descripcion = new javax.swing.JLabel();
 
         setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        setMaximumSize(new java.awt.Dimension(800, 500));
-        setMinimumSize(new java.awt.Dimension(800, 500));
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        setMaximumSize(new java.awt.Dimension(1000, 550));
+        setMinimumSize(new java.awt.Dimension(1000, 550));
+        setPreferredSize(new java.awt.Dimension(1000, 550));
 
         jLabel_Producto.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel_Producto.setText("Producto");
@@ -138,11 +143,11 @@ public class Panel_Producto extends javax.swing.JPanel {
 
         jTextField_PrecioU.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextField_PrecioU.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField_PrecioUKeyTyped(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField_PrecioUKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_PrecioUKeyTyped(evt);
             }
         });
 
@@ -152,18 +157,18 @@ public class Panel_Producto extends javax.swing.JPanel {
         jTextField_PrecioT.setEditable(false);
         jTextField_PrecioT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        jLabel_Descripcion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel_Descripcion.setText("Descripción (máximo 1000 caracteres)");
+        jLabel_DeLarga.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_DeLarga.setText("Descripción Larga (máximo 3000 caracteres)");
 
-        jTextArea_Descripcion.setColumns(20);
-        jTextArea_Descripcion.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextArea_Descripcion.setRows(5);
-        jTextArea_Descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextArea_DeLarga.setColumns(20);
+        jTextArea_DeLarga.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jTextArea_DeLarga.setRows(5);
+        jTextArea_DeLarga.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextArea_DescripcionKeyTyped(evt);
+                jTextArea_DeLargaKeyTyped(evt);
             }
         });
-        jScrollPane1.setViewportView(jTextArea_Descripcion);
+        jScrollPane1.setViewportView(jTextArea_DeLarga);
 
         jLabel_Garantia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Garantia.setText("Garantía");
@@ -196,89 +201,118 @@ public class Panel_Producto extends javax.swing.JPanel {
             }
         });
 
+        jTextField_Descripcion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        jLabel_Descripcion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_Descripcion.setText("Descripción");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel_Producto))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(814, 814, 814)
                         .addComponent(jButton_Aceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addComponent(jButton_Cancelar))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_Producto)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Label_ID)
-                                .addGap(18, 18, 18)
-                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton_Buscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton_Modificar))
-                            .addComponent(jLabel_Descripcion)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel_Garantia)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField_Garantia, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel_NumLote)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinner_NumLote, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel_Cantidad)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinner_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_PrecioU)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField_PrecioU, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_PrecioT)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField_PrecioT, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 60, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jLabel_DeLarga)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel_Garantia)
+                                        .addComponent(jLabel_Cantidad)
+                                        .addComponent(Label_ID))
+                                    .addGap(32, 32, 32)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jButton_Buscar)
+                                            .addGap(6, 6, 6)
+                                            .addComponent(jButton_Modificar))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jSpinner_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(130, 130, 130)
+                                            .addComponent(jLabel_PrecioU)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jTextField_PrecioU, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jTextField_Garantia, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(137, 137, 137)
+                                            .addComponent(jLabel_NumLote)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jSpinner_NumLote, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(75, 75, 75)
+                                    .addComponent(jLabel_PrecioT)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextField_PrecioT, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel_Descripcion)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextField_Descripcion)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 886, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addComponent(jLabel_Producto)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(15, 15, 15)
                         .addComponent(Label_ID))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_Buscar)
-                            .addComponent(jButton_Modificar))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Cantidad)
-                    .addComponent(jSpinner_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_PrecioU)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton_Buscar)
+                                .addComponent(jButton_Modificar)))))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField_PrecioU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_PrecioT)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel_Cantidad)
+                                .addComponent(jSpinner_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_PrecioU)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel_PrecioT))
                     .addComponent(jTextField_PrecioT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Garantia)
-                    .addComponent(jTextField_Garantia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_NumLote)
-                    .addComponent(jSpinner_NumLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSpinner_NumLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel_Garantia)
+                                .addComponent(jTextField_Garantia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_NumLote))))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel_Descripcion)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_Descripcion))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel_DeLarga, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
                 .addContainerGap())
@@ -316,12 +350,12 @@ public class Panel_Producto extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField_GarantiaKeyTyped
 
-    private void jTextArea_DescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea_DescripcionKeyTyped
+    private void jTextArea_DeLargaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea_DeLargaKeyTyped
         // TODO add your handling code here:
-        if(this.jTextArea_Descripcion.getText().length()>1000){
+        if(this.jTextArea_DeLarga.getText().length()>1000){
             evt.consume();
         }
-    }//GEN-LAST:event_jTextArea_DescripcionKeyTyped
+    }//GEN-LAST:event_jTextArea_DeLargaKeyTyped
 
     private void jSpinner_CantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner_CantidadStateChanged
         // TODO add your handling code here:
@@ -366,6 +400,7 @@ public class Panel_Producto extends javax.swing.JPanel {
     private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_Modificar;
     private javax.swing.JLabel jLabel_Cantidad;
+    private javax.swing.JLabel jLabel_DeLarga;
     private javax.swing.JLabel jLabel_Descripcion;
     private javax.swing.JLabel jLabel_Garantia;
     private javax.swing.JLabel jLabel_NumLote;
@@ -375,7 +410,8 @@ public class Panel_Producto extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner_Cantidad;
     private javax.swing.JSpinner jSpinner_NumLote;
-    private javax.swing.JTextArea jTextArea_Descripcion;
+    private javax.swing.JTextArea jTextArea_DeLarga;
+    private javax.swing.JTextField jTextField_Descripcion;
     private javax.swing.JTextField jTextField_Garantia;
     private javax.swing.JTextField jTextField_PrecioT;
     private javax.swing.JTextField jTextField_PrecioU;

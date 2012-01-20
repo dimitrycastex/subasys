@@ -8,12 +8,12 @@ package Vista;
  *
  * @author bastian
  */
-public class Factura extends javax.swing.JPanel {
+public class Panel_BuscaCliente extends javax.swing.JPanel {
 
     /**
-     * Creates new form Factura
+     * Creates new form Panel_BuscaCliente
      */
-    public Factura() {
+    public Panel_BuscaCliente() {
         initComponents();
     }
 
@@ -26,18 +26,15 @@ public class Factura extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setMaximumSize(new java.awt.Dimension(800, 500));
-        setMinimumSize(new java.awt.Dimension(800, 500));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

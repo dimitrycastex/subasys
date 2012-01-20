@@ -4,9 +4,11 @@
  */
 package Vista;
 
+import Validacion.ValidaCliente;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,19 +24,21 @@ public class Panel_Cliente extends javax.swing.JPanel {
     }
     
     private VentanaPrincipal V_Principal;
+    private ValidaCliente validador;
     
     public void setFrame(JFrame f){
         this.V_Principal= (VentanaPrincipal) f;
+        this.validador = new ValidaCliente();
     }
     
     public ArrayList getDatos(){
         ArrayList Datos = new ArrayList();
         
-        Datos.add(this.TextField_RUT.getText());
-        Datos.add(this.TextField_ApMaterno.getText());
+        Datos.add(this.jTextField_RUT.getText());
         Datos.add(this.TextField_ApPaterno.getText());
+        Datos.add(this.TextField_ApMaterno.getText());
         Datos.add(this.TextField_Nombre.getText());
-        Datos.add(this.TextField_Email.getText());
+        Datos.add(this.jTextField_Email.getText());
         Datos.add(this.TextField_Web.getText());
         Datos.add(this.TextField_Telefono.getText());
         Datos.add(this.TextField_CodPostal.getText());
@@ -45,11 +49,11 @@ public class Panel_Cliente extends javax.swing.JPanel {
     }
     
     private void Limpiar(){
-        this.TextField_RUT.setText("");
+        this.jTextField_RUT.setText("");
         this.TextField_ApMaterno.setText("");
         this.TextField_ApPaterno.setText("");
         this.TextField_Nombre.setText("");
-        this.TextField_Email.setText("");
+        this.jTextField_Email.setText("");
         this.TextField_Web.setText("");
         this.TextField_Telefono.setText("");
         this.TextField_CodPostal.setText("");
@@ -73,7 +77,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
         this.TextField_Ciudad.setEditable(b);
         this.TextField_Comuna.setEditable(b);
         this.TextField_Telefono.setEditable(b);
-        this.TextField_Email.setEditable(b);
+        this.jTextField_Email.setEditable(b);
         this.TextField_Web.setEditable(b);
         this.TextField_CodPostal.setEditable(b);
         this.jRadioButton_CodPostal.setEnabled(b);
@@ -91,10 +95,10 @@ public class Panel_Cliente extends javax.swing.JPanel {
     private void initComponents() {
 
         Label_Cliente = new javax.swing.JLabel();
-        Label_RUT = new javax.swing.JLabel();
+        jLabel_RUT = new javax.swing.JLabel();
         Label_ApPaterno = new javax.swing.JLabel();
         Label_ApMaterno = new javax.swing.JLabel();
-        TextField_RUT = new javax.swing.JTextField();
+        jTextField_RUT = new javax.swing.JTextField();
         Label_Nombre = new javax.swing.JLabel();
         TextField_Nombre = new javax.swing.JTextField();
         Label_Direccion = new javax.swing.JLabel();
@@ -103,7 +107,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
         Label_Web = new javax.swing.JLabel();
         TextField_Telefono = new javax.swing.JTextField();
         Label_Email = new javax.swing.JLabel();
-        TextField_Email = new javax.swing.JTextField();
+        jTextField_Email = new javax.swing.JTextField();
         TextField_ApPaterno = new javax.swing.JTextField();
         Label_Telefono = new javax.swing.JLabel();
         TextField_Web = new javax.swing.JTextField();
@@ -122,16 +126,16 @@ public class Panel_Cliente extends javax.swing.JPanel {
         TextField_Ciudad = new javax.swing.JTextField();
 
         setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        setMaximumSize(new java.awt.Dimension(800, 500));
-        setMinimumSize(new java.awt.Dimension(800, 500));
+        setMaximumSize(new java.awt.Dimension(1000, 550));
+        setMinimumSize(new java.awt.Dimension(1000, 550));
         setName("Cliente");
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        setPreferredSize(new java.awt.Dimension(1000, 550));
 
         Label_Cliente.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         Label_Cliente.setText("Cliente");
 
-        Label_RUT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        Label_RUT.setText("RUT");
+        jLabel_RUT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_RUT.setText("RUT");
 
         Label_ApPaterno.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_ApPaterno.setText("Apellido Paterno");
@@ -139,7 +143,12 @@ public class Panel_Cliente extends javax.swing.JPanel {
         Label_ApMaterno.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_ApMaterno.setText("Apellido Materno");
 
-        TextField_RUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField_RUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField_RUT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField_RUTKeyTyped(evt);
+            }
+        });
 
         Label_Nombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Nombre.setText("Nombres");
@@ -177,10 +186,10 @@ public class Panel_Cliente extends javax.swing.JPanel {
         Label_Email.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Email.setText("E-Mail");
 
-        TextField_Email.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        TextField_Email.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextField_Email.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField_Email.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                TextField_EmailKeyTyped(evt);
+                jTextField_EmailKeyTyped(evt);
             }
         });
 
@@ -286,25 +295,6 @@ public class Panel_Cliente extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Label_Nombre)
-                    .addComponent(TextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(Label_ApPaterno))
-                    .addComponent(TextField_ApPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(Label_ApMaterno))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(TextField_ApMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 42, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -317,60 +307,54 @@ public class Panel_Cliente extends javax.swing.JPanel {
                                 .addGap(12, 12, 12)
                                 .addComponent(Label_Cliente))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(Label_RUT)
-                                .addGap(18, 18, 18)
-                                .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton_Buscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton_Modificar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(45, 45, 45)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(Label_Web)
                                         .addGap(18, 18, 18)
                                         .addComponent(jRadioButton_Web))
-                                    .addComponent(TextField_Web, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextField_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Label_Telefono))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextField_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Label_Email)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton_Email)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(TextField_Web, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(Label_Email)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jRadioButton_Email))
+                                            .addComponent(jTextField_Email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TextField_Nombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Label_Nombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Label_Direccion, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TextField_Direccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(47, 47, 47)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(Label_Telefono)
+                                            .addComponent(TextField_Ciudad)
+                                            .addComponent(Label_Ciudad)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(4, 4, 4)
+                                                .addComponent(Label_ApPaterno))
+                                            .addComponent(TextField_ApPaterno)
+                                            .addComponent(TextField_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(91, 91, 91)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TextField_CodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TextField_Comuna, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Label_Comuna)
+                                            .addComponent(TextField_ApMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Label_ApMaterno)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(Label_CodPostal)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jRadioButton_CodPostal))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Label_CodPostal)
+                                        .addComponent(jLabel_RUT)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton_CodPostal))
-                                    .addComponent(TextField_CodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Label_Direccion))
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(Label_Ciudad))
-                                    .addComponent(TextField_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(43, 43, 43)
-                                        .addComponent(Label_Comuna))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addComponent(TextField_Comuna, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(jTextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton_Buscar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton_Modificar)))))
+                        .addGap(0, 53, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -380,62 +364,64 @@ public class Panel_Cliente extends javax.swing.JPanel {
                 .addComponent(Label_Cliente)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Label_RUT)
+                    .addComponent(jTextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_RUT)
                     .addComponent(jButton_Buscar)
                     .addComponent(jButton_Modificar))
-                .addGap(17, 17, 17)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
                         .addComponent(Label_Nombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Label_ApPaterno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TextField_ApPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Label_ApMaterno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TextField_ApMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(Label_Direccion)
                         .addGap(16, 16, 16)
-                        .addComponent(TextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Label_Ciudad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TextField_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Label_Comuna)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TextField_Comuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(TextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_Telefono)
                             .addComponent(Label_Email)
                             .addComponent(jRadioButton_Email))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TextField_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextField_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_CodPostal)
-                            .addComponent(jRadioButton_CodPostal))
-                        .addGap(4, 4, 4)
-                        .addComponent(TextField_CodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(17, 17, 17)
+                        .addComponent(jTextField_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Label_ApPaterno)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TextField_ApPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(Label_Ciudad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TextField_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Label_ApMaterno)
+                                .addGap(18, 18, 18)
+                                .addComponent(TextField_ApMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Label_Comuna)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TextField_Comuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Label_CodPostal)
+                                    .addComponent(jRadioButton_CodPostal))
+                                .addGap(4, 4, 4)
+                                .addComponent(TextField_CodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Label_Telefono)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextField_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Label_Web)
                     .addComponent(jRadioButton_Web))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextField_Web, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
@@ -460,14 +446,14 @@ public class Panel_Cliente extends javax.swing.JPanel {
     private void jRadioButton_EmailItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton_EmailItemStateChanged
         // TODO add your handling code here:
         if(evt.getStateChange() == ItemEvent.SELECTED){
-            this.TextField_Email.setText("-");
-            this.TextField_Email.setEnabled(false);
+            this.jTextField_Email.setText("-");
+            this.jTextField_Email.setEnabled(false);
         }
         
         
         if(evt.getStateChange() == ItemEvent.DESELECTED){
-            this.TextField_Email.setText("");
-            this.TextField_Email.setEnabled(true);
+            this.jTextField_Email.setText("");
+            this.jTextField_Email.setEnabled(true);
         }
     }//GEN-LAST:event_jRadioButton_EmailItemStateChanged
 
@@ -495,6 +481,12 @@ public class Panel_Cliente extends javax.swing.JPanel {
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         // TODO add your handling code here:
         //ENVIAR INFORMACION
+       
+        if(validador.ClienteValido(this.getDatos()))
+            JOptionPane.showMessageDialog(V_Principal, "Cliente Validado", "Información", JOptionPane.INFORMATION_MESSAGE);
+        
+        else
+            JOptionPane.showMessageDialog(V_Principal, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
         
     }//GEN-LAST:event_jButton_AceptarActionPerformed
 
@@ -536,7 +528,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
     private void TextField_CodPostalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_CodPostalKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(!Character.isDigit(c) || this.TextField_CodPostal.getText().length()>9){
+        if(!Character.isDigit(c) || this.TextField_CodPostal.getText().length()>7){
             evt.consume();
         }
     }//GEN-LAST:event_TextField_CodPostalKeyTyped
@@ -548,12 +540,12 @@ public class Panel_Cliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_TextField_DireccionKeyTyped
 
-    private void TextField_EmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_EmailKeyTyped
+    private void jTextField_EmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_EmailKeyTyped
         // TODO add your handling code here:
-        if(this.TextField_Email.getText().length()>50){
+        if(this.jTextField_Email.getText().length()>50){
             evt.consume();
         }
-    }//GEN-LAST:event_TextField_EmailKeyTyped
+    }//GEN-LAST:event_jTextField_EmailKeyTyped
 
     private void TextField_WebKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_WebKeyTyped
         // TODO add your handling code here:
@@ -580,6 +572,14 @@ public class Panel_Cliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_TextField_CiudadKeyTyped
 
+    private void jTextField_RUTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_RUTKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if( (!Character.isDigit(c) && c!='-') || this.TextField_CodPostal.getText().length()>10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField_RUTKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_ApMaterno;
     private javax.swing.JLabel Label_ApPaterno;
@@ -590,7 +590,6 @@ public class Panel_Cliente extends javax.swing.JPanel {
     private javax.swing.JLabel Label_Direccion;
     private javax.swing.JLabel Label_Email;
     private javax.swing.JLabel Label_Nombre;
-    private javax.swing.JLabel Label_RUT;
     private javax.swing.JLabel Label_Telefono;
     private javax.swing.JLabel Label_Web;
     private javax.swing.JTextField TextField_ApMaterno;
@@ -599,17 +598,18 @@ public class Panel_Cliente extends javax.swing.JPanel {
     private javax.swing.JTextField TextField_CodPostal;
     private javax.swing.JTextField TextField_Comuna;
     private javax.swing.JTextField TextField_Direccion;
-    private javax.swing.JTextField TextField_Email;
     private javax.swing.JTextField TextField_Nombre;
-    private javax.swing.JTextField TextField_RUT;
     private javax.swing.JTextField TextField_Telefono;
     private javax.swing.JTextField TextField_Web;
     private javax.swing.JButton jButton_Aceptar;
     private javax.swing.JButton jButton_Buscar;
     private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_Modificar;
+    private javax.swing.JLabel jLabel_RUT;
     private javax.swing.JRadioButton jRadioButton_CodPostal;
     private javax.swing.JRadioButton jRadioButton_Email;
     private javax.swing.JRadioButton jRadioButton_Web;
+    private javax.swing.JTextField jTextField_Email;
+    private javax.swing.JTextField jTextField_RUT;
     // End of variables declaration//GEN-END:variables
 }

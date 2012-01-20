@@ -22,6 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_ReVoluntaria1.setFrame(this);
         this.panel_Producto1.setFrame(this);
         this.panel_Causa1.setFrame(this);
+        this.panel_Factura1.setFrame(this);
     }
     
     //--------------------------------------------------------------------------
@@ -122,6 +123,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane_Pestanas.remove(panel_ReVoluntaria1);
         this.addPanel_Bienvenido();
     }
+    
+     //--------------------------------------------------------------------------
+    protected void addPanel_Factura(boolean nuevo){
+        String nombre;
+        this.panel_Factura1.FacturaNueva(nuevo);
+        nombre = (nuevo==true)? "Nueva Factura" : "Anular Factura";
+        jTabbedPane_Pestanas.addTab(nombre, panel_Factura1);
+        jTabbedPane_Pestanas.setEnabledAt(0, false);
+        this.removePanel_Bienvenido();
+    }
+    
+    protected void removePanel_Factura(){
+        jTabbedPane_Pestanas.remove(panel_Factura1);
+        this.addPanel_Bienvenido();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,22 +152,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTabbedPane_Pestanas = new javax.swing.JTabbedPane();
-        panel_Bienvenido1 = new Vista.Panel_Bienvenido();
         panel_Remate1 = new Vista.Panel_Remate();
         panel_Producto1 = new Vista.Panel_Producto();
         panel_Cliente1 = new Vista.Panel_Cliente();
         panel_ReJudicial1 = new Vista.Panel_ReJudicial();
+        panel_Bienvenido1 = new Vista.Panel_Bienvenido();
         panel_Causa1 = new Vista.Panel_Causa();
+        panel_Factura1 = new Vista.Panel_Factura();
         jMenuBar_Principal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SUBASYS - Ventana Principal");
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMaximumSize(new java.awt.Dimension(1000, 650));
+        setMinimumSize(new java.awt.Dimension(1000, 650));
         setName("Ventana Principal");
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 650));
         setResizable(false);
 
         jToolBar_Iconos.setFloatable(false);
@@ -176,10 +193,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jToolBar_Iconos.add(jButton2);
 
         jTabbedPane_Pestanas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTabbedPane_Pestanas.setMaximumSize(new java.awt.Dimension(800, 500));
-        jTabbedPane_Pestanas.setMinimumSize(new java.awt.Dimension(800, 500));
-        jTabbedPane_Pestanas.setPreferredSize(new java.awt.Dimension(800, 500));
-        jTabbedPane_Pestanas.addTab("Bienvenido a SUBASYS", panel_Bienvenido1);
+        jTabbedPane_Pestanas.setMaximumSize(new java.awt.Dimension(1000, 550));
+        jTabbedPane_Pestanas.setMinimumSize(new java.awt.Dimension(1000, 550));
+        jTabbedPane_Pestanas.setPreferredSize(new java.awt.Dimension(1000, 550));
 
         /*
         jTabbedPane_Pestanas.addTab("Remate", panel_Remate1);
@@ -196,9 +212,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /*
         jTabbedPane_Pestanas.addTab("Recepcion Judicial", panel_ReJudicial1);
         */
+        jTabbedPane_Pestanas.addTab("Bienvenido a SUBASYS", panel_Bienvenido1);
 
         /*
         jTabbedPane_Pestanas.addTab("Causa", panel_Causa1);
+        */
+
+        /*
+        jTabbedPane_Pestanas.addTab("Factura", panel_Factura1);
         */
 
         jMenu1.setText("Archivo");
@@ -219,9 +240,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar_Iconos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar_Iconos, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE))
+                .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -279,6 +300,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Vista.Panel_Bienvenido panel_Bienvenido1;
     private Vista.Panel_Causa panel_Causa1;
     private Vista.Panel_Cliente panel_Cliente1;
+    private Vista.Panel_Factura panel_Factura1;
     private Vista.Panel_Producto panel_Producto1;
     private Vista.Panel_ReJudicial panel_ReJudicial1;
     private Vista.Panel_ReVoluntaria panel_ReVoluntaria1;
