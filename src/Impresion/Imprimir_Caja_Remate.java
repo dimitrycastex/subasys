@@ -5,6 +5,8 @@
 package Impresion;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
@@ -32,45 +34,62 @@ public class Imprimir_Caja_Remate
       document.add(formato.titulo("CAJA DEL REMATE"));
       document.add(new Phrase(""));//espacio
       
-      document.add(formato.subtitulo("REMATE LOTES JUDICIALES COQUIMBO"));
+      document.add(formato.subtitulo("REMATE N° : JUDICIAL COQUIMBO"));
       document.add(new Phrase(""));//espacio
+      
+      document.add(formato.subtitulo("Comision : 10%"));
+      document.add(new Phrase("\n\n"));//espacio
+      
+      //Paragraph pp = new Paragraph("Dirección/Lugar",new Font(FontFamily.TIMES_ROMAN, 8, Font.BOLD));
+      
+      document.add(formato.texto_normal("Ciudad/Lugar : ",Font.BOLD));
+      document.add(formato.texto_normal("Municipalidad La Serena"));
+      document.add(new Phrase("\n"));//espacio
+      
+      document.add(formato.texto_normal("Fecha               : ",Font.BOLD));
+      document.add(formato.texto_normal("21/10/2005"));
       
       document.add(CrearTabla());
       //cerrar el pdf
       document.close();
     }
-        
+    
+    
     public static PdfPTable CrearTabla()
     {
-            // crear tabla con 5 columnas
-            PdfPTable table = new PdfPTable(6);
-            //table.setSpacingBefore(2);
-            table.setWidthPercentage(100);
-
-            // agregar titulo RUT
-            table.addCell(formato.celda_titulo("Rut"));
+            // crear tabla con 2 columnas
+            PdfPTable table = new PdfPTable(2);
+            // separación del parrafo de texto con la tabla
+            table.setSpacingBefore(20);
+            // largo de las filas
+            table.setWidthPercentage(60);
+            // alineación de la tabla entera centrada
+            table.setHorizontalAlignment(1);
             
-            // agregar titulo Nombre [ necesita mas espacio ]
-            table.addCell(formato.celda_titulo("Nombre",2));
             
-            // agregar titulo Direccion
-            table.addCell(formato.celda_titulo("Dirección"));
+            // 
+            table.addCell(formato.celda_normal("Total"));
             
-            // agregar titulo Localidad
-            table.addCell(formato.celda_titulo("Localidad"));
+            table.addCell(formato.celda_normal("$234.465",2,Element.ALIGN_RIGHT));
             
-            // agregar titulo Telefono
-            table.addCell(formato.celda_titulo("Teléfono"));
-
-            //
-            for(int i=1;i<=100;i++)
-            {
-                table.addCell(formato.celda_normal("RUT"+i));
-                table.addCell(formato.celda_normal("Nombre ApellidoM ApellidoP"+i,2));
-                table.addCell(formato.celda_normal("Dirección"+i));
-                table.addCell(formato.celda_normal("Localidad"+i));
-                table.addCell(formato.celda_normal("Telefono"+i));
-            }
+            table.addCell(formato.celda_normal("Total"));
+            table.addCell(formato.celda_normal("$234.465",2,Element.ALIGN_RIGHT));
+            
+            table.addCell(formato.celda_normal("Comision"));
+            table.addCell(formato.celda_normal("$234.465",2,Element.ALIGN_RIGHT));
+            
+            table.addCell(formato.celda_normal("Gastos"));
+            table.addCell(formato.celda_normal("$234.465",2,Element.ALIGN_RIGHT));
+            
+            table.addCell(formato.celda_normal("Total Comision"));
+            table.addCell(formato.celda_normal("$234.465",2,Element.ALIGN_RIGHT));
+            
+            table.addCell(formato.celda_normal("Total IVA"));
+            table.addCell(formato.celda_normal("$234.465",2,Element.ALIGN_RIGHT));
+            
+            table.addCell(formato.celda_normal("Total"));
+            table.addCell(formato.celda_normal("$234.465",2,Element.ALIGN_RIGHT));
+            
             return table;
         }
 }

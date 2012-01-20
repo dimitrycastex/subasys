@@ -20,6 +20,12 @@ public class formato
             return(p);
     }
     
+    public static Phrase texto_normal(String t,int font)
+    {
+            Phrase p = new Phrase(t,new Font(FontFamily.TIMES_ROMAN, 10,font));
+            return(p);
+    }
+    
     //formato de titulo @param t: texto a mostrar
     public static Paragraph titulo(String t)
     {
@@ -68,7 +74,13 @@ public class formato
             return(c);
     }
     
-
-    
+    public static PdfPCell celda_normal(String t,int colspan,int alin)
+    {
+            PdfPCell c = new PdfPCell(new Phrase(t,new Font(FontFamily.TIMES_ROMAN, 8)));
+            c.setColspan(colspan);
+            // aliniación del texto en la celda
+            c.setHorizontalAlignment(alin);
+            return(c);
+    }
     
 }
