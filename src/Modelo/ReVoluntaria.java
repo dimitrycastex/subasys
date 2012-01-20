@@ -92,7 +92,7 @@ public class ReVoluntaria {
   
   public static ArrayList get_Lista(){
 
-        ArrayList lista_rvoluntaria = new ArrayList();
+        ArrayList<ArrayList> lista_rvoluntaria = new ArrayList();
         boolean flag = false;
         try {
 
@@ -100,6 +100,7 @@ public class ReVoluntaria {
           ResultSet rs = stat.executeQuery("select * from Recepcion_Voluntaria;");
           
           while (rs.next()) {
+          ArrayList ReVoluntaria = new ArrayList();
           ReVoluntaria.clear();
           ReVoluntaria.add(rs.getInt("ID_RV"));    
           ReVoluntaria.add(rs.getDate("Fecha_Ingreso"));

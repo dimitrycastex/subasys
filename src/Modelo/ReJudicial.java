@@ -104,7 +104,7 @@ public class ReJudicial {
   
   public static ArrayList get_Lista(){
 
-       ArrayList lista_rjudicial = new ArrayList();
+       ArrayList<ArrayList> lista_rjudicial = new ArrayList();
         boolean flag = false;
         try {
 
@@ -112,7 +112,7 @@ public class ReJudicial {
           ResultSet rs = stat.executeQuery("select * from Recepcion_Judicial;");
           
           while (rs.next()) {
-           ReJudicial.clear();
+          ArrayList ReJudicial = new ArrayList();
           ReJudicial.add(rs.getInt("ID_RJ"));    
           ReJudicial.add(rs.getDate("Fecha_Ingreso"));
           ReJudicial.add(rs.getDate("Fecha_Devolucion"));

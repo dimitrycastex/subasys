@@ -111,7 +111,7 @@ public class Cliente {
    
    public static ArrayList get_Lista(){
 
-        ArrayList lista_clientes = new ArrayList();
+        ArrayList<ArrayList> lista_clientes = new ArrayList();
         boolean flag = false;
         try {
 
@@ -119,7 +119,7 @@ public class Cliente {
           ResultSet rs = stat.executeQuery("select * from Cliente;");
           
           while (rs.next()) {
-          cliente.clear();
+          ArrayList cliente = new ArrayList();
           cliente.add(rs.getString("RUT"));
           cliente.add(rs.getString("ApellidoP"));
           cliente.add(rs.getString("ApellidoM"));

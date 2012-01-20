@@ -35,9 +35,12 @@ public class Postgresql {
     
     public static void main(String[] args) {
         // TODO code application logic here
-      
-       //PDF.get_Lista_Clientes();
-       PDF.get_Lista_Productos();
+        //PDF.get_Lista_Clientes();
+        ArrayList _Lista_Productos = Modelo.Producto.get_Lista();
+        for (Iterator it = _Lista_Productos.iterator(); it.hasNext();) {
+            ArrayList object = (ArrayList) it.next();
+            System.out.println(object.get(0));
+        }
         //Excel_to_SQL.cliente("-", "-", "-", "-","-", "-", "-", "-");
         //crearDBASE();
         /*  ArrayList lista = new ArrayList();
@@ -51,12 +54,9 @@ public class Postgresql {
         //Causa.nueva(lista);
         lista = Causa.getDatos("rol2");
         for (Iterator it = lista.iterator(); it.hasNext();) {
-            Object object = it.next();
-            System.out.println(object);
-        
+        Object object = it.next();
+        System.out.println(object);
         }*/
-        
-        
         /*
         java.util.Date fecha = new Date();
         Object ob1 = fecha;

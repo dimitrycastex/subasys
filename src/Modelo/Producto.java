@@ -97,8 +97,9 @@ public class Producto {
   
   public static ArrayList get_Lista(){
 
-        ArrayList lista_productos = new ArrayList();
-
+        ArrayList<ArrayList> lista_productos = new ArrayList();
+       
+        
         boolean flag = false;
         try {
 
@@ -106,7 +107,7 @@ public class Producto {
           ResultSet rs = stat.executeQuery("select * from Producto;");
           
           while (rs.next()) {
-          producto.clear();
+          ArrayList producto = new ArrayList();
           producto.add(rs.getInt("ID_PRODUCTO"));
           producto.add(rs.getString("Descripcion"));
           producto.add(rs.getInt("Cantidad"));

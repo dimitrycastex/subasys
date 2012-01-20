@@ -107,7 +107,8 @@ public class Remate {
     
     public static ArrayList get_Lista(){
 
-        ArrayList lista_remate = new ArrayList();
+        ArrayList<ArrayList> lista_remate = new ArrayList();
+        
         boolean flag = false;
         try {
 
@@ -115,7 +116,7 @@ public class Remate {
           ResultSet rs = stat.executeQuery("select * from Remate ;");
           
           while (rs.next()) {
-          remate.clear();
+          ArrayList remate = new ArrayList();
           remate.add(rs.getInt("ID_REMATE"));
           remate.add(rs.getString("Lugar"));
           remate.add(rs.getInt("Diario"));
