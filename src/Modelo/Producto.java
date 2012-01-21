@@ -95,7 +95,7 @@ public class Producto {
         }
     }
   
-  public static ArrayList get_Lista(){
+  public static ArrayList<ArrayList> get_Lista(){
 
         ArrayList<ArrayList> lista_productos = new ArrayList();
        
@@ -115,6 +115,48 @@ public class Producto {
           producto.add(rs.getInt("Total"));
           producto.add(rs.getInt("Garantia"));
           producto.add(rs.getString("Descripcion_Larga"));
+          lista_productos.add(producto);
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_productos;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_productos;
+    }
+  
+  /*
+   * Obtiene el join entre Remate_has_Producto y Producto
+   * Campos: Lote-ID_REMATE-ID_PRODUCTO{DATOS PRODUCTO}
+   */
+  public static ArrayList<ArrayList> get_Lista_Busqueda(){
+
+        ArrayList<ArrayList> lista_productos = new ArrayList();
+       
+        
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select * from Producto NATURAL JOIN Remate_has_Producto");
+          
+          while (rs.next()) {
+          ArrayList producto = new ArrayList();
+          producto.add(rs.getInt("Lote"));
+          producto.add(rs.getString("ID_REMATE"));
+          producto.add(rs.getInt("Descripcion"));
+          producto.add(rs.getString("ID_PRODUCTO"));
+          producto.add(rs.getInt("Cantidad"));
+          producto.add(rs.getInt("Precio_Unitario"));
+          producto.add(rs.getInt("Total"));
+          producto.add(rs.getInt("Garantia"));
+          producto.add(rs.getString("Descripcion_Larga"));
+              System.out.println("-");
           lista_productos.add(producto);
           flag=true;
           }

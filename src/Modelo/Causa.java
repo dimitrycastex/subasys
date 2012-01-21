@@ -92,6 +92,37 @@ public class Causa {
         }
     }
   
-  
+    public static ArrayList<ArrayList> get_Lista(){
+
+        ArrayList<ArrayList> lista_causa = new ArrayList();
+        
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select * from Causa;");
+          
+          while (rs.next()) {
+          ArrayList causa = new ArrayList();
+          causa.add(rs.getString("ROL"));
+          causa.add(rs.getString("Receptor"));
+          causa.add(rs.getString("Abogado"));
+          causa.add(rs.getString("Caratulado_como"));
+          causa.add(rs.getString("Juzgado"));
+          causa.add(rs.getInt("ID_RJ"));
+          lista_causa.add(causa);
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro la causa", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_causa;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_causa;
+    }
       
 }

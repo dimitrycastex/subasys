@@ -15,33 +15,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class E_Cliente { 
-ArrayList<String> Lista = new ArrayList();
 
+public static void leerArchivoExcel(String archivoDestino) { 
 
-private ArrayList<String> leerArchivoExcel(String archivoDestino) { 
-
-Lista.clear();
 try { 
 Workbook archivoExcel = Workbook.getWorkbook(new File( 
 archivoDestino)); 
-System.out.println("Número de Hojas\t" 
-+ archivoExcel.getNumberOfSheets()); 
-for (int sheetNo = 0; sheetNo < archivoExcel.getNumberOfSheets(); sheetNo++) // Recorre 
-// cada    
-// hoja                                                                                                                                                       
+System.out.println("Número de Hojas\t" + archivoExcel.getNumberOfSheets()); 
+for (int sheetNo = 0; sheetNo < archivoExcel.getNumberOfSheets(); sheetNo++)                                                                                                                                                     
 { 
 Sheet hoja = archivoExcel.getSheet(sheetNo); 
 int numColumnas = hoja.getColumns(); 
 int numFilas = hoja.getRows(); 
 String data;
 
-
-
-System.out.println("Nombre de la Hoja\t" 
-+ archivoExcel.getSheet(sheetNo).getName()); 
-for (int fila = 0; fila < numFilas; fila++) { // Recorre cada 
-// fila de la 
-// hoja
+System.out.println("Nombre de la Hoja\t" + archivoExcel.getSheet(sheetNo).getName()); 
+for (int fila = 0; fila < numFilas; fila++) {
 String ApeP = "";
 String ApeM = "";
 String Nombre = "";
@@ -52,37 +41,31 @@ String Ciudad = "";
 String Comuna = "";
 boolean flag = true;
 System.out.println("FILA: "+fila);
-for (int columna = 0; columna < numColumnas; columna++) { // Recorre                                                                                
-// cada                                                                                
-// columna                                                                            
-// de                                                                                
-// la                                                                                
-// fila 
+for (int columna = 0; columna < numColumnas; columna++) {                                                                               
 data = hoja.getCell(columna, fila).getContents(); 
-//System.out.println(data + " "+data.length()+" "+convert(data)+" "+convert(data).length()+" "+convert(data).equals("NE-0401-11")); 
 if(columna==0){
     RUT = convert(data);
 }
 else if(columna==1){
     
-    String[] cliente = convert(data).split(" ");
-    if(cliente.length==4){
-        ApeP = cliente[0];
-        ApeM = cliente[1];
-        Nombre = cliente[2]+" "+cliente[3];
-    }
-    else if(cliente.length==3){
-         ApeP = cliente[0];
-        ApeM = cliente[1];
-        Nombre = cliente[2];
-    }
-    else if(cliente.length==2){
-        ApeP = cliente[0];
-        ApeM = cliente[1];
-        Nombre = "-";
-    }
+       String[] cliente = convert(data).split(" ");
     
-    if(cliente.length==0) flag=false;
+        
+        if(cliente.length>2){
+        for (int i = 2; i < cliente.length; i++) {
+        String string = cliente[i];
+        if(i!=cliente.length-1)Nombre+=string+" ";
+        else Nombre+=string;
+        }
+        ApeP = cliente[0];
+        ApeM = cliente[1];
+       }
+        else if(cliente.length==1)
+        ApeP = cliente[0];
+        else flag=false;
+}
+else if(columna==2){
+    Direccion = convert(data);
 }
 else if(columna==3){
     Ciudad = convert(data);
@@ -93,7 +76,6 @@ else if(columna==4){
 else if(columna==5){
     Comuna = convert(data);
 }
-System.out.println("Columna "+columna+":"+data);
 
 }
 if(flag)Excel_to_SQL.cliente(RUT, ApeP, ApeM, Nombre, Direccion, Ciudad, Telefono, Comuna);
@@ -101,10 +83,9 @@ if(flag)Excel_to_SQL.cliente(RUT, ApeP, ApeM, Nombre, Direccion, Ciudad, Telefon
 
 } 
 }
-return Lista;
 } catch (Exception ioe) { 
 ioe.printStackTrace(); 
-return null;
+
 } 
 
 } 
@@ -124,35 +105,8 @@ public static String convert(String unString){
     return buffer;
 }
 
-public static void main(String arg[]) { 
-E_Cliente excelDGA = new E_Cliente(); 
-ArrayList<String> ListaDGA = excelDGA.leerArchivoExcel("clientes.xls"); 
+public static void main(String arg[]) {  
+E_Cliente.leerArchivoExcel("clientes.xls"); 
 } 
-
-public static String corrijeString(String unString){
-    
-    String aux = unString.toUpperCase();
-    String arrAux[] = aux.split("-");
-    if(arrAux.length==3){
-    String aux2="";
-    
-    aux2+=arrAux[0]+"-";
-    aux2+=arrAux[1]+"-";
-    aux2+=String.valueOf(Integer.valueOf(arrAux[2]));
-     return aux2;
-    }
-    
-   return null;
-    
-}
-
-public static boolean contiene(ArrayList<String> unaLista,String unString){
-    for (Iterator<String> it = unaLista.iterator(); it.hasNext();) {
-        String string = it.next();
-        if(string.equalsIgnoreCase(unString)) return true;
-    }
-    return false;
-}
-
 
 }

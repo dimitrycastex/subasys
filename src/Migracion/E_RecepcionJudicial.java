@@ -17,6 +17,6 @@ public class E_RecepcionJudicial {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Excel_to_SQL.getDatos();
+        Excel_to_SQL.get_Recepcion_Judicial_Table();
     }
 }

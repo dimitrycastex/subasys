@@ -90,7 +90,7 @@ public class ReVoluntaria {
         }
     }
   
-  public static ArrayList get_Lista(){
+  public static ArrayList<ArrayList> get_Lista(){
 
         ArrayList<ArrayList> lista_rvoluntaria = new ArrayList();
         boolean flag = false;

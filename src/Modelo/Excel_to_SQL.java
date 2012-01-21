@@ -251,10 +251,11 @@ public class Excel_to_SQL {
         }
     }
    
-   public static ArrayList getDatos(){
+   public static ArrayList get_Recepcion_Judicial_Table(){
 
         ArrayList list = new ArrayList();
         boolean flag = false;
+        
         try {
 
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
@@ -262,6 +263,7 @@ public class Excel_to_SQL {
           int i=1;
           while (rs.next()) {
           recepcion_judicial(rs.getString("Caratulado_como"));
+          setUpdate(rs.getString("ROL"),i);
           i++;
           flag=true;
           }

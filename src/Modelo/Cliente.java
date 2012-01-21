@@ -109,7 +109,7 @@ public class Cliente {
         }
     }
    
-   public static ArrayList get_Lista(){
+   public static ArrayList<ArrayList> get_Lista(){
 
         ArrayList<ArrayList> lista_clientes = new ArrayList();
         boolean flag = false;

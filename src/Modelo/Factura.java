@@ -113,4 +113,88 @@ public class Factura {
         }
     }
   
+    public static ArrayList<ArrayList> get_Lista(){
+
+        ArrayList<ArrayList> lista_facturas = new ArrayList();
+
+       
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select * from Factura;");
+          
+          while (rs.next()) {
+          ArrayList factura = new ArrayList();
+          factura.clear();
+          factura.add(rs.getInt("ID_FACTRA"));
+          factura.add(rs.getLong("Total"));
+          factura.add(rs.getLong("Garantia"));
+          factura.add(rs.getDate("Fecha_Emision"));
+          factura.add(rs.getString("Estado"));
+          factura.add(rs.getString("Exento"));
+          factura.add(rs.getLong("Neto"));
+          factura.add(rs.getInt("Impuestos"));
+          factura.add(rs.getInt("Comision"));  
+          factura.add(rs.getInt("IVA"));     
+          factura.add(rs.getInt("comision_Factura"));
+
+          lista_facturas.add(factura);
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro la Factura", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_facturas;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_facturas;
+    }
+    
+    
+    public static ArrayList<ArrayList> get_Lista_Busqueda(){
+
+        ArrayList<ArrayList> lista_facturas = new ArrayList();
+
+       
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("SELECT * FROM cliente NATURAL join cliente_has_factura NATURAL JOIN factura");
+          
+          while (rs.next()) {
+          ArrayList factura = new ArrayList();
+          factura.clear();
+          factura.add(rs.getInt("ID_FACTURA"));
+          factura.add(rs.getString("RUT"));
+          factura.add(rs.getString("ApellidoP")+" "+rs.getString("ApellidoM")+" "+rs.getString("Nombre"));
+          factura.add(rs.getLong("Total"));
+          factura.add(rs.getLong("Garantia"));
+          factura.add(rs.getDate("Fecha_Emision"));
+          factura.add(rs.getString("Estado"));
+          factura.add(rs.getString("Exento"));
+          factura.add(rs.getLong("Neto"));
+          factura.add(rs.getInt("Impuestos"));
+          factura.add(rs.getInt("Comision"));  
+          factura.add(rs.getInt("IVA"));     
+          factura.add(rs.getInt("comision_Factura"));
+
+          lista_facturas.add(factura);
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro la Factura", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_facturas;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_facturas;
+    }
 }

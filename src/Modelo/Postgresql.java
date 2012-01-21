@@ -36,13 +36,9 @@ public class Postgresql {
     public static void main(String[] args) {
         // TODO code application logic here
         //PDF.get_Lista_Clientes();
-        ArrayList _Lista_Productos = Modelo.Producto.get_Lista();
-        for (Iterator it = _Lista_Productos.iterator(); it.hasNext();) {
-            ArrayList object = (ArrayList) it.next();
-            System.out.println(object.get(0));
-        }
+       
         //Excel_to_SQL.cliente("-", "-", "-", "-","-", "-", "-", "-");
-        //crearDBASE();
+        crearDBASE();
         /*  ArrayList lista = new ArrayList();
         lista.add("rol2");
         lista.add("receptor2");
@@ -211,7 +207,7 @@ public class Postgresql {
       
      String driver = "org.postgresql.Driver";
      String dbname = "Subasys";
-     String url = "jdbc:postgresql://192.168.0.103:5432/" +  dbname;
+     String url = "jdbc:postgresql://localhost/" +  dbname;
      String username = "postgres";
      String password = "subasys";
         Connection conData = null;

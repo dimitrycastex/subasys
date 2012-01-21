@@ -102,7 +102,7 @@ public class ReJudicial {
         }
     }
   
-  public static ArrayList get_Lista(){
+  public static ArrayList<ArrayList> get_Lista(){
 
        ArrayList<ArrayList> lista_rjudicial = new ArrayList();
         boolean flag = false;
