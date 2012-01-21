@@ -22,7 +22,7 @@ import java.io.FileOutputStream;
  *
  * @author Boris
  */
-public class Detalle_Lotes_Rematados {
+public class Imprimir_Detalle_Lotes_Rematados {
     
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
     public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
