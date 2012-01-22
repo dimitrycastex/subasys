@@ -406,12 +406,12 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
 
     private void jMenuItem_ModificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ModificarClienteActionPerformed
         // TODO add your handling code here:
-        V_Principal.addPanel_Cliente(false);
+        V_Principal.addPanel_Cliente(false,1);
     }//GEN-LAST:event_jMenuItem_ModificarClienteActionPerformed
 
     private void jMenuItem_NuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_NuevoClienteActionPerformed
         // TODO add your handling code here:
-        V_Principal.addPanel_Cliente(true);
+        V_Principal.addPanel_Cliente(true,1);
     }//GEN-LAST:event_jMenuItem_NuevoClienteActionPerformed
 
     private void jMenuItem_NuevoRemateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_NuevoRemateActionPerformed

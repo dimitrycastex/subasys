@@ -220,6 +220,41 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="Vista.Panel_BuscaCliente" name="panel_BuscaCliente1">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Buscar Cliente">
+                <Property name="tabTitle" type="java.lang.String" value="Buscar Cliente"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vista.Panel_BuscaProducto" name="panel_BuscaProducto1">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Buscar Producto">
+                <Property name="tabTitle" type="java.lang.String" value="Buscar Producto"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vista.Panel_VisorPDF" name="panel_VisorPDF1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="PDF">
+                <Property name="tabTitle" type="java.lang.String" value="PDF"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

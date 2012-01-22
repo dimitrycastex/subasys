@@ -6,6 +6,7 @@ package Vista;
 
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,7 +43,7 @@ public class Panel_Factura extends javax.swing.JPanel {
     
     protected void FacturaNueva(boolean b){
         this.Limpiar();
-        this.llenatabla();
+        //this.llenatabla();
     
     
     }
@@ -86,6 +87,7 @@ public class Panel_Factura extends javax.swing.JPanel {
         jLabel_ListaProductos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane(tabla_Producto1);
         tabla_Producto1 = new Vista.Tablas.Tabla_Producto();
+        jButton_AgregarProductos = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1000, 550));
         setMinimumSize(new java.awt.Dimension(1000, 550));
@@ -97,10 +99,20 @@ public class Panel_Factura extends javax.swing.JPanel {
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Modificar.setText("Crear");
+        jButton_Modificar.setText("Crear Cliente");
+        jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ModificarActionPerformed(evt);
+            }
+        });
 
         jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Buscar.setText("Buscar");
+        jButton_Buscar.setText("Buscar Cliente");
+        jButton_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BuscarActionPerformed(evt);
+            }
+        });
 
         Label_Nombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Nombre.setText("Nombre");
@@ -131,17 +143,18 @@ public class Panel_Factura extends javax.swing.JPanel {
                     .addComponent(Label_Nombre)
                     .addComponent(jLabel_RUT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox_Demandante))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton_Buscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_Modificar))
-                    .addComponent(jTextField_Nombre))
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBox_Demandante)
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +170,7 @@ public class Panel_Factura extends javax.swing.JPanel {
                     .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Label_Nombre)
                     .addComponent(jCheckBox_Demandante))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -257,6 +270,11 @@ public class Panel_Factura extends javax.swing.JPanel {
 
         jButton_EliminarProductos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton_EliminarProductos.setText("Eliminar productos seleccionados");
+        jButton_EliminarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EliminarProductosActionPerformed(evt);
+            }
+        });
 
         jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_Aceptar.setText("Aceptar");
@@ -279,6 +297,14 @@ public class Panel_Factura extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(tabla_Producto1);
 
+        jButton_AgregarProductos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton_AgregarProductos.setText("Agregar Productos");
+        jButton_AgregarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AgregarProductosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -286,8 +312,9 @@ public class Panel_Factura extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -297,9 +324,11 @@ public class Panel_Factura extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 980, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(11, 11, 11)
+                        .addComponent(jButton_AgregarProductos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_EliminarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(308, 308, 308)
+                        .addGap(159, 159, 159)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_Comision)
                             .addComponent(jLabel_Subtotal))
@@ -316,14 +345,15 @@ public class Panel_Factura extends javax.swing.JPanel {
                             .addComponent(jTextField_IVAPesos, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(814, 814, 814)
-                        .addComponent(jButton_Aceptar)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton_Cancelar))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel_ListaProductos)))
                 .addGap(0, 10, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_Aceptar)
+                .addGap(6, 6, 6)
+                .addComponent(jButton_Cancelar)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,14 +371,6 @@ public class Panel_Factura extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jButton_EliminarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel_Comision)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel_Subtotal))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jTextField_Comision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
@@ -361,12 +383,22 @@ public class Panel_Factura extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField_IVAPesos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(jTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton_EliminarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton_AgregarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel_Comision)
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel_Subtotal)))))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
-                .addGap(15, 15, 15))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -402,6 +434,52 @@ public class Panel_Factura extends javax.swing.JPanel {
         V_Principal.removePanel_Factura();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
+    private void jButton_EliminarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarProductosActionPerformed
+        // TODO add your handling code here:
+        
+        if(this.tabla_Producto1.getCantidadProductos()==0){
+            JOptionPane.showMessageDialog(V_Principal, "¡No hay productos en la lista!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int  x = JOptionPane.showConfirmDialog(V_Principal, "¿Desea borrar los productos seleccionados?", "Eliminar Produtod", 
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        
+        //x=0 --> si | x=1 --> no
+        
+        if(x==0){
+            this.tabla_Producto1.BorraProductos();
+            this.tabla_Producto1.repaint();
+        }
+    }//GEN-LAST:event_jButton_EliminarProductosActionPerformed
+
+    private void jButton_AgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarProductosActionPerformed
+        // TODO add your handling code here:
+        
+        /*ESTE METODO DEBE ABRIR OTRA PESATAÑA PARA BUSCAR PRODUCTOS, MIENTRAS 
+         * LA PESTAÑA CON ESTE PANEL SE MANTIENE
+         ABIERTA PERO DESHABILITADA*/
+        
+        /*A MEDIDA QUE SE AGREGAN PRODUTOS TIENEN QUE CALCULARSE LOS VALORES
+         DE COMISION, IVA, SUBTOTAL Y PRECIO TOTAL
+         */
+        V_Principal.addPanel_BuscaProducto(1);
+    }//GEN-LAST:event_jButton_AgregarProductosActionPerformed
+
+    private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
+        // TODO add your handling code here:
+        /*SE DEBE ABRIR UNA PESTAÑA DE BUSQUEDA DE CLIENTES, MIENTRAS ESTE PANEL
+         PERMANECE ABIERTO PERO DESHABILITADO*/
+        V_Principal.addPanel_BuscaCliente(2);
+    }//GEN-LAST:event_jButton_BuscarActionPerformed
+
+    private void jButton_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarActionPerformed
+        // TODO add your handling code here:
+        /*SE DEBE ABRIR UNA PESTAÑA DE CREAR CLIENTE, MIENTRAS ESTE PANEL PERMANECE
+         ABIERTO PERO DESHABILITADO*/
+        V_Principal.addPanel_Cliente(true,2);
+    }//GEN-LAST:event_jButton_ModificarActionPerformed
+
     protected void llenatabla(){
         tabla_Producto1.AgregaProductos();
     
@@ -409,6 +487,7 @@ public class Panel_Factura extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_Nombre;
     private javax.swing.JButton jButton_Aceptar;
+    private javax.swing.JButton jButton_AgregarProductos;
     private javax.swing.JButton jButton_Buscar;
     private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_EliminarProductos;

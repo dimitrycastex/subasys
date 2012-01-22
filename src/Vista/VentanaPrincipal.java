@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import org.pushingpixels.substance.api.skin.SubstanceOfficeBlack2007LookAndFeel;
+
 /**
  *
  * @author bastian
@@ -23,21 +27,45 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_Producto1.setFrame(this);
         this.panel_Causa1.setFrame(this);
         this.panel_Factura1.setFrame(this);
+        this.panel_BuscaCliente1.setFrame(this);
+        this.panel_BuscaProducto1.setFrame(this);
+        this.panel_VisorPDF1.setFrame(this);
+        this.panel_VisorPDF1.setRutaArchivo("/media/bastian/Documents/clrs8.pdf");
     }
     
     //--------------------------------------------------------------------------
-    protected void addPanel_Cliente(boolean nuevo){
+    protected void addPanel_Cliente(boolean nuevo, int caso){
         String nombre;
         panel_Cliente1.ClienteNuevo(nuevo);
         nombre = (nuevo==true)? "Nuevo Cliente" : "Modificar Cliente";
-        this.panel_Cliente1.ClienteNuevo(nuevo);
         jTabbedPane_Pestanas.addTab(nombre, panel_Cliente1);
-        jTabbedPane_Pestanas.setEnabledAt(0, false);
-        this.removePanel_Bienvenido();
+        
+        switch (caso) {
+            case 1: //desde panel principal
+                    panel_Cliente1.esPrincipal();
+                    jTabbedPane_Pestanas.setEnabledAt(0, false);
+                    this.removePanel_Bienvenido();
+                    break;
+            case 2: //desde panel factura
+                    panel_Cliente1.esFactura();
+                    this.bloquearPanel_Factura();
+                    break;
+        }
+        
     }
     protected void removePanel_Cliente(){
         jTabbedPane_Pestanas.remove(panel_Cliente1);
-        this.addPanel_Bienvenido();
+    }
+    
+    //se supone que el Panel que llama va a esta la posicion 0 y el panel BuscaCliente en la 1
+    protected void bloquearPanel_Cliente(){
+        this.jTabbedPane_Pestanas.setEnabledAt(0, false);
+        this.jTabbedPane_Pestanas.setSelectedIndex(1);
+    }
+    
+    protected void desbloquearPanel_Cliente(){
+        this.jTabbedPane_Pestanas.setEnabledAt(0, true);
+        //this.jTabbedPane_Pestanas.setSelectedIndex(0);
     }
     
     //--------------------------------------------------------------------------
@@ -138,6 +166,83 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane_Pestanas.remove(panel_Factura1);
         this.addPanel_Bienvenido();
     }
+    
+    //se supone que el Panel que llama va a esta la posicion 0 y el panel BuscaCliente en la 1
+    protected void bloquearPanel_Factura(){
+        this.jTabbedPane_Pestanas.setEnabledAt(0, false);
+        this.jTabbedPane_Pestanas.setSelectedIndex(1);
+    }
+    
+    protected void desbloquearPanel_Factura(){
+        this.jTabbedPane_Pestanas.setEnabledAt(0, true);
+        //this.jTabbedPane_Pestanas.setSelectedIndex(0);
+    }
+    
+    //--------------------------------------------------------------------------
+    protected void addPanel_BuscaCliente(int tipo){
+        String nombre = "Buscar Cliente";
+        jTabbedPane_Pestanas.addTab(nombre, panel_BuscaCliente1);
+        //this.removePanel_Cliente();
+        
+        switch (tipo) {
+            case 1: //Panel Cliente
+                    panel_BuscaCliente1.esCliente();
+                    this.bloquearPanel_Cliente();
+                    break;
+            case 2: //panel factura
+                    panel_BuscaCliente1.esFactura();
+                    this.bloquearPanel_Factura();
+                    break;
+        }
+        
+    }
+    
+    protected void removePanel_BuscaCliente(int tipo){
+        switch (tipo) {
+            case 1: //Panel Cliente
+                    this.desbloquearPanel_Cliente();
+                    break;
+            case 2: //panel factura
+                    this.desbloquearPanel_Factura();
+                    break;
+                
+        }
+        jTabbedPane_Pestanas.remove(panel_BuscaCliente1);        
+    }
+    
+    //--------------------------------------------------------------------------
+    protected void addPanel_BuscaProducto(int tipo){
+        String nombre = "Buscar Producto";
+        jTabbedPane_Pestanas.addTab(nombre, panel_BuscaProducto1);
+        
+        switch (tipo) {
+            case 1: //Panel Cliente
+                    this.bloquearPanel_Factura();
+                    break;
+        }
+        
+    }
+    
+    protected void removePanel_BuscaProducto(int tipo){
+        switch (tipo) {
+            case 1: //panel factura
+                    this.desbloquearPanel_Factura();
+                    break;
+                
+        }
+        jTabbedPane_Pestanas.remove(panel_BuscaProducto1);        
+    }
+    
+    //--------------------------------------------------------------------------
+    protected void addPanel_VisorPDF(){
+        jTabbedPane_Pestanas.addTab("PDF", panel_VisorPDF1);
+    }
+    
+    protected void removePanel_VisorPDF(){
+        jTabbedPane_Pestanas.remove(panel_VisorPDF1);
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,6 +264,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panel_Bienvenido1 = new Vista.Panel_Bienvenido();
         panel_Causa1 = new Vista.Panel_Causa();
         panel_Factura1 = new Vista.Panel_Factura();
+        panel_BuscaCliente1 = new Vista.Panel_BuscaCliente();
+        panel_BuscaProducto1 = new Vista.Panel_BuscaProducto();
+        panel_VisorPDF1 = new Vista.Panel_VisorPDF();
         jMenuBar_Principal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -222,6 +330,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane_Pestanas.addTab("Factura", panel_Factura1);
         */
 
+        /*
+        jTabbedPane_Pestanas.addTab("Buscar Cliente", panel_BuscaCliente1);
+        */
+
+        /*
+        jTabbedPane_Pestanas.addTab("Buscar Producto", panel_BuscaProducto1);
+        */
+        jTabbedPane_Pestanas.addTab("PDF", panel_VisorPDF1);
+
         jMenu1.setText("Archivo");
         jMenuBar_Principal.add(jMenu1);
 
@@ -248,6 +365,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_SalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem_SalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -255,12 +377,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /*
          * Set the Nimbus look and feel
          */
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /*
          * If Nimbus (introduced in Java SE 6) is not available, stay with the
          * default look and feel. For details see
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
+        
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -285,6 +410,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
+                /*try {
+                    UIManager.setLookAndFeel(new SubstanceOfficeBlack2007LookAndFeel());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,"Substance Graphite failed to initialize");
+                }*/
+
                 new VentanaPrincipal().setVisible(true);
             }
         });
@@ -298,6 +429,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     protected javax.swing.JTabbedPane jTabbedPane_Pestanas;
     private javax.swing.JToolBar jToolBar_Iconos;
     private Vista.Panel_Bienvenido panel_Bienvenido1;
+    private Vista.Panel_BuscaCliente panel_BuscaCliente1;
+    private Vista.Panel_BuscaProducto panel_BuscaProducto1;
     private Vista.Panel_Causa panel_Causa1;
     private Vista.Panel_Cliente panel_Cliente1;
     private Vista.Panel_Factura panel_Factura1;
@@ -305,5 +438,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Vista.Panel_ReJudicial panel_ReJudicial1;
     private Vista.Panel_ReVoluntaria panel_ReVoluntaria1;
     private Vista.Panel_Remate panel_Remate1;
+    private Vista.Panel_VisorPDF panel_VisorPDF1;
     // End of variables declaration//GEN-END:variables
 }
