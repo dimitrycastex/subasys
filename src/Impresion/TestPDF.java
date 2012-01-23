@@ -22,9 +22,9 @@ public class TestPDF {
     public static void main(String[] args) throws DocumentException, FileNotFoundException
     {
         String path="C:/";
-        Imprimir_Lista_Remates.imprimir(path);
+//        Imprimir_Lista_Remates.imprimir(path);
 //        Imprimir_Lista_Clientes.imprimir(path);
-//        Imprimir_Lista_RolesCausas.imprimir(path);
+          Imprimir_Lista_RolesCausas.imprimir(path);
 //        Imprimir_Caja_Remate.imprimir(path);
 //        Imprimir_Caja_Remate.imprimir(path);
 //        Imprimir_Lista_Productos.imprimir(path);
@@ -35,7 +35,7 @@ public class TestPDF {
 //        Imprimir_Planilla_Remate.imprimir(path);
 //        Imprimir_Listado_Planilla_Remate.imprimir(path);
         
-        Imprimir_Planilla_Remate_Lote.imprimir(path);
+ //       Imprimir_Planilla_Remate_Lote.imprimir(path);
     }
 
 }

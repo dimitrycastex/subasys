@@ -9,6 +9,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 
@@ -18,11 +20,24 @@ import java.io.FileOutputStream;
  */
 public class Imprimir_Lista_RolesCausas
 {
+    
+   public static ArrayList lista;
+   
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
     public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
     {
     Document document = new Document();
       PdfWriter.getInstance(document,new FileOutputStream(ruta+"listado_de_rolescausas.pdf"));
+      
+      lista = Modelo.Causa.get_Lista();
+      
+//          0 = causa.add(rs.getString("ROL"));
+//          1 = causa.add(rs.getString("Receptor"));
+//          2 = causa.add(rs.getString("Abogado"));
+//          3 = causa.add(rs.getString("Caratulado_como"));
+//          4 = causa.add(rs.getString("Juzgado"));
+//          5 = causa.add(rs.getInt("ID_RJ"));
+      
       //abrir el pdf
       document.open();
       //ir escribiendo en el pdf
@@ -54,11 +69,12 @@ public class Imprimir_Lista_RolesCausas
             
 
             //
-            for(int i=1;i<=100;i++)
+            for (Iterator it = lista.iterator(); it.hasNext();) // itera
             {
-                table.addCell(formato.celda_normal("Código"+i));
-                table.addCell(formato.celda_normal("Juzgado"+i));
-                table.addCell(formato.celda_normal("caratuladocomo"+i,3));
+                ArrayList object = (ArrayList) it.next(); // castea
+                table.addCell(formato.celda_normal((String)object.get(0)));
+                table.addCell(formato.celda_normal((String)object.get(4)));
+                table.addCell(formato.celda_normal((String)object.get(3),3));
             }
             return table;
         }

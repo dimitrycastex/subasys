@@ -56,35 +56,29 @@ public class Imprimir_Lista_Productos
     public static PdfPTable CrearTabla()
     {
             // crear tabla con 3 columnas
-            PdfPTable table = new PdfPTable(10);
+            PdfPTable table = new PdfPTable(8);
             table.setWidthPercentage(100);
             int i=0;
             // agregar titulo codigo
-            table.addCell(formato.celda_titulo("Num"));
             // agregar titulo nombre
-            table.addCell(formato.celda_titulo("Codigo de Producto",2));
+            table.addCell(formato.celda_titulo("Codigo de Producto"));
             table.addCell(formato.celda_titulo("Cantidad"));
             table.addCell(formato.celda_titulo("Valor Mínimo"));
-            table.addCell(formato.celda_titulo("Fecha Ingreso"));
-            table.addCell(formato.celda_titulo("Descripción",4));
+            table.addCell(formato.celda_titulo("Descripción",5));
 
             //
             for (Iterator it = lista.iterator(); it.hasNext();) // itera
             {
                 ArrayList object = (ArrayList) it.next(); // castea
                 i++;
-                //num
-                table.addCell(formato.celda_normal(""+i));
                 //ID_PRODUCTO
-                table.addCell(formato.celda_normal((String)object.get(0)));
+                table.addCell(formato.celda_normal((object.get(0).toString())));
                 //Cantidad
-                table.addCell(formato.celda_normal((String)object.get(2)));
+                table.addCell(formato.celda_normal((String)object.get(2).toString()));
                 //Precio Unitario
-                table.addCell(formato.celda_normal((String)object.get(3)));
-                //fecha ingreso (!)
-                table.addCell(formato.celda_normal("#FECHA#"));
+                table.addCell(formato.celda_normal("$"+(String)object.get(3).toString()));
                 //Descripción
-                table.addCell(formato.celda_normal((String)object.get(1)));
+                table.addCell(formato.celda_normal((String)object.get(1),5));
             }
             return table;
         }
