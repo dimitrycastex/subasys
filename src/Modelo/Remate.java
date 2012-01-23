@@ -119,7 +119,7 @@ public class Remate {
           ArrayList remate = new ArrayList();
           remate.add(rs.getString("ID_REMATE"));
           remate.add(rs.getString("Lugar"));
-          remate.add(rs.getInt("Diario"));
+          remate.add(rs.getString("Diario"));
           remate.add(rs.getDate("Fecha"));
           remate.add(rs.getString("Descripcion"));
           remate.add(rs.getInt("Comision"));
