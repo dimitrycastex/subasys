@@ -55,7 +55,7 @@ public class Remate {
           ResultSet rs = stat.executeQuery("select * from Remate where ID_REMATE="+ID_REMATE+"");
           
           while (rs.next()) {
-          remate.add(rs.getInt("ID_REMATE"));
+          remate.add(rs.getString("ID_REMATE"));
           remate.add(rs.getString("Lugar"));
           remate.add(rs.getInt("Diario"));
           remate.add(rs.getDate("Fecha"));
