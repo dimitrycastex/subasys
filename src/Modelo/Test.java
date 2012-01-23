@@ -28,7 +28,9 @@ public class Test {
         // Busqueda.getDatos("Juan");
        
         //Busqueda.busca_cliente("juan geraldo");
-        //Producto.get_Lista_Busqueda();
+        Producto.get_Lista();
+        
+        
         //Cliente.get_Lista();
         Busqueda.busqueda_factura("8754", null);
     }

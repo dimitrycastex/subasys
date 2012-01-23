@@ -38,7 +38,7 @@ public class Postgresql {
         //PDF.get_Lista_Clientes();
        
         //Excel_to_SQL.cliente("-", "-", "-", "-","-", "-", "-", "-");
-        //crearDBASE();
+        Producto.get_Lista();
         /*  ArrayList lista = new ArrayList();
         lista.add("rol2");
         lista.add("receptor2");
@@ -228,7 +228,6 @@ public class Postgresql {
 
      }
    
-    
      public static boolean Update() {
 
         try {

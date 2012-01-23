@@ -38,7 +38,7 @@ public class Tabla_Cliente extends JTable{
     public void AgregaClientes(){
         
         
-        temp.add("17715401-6");
+        /*temp.add("17715401-6");
         temp.add("Sebastian del rosario de los floripondios");
         temp.add("de La Carrera");
         temp.add("Von Smith");
@@ -47,20 +47,29 @@ public class Tabla_Cliente extends JTable{
         
         for (int i = 0; i < 10; i++) {
             Clientes.add(temp);
-        }
+        }*/
         Modelo.setClientes(Clientes);
         Modelo.AgregarClientes();
         this.setModel(Modelo);
         this.AsignaColumn();
     }
     
-    public void BorraClientes(){
+    public void BorraClientesSeleccionados(){
         
         Modelo.BorraClientes();
         this.Clientes = Modelo.getClientes();
         Modelo = new ClienteModel();
         Modelo.setClientes(Clientes);
         Modelo.AgregarClientes();
+        this.setModel(Modelo);
+        this.AsignaColumn();
+    
+    
+    }
+    
+    public void BorraClientes(){
+        
+        Modelo = new ClienteModel();
         this.setModel(Modelo);
         this.AsignaColumn();
     

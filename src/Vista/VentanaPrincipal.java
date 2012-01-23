@@ -6,7 +6,7 @@ package Vista;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import org.pushingpixels.substance.api.skin.SubstanceOfficeBlack2007LookAndFeel;
+import org.pushingpixels.substance.api.skin.*;
 
 /**
  *
@@ -252,21 +252,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel_ReVoluntaria1 = new Vista.Panel_ReVoluntaria();
-        jToolBar_Iconos = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jTabbedPane_Pestanas = new javax.swing.JTabbedPane();
-        panel_Remate1 = new Vista.Panel_Remate();
-        panel_Producto1 = new Vista.Panel_Producto();
-        panel_Cliente1 = new Vista.Panel_Cliente();
-        panel_ReJudicial1 = new Vista.Panel_ReJudicial();
         panel_Bienvenido1 = new Vista.Panel_Bienvenido();
+        panel_Cliente1 = new Vista.Panel_Cliente();
+        panel_Remate1 = new Vista.Panel_Remate();
         panel_Causa1 = new Vista.Panel_Causa();
-        panel_Factura1 = new Vista.Panel_Factura();
-        panel_BuscaCliente1 = new Vista.Panel_BuscaCliente();
-        panel_BuscaProducto1 = new Vista.Panel_BuscaProducto();
+        panel_ReVoluntaria1 = new Vista.Panel_ReVoluntaria2();
+        panel_ReJudicial1 = new Vista.Panel_ReJudicial2();
+        panel_Producto1 = new Vista.Panel_Producto2();
+        panel_Factura1 = new Vista.Panel_Factura1();
         panel_VisorPDF1 = new Vista.Panel_VisorPDF();
+        panel_BuscaCliente1 = new Vista.Panel_BuscaCliente1();
+        panel_BuscaProducto1 = new Vista.Panel_BuscaProducto1();
+        jToolBar1 = new javax.swing.JToolBar();
         jMenuBar_Principal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -276,37 +274,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1000, 650));
         setMinimumSize(new java.awt.Dimension(1000, 650));
         setName("Ventana Principal");
-        setPreferredSize(new java.awt.Dimension(1000, 650));
         setResizable(false);
 
-        jToolBar_Iconos.setFloatable(false);
-        jToolBar_Iconos.setRollover(true);
+        jTabbedPane_Pestanas.setMaximumSize(new java.awt.Dimension(1000, 560));
+        jTabbedPane_Pestanas.setMinimumSize(new java.awt.Dimension(1000, 560));
+        jTabbedPane_Pestanas.setPreferredSize(new java.awt.Dimension(1000, 560));
+        jTabbedPane_Pestanas.addTab("Bienvenido a SUBASYS", panel_Bienvenido1);
 
-        jButton1.setText("Imprimir Remate");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setMaximumSize(new java.awt.Dimension(84, 39));
-        jButton1.setMinimumSize(new java.awt.Dimension(84, 39));
-        jButton1.setPreferredSize(new java.awt.Dimension(84, 39));
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Iconos.add(jButton1);
-
-        jButton2.setText("Boton 2");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setMaximumSize(new java.awt.Dimension(60, 35));
-        jButton2.setMinimumSize(new java.awt.Dimension(60, 35));
-        jButton2.setPreferredSize(new java.awt.Dimension(60, 35));
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Iconos.add(jButton2);
-
-        jTabbedPane_Pestanas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTabbedPane_Pestanas.setMaximumSize(new java.awt.Dimension(1000, 550));
-        jTabbedPane_Pestanas.setMinimumSize(new java.awt.Dimension(1000, 550));
-        jTabbedPane_Pestanas.setPreferredSize(new java.awt.Dimension(1000, 550));
+        /*
+        jTabbedPane_Pestanas.addTab("Cliente", panel_Cliente1);
+        */
 
         /*
         jTabbedPane_Pestanas.addTab("Remate", panel_Remate1);
+        */
+
+        /*
+        jTabbedPane_Pestanas.addTab("Causa", panel_Causa1);
+        */
+
+        /*
+        jTabbedPane_Pestanas.addTab("Recepcion Voluntaria", panel_ReVoluntaria1);
+        */
+
+        /*
+        jTabbedPane_Pestanas.addTab("Recepcion Judicial", panel_ReJudicial1);
         */
 
         /*
@@ -314,20 +306,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         */
 
         /*
-        jTabbedPane_Pestanas.addTab("Cliente", panel_Cliente1);
-        */
-
-        /*
-        jTabbedPane_Pestanas.addTab("Recepcion Judicial", panel_ReJudicial1);
-        */
-        jTabbedPane_Pestanas.addTab("Bienvenido a SUBASYS", panel_Bienvenido1);
-
-        /*
-        jTabbedPane_Pestanas.addTab("Causa", panel_Causa1);
-        */
-
-        /*
         jTabbedPane_Pestanas.addTab("Factura", panel_Factura1);
+        */
+
+        /*
+        jTabbedPane_Pestanas.addTab("Visor PDF", panel_VisorPDF1);
         */
 
         /*
@@ -338,9 +321,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane_Pestanas.addTab("Buscar Producto", panel_BuscaProducto1);
         */
 
-        /*
-        jTabbedPane_Pestanas.addTab("PDF", panel_VisorPDF1);
-        */
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
 
         jMenu1.setText("Archivo");
         jMenuBar_Principal.add(jMenu1);
@@ -354,15 +336,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar_Iconos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar_Iconos, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -414,7 +397,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             public void run() {
                 try {
-                    UIManager.setLookAndFeel(new SubstanceOfficeBlack2007LookAndFeel());
+                    UIManager.setLookAndFeel(new org.pushingpixels.substance.api.skin.SubstanceBusinessBlueSteelLookAndFeel());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,"Substance Graphite failed to initialize");
                 }
@@ -424,22 +407,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar_Principal;
-    protected javax.swing.JTabbedPane jTabbedPane_Pestanas;
-    private javax.swing.JToolBar jToolBar_Iconos;
+    private javax.swing.JTabbedPane jTabbedPane_Pestanas;
+    private javax.swing.JToolBar jToolBar1;
     private Vista.Panel_Bienvenido panel_Bienvenido1;
-    private Vista.Panel_BuscaCliente panel_BuscaCliente1;
-    private Vista.Panel_BuscaProducto panel_BuscaProducto1;
+    private Vista.Panel_BuscaCliente1 panel_BuscaCliente1;
+    private Vista.Panel_BuscaProducto1 panel_BuscaProducto1;
     private Vista.Panel_Causa panel_Causa1;
     private Vista.Panel_Cliente panel_Cliente1;
-    private Vista.Panel_Factura panel_Factura1;
-    private Vista.Panel_Producto panel_Producto1;
-    private Vista.Panel_ReJudicial panel_ReJudicial1;
-    private Vista.Panel_ReVoluntaria panel_ReVoluntaria1;
+    private Vista.Panel_Factura1 panel_Factura1;
+    private Vista.Panel_Producto2 panel_Producto1;
+    private Vista.Panel_ReJudicial2 panel_ReJudicial1;
+    private Vista.Panel_ReVoluntaria2 panel_ReVoluntaria1;
     private Vista.Panel_Remate panel_Remate1;
     private Vista.Panel_VisorPDF panel_VisorPDF1;
     // End of variables declaration//GEN-END:variables

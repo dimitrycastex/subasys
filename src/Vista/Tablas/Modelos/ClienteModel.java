@@ -19,7 +19,7 @@ public class ClienteModel extends DefaultTableModel{
     
     public ClienteModel(){
         super();
-        Object[] Titulos = {"RUT","NOMBRES","APELLIDO PATERNO","APELLIDO MATERNO","TELÉFONO/MOVIL","EMAIL"};
+        Object[] Titulos = {"SEL","RUT","NOMBRES","APELLIDO PATERNO","APELLIDO MATERNO","TELÉFONO/MOVIL","EMAIL"};
         this.setColumnIdentifiers(Titulos);
     }
     
@@ -32,18 +32,17 @@ public class ClienteModel extends DefaultTableModel{
         Object[] Row = new Object[7];
         Row[0]=false;
         
-        for (int i = 1; i < UnCliente.size(); i++) {
+        /*for (int i = 1; i < UnCliente.size(); i++) {
             Row[i]=UnCliente.get(i-1).toString();
             
-        }
+        }*/
         
-        /*
         Row[1]=UnCliente.get(0);
         Row[2]=UnCliente.get(3);
         Row[3]=UnCliente.get(1);
         Row[4]=UnCliente.get(2);
         Row[5]=UnCliente.get(6);
-        Row[6]=UnCliente.get(4);*/
+        Row[6]=UnCliente.get(4);
         
         this.addRow(Row);
     }

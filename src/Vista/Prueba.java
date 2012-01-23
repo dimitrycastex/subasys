@@ -17,7 +17,7 @@ public class Prueba extends javax.swing.JFrame {
      */
     public Prueba() {
         initComponents();
-        JPanel pa = new Panel_Remate();
+        JPanel pa = new JPanel();//_Remate();
         //this.add(pa);
         this.setContentPane(pa);
         pa.setVisible(true);
