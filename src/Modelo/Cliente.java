@@ -81,6 +81,29 @@ public class Cliente {
          }
          return cliente;
     }
+   
+   public static boolean isCliente(String RUT){
+
+        cliente.clear();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select RUT from Cliente where RUT="+"'"+RUT+"'");
+          
+          while (rs.next()) {
+        
+          flag=true;
+          }
+          rs.close();
+          
+          return flag;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return flag;
+    }
     
    public static void setUpdate(ArrayList unaLista)
  {
@@ -131,6 +154,41 @@ public class Cliente {
           cliente.add(rs.getString("Direccion")); 
           cliente.add(rs.getString("Ciudad"));
           cliente.add(rs.getString("Comuna"));
+          lista_clientes.add(cliente);
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el cliente", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_clientes;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_clientes;
+    }
+   
+   
+   public static ArrayList<ArrayList> get_Lista_Busqueda(){
+
+        ArrayList<ArrayList> lista_clientes = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select RUT,Nombre,ApellidoP,apellidoM,"
+                  + "Telefono,Direccion,Email from Cliente;");
+          
+          while (rs.next()) {
+          ArrayList cliente = new ArrayList();
+          cliente.add(rs.getString("RUT"));
+          cliente.add(rs.getString("ApellidoP"));
+          cliente.add(rs.getString("ApellidoM"));
+          cliente.add(rs.getString("Nombre"));
+          cliente.add(rs.getString("Telefono"));         
+          cliente.add(rs.getString("Direccion"));
+          cliente.add(rs.getString("Email"));
           lista_clientes.add(cliente);
           flag=true;
           }
