@@ -38,7 +38,7 @@ public class Postgresql {
         //PDF.get_Lista_Clientes();
        
         //Excel_to_SQL.cliente("-", "-", "-", "-","-", "-", "-", "-");
-        crearDBASE();
+        //crearDBASE();
         /*  ArrayList lista = new ArrayList();
         lista.add("rol2");
         lista.add("receptor2");
@@ -62,6 +62,31 @@ public class Postgresql {
         
     }
     
+     public static Connection getConnection(){
+      
+     String driver = "org.postgresql.Driver";
+     String dbname = "subasys";
+     String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
+     String username = "subasys";
+     String password = "cscv$38l";
+        Connection conData = null;
+       
+        try {
+            Class.forName(driver);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        try {
+            conData = DriverManager.getConnection(url,username,password);
+            return conData;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return conData;
+        }
+        
+     
+  }
+     
      public static void crearDBASE() {
    
         Connection conn  = DB_CONNECTION;
@@ -203,30 +228,6 @@ public class Postgresql {
 
      }
    
-     public static Connection getConnection(){
-      
-     String driver = "org.postgresql.Driver";
-     String dbname = "Subasys";
-     String url = "jdbc:postgresql://localhost/" +  dbname;
-     String username = "postgres";
-     String password = "subasys";
-        Connection conData = null;
-       
-        try {
-            Class.forName(driver);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        }
-        try {
-            conData = DriverManager.getConnection(url,username,password);
-            return conData;
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            return conData;
-        }
-        
-     
-  }
     
      public static boolean Update() {
 
