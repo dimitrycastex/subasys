@@ -52,12 +52,12 @@ public class Remate {
         try {
 
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-          ResultSet rs = stat.executeQuery("select * from Remate where ID_REMATE="+ID_REMATE+"");
+          ResultSet rs = stat.executeQuery("select * from Remate where ID_REMATE='"+ID_REMATE+"'");
           
           while (rs.next()) {
           remate.add(rs.getString("ID_REMATE"));
           remate.add(rs.getString("Lugar"));
-          remate.add(rs.getInt("Diario"));
+          remate.add(rs.getString("Diario"));
           remate.add(rs.getDate("Fecha"));
           remate.add(rs.getString("Descripcion"));
           remate.add(rs.getInt("Comision"));
@@ -87,7 +87,7 @@ public class Remate {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
             "update Remate set Lugar=?,Diario=?,Fecha=?,Descripcion=?,Comision=?,Ciudad=?"
-                    + " where ID_REMATE="+unaLista.get(0)+";");
+                    + " where ID_REMATE='"+unaLista.get(0)+"';");
              
             prep.setString(1, unaLista.get(1).toString());
             prep.setString(2, unaLista.get(2).toString());  
