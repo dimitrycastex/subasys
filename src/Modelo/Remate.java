@@ -117,7 +117,7 @@ public class Remate {
           
           while (rs.next()) {
           ArrayList remate = new ArrayList();
-          remate.add(rs.getInt("ID_REMATE"));
+          remate.add(rs.getString("ID_REMATE"));
           remate.add(rs.getString("Lugar"));
           remate.add(rs.getInt("Diario"));
           remate.add(rs.getDate("Fecha"));
