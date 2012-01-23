@@ -32,9 +32,10 @@ public class Panel_Busqueda extends javax.swing.JPanel {
     public Panel_Busqueda() {
         initComponents();
         initTableModels();
-        Tabla.setModel(tmodel_cliente);
+        model = tmodel_cliente;
+        Tabla.setModel(model);
         Modelo.Busqueda.initClientes();
-        //tmodel_cliente.insertRow(0, new Object[] { "r1",2,3,4,5,6 });
+       
     }
 
     private void initTableModels(){
@@ -73,16 +74,27 @@ public class Panel_Busqueda extends javax.swing.JPanel {
 
         parametro_busqueda = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        Campo = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
 
+        parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parametro_busquedaActionPerformed(evt);
+            }
+        });
         parametro_busqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                parametro_busquedaKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 parametro_busquedaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                parametro_busquedaKeyTyped(evt);
             }
         });
 
@@ -93,86 +105,157 @@ public class Panel_Busqueda extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Campo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cliente",
+            "Factura", "Remate", "Causa" ,"Producto", "Recepcion Judicial", "Recepcion Voluntaria"}));
+Campo.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        CampoActionPerformed(evt);
+    }
+    });
 
-        jLabel1.setText("Modo de Busqueda");
+    jLabel1.setText("Modo de Busqueda");
 
-        Tabla.setModel(model);
-        jScrollPane1.setViewportView(Tabla);
+    Tabla.setModel(model);
+    jScrollPane1.setViewportView(Tabla);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel2.setText("Campo a buscar");
+    jLabel2.setText("Campo a buscar");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1))
-                            .addComponent(jButton1))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+    this.setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(Campo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel2)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel1))
+                        .addComponent(jButton1))))
+            .addContainerGap())
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(Campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
+                .addComponent(jLabel2))
+            .addGap(16, 16, 16)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+            .addContainerGap())
+    );
     }// </editor-fold>//GEN-END:initComponents
 
 private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_parametro_busquedaKeyReleased
 // TODO add your handling code here:
-    if(!parametro_busqueda.getText().isEmpty()){
-        cleanModel(tmodel_cliente);
-          Busqueda.busca_cliente(parametro_busqueda.getText().toLowerCase(),tmodel_cliente);
+     
+  int campo = this.Campo.getSelectedIndex();
+   if(campo==0){
+       if(!parametro_busqueda.getText().isEmpty()){
+          cleanModel(model);
+          Busqueda.busca_cliente(parametro_busqueda.getText().toLowerCase(),model);
     }
+   }
+   else if(campo==1){
+       if(!parametro_busqueda.getText().isEmpty()){
+          cleanModel(model);
+          Busqueda.busqueda_factura(parametro_busqueda.getText().toLowerCase(),model);
+    }
+   }
+   else if(campo==2){
+      
+   }
+   else if(campo==3){
+     
+   }
+   else if(campo==4){
+      
+   }
+   
    
 }//GEN-LAST:event_parametro_busquedaKeyReleased
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 // TODO add your handling code here:
-  cleanModel(tmodel_cliente);
+        cleanModel(tmodel_cliente);
+        System.out.println("------------------------------------->");
     
 }//GEN-LAST:event_jButton1ActionPerformed
 
-public void cleanModel(DefaultTableModel model){
+private void parametro_busquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_parametro_busquedaKeyPressed
+// TODO add your handling code here:
     
-    for (int i = 0; i < model.getRowCount(); i++) {
-       model.removeRow(i);
+   
+}//GEN-LAST:event_parametro_busquedaKeyPressed
+
+private void parametro_busquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_parametro_busquedaKeyTyped
+// TODO add your handling code here:
+     
+}//GEN-LAST:event_parametro_busquedaKeyTyped
+
+private void CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoActionPerformed
+// TODO add your handling code here:
+   int campo = this.Campo.getSelectedIndex();
+   if(campo==0){
+       model = tmodel_cliente;
+       Tabla.setModel(model);
+   }
+   else if(campo==1){
+       model = tmodel_factura;
+       Tabla.setModel(model);
+   }
+   else if(campo==2){
+       model = tmodel_remate;
+       Tabla.setModel(model);
+   }
+   else if(campo==3){
+       model = tmodel_causa;
+       Tabla.setModel(model);
+   }
+   else if(campo==4){
+       model = tmodel_producto;
+       Tabla.setModel(model);
+   }
+   
+}//GEN-LAST:event_CampoActionPerformed
+
+private void parametro_busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parametro_busquedaActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_parametro_busquedaActionPerformed
+
+public void cleanModel(DefaultTableModel model){
+    int a =model.getRowCount()-1;
+
+    for (int i = a; i >=0; i--) {
+        model.removeRow(i);
         
     }
+
+    
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox Campo;
     private javax.swing.JTable Tabla;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

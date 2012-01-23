@@ -127,7 +127,7 @@ public class Factura {
           while (rs.next()) {
           ArrayList factura = new ArrayList();
           factura.clear();
-          factura.add(rs.getInt("ID_FACTRA"));
+          factura.add(rs.getInt("ID_FACTURA"));
           factura.add(rs.getLong("Total"));
           factura.add(rs.getLong("Garantia"));
           factura.add(rs.getDate("Fecha_Emision"));
@@ -171,7 +171,9 @@ public class Factura {
           factura.clear();
           factura.add(rs.getInt("ID_FACTURA"));
           factura.add(rs.getString("RUT"));
-          factura.add(rs.getString("ApellidoP")+" "+rs.getString("ApellidoM")+" "+rs.getString("Nombre"));
+          factura.add(rs.getString("ApellidoP"));
+          factura.add(rs.getString("ApellidoM"));
+          factura.add(rs.getString("Nombre"));
           factura.add(rs.getLong("Total"));
           factura.add(rs.getLong("Garantia"));
           factura.add(rs.getDate("Fecha_Emision"));

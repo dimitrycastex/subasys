@@ -30,7 +30,6 @@ public class Test {
         //Busqueda.busca_cliente("juan geraldo");
         //Producto.get_Lista_Busqueda();
         //Cliente.get_Lista();
-        Producto.get_Lista();
-        Remate.get_Lista_Busqueda("162C");
+        Busqueda.busqueda_factura("8754", null);
     }
 }

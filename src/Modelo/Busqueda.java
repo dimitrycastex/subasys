@@ -28,7 +28,8 @@ public class Busqueda {
     
    
     public static void initClientes(){
-    lista_cliente = Modelo.Cliente.get_Lista();
+    lista_cliente = Modelo.Cliente.get_Lista_Busqueda();
+    lista_factura = Modelo.Factura.get_Lista_Busqueda();
 }
     public static void busca_cliente(String parametro,DefaultTableModel tmodel_cliente){
         
@@ -55,7 +56,6 @@ public class Busqueda {
             {
                 tmodel_cliente.insertRow(i, new Object[]{RUT,apellidoP,apellidoM,nombre,cliente.get(4),
                 cliente.get(5),cliente.get(6)});
-                System.out.println(RUT+" "+nombre+ " "+ apellidoM);
                 i++;
             }
         }
@@ -99,22 +99,53 @@ public class Busqueda {
         }
     }
     
-    public static void busqueda_factura(String parametro){
+    public static void busqueda_factura(String parametro,DefaultTableModel model){
         
-        lista_factura = Modelo.Factura.get_Lista();
-        for (Iterator<ArrayList> it = lista_cliente.iterator(); it.hasNext();) {
+        String nombre = "";
+        String RUT = "";
+        String apellidoP = "";
+        String apellidoM = "";
+        String nombre_c_d = "";
+        String nombre_c_a = "";
+        
+        int i=0;
+        for (Iterator<ArrayList> it = lista_factura.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
-            if(arrayList.get(0).toString().equalsIgnoreCase(parametro)){
-                System.out.println(arrayList.get(0));
+            
+            RUT = arrayList.get(1).toString();
+            apellidoP = arrayList.get(2).toString().trim();
+            apellidoM = arrayList.get(3).toString().trim();
+            nombre = arrayList.get(4).toString();
+            nombre_c_d = nombre+" "+apellidoP+" "+apellidoM;
+            nombre_c_a = apellidoP+" "+apellidoM+" "+nombre;
+            
+            if(parametro.equalsIgnoreCase(arrayList.get(0).toString()))
+            {
+                model.insertRow(i, new Object[]{arrayList.get(0),arrayList.get(1),
+                arrayList.get(2)+" "+arrayList.get(3)+" "+arrayList.get(4),arrayList.get(5),
+                arrayList.get(6),arrayList.get(7),arrayList.get(8),arrayList.get(9),
+                arrayList.get(10),arrayList.get(11),arrayList.get(12),arrayList.get(13)});
+                i++;
             }
+        
+            else if(nombre_c_d.toLowerCase().contains(parametro) || nombre_c_a.toLowerCase().contains(parametro)
+                    || RUT.contains(parametro)) {
+                 model.insertRow(i, new Object[]{arrayList.get(0),arrayList.get(1),
+                arrayList.get(2)+" "+arrayList.get(3)+" "+arrayList.get(4),arrayList.get(5),
+                arrayList.get(6),arrayList.get(7),arrayList.get(8),arrayList.get(9),
+                arrayList.get(10),arrayList.get(11),arrayList.get(12),arrayList.get(13)});
+                i++;
+            }
+            
         }
     }
     
     public static void remate(String parametro){
         
-        lista_remate = Modelo.Remate.get_Lista();
+        lista_remate = Modelo.Remate.get_Lista_Busqueda(parametro);
         for (Iterator<ArrayList> it = lista_cliente.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
+            System.out.println(arrayList.get(0));
             if(arrayList.get(0).toString().equalsIgnoreCase(parametro)){
                 System.out.println(arrayList.get(0));
             }
