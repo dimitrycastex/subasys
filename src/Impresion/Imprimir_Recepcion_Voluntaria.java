@@ -5,6 +5,7 @@
 package Impresion;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
@@ -44,7 +45,34 @@ public class Imprimir_Recepcion_Voluntaria
            
       document.add(CrearTabla());
       
-      document.add(formato.texto_normal("Recibí conforme con ésta fecha : "+"xx/xx/xx"));      
+      document.add(formato.texto_normal("Recibí conforme con ésta fecha : "+"xx/xx/xx"));
+      document.add(new Phrase("\n\n\n\n\n\n\n\n"));
+      
+      PdfPTable t = new PdfPTable(2);
+      t.setWidthPercentage(101);
+      
+      PdfPCell celda; // celda para modificar
+      
+      celda = formato.celda_normal("______________________________",1,Element.ALIGN_CENTER);
+      celda.setBorder(Rectangle.NO_BORDER);
+      t.addCell(celda);
+      
+      celda = formato.celda_normal("______________________________",1,Element.ALIGN_CENTER);
+      celda.setBorder(Rectangle.NO_BORDER);
+      t.addCell(celda);
+      
+      celda = formato.celda_normal("consignante",1,Element.ALIGN_CENTER);
+      celda.setBorder(Rectangle.NO_BORDER);
+      t.addCell(celda);
+      
+      celda = formato.celda_normal("p.p. Juan Cáceres Carrasco",1,Element.ALIGN_CENTER);
+      celda.setBorder(Rectangle.NO_BORDER);
+      t.addCell(celda);
+      
+      document.add(t);
+      
+
+      
       //cerrar el pdf
       document.close();
     }

@@ -9,6 +9,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 
@@ -18,11 +20,25 @@ import java.io.FileOutputStream;
  */
 public class Imprimir_Lista_Productos
 {
+  public static ArrayList lista;
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
     public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
     {
     Document document = new Document();
       PdfWriter.getInstance(document,new FileOutputStream(ruta+"listado_de_productos.pdf"));
+      
+      lista = Modelo.Producto.get_Lista();
+      
+      /*
+          0 = producto.add(rs.getInt("ID_PRODUCTO"));
+          1 = producto.add(rs.getString("Descripcion"));
+          2 = producto.add(rs.getInt("Cantidad"));
+          3 = producto.add(rs.getInt("Precio_Unitario"));
+          4 = producto.add(rs.getInt("Total"));
+          5 = producto.add(rs.getInt("Garantia"));
+          6 = producto.add(rs.getString("Descripcion_Larga"));
+      */
+      
       //abrir el pdf
       document.open();
       
@@ -42,7 +58,7 @@ public class Imprimir_Lista_Productos
             // crear tabla con 3 columnas
             PdfPTable table = new PdfPTable(10);
             table.setWidthPercentage(100);
-            
+            int i=0;
             // agregar titulo codigo
             table.addCell(formato.celda_titulo("Num"));
             // agregar titulo nombre
@@ -53,14 +69,22 @@ public class Imprimir_Lista_Productos
             table.addCell(formato.celda_titulo("Descripción",4));
 
             //
-            for(int i=1;i<=100;i++)
+            for (Iterator it = lista.iterator(); it.hasNext();) // itera
             {
-                table.addCell(formato.celda_normal("num"+i));
-                table.addCell(formato.celda_normal("codprod"+i,2));
-                table.addCell(formato.celda_normal("cantidad"+i));
-                table.addCell(formato.celda_normal("vminimo"+i));
-                table.addCell(formato.celda_normal("fechaingreso"+i));
-                table.addCell(formato.celda_normal("descripcion"+i,4));
+                ArrayList object = (ArrayList) it.next(); // castea
+                i++;
+                //num
+                table.addCell(formato.celda_normal(""+i));
+                //ID_PRODUCTO
+                table.addCell(formato.celda_normal((String)object.get(0)));
+                //Cantidad
+                table.addCell(formato.celda_normal((String)object.get(2)));
+                //Precio Unitario
+                table.addCell(formato.celda_normal((String)object.get(3)));
+                //fecha ingreso (!)
+                table.addCell(formato.celda_normal("#FECHA#"));
+                //Descripción
+                table.addCell(formato.celda_normal((String)object.get(1)));
             }
             return table;
         }
