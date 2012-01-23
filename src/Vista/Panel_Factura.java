@@ -7,6 +7,7 @@ package Vista;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Panel_Factura extends javax.swing.JPanel {
     /**
      * Creates new form Factura
      */
+    static JTable tabla_Producto1 = new JTable();
     public Panel_Factura() {
         initComponents();
     }
@@ -86,19 +88,18 @@ public class Panel_Factura extends javax.swing.JPanel {
         jButton_Cancelar = new javax.swing.JButton();
         jLabel_ListaProductos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane(tabla_Producto1);
-        tabla_Producto1 = new Vista.Tablas.Tabla_Producto();
         jButton_AgregarProductos = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1000, 550));
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        jLabel_Causa.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel_Causa.setFont(new java.awt.Font("Arial", 0, 36));
         jLabel_Causa.setText("Factura");
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_Modificar.setText("Crear Cliente");
         jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +107,7 @@ public class Panel_Factura extends javax.swing.JPanel {
             }
         });
 
-        jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_Buscar.setText("Buscar Cliente");
         jButton_Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,22 +115,22 @@ public class Panel_Factura extends javax.swing.JPanel {
             }
         });
 
-        Label_Nombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        Label_Nombre.setFont(new java.awt.Font("Arial", 1, 14));
         Label_Nombre.setText("Nombre");
 
         jTextField_Nombre.setEditable(false);
-        jTextField_Nombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField_Nombre.setFont(new java.awt.Font("Arial", 0, 14));
         jTextField_Nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_NombreKeyTyped(evt);
             }
         });
 
-        jLabel_RUT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_RUT.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel_RUT.setText("RUT");
 
         jTextField_RUT.setEditable(false);
-        jTextField_RUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField_RUT.setFont(new java.awt.Font("Arial", 0, 14));
 
         jCheckBox_Demandante.setText("Demandante");
 
@@ -176,20 +177,20 @@ public class Panel_Factura extends javax.swing.JPanel {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jTextField_Garantia.setEditable(false);
-        jTextField_Garantia.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField_Garantia.setFont(new java.awt.Font("Arial", 0, 14));
         jTextField_Garantia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_GarantiaKeyTyped(evt);
             }
         });
 
-        jLabel_Garantia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_Garantia.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel_Garantia.setText("Garantía");
 
-        jLabel_IVAPorcentaje.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_IVAPorcentaje.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel_IVAPorcentaje.setText("IVA (%)");
 
-        jTextField_IVAPorcentaje.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField_IVAPorcentaje.setFont(new java.awt.Font("Arial", 0, 14));
         jTextField_IVAPorcentaje.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_IVAPorcentajeKeyTyped(evt);
@@ -198,10 +199,10 @@ public class Panel_Factura extends javax.swing.JPanel {
 
         jCheckBox_Exenta.setText("Exenta");
 
-        jLabel_Fecha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_Fecha.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel_Fecha.setText("Fecha");
 
-        jDateChooser_Fecha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jDateChooser_Fecha.setFont(new java.awt.Font("Arial", 0, 14));
         jDateChooser_Fecha.setMaxSelectableDate(new java.util.Date(253370779303000L));
         jDateChooser_Fecha.setMinSelectableDate(new java.util.Date(1262318503000L));
 
@@ -218,7 +219,7 @@ public class Panel_Factura extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField_Garantia, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_IVAPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jCheckBox_Exenta)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -234,13 +235,13 @@ public class Panel_Factura extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jDateChooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 65, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel_Garantia)
                             .addComponent(jTextField_Garantia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_Fecha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel_IVAPorcentaje)
                             .addComponent(jTextField_IVAPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,16 +249,16 @@ public class Panel_Factura extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel_Subtotal.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_Subtotal.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel_Subtotal.setText("Subtotal");
 
-        jLabel_Comision.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_Comision.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel_Comision.setText("Comisión 10%");
 
-        jLabel_IVAPesos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_IVAPesos.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel_IVAPesos.setText("IVA");
 
-        jLabel_Total.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_Total.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel_Total.setText("Precio Total");
 
         jTextField_Subtotal.setEditable(false);
@@ -268,7 +269,7 @@ public class Panel_Factura extends javax.swing.JPanel {
 
         jTextField_Total.setEditable(false);
 
-        jButton_EliminarProductos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton_EliminarProductos.setFont(new java.awt.Font("Arial", 1, 12));
         jButton_EliminarProductos.setText("Eliminar productos seleccionados");
         jButton_EliminarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,7 +277,7 @@ public class Panel_Factura extends javax.swing.JPanel {
             }
         });
 
-        jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_Aceptar.setText("Aceptar");
         jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,7 +285,7 @@ public class Panel_Factura extends javax.swing.JPanel {
             }
         });
 
-        jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_Cancelar.setText("Cancelar");
         jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,10 +293,8 @@ public class Panel_Factura extends javax.swing.JPanel {
             }
         });
 
-        jLabel_ListaProductos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel_ListaProductos.setFont(new java.awt.Font("Arial", 1, 14));
         jLabel_ListaProductos.setText("Lista de Productos");
-
-        jScrollPane1.setViewportView(tabla_Producto1);
 
         jButton_AgregarProductos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton_AgregarProductos.setText("Agregar Productos");
@@ -481,7 +480,7 @@ public class Panel_Factura extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton_ModificarActionPerformed
 
     protected void llenatabla(){
-        tabla_Producto1.AgregaProductos();
+       // tabla_Producto1.AgregaProductos();
     
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -516,6 +515,5 @@ public class Panel_Factura extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_RUT;
     private javax.swing.JTextField jTextField_Subtotal;
     private javax.swing.JTextField jTextField_Total;
-    private Vista.Tablas.Tabla_Producto tabla_Producto1;
     // End of variables declaration//GEN-END:variables
 }

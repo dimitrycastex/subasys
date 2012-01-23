@@ -149,8 +149,8 @@ public class Producto {
           ArrayList producto = new ArrayList();
           producto.add(rs.getInt("Lote"));
           producto.add(rs.getString("ID_REMATE"));
-          producto.add(rs.getInt("Descripcion"));
-          producto.add(rs.getString("ID_PRODUCTO"));
+          producto.add(rs.getString("Descripcion"));
+          producto.add(rs.getInt("ID_PRODUCTO"));
           producto.add(rs.getInt("Cantidad"));
           producto.add(rs.getInt("Precio_Unitario"));
           producto.add(rs.getInt("Total"));

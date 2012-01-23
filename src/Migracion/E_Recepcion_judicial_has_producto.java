@@ -23,18 +23,15 @@ public static void leerArchivoExcel(String archivoDestino) {
 try { 
 Workbook archivoExcel = Workbook.getWorkbook(new File( 
 archivoDestino)); 
-System.out.println("Número de Hojas\t" + archivoExcel.getNumberOfSheets()); 
 for (int sheetNo = 0; sheetNo < archivoExcel.getNumberOfSheets(); sheetNo++)                                                                                
 { 
 Sheet hoja = archivoExcel.getSheet(sheetNo); 
 int numColumnas = hoja.getColumns(); 
 int numFilas = hoja.getRows(); 
 String data;
-System.out.println("Nombre de la Hoja\t" + archivoExcel.getSheet(sheetNo).getName()); 
 
 for (int fila = 1; fila < numFilas; fila++) { 
 String[] factura = new String[]{"","","","","","",""};
-System.out.println("FILA: "+fila);
 for (int columna = 0; columna < numColumnas; columna++) { 
 data = hoja.getCell(columna, fila).getContents(); 
 
@@ -45,6 +42,7 @@ factura[columna]=convert(data);
 Excel_to_SQL.recepcion_judicial_has_producto(Excel_to_SQL.getDatosID_RJ(factura[5]),
         Excel_to_SQL.getDatosID_PRODUCTO(factura[0], convertNumber(factura[1])));
 } 
+System.out.println("RECEPCION_JUDICIAL_HAS_PRODUCTO DONE");
 }
 } catch (Exception ioe) { 
 ioe.printStackTrace(); 

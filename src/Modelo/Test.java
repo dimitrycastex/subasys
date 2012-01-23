@@ -4,7 +4,7 @@
  */
 package Modelo;
 
-import Vista.Buscador;
+import Vista.Panel_Busqueda;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -29,5 +29,8 @@ public class Test {
        
         //Busqueda.busca_cliente("juan geraldo");
         //Producto.get_Lista_Busqueda();
+        //Cliente.get_Lista();
+        Producto.get_Lista();
+        Remate.get_Lista_Busqueda("162C");
     }
 }

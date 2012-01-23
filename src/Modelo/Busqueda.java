@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Busqueda {
     
@@ -24,7 +26,11 @@ public class Busqueda {
     static ArrayList<ArrayList> lista_producto = new ArrayList();
     static ArrayList<ArrayList> lista_causa = new ArrayList();
     
-    public static void busca_cliente(String parametro){
+   
+    public static void initClientes(){
+    lista_cliente = Modelo.Cliente.get_Lista();
+}
+    public static void busca_cliente(String parametro,DefaultTableModel tmodel_cliente){
         
         String nombre = "";
         String apellidoP = "";
@@ -33,7 +39,8 @@ public class Busqueda {
         String nombre_c_a = "";
         
         String RUT= "";
-        lista_cliente = Modelo.Cliente.get_Lista();
+        //lista_cliente = Modelo.Cliente.get_Lista();
+        int i=0;
         for (Iterator<ArrayList> it = lista_cliente.iterator(); it.hasNext();) {
             ArrayList cliente = it.next();
             RUT = cliente.get(0).toString();
@@ -45,7 +52,12 @@ public class Busqueda {
             
             if(nombre_c_d.toLowerCase().contains(parametro) || nombre_c_a.toLowerCase().contains(parametro)
                      || RUT.contains(parametro))
-            System.out.println(nombre_c_d);
+            {
+                tmodel_cliente.insertRow(i, new Object[]{RUT,apellidoP,apellidoM,nombre,cliente.get(4),
+                cliente.get(5),cliente.get(6)});
+                System.out.println(RUT+" "+nombre+ " "+ apellidoM);
+                i++;
+            }
         }
         
     }

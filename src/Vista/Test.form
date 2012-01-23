@@ -22,17 +22,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="buscador1" alignment="1" pref="604" max="32767" attributes="0"/>
+          <Component id="panel_Busqueda1" alignment="0" pref="604" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="buscador1" alignment="0" pref="401" max="32767" attributes="0"/>
+          <Component id="panel_Busqueda1" alignment="0" pref="401" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="Vista.Buscador" name="buscador1">
+    <Component class="Vista.Panel_Busqueda" name="panel_Busqueda1">
     </Component>
   </SubComponents>
 </Form>

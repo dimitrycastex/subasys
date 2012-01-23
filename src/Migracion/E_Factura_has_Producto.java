@@ -21,8 +21,7 @@ public static void leerArchivoExcel(String archivoDestino) {
 try { 
 Workbook archivoExcel = Workbook.getWorkbook(new File( 
 archivoDestino)); 
-System.out.println("Número de Hojas\t" 
-+ archivoExcel.getNumberOfSheets()); 
+//System.out.println("Número de Hojas\t" + archivoExcel.getNumberOfSheets()); 
 for (int sheetNo = 0; sheetNo < archivoExcel.getNumberOfSheets(); sheetNo++)                                                                                                                                                    
 { 
 Sheet hoja = archivoExcel.getSheet(sheetNo); 
@@ -30,10 +29,9 @@ int numColumnas = hoja.getColumns();
 int numFilas = hoja.getRows(); 
 String data;
 
-System.out.println("Nombre de la Hoja\t" + archivoExcel.getSheet(sheetNo).getName()); 
+//System.out.println("Nombre de la Hoja\t" + archivoExcel.getSheet(sheetNo).getName()); 
 for (int fila = 1; fila < numFilas; fila++) {
 String[] factura = new String[]{"","","","","","","","","","","","","","",""};
-System.out.println("FILA: "+fila);
 for (int columna = 0; columna < numColumnas; columna++) { // Recorre                                                                                
 
 data = hoja.getCell(columna, fila).getContents(); 
@@ -43,6 +41,7 @@ factura[columna]=convert(data);
 Excel_to_SQL.factura_has_producto(convertNumber(factura[0]),
         Excel_to_SQL.getDatosID_PRODUCTO(factura[1],convertNumber(factura[2])));
 } 
+System.out.println("FACTURAS_HAS_PRODUCTO DONE");
 }
 
 } catch (Exception ioe) { 

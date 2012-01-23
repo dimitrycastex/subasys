@@ -21,7 +21,7 @@ public static void leerArchivoExcel(String archivoDestino) {
 try { 
 Workbook archivoExcel = Workbook.getWorkbook(new File( 
 archivoDestino)); 
-System.out.println("Número de Hojas\t" + archivoExcel.getNumberOfSheets()); 
+//System.out.println("Número de Hojas\t" + archivoExcel.getNumberOfSheets()); 
 for (int sheetNo = 0; sheetNo < archivoExcel.getNumberOfSheets(); sheetNo++)                                                                                                                                                     
 { 
 Sheet hoja = archivoExcel.getSheet(sheetNo); 
@@ -29,7 +29,7 @@ int numColumnas = hoja.getColumns();
 int numFilas = hoja.getRows(); 
 String data;
 
-System.out.println("Nombre de la Hoja\t" + archivoExcel.getSheet(sheetNo).getName()); 
+//System.out.println("Nombre de la Hoja\t" + archivoExcel.getSheet(sheetNo).getName()); 
 for (int fila = 0; fila < numFilas; fila++) {
 String ApeP = "";
 String ApeM = "";
@@ -40,7 +40,6 @@ String Telefono = "";
 String Ciudad = "";
 String Comuna = "";
 boolean flag = true;
-System.out.println("FILA: "+fila);
 for (int columna = 0; columna < numColumnas; columna++) {                                                                               
 data = hoja.getCell(columna, fila).getContents(); 
 if(columna==0){
@@ -81,7 +80,8 @@ else if(columna==5){
 if(flag)Excel_to_SQL.cliente(RUT, ApeP, ApeM, Nombre, Direccion, Ciudad, Telefono, Comuna);
 
 
-} 
+}
+System.out.println("CLIENTES DONE");
 }
 } catch (Exception ioe) { 
 ioe.printStackTrace(); 

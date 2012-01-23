@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Deico
  */
 
-public class Buscador extends javax.swing.JPanel {
+public class Panel_Busqueda extends javax.swing.JPanel {
 
     DefaultTableModel model = new DefaultTableModel();
     DefaultTableModel tmodel_cliente = new DefaultTableModel();
@@ -29,10 +29,12 @@ public class Buscador extends javax.swing.JPanel {
     
     /** Creates new form Buscador */
     
-    public Buscador() {
+    public Panel_Busqueda() {
         initComponents();
         initTableModels();
-      
+        Tabla.setModel(tmodel_cliente);
+        Modelo.Busqueda.initClientes();
+        //tmodel_cliente.insertRow(0, new Object[] { "r1",2,3,4,5,6 });
     }
 
     private void initTableModels(){
@@ -148,18 +150,25 @@ public class Buscador extends javax.swing.JPanel {
 private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_parametro_busquedaKeyReleased
 // TODO add your handling code here:
     if(!parametro_busqueda.getText().isEmpty()){
-         
-         Busqueda.busca_cliente(parametro_busqueda.getText().toLowerCase());
+        cleanModel(tmodel_cliente);
+          Busqueda.busca_cliente(parametro_busqueda.getText().toLowerCase(),tmodel_cliente);
     }
    
 }//GEN-LAST:event_parametro_busquedaKeyReleased
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 // TODO add your handling code here:
-   Tabla.setModel(tmodel_cliente);
+  cleanModel(tmodel_cliente);
     
 }//GEN-LAST:event_jButton1ActionPerformed
 
+public void cleanModel(DefaultTableModel model){
+    
+    for (int i = 0; i < model.getRowCount(); i++) {
+       model.removeRow(i);
+        
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Tabla;
     private javax.swing.JButton jButton1;

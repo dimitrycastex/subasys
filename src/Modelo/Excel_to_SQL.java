@@ -89,12 +89,10 @@ public class Excel_to_SQL {
      
        String fecha=lista[1]; 
         SimpleDateFormat sdf= new SimpleDateFormat("dd-MM-yyyy"); 
-        System.out.println("asdasdasdasdasdasdasdasdasdasdasdasdasd");
         java.util.Date d = null; 
         try {
             d = sdf.parse(fecha);
         } catch (ParseException ex) {
-            System.out.println("asdasdasdasdasdasdasdasdasdasdasdasdasd");
         }
       
         java.sql.Date fechaEmision = new java.sql.Date(d.getTime());
