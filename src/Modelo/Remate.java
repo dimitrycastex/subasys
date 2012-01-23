@@ -161,8 +161,8 @@ public class Remate {
           remate.add(rs.getString("Nombre"));
           remate.add(rs.getString("Telefono"));
           remate.add(rs.getString("Direccion"));
-          remate.add(rs.getInt("ID_FACTURA"));
-          remate.add(rs.getLong("Total"));
+          remate.add(rs.getInt("id_factura"));
+          remate.add(rs.getLong("total"));
           lista_remate.add(remate);
           flag=true;
           }
@@ -177,5 +177,72 @@ public class Remate {
          }
          return lista_remate;
     }
+     
+      public static ArrayList<ArrayList> get_Lista_Caja_Remate(String ID_REMATE){
+
+        ArrayList<ArrayList> lista_remate = new ArrayList();
+        
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select * "+
+            "from Remate NATURAL JOIN Remate_has_Factura NATURAL JOIN factura "+
+            "where remate_has_factura.id_remate = '"+ID_REMATE+"';");
+          
+          while (rs.next()) {
+          ArrayList remate = new ArrayList();
+          remate.add(rs.getInt("ID_FACTURA"));
+          remate.add(rs.getLong("Total"));
+          remate.add(rs.getLong("Garantia"));
+          remate.add(rs.getDate("Fecha_Emision"));
+          remate.add(rs.getString("Estado"));
+          remate.add(rs.getString("Exento"));
+          remate.add(rs.getLong("Neto"));
+          remate.add(rs.getInt("Impuestos"));
+          remate.add(rs.getInt("Comision"));  
+          remate.add(rs.getInt("IVA"));     
+          remate.add(rs.getInt("comision_Factura"));
+          
+          lista_remate.add(remate);
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el remate", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_remate;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_remate;
+    }
+     
+     public static boolean isRemate(String ID_REMATE){
+
+
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select id_remate from Remate where id_remate="+"'"+ID_REMATE+"'");
+          
+          while (rs.next()) {
+        
+          flag=true;
+          }
+          rs.close();
+          
+          return flag;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return flag;
+    }
+     
+     
+     
   
 }
