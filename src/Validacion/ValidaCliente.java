@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class ValidaCliente {
     
-    private boolean ValidaRUN(String Elrun){
+    public boolean ValidaRUN(String Elrun){
 
         if(Elrun!=null || !Elrun.isEmpty()){
             

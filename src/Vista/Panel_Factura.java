@@ -18,7 +18,6 @@ public class Panel_Factura extends javax.swing.JPanel {
     /**
      * Creates new form Factura
      */
-    static JTable tabla_Producto1 = new JTable();
     public Panel_Factura() {
         initComponents();
     }
@@ -88,49 +87,39 @@ public class Panel_Factura extends javax.swing.JPanel {
         jButton_Cancelar = new javax.swing.JButton();
         jLabel_ListaProductos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane(tabla_Producto1);
-        jButton_AgregarProductos = new javax.swing.JButton();
+        tabla_Producto1 = new Vista.Tablas.Tabla_Producto();
 
         setMaximumSize(new java.awt.Dimension(1000, 550));
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        jLabel_Causa.setFont(new java.awt.Font("Arial", 0, 36));
+        jLabel_Causa.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel_Causa.setText("Factura");
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 14));
-        jButton_Modificar.setText("Crear Cliente");
-        jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ModificarActionPerformed(evt);
-            }
-        });
+        jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Modificar.setText("Crear");
 
-        jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 14));
-        jButton_Buscar.setText("Buscar Cliente");
-        jButton_Buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_BuscarActionPerformed(evt);
-            }
-        });
+        jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Buscar.setText("Buscar");
 
-        Label_Nombre.setFont(new java.awt.Font("Arial", 1, 14));
+        Label_Nombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Nombre.setText("Nombre");
 
         jTextField_Nombre.setEditable(false);
-        jTextField_Nombre.setFont(new java.awt.Font("Arial", 0, 14));
+        jTextField_Nombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextField_Nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_NombreKeyTyped(evt);
             }
         });
 
-        jLabel_RUT.setFont(new java.awt.Font("Arial", 1, 14));
+        jLabel_RUT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_RUT.setText("RUT");
 
         jTextField_RUT.setEditable(false);
-        jTextField_RUT.setFont(new java.awt.Font("Arial", 0, 14));
+        jTextField_RUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jCheckBox_Demandante.setText("Demandante");
 
@@ -144,18 +133,17 @@ public class Panel_Factura extends javax.swing.JPanel {
                     .addComponent(Label_Nombre)
                     .addComponent(jLabel_RUT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBox_Demandante))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton_Buscar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_Modificar))
+                    .addComponent(jTextField_Nombre))
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox_Demandante)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,20 +165,20 @@ public class Panel_Factura extends javax.swing.JPanel {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jTextField_Garantia.setEditable(false);
-        jTextField_Garantia.setFont(new java.awt.Font("Arial", 0, 14));
+        jTextField_Garantia.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextField_Garantia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_GarantiaKeyTyped(evt);
             }
         });
 
-        jLabel_Garantia.setFont(new java.awt.Font("Arial", 1, 14));
+        jLabel_Garantia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Garantia.setText("Garantía");
 
-        jLabel_IVAPorcentaje.setFont(new java.awt.Font("Arial", 1, 14));
+        jLabel_IVAPorcentaje.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_IVAPorcentaje.setText("IVA (%)");
 
-        jTextField_IVAPorcentaje.setFont(new java.awt.Font("Arial", 0, 14));
+        jTextField_IVAPorcentaje.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextField_IVAPorcentaje.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_IVAPorcentajeKeyTyped(evt);
@@ -199,10 +187,10 @@ public class Panel_Factura extends javax.swing.JPanel {
 
         jCheckBox_Exenta.setText("Exenta");
 
-        jLabel_Fecha.setFont(new java.awt.Font("Arial", 1, 14));
+        jLabel_Fecha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Fecha.setText("Fecha");
 
-        jDateChooser_Fecha.setFont(new java.awt.Font("Arial", 0, 14));
+        jDateChooser_Fecha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jDateChooser_Fecha.setMaxSelectableDate(new java.util.Date(253370779303000L));
         jDateChooser_Fecha.setMinSelectableDate(new java.util.Date(1262318503000L));
 
@@ -249,16 +237,16 @@ public class Panel_Factura extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel_Subtotal.setFont(new java.awt.Font("Arial", 1, 14));
+        jLabel_Subtotal.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Subtotal.setText("Subtotal");
 
-        jLabel_Comision.setFont(new java.awt.Font("Arial", 1, 14));
+        jLabel_Comision.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Comision.setText("Comisión 10%");
 
-        jLabel_IVAPesos.setFont(new java.awt.Font("Arial", 1, 14));
+        jLabel_IVAPesos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_IVAPesos.setText("IVA");
 
-        jLabel_Total.setFont(new java.awt.Font("Arial", 1, 14));
+        jLabel_Total.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Total.setText("Precio Total");
 
         jTextField_Subtotal.setEditable(false);
@@ -269,15 +257,10 @@ public class Panel_Factura extends javax.swing.JPanel {
 
         jTextField_Total.setEditable(false);
 
-        jButton_EliminarProductos.setFont(new java.awt.Font("Arial", 1, 12));
+        jButton_EliminarProductos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton_EliminarProductos.setText("Eliminar productos seleccionados");
-        jButton_EliminarProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_EliminarProductosActionPerformed(evt);
-            }
-        });
 
-        jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14));
+        jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_Aceptar.setText("Aceptar");
         jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,7 +268,7 @@ public class Panel_Factura extends javax.swing.JPanel {
             }
         });
 
-        jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14));
+        jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_Cancelar.setText("Cancelar");
         jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,16 +276,10 @@ public class Panel_Factura extends javax.swing.JPanel {
             }
         });
 
-        jLabel_ListaProductos.setFont(new java.awt.Font("Arial", 1, 14));
+        jLabel_ListaProductos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_ListaProductos.setText("Lista de Productos");
 
-        jButton_AgregarProductos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton_AgregarProductos.setText("Agregar Productos");
-        jButton_AgregarProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_AgregarProductosActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(tabla_Producto1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -311,9 +288,8 @@ public class Panel_Factura extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
+                .addGap(6, 6, 6)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -323,11 +299,9 @@ public class Panel_Factura extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 980, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jButton_AgregarProductos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(10, 10, 10)
                         .addComponent(jButton_EliminarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(159, 159, 159)
+                        .addGap(308, 308, 308)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_Comision)
                             .addComponent(jLabel_Subtotal))
@@ -344,15 +318,14 @@ public class Panel_Factura extends javax.swing.JPanel {
                             .addComponent(jTextField_IVAPesos, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(814, 814, 814)
+                        .addComponent(jButton_Aceptar)
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton_Cancelar))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel_ListaProductos)))
-                .addGap(0, 10, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_Aceptar)
-                .addGap(6, 6, 6)
-                .addComponent(jButton_Cancelar)
-                .addContainerGap())
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,6 +343,14 @@ public class Panel_Factura extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jButton_EliminarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel_Comision)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel_Subtotal))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jTextField_Comision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
@@ -382,22 +363,12 @@ public class Panel_Factura extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField_IVAPesos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(jTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton_EliminarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton_AgregarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel_Comision)
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel_Subtotal)))))
-                .addGap(15, 15, 15)
+                        .addComponent(jTextField_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -486,7 +457,6 @@ public class Panel_Factura extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_Nombre;
     private javax.swing.JButton jButton_Aceptar;
-    private javax.swing.JButton jButton_AgregarProductos;
     private javax.swing.JButton jButton_Buscar;
     private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_EliminarProductos;
@@ -515,5 +485,6 @@ public class Panel_Factura extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField_RUT;
     private javax.swing.JTextField jTextField_Subtotal;
     private javax.swing.JTextField jTextField_Total;
+    private Vista.Tablas.Tabla_Producto tabla_Producto1;
     // End of variables declaration//GEN-END:variables
 }

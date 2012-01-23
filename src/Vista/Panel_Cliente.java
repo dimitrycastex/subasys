@@ -9,6 +9,7 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import Modelo.Cliente;
 
 /**
  *
@@ -23,9 +24,10 @@ public class Panel_Cliente extends javax.swing.JPanel {
         initComponents();
     }
     
+    
     private VentanaPrincipal V_Principal;
     private ValidaCliente validador;
-    private boolean desdePrincipal, desdeFactura;
+    private boolean desdePrincipal, desdeFactura, nuevo;
     
     public void setFrame(JFrame f){
         this.V_Principal= (VentanaPrincipal) f;
@@ -71,6 +73,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
     
     protected void ClienteNuevo(boolean b){
         this.Limpiar();
+        this.nuevo=b;
         this.jButton_Modificar.setVisible(!b);
         this.jButton_Buscar.setVisible(!b);
         this.jTextField_RUT.setEditable(b);
@@ -507,12 +510,29 @@ public class Panel_Cliente extends javax.swing.JPanel {
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         // TODO add your handling code here:
         //ENVIAR INFORMACION
+        boolean esValido = validador.ClienteValido(this.getDatos());
        
-        if(validador.ClienteValido(this.getDatos()))
+        if(esValido)
             JOptionPane.showMessageDialog(V_Principal, "Cliente Validado", "Información", JOptionPane.INFORMATION_MESSAGE);
         
         else
             JOptionPane.showMessageDialog(V_Principal, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
+        
+        if(esValido && nuevo){
+            Cliente.nuevo(this.getDatos());
+            JOptionPane.showMessageDialog(V_Principal, "Cliente Validado", "Información", JOptionPane.INFORMATION_MESSAGE);
+        
+        }
+        
+        else if(esValido && !nuevo){
+            int opcion = JOptionPane.showConfirmDialog(V_Principal, "Está seguro de actualizar los datos del Cliente"
+                    + "", "Modificar Cliente", JOptionPane.YES_NO_OPTION);
+            
+            if(opcion == 0){
+                Cliente.setUpdate(this.getDatos());            
+            }
+            
+        }
         
     }//GEN-LAST:event_jButton_AceptarActionPerformed
 

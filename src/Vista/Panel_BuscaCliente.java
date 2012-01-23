@@ -4,7 +4,10 @@
  */
 package Vista;
 
+import Modelo.Cliente;
+import Validacion.ValidaCliente;
 import java.awt.event.ItemEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -20,6 +23,9 @@ public class Panel_BuscaCliente extends javax.swing.JPanel {
     public Panel_BuscaCliente() {
         initComponents();
     }
+    
+    ValidaCliente validador;
+    ArrayList<ArrayList> personas;
     
     
     protected boolean desdeFactura,desdeCliente;
@@ -195,11 +201,11 @@ public class Panel_BuscaCliente extends javax.swing.JPanel {
                 .addComponent(jRadioButton_Email)
                 .addGap(8, 8, 8)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Cancelar)
                     .addComponent(jButton_Seleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25))
+                .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -269,6 +275,21 @@ public class Panel_BuscaCliente extends javax.swing.JPanel {
         if(!this.jRadioButton_Email.isSelected() && !this.jRadioButton_NombresApellidos.isSelected()
                 && !this.jRadioButton_RUT.isSelected() && !this.jRadioButton_Telefono.isSelected())
             JOptionPane.showMessageDialog(V_Principal, "Seleccione algún criterio de búsqueda", "Error", JOptionPane.ERROR_MESSAGE);
+        
+        //Busqueda por RUN
+        if(this.jRadioButton_RUT.isSelected()){
+            if(!validador.ValidaRUN(this.jTextField_Buscar.getText()))
+                JOptionPane.showMessageDialog(V_Principal, "RUN Inválido", 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            
+            else{
+                personas.add(Cliente.getDatos(this.jTextField_Buscar.getText()));
+                this.tabla_Cliente1.setClientes(personas);
+                this.tabla_Cliente1.AgregaClientes();
+            }
+        
+        
+        }
     }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     private void jTextField_BuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BuscarKeyTyped

@@ -35,7 +35,7 @@ public class Tabla_Cliente extends JTable{
         return Clientes.size();
     }
     
-    public void AgregaProductos(){
+    public void AgregaClientes(){
         
         
         temp.add("17715401-6");
@@ -54,7 +54,7 @@ public class Tabla_Cliente extends JTable{
         this.AsignaColumn();
     }
     
-    public void BorraProductos(){
+    public void BorraClientes(){
         
         Modelo.BorraClientes();
         this.Clientes = Modelo.getClientes();

@@ -30,7 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_BuscaCliente1.setFrame(this);
         this.panel_BuscaProducto1.setFrame(this);
         this.panel_VisorPDF1.setFrame(this);
-        this.panel_VisorPDF1.setRutaArchivo("/media/bastian/Documents/clrs8.pdf");
+        this.panel_VisorPDF1.setRutaArchivo("EasyNote_MX_Disassembly_Manual.pdf");
     }
     
     //--------------------------------------------------------------------------
@@ -282,12 +282,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jToolBar_Iconos.setFloatable(false);
         jToolBar_Iconos.setRollover(true);
 
-        jButton1.setText("Boton1");
+        jButton1.setText("Imprimir Remate");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setMaximumSize(new java.awt.Dimension(60, 35));
-        jButton1.setMinimumSize(new java.awt.Dimension(60, 35));
-        jButton1.setPreferredSize(new java.awt.Dimension(60, 35));
+        jButton1.setMaximumSize(new java.awt.Dimension(84, 39));
+        jButton1.setMinimumSize(new java.awt.Dimension(84, 39));
+        jButton1.setPreferredSize(new java.awt.Dimension(84, 39));
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar_Iconos.add(jButton1);
 
@@ -337,7 +337,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /*
         jTabbedPane_Pestanas.addTab("Buscar Producto", panel_BuscaProducto1);
         */
+
+        /*
         jTabbedPane_Pestanas.addTab("PDF", panel_VisorPDF1);
+        */
 
         jMenu1.setText("Archivo");
         jMenuBar_Principal.add(jMenu1);
@@ -385,7 +388,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         
-        
+        /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -401,7 +404,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }*/
         //</editor-fold>
 
         /*
@@ -410,11 +413,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                /*try {
+                try {
                     UIManager.setLookAndFeel(new SubstanceOfficeBlack2007LookAndFeel());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,"Substance Graphite failed to initialize");
-                }*/
+                }
 
                 new VentanaPrincipal().setVisible(true);
             }
