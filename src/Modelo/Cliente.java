@@ -36,7 +36,7 @@ public class Cliente {
             prep.setInt(8, Integer.parseInt(unaLista.get(7).toString()));
             prep.setString(9, unaLista.get(8).toString());   
             prep.setString(10, unaLista.get(9).toString());
-            prep.setInt(11, Integer.parseInt(unaLista.get(10).toString()));
+            prep.setString(11, unaLista.get(10).toString());
             prep.executeUpdate();
             
             } catch (SQLException ex) {
