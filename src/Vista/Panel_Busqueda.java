@@ -11,8 +11,16 @@
 package Vista;
 
 import Modelo.Busqueda;
+import Modelo.ExcelTableExporter;
+import Vista.Tablas.Modelos.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,25 +30,25 @@ import javax.swing.table.DefaultTableModel;
 
 public class Panel_Busqueda extends javax.swing.JPanel {
 
+
     DefaultTableModel model = new DefaultTableModel();
-    DefaultTableModel tmodel_cliente = new DefaultTableModel();
-    DefaultTableModel tmodel_factura = new DefaultTableModel();
-    DefaultTableModel tmodel_remate = new DefaultTableModel();
-    DefaultTableModel tmodel_producto = new DefaultTableModel();
-    DefaultTableModel tmodel_causa = new DefaultTableModel();
-    DefaultTableModel tmodel_recepcion_judicial = new DefaultTableModel();
-    DefaultTableModel tmodel_recepcion_voluntaria = new DefaultTableModel();
-    DefaultTableModel tmodel_producto_facturado = new DefaultTableModel();
+    DefaultTableModel tmodel_cliente = new Cliente_Busqueda();
+    DefaultTableModel tmodel_factura = new Factura_Busqueda();
+    DefaultTableModel tmodel_remate = new Remate_Busqueda();
+    DefaultTableModel tmodel_producto = new Producto_Busqueda();
+    DefaultTableModel tmodel_causa = new Causa_Busqueda();
+    DefaultTableModel tmodel_recepcion_judicial = new Recepcion_Judicial_Busqueda();
+    DefaultTableModel tmodel_recepcion_voluntaria = new Recepcion_Voluntaria_Busqueda();
+    DefaultTableModel tmodel_producto_facturado = new Producto_Facturado_Busqueda();
     
+    public static ArrayList<ArrayList> lista_seleccionados = new ArrayList();
     /** Creates new form Buscador */
     
     public Panel_Busqueda() {
         initComponents();
-        initTableModels();
         model = tmodel_cliente;
         Tabla.setModel(model);
-        //Modelo.Busqueda.initClientes();
-        Thread tread = new taskBar();
+        Thread tread = new taskInitContents();
         tread.start();
        
        
@@ -48,6 +56,7 @@ public class Panel_Busqueda extends javax.swing.JPanel {
 
     private void initTableModels(){
         
+        tmodel_cliente.addColumn("SEL");
         tmodel_cliente.addColumn("RUT");
         tmodel_cliente.addColumn("Apellido P");
         tmodel_cliente.addColumn("Apellido M");
@@ -56,6 +65,7 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         tmodel_cliente.addColumn("Direccion");
         tmodel_cliente.addColumn("Email");
         
+        tmodel_factura.addColumn("SEL");
         tmodel_factura.addColumn("Factura");
         tmodel_factura.addColumn("Rut");
         tmodel_factura.addColumn("Apellido P");
@@ -71,14 +81,18 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         tmodel_factura.addColumn("Comision");
         tmodel_factura.addColumn("IVA");
         tmodel_factura.addColumn("Comison factura");
+       
         
+        
+        tmodel_remate.addColumn("SEL");
         tmodel_remate.addColumn("RUT");
         tmodel_remate.addColumn("Nombre");
         tmodel_remate.addColumn("Telefono");
         tmodel_remate.addColumn("Direccion");
         tmodel_remate.addColumn("Id factura");
         tmodel_remate.addColumn("Total Factura");
-        
+      
+        tmodel_producto.addColumn("SEL");
         tmodel_producto.addColumn("Lote");
         tmodel_producto.addColumn("ID REMATE");
         tmodel_producto.addColumn("Descripcion");
@@ -86,7 +100,8 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         tmodel_producto.addColumn("Precio");
         tmodel_producto.addColumn("Total");
         tmodel_producto.addColumn("Garantia");
-        
+       
+        tmodel_causa.addColumn("SEL");
         tmodel_causa.addColumn("ROL");
         tmodel_causa.addColumn("Receptor");
         tmodel_causa.addColumn("Abogado");
@@ -94,21 +109,22 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         tmodel_causa.addColumn("Juzgado");
         tmodel_causa.addColumn("Remate");
         tmodel_causa.addColumn("ID RJ");
-              
+        
+        tmodel_recepcion_judicial.addColumn("SEL");      
         tmodel_recepcion_judicial.addColumn("ROL");
         tmodel_recepcion_judicial.addColumn("ID_RJ");
         tmodel_recepcion_judicial.addColumn("ID PRODUCTO");
         tmodel_recepcion_judicial.addColumn("Descripcion Producto");
         tmodel_recepcion_judicial.addColumn("Garantia");
         tmodel_recepcion_judicial.addColumn("Total");
-        
-        tmodel_recepcion_voluntaria.addColumn("ROL");
-        tmodel_recepcion_voluntaria.addColumn("ID_RJ");
+                
+        tmodel_recepcion_voluntaria.addColumn("SEL");
         tmodel_recepcion_voluntaria.addColumn("ID PRODUCTO");
         tmodel_recepcion_voluntaria.addColumn("Descripcion Producto");
         tmodel_recepcion_voluntaria.addColumn("Garantia");
         tmodel_recepcion_voluntaria.addColumn("Total");
-        
+            
+        tmodel_producto_facturado.addColumn("SEL");
         tmodel_producto_facturado.addColumn("ID_FACTURA");
         tmodel_producto_facturado.addColumn("RUT");
         tmodel_producto_facturado.addColumn("ApellidoP");
@@ -119,6 +135,8 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         tmodel_producto_facturado.addColumn("Precio unitario");
         tmodel_producto_facturado.addColumn("Garantia");
         tmodel_producto_facturado.addColumn("Total");
+         
+        
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -138,6 +156,8 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         label = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        Bar = new javax.swing.JProgressBar();
 
         parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +200,13 @@ Campo.addActionListener(new java.awt.event.ActionListener() {
 
     jLabel2.setText("Campo a buscar");
 
+    jButton2.setText("to Excel");
+    jButton2.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton2ActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
     this.setLayout(layout);
     layout.setHorizontalGroup(
@@ -194,14 +221,19 @@ Campo.addActionListener(new java.awt.event.ActionListener() {
                     .addComponent(jLabel2)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jButton1))
-                .addGroup(layout.createSequentialGroup()
                     .addGap(18, 18, 18)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabel1)))
-            .addContainerGap(273, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                    .addComponent(Bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(53, 53, 53))
+                .addGroup(layout.createSequentialGroup()
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jButton1)
+                    .addGap(150, 150, 150)
+                    .addComponent(jButton2)
+                    .addContainerGap(243, Short.MAX_VALUE))))
         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
         .addGroup(layout.createSequentialGroup()
             .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
@@ -211,15 +243,18 @@ Campo.addActionListener(new java.awt.event.ActionListener() {
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(Campo)
-                .addComponent(jLabel2)
-                .addComponent(jComboBox2)
-                .addComponent(jLabel1))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(Campo, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addComponent(Bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton1))
+                .addComponent(jButton1)
+                .addComponent(jButton2))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
             .addGap(2, 2, 2)
@@ -296,9 +331,32 @@ private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-F
    
 }//GEN-LAST:event_parametro_busquedaKeyReleased
 
+public static ArrayList<ArrayList> getSelectedRows(DefaultTableModel model){
+
+       lista_seleccionados.clear();
+       
+        for (int i = 0; i < model.getRowCount(); i++) {
+            boolean sel = (Boolean)model.getValueAt(i, 0);
+            if(sel){
+                 ArrayList lista = new ArrayList();
+                for (int j = 1; j < model.getColumnCount(); j++) {
+                    
+                    lista.add(model.getValueAt(i, j));
+                }
+                lista_seleccionados.add(lista);
+            }
+            
+        }
+        return lista_seleccionados;
+    }
+
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-// TODO add your handling code here:
-      
+        // TODO add your handling code here:
+        ArrayList selectedRows = getSelectedRows(model);
+        for (Iterator it = selectedRows.iterator(); it.hasNext();) {
+        Object object = it.next();
+            System.out.println(object);
+    }
     
 }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -365,6 +423,22 @@ private void parametro_busquedaActionPerformed(java.awt.event.ActionEvent evt) {
 // TODO add your handling code here:
 }//GEN-LAST:event_parametro_busquedaActionPerformed
 
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+// TODO add your handling code here:
+   try {
+            List<JTable> tables = new ArrayList<JTable>();
+            List<String> sheetsName = new ArrayList<String>();
+            tables.add(Tabla);
+            sheetsName.add("Planilla");
+            ExcelTableExporter excelExporter = new ExcelTableExporter(tables, new File("exportar.xls"), sheetsName);
+            if (excelExporter.export()) {
+                JOptionPane.showMessageDialog(null, "Exportado con exito!");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+}//GEN-LAST:event_jButton2ActionPerformed
+
 public void cleanModel(DefaultTableModel model){
     int a =model.getRowCount()-1;
 
@@ -376,7 +450,7 @@ public void cleanModel(DefaultTableModel model){
     
 }
 
-class taskBar extends Thread{
+class taskInitContents extends Thread{
         
       
       public void run() {
@@ -417,10 +491,15 @@ class taskBar extends Thread{
            
         }
     }
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar Bar;
     private javax.swing.JComboBox Campo;
     private javax.swing.JTable Tabla;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

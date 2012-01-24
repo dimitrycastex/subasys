@@ -149,9 +149,9 @@ public class Recepcion_Judicial {
           
           while (rs.next()) {
           ArrayList ReJudicial = new ArrayList();     
-          
-          ReJudicial.add(rs.getString("ROL"));
+                    
           ReJudicial.add(rs.getInt("ID_RJ"));
+          ReJudicial.add(rs.getString("ROL"));
           ReJudicial.add(rs.getInt("ID_PRODUCTO"));    
           ReJudicial.add(rs.getString("Descripcion"));
           ReJudicial.add(rs.getInt("Garantia"));

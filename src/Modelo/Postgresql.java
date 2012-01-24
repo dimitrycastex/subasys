@@ -45,13 +45,13 @@ public class Postgresql {
      public static Connection getConnection(){
       
      String driver = "org.postgresql.Driver";
+     //String dbname = "Subasys";
      String dbname = "subasys";
-    // String dbname = "subasys";
-     //String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
-     String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
-     String username = "subasys";
-     String password = "cscv$38l";
-     //String username = "subasys";
+      String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
+     //String url = "jdbc:postgresql://localhost/" +  dbname;
+      String username = "subasys";
+      String password = "cscv$38l";
+     //String username = "postgres";
      //String password = "subasys";
         Connection conData = null;
        

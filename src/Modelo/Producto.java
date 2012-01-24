@@ -195,6 +195,7 @@ public class Producto {
           
           while (rs.next()) {
           ArrayList producto = new ArrayList();
+          producto.add(rs.getInt("ID_PRODUCTO"));
           producto.add(rs.getInt("Lote"));
           producto.add(rs.getString("ID_REMATE"));
           producto.add(rs.getString("Descripcion"));

@@ -9,6 +9,7 @@ package Modelo;
  * @author Deico
  */
 
+import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +33,7 @@ public class Busqueda {
     static ArrayList<ArrayList> lista_recepcion_judicial = new ArrayList();
     static ArrayList<ArrayList> lista_recepcion_voluntaria = new ArrayList();
     static ArrayList<ArrayList> lista_producto_facturado = new ArrayList();
+    public static ArrayList buffer = new ArrayList();
    
     public static void initClientes(){lista_cliente = Modelo.Cliente.get_Lista_Busqueda();}
     public static void initProductosFac(){lista_producto_facturado = Modelo.Producto.get_Lista_Busqueda_Facturados();}
@@ -74,11 +76,14 @@ public class Busqueda {
             if(nombre_c_d.toLowerCase().contains(parametro) || nombre_c_a.toLowerCase().contains(parametro)
                      || RUT.contains(parametro))
             {
-                tmodel_cliente.insertRow(i, new Object[]{RUT,apellidoP,apellidoM,nombre,cliente.get(4),
-                cliente.get(5),cliente.get(6)});
+                Object[] list = new Object[]{false,RUT,apellidoP,apellidoM,nombre,cliente.get(4),
+                cliente.get(5),cliente.get(6)};
+                tmodel_cliente.addRow(list);
                 i++;
             }
         }
+        
+           
         
     }
     
@@ -92,10 +97,12 @@ public class Busqueda {
             ArrayList arrayList = it.next();
             ROL = arrayList.get(0).toString();
             Caratulado_como = arrayList.get(3).toString().toLowerCase();
-           if(ROL.contains(parametro) 
+           if(ROL.contains(parametro) || Caratulado_como.contains(parametro)
             ){
-               System.out.println(ROL+" "+parametro);
-                model.insertRow(i, arrayList.toArray());
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.insertRow(i, buffer.toArray());
             i++;
             }
         
@@ -121,7 +128,10 @@ public class Busqueda {
                     (ID_REMATE+" "+lote).toLowerCase().contains(parametro)
                     || Descripcion.toLowerCase().contains(parametro)){
                 
-                model.insertRow(i, arrayList.toArray());
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.addRow(buffer.toArray());
                 i++;
                 
             }
@@ -147,7 +157,10 @@ public class Busqueda {
                   RUT.equalsIgnoreCase(parametro) ||
                Descripcion.toLowerCase().equalsIgnoreCase(parametro)){
                  
-                model.insertRow(i, arrayList.toArray());
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.insertRow(i, buffer.toArray());
                 i++;
                 break;
             }
@@ -155,7 +168,10 @@ public class Busqueda {
                RUT.contains(parametro) ||
                Descripcion.toLowerCase().contains(parametro)){
                 
-                model.insertRow(i, arrayList.toArray());
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.insertRow(i, buffer.toArray());
                 i++;
                 
             }
@@ -186,14 +202,20 @@ public class Busqueda {
             
             if(parametro.equalsIgnoreCase(arrayList.get(0).toString()))
             {
-                model.insertRow(i,arrayList.toArray());
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.insertRow(i, buffer.toArray());
                 i++;
                 break;
             }
         
             else if(nombre_c_d.toLowerCase().contains(parametro) || nombre_c_a.toLowerCase().contains(parametro)
                     || RUT.contains(parametro)) {
-                model.insertRow(i,arrayList.toArray());
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.insertRow(i, buffer.toArray());
                 i++;
             }
             
@@ -206,7 +228,10 @@ public class Busqueda {
         int i=0;
         for (Iterator<ArrayList> it = lista_remate.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
-            model.insertRow(i, arrayList.toArray());
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.insertRow(i, buffer.toArray());
             i++;
         }
     }
@@ -218,9 +243,12 @@ public class Busqueda {
         int i=0;
         for (Iterator<ArrayList> it = lista_recepcion_judicial.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
-            ROL = arrayList.get(1).toString();
+            ROL = arrayList.get(0).toString();
             if(ROL.contains(parametro)){
-            model.insertRow(i, arrayList.toArray());
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.insertRow(i, buffer.toArray());
             i++;
         }
         
@@ -230,13 +258,16 @@ public class Busqueda {
       public static void busqueda_recepcion_voluntaria(String parametro,DefaultTableModel model){
         
         
-        String ROL = "";
+        String RUT = "";
         int i=0;
         for (Iterator<ArrayList> it = lista_recepcion_voluntaria.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
-            ROL = arrayList.get(1).toString();
-            if(ROL.contains(parametro)){
-            model.insertRow(i, arrayList.toArray());
+            RUT = arrayList.get(1).toString();
+            if(RUT.contains(parametro)){
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.insertRow(i, buffer.toArray());
             i++;
         }
         
