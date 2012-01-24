@@ -157,7 +157,6 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         label = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        Bar = new javax.swing.JProgressBar();
 
         parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,10 +223,7 @@ Campo.addActionListener(new java.awt.event.ActionListener() {
                     .addGap(18, 18, 18)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabel1)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                    .addComponent(Bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(53, 53, 53))
+                    .addComponent(jLabel1))
                 .addGroup(layout.createSequentialGroup()
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jButton1)
@@ -248,8 +244,7 @@ Campo.addActionListener(new java.awt.event.ActionListener() {
                 .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addComponent(Bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,28 +326,24 @@ private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-F
    
 }//GEN-LAST:event_parametro_busquedaKeyReleased
 
-public static ArrayList<ArrayList> getSelectedRows(DefaultTableModel model){
-
-       lista_seleccionados.clear();
-       
+public static ArrayList getSelectedRowsID(DefaultTableModel model){
+        ArrayList lista = new ArrayList();
         for (int i = 0; i < model.getRowCount(); i++) {
             boolean sel = (Boolean)model.getValueAt(i, 0);
             if(sel){
-                 ArrayList lista = new ArrayList();
-                for (int j = 1; j < model.getColumnCount(); j++) {
-                    
-                    lista.add(model.getValueAt(i, j));
-                }
-                lista_seleccionados.add(lista);
+                 
+                lista.add(model.getValueAt(i, 1));
             }
             
         }
-        return lista_seleccionados;
+        return lista;
     }
-
+/*
+ * HOLA
+ */
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ArrayList selectedRows = getSelectedRows(model);
+        ArrayList selectedRows = getSelectedRowsID(model);
         for (Iterator it = selectedRows.iterator(); it.hasNext();) {
         Object object = it.next();
             System.out.println(object);
@@ -495,7 +486,6 @@ class taskInitContents extends Thread{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JProgressBar Bar;
     private javax.swing.JComboBox Campo;
     private javax.swing.JTable Tabla;
     private javax.swing.JButton jButton1;

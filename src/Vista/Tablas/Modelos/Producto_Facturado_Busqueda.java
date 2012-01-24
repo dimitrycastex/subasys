@@ -18,12 +18,12 @@ public class Producto_Facturado_Busqueda extends DefaultTableModel{
     public Producto_Facturado_Busqueda(){
         super();
         this.addColumn("SEL");
+        this.addColumn("ID_PRODUCTO");
         this.addColumn("ID_FACTURA");
         this.addColumn("RUT");
         this.addColumn("APELLIDOP");
         this.addColumn("APELLIDOM");
         this.addColumn("NOMBRE");
-        this.addColumn("ID_PRODUCTO");
         this.addColumn("DESCRIPCION PRODUCTO");
         this.addColumn("PRECIO UNITARIO");
         this.addColumn("GARANTIA");

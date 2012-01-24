@@ -236,12 +236,13 @@ public class Producto {
           
           while (rs.next()) {
           ArrayList producto = new ArrayList();
+          
+          producto.add(rs.getInt("ID_PRODUCTO"));
           producto.add(rs.getInt("ID_FACTURA"));
           producto.add(rs.getString("RUT"));
           producto.add(rs.getString("ApellidoP"));
           producto.add(rs.getString("ApellidoM"));
           producto.add(rs.getString("Nombre"));
-          producto.add(rs.getInt("ID_PRODUCTO"));
           producto.add(rs.getString("Descripcion"));
           producto.add(rs.getInt("Precio_Unitario"));
           producto.add(rs.getInt("Garantia"));

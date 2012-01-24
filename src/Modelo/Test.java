@@ -29,7 +29,14 @@ public class Test {
         // Busqueda.getDatos("Juan");
         //Busqueda.busca_cliente("juan geraldo");
         // Modelo.Producto.get_Lista_Busqueda_Facturados();
-        System.out.println(Modelo.Cliente.isCliente("100786052"));
+        ArrayList<ArrayList> _Lista_Productos = Remate.get_Lista_Productos("162C");
+        for (Iterator<ArrayList> it = _Lista_Productos.iterator(); it.hasNext();) {
+            ArrayList arrayList = it.next();
+            for (Iterator it1 = arrayList.iterator(); it1.hasNext();) {
+                Object object = it1.next();
+                System.out.println(object);
+            }
+        }
     }
     
     public static String filtraRut(String rut){
