@@ -288,4 +288,29 @@ public class Producto {
          return flag;
     }
   
+  public static String[] getJuzgado_Causa(String ID_PRODUCTO){
+
+        String[] aux = new String[2];
+
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select Juzgado,ROL "
+                  + "from Causa,Recepcion_judicial_has_producto "
+                  + "where ID_PRODUCTO="+ID_PRODUCTO+" AND Causa.ID_RJ = Recepcion_judicial_has_producto.ID_RJ;");
+          
+          while (rs.next()) {
+          aux[0]=rs.getString("Juzgado");
+          aux[1]=rs.getString("ROL");
+          }
+          rs.close();       
+         // if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.WARNING_MESSAGE);       
+         return aux;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return aux;
+    }
+  
 }
