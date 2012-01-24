@@ -117,8 +117,7 @@ public class Recepcion_Judicial {
           ReJudicial.add(rs.getDate("Fecha_Ingreso"));
           ReJudicial.add(rs.getDate("Fecha_Devolucion"));
           ReJudicial.add(rs.getString("Demandante"));
-          ReJudicial.add(rs.getString("Demandante"));
-          ReJudicial.add(rs.getInt("Demandado"));         
+          ReJudicial.add(rs.getString("Demandado"));         
           ReJudicial.add(rs.getInt("Bodegaje_Pagado"));
           lista_rjudicial.add(ReJudicial);
 
