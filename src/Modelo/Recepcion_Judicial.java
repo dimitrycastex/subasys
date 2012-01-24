@@ -213,9 +213,9 @@ public class Recepcion_Judicial {
     }
   
   
-   public static ArrayList get_Lista_Productos(String ROL_CAUSA){
+   public static ArrayList<ArrayList> get_Lista_Productos(String ROL_CAUSA){
 
-        ArrayList ReJudicial = new ArrayList();     
+       ArrayList<ArrayList> list = new ArrayList();
         boolean flag = false;
         try {
 
@@ -227,13 +227,13 @@ public class Recepcion_Judicial {
           
           while (rs.next()) {
          
-          
+          ArrayList ReJudicial = new ArrayList();     
           ReJudicial.add(rs.getInt("ID_RJ"));
           ReJudicial.add(rs.getInt("ID_PRODUCTO"));    
           ReJudicial.add(rs.getString("Descripcion"));
           ReJudicial.add(rs.getInt("Garantia"));
           ReJudicial.add(rs.getInt("Total"));         
-        
+          list.add(ReJudicial);
 
           flag=true;
           }
@@ -241,12 +241,12 @@ public class Recepcion_Judicial {
           
           if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
           
-         return ReJudicial;
+         return list;
 
          } catch (SQLException ex) { 
          JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
          }
-         return ReJudicial;
+         return list;
     }
   
 }
