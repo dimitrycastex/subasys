@@ -9,6 +9,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 
@@ -18,11 +20,37 @@ import java.io.FileOutputStream;
  */
 public class Imprimir_Recepcion_Judicial
 {
+    
+  public static ArrayList lista_recepcion;
+  public static ArrayList lista_productos;
+    
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
-    public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
+    public static void imprimir(String ruta,String rol_causa) throws DocumentException, FileNotFoundException
     {
       Document document = new Document();
       PdfWriter.getInstance(document,new FileOutputStream(ruta+"recepcion_judicial.pdf"));
+      
+      lista_recepcion = Modelo.Recepcion_Judicial.get_Lista_Causa_Recepcion_Judicial(rol_causa);
+      lista_productos = Modelo.Recepcion_Judicial.get_Lista_Productos(rol_causa);
+      
+//      recepcion:
+//          0 = ReJudicial.add(rs.getString("ROL"));
+//          1 = ReJudicial.add(rs.getString("Juzgado"));
+//          2 = ReJudicial.add(rs.getDate("Fecha_Ingreso"));    
+//          3 = ReJudicial.add(rs.getString("Demandante"));
+//          4 = ReJudicial.add(rs.getString("Demandado"));
+//          5 = ReJudicial.add(rs.getString("Abogado"));   
+//          6 = ReJudicial.add(rs.getString("Receptor"));
+//          7 = ReJudicial.add(rs.getDate("Fecha_Devolucion"));
+//          8 = ReJudicial.add(rs.getInt("Bodegaje_Pagado")); 
+//          
+//      productos:
+//          0 = ReJudicial.add(rs.getInt("ID_RJ"));
+//          1 = ReJudicial.add(rs.getInt("ID_PRODUCTO"));    
+//          2 = ReJudicial.add(rs.getString("Descripcion"));
+//          3 = ReJudicial.add(rs.getInt("Garantia"));
+//          4 = ReJudicial.add(rs.getInt("Total"));     
+      
       //abrir el pdf
       document.open();
       //ir escribiendo en el pdf
@@ -31,87 +59,44 @@ public class Imprimir_Recepcion_Judicial
       //
       document.add(formato.titulo("ACTA DE RECEPCION DE ESPECIES"));
       document.add(new Phrase(""));//espacio
-      
-      /*
-      //tabla creada para alinear bien el texto
-      PdfPTable t = new PdfPTable(7);
-      t.setWidthPercentage(101);
-      t.getDefaultCell().setBorder(Rectangle.NO_BORDER);
-      
-      
-      //numero rol causa
-      PdfPCell cell = new PdfPCell(new Phrase("Número de Rol/Causa : ",new Font(FontFamily.TIMES_ROMAN, 10, Font.BOLD)));
-      cell.setColspan(2);
-      cell.setBorder(Rectangle.NO_BORDER);
-      t.addCell(cell);
-
-      cell = new PdfPCell(new Phrase("nrorolcausa",new Font(FontFamily.TIMES_ROMAN, 10)));
-      cell.setBorder(Rectangle.NO_BORDER);
-      cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-      t.addCell(cell);
-
-      document.add(new Phrase("\n"));      
-      
-      //Juzgado
-      cell = new PdfPCell(new Phrase("Juzgado : ",new Font(FontFamily.TIMES_ROMAN, 10, Font.BOLD)));
-      cell.setBorder(Rectangle.NO_BORDER);
-      t.addCell(cell);
-
-      cell = new PdfPCell(new Phrase("jzgado",new Font(FontFamily.TIMES_ROMAN, 10)));
-      cell.setBorder(Rectangle.NO_BORDER);
-      cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-      t.addCell(cell);
-      
-      document.add(new Phrase("\n"));
-      
-      //Fecha Ingreso
-      cell = new PdfPCell(new Phrase("Fecha Ingreso : ",new Font(FontFamily.TIMES_ROMAN, 10, Font.BOLD)));
-      cell.setBorder(Rectangle.NO_BORDER);
-      t.addCell(cell);
-
-      cell = new PdfPCell(new Phrase("xx/xx/xx",new Font(FontFamily.TIMES_ROMAN, 10)));
-      cell.setBorder(Rectangle.NO_BORDER);
-      t.addCell(cell);
-
-      document.add(new Phrase("\n"));      
-      */
 
       document.add(formato.texto_normal("Numero de Rol/Causa : ",Font.BOLD));
-      document.add(formato.texto_normal("nrolcausa"));
+      document.add(formato.texto_normal((String)lista_recepcion.get(0)));
       document.add(new Phrase("\n"));
       
       document.add(formato.texto_normal("Juzgado : ",Font.BOLD));
-      document.add(formato.texto_normal("jzgdo"));
+      document.add(formato.texto_normal((String)lista_recepcion.get(1)));
       document.add(new Phrase("\n"));
       
       document.add(formato.texto_normal("Fecha Ingreso : ",Font.BOLD));
-      document.add(formato.texto_normal("nrolcausa"));
+      document.add(formato.texto_normal((String)lista_recepcion.get(2)));
+      //document.add(formato.texto_normal("#fecha#"));
       document.add(new Phrase("\n"));
 
       document.add(formato.texto_normal("Demandante : ",Font.BOLD));
-      document.add(formato.texto_normal("ddte"));
+      document.add(formato.texto_normal((String)lista_recepcion.get(3)));
       document.add(new Phrase("\n"));
       
       document.add(formato.texto_normal("Demandado : ",Font.BOLD));
-      document.add(formato.texto_normal("ddo"));
+      document.add(formato.texto_normal((String)lista_recepcion.get(4)));
       document.add(new Phrase("\n"));
       
       document.add(formato.texto_normal("Abogado : ",Font.BOLD));
-      document.add(formato.texto_normal("abogado"));
+      document.add(formato.texto_normal((String)lista_recepcion.get(5)));
       document.add(new Phrase("\n"));
       
       document.add(formato.texto_normal("Receptor : ",Font.BOLD));
-      document.add(formato.texto_normal("receptor"));
+      document.add(formato.texto_normal((String)lista_recepcion.get(6)));
       document.add(new Phrase("\n"));
       
       document.add(CrearTabla());
 
       document.add(formato.texto_normal("Fecha de Devolución o Remate : ",Font.BOLD));
-      document.add(formato.texto_normal("xx/xx/xx"));
+      document.add(formato.texto_normal((String)lista_recepcion.get(7)));
       document.add(new Phrase("\n"));
       
       document.add(formato.texto_normal("Bodegaje Pagado : $",Font.BOLD));
-      document.add(formato.texto_normal("9.000"));
+      document.add(formato.texto_normal(lista_recepcion.get(8).toString()));
       
       //cerrar el pdf
       document.close();
@@ -130,15 +115,17 @@ public class Imprimir_Recepcion_Judicial
             table.setHorizontalAlignment(1);
                      
             // 
-            table.addCell(formato.celda_titulo("Numero lote"));            
-            table.addCell(formato.celda_titulo("Recibido"));
-            table.addCell(formato.celda_titulo("Descripción lote",3));
+            table.addCell(formato.celda_titulo("Id Producto"));            
+            table.addCell(formato.celda_titulo("Garantía"));
+            table.addCell(formato.celda_titulo("Descripción producto",3));
             
-            for(int i=1;i<=100;i++)
+            for (Iterator it = lista_productos.iterator(); it.hasNext();) // itera
             {
-                table.addCell(formato.celda_normal("nrolote"+i));
-                table.addCell(formato.celda_normal("recibido"+i));
-                table.addCell(formato.celda_normal("desclote"+i,3));
+                ArrayList object = (ArrayList) it.next(); // castea
+                
+                table.addCell(formato.celda_normal(object.get(1).toString()));
+                table.addCell(formato.celda_normal(object.get(3).toString()));
+                table.addCell(formato.celda_normal(object.get(2).toString(),3));
             }
             
             return table;

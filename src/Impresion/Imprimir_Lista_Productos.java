@@ -55,12 +55,13 @@ public class Imprimir_Lista_Productos
         
     public static PdfPTable CrearTabla()
     {
-            // crear tabla con 3 columnas
-            PdfPTable table = new PdfPTable(8);
-            table.setWidthPercentage(100);
             int i=0;
+            // crear tabla con 3 columnas
+            PdfPTable table = new PdfPTable(9);
+            table.setWidthPercentage(100);
             // agregar titulo codigo
             // agregar titulo nombre
+            table.addCell(formato.celda_titulo("Num"));
             table.addCell(formato.celda_titulo("Codigo de Producto"));
             table.addCell(formato.celda_titulo("Cantidad"));
             table.addCell(formato.celda_titulo("Valor Mínimo"));
@@ -70,13 +71,15 @@ public class Imprimir_Lista_Productos
             for (Iterator it = lista.iterator(); it.hasNext();) // itera
             {
                 ArrayList object = (ArrayList) it.next(); // castea
+                
                 i++;
+                table.addCell(formato.celda_normal(""+i));
                 //ID_PRODUCTO
-                table.addCell(formato.celda_normal((object.get(0).toString())));
+                table.addCell(formato.celda_normal(object.get(0).toString()));
                 //Cantidad
-                table.addCell(formato.celda_normal((String)object.get(2).toString()));
+                table.addCell(formato.celda_normal(object.get(2).toString()));
                 //Precio Unitario
-                table.addCell(formato.celda_normal("$"+(String)object.get(3).toString()));
+                table.addCell(formato.celda_normal("$"+object.get(3).toString()));
                 //Descripción
                 table.addCell(formato.celda_normal((String)object.get(1),5));
             }

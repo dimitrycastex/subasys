@@ -20,10 +20,13 @@ import java.io.FileOutputStream;
 public class Imprimir_Recepcion_Voluntaria
 {
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
-    public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
+    public static void imprimir(String ruta,String rol_causa) throws DocumentException, FileNotFoundException
     {
       Document document = new Document();
       PdfWriter.getInstance(document,new FileOutputStream(ruta+"recepcion_voluntaria.pdf"));
+      
+      
+      
       //abrir el pdf
       document.open();
       //ir escribiendo en el pdf

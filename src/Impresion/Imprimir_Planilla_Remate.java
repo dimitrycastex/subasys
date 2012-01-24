@@ -10,6 +10,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 
@@ -19,11 +21,19 @@ import java.io.FileOutputStream;
  */
 public class Imprimir_Planilla_Remate
 {
+    
+    public static ArrayList lista_productos;
+    public static ArrayList datos_remate;
+    
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
-    public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
+    public static void imprimir(String ruta,String nro_id_remate) throws DocumentException, FileNotFoundException
     {
     Document document = new Document();
       PdfWriter.getInstance(document,new FileOutputStream(ruta+"planilla_remate.pdf"));
+      
+      lista_productos = Modelo.Remate.get_Lista_Productos(nro_id_remate);
+      datos_remate = Modelo.Remate.getDatos(nro_id_remate);
+      
       //abrir el pdf
       document.open();
       
@@ -34,15 +44,15 @@ public class Imprimir_Planilla_Remate
       document.add(formato.titulo("PLANILLA DE REMATES"));
       document.add(new Phrase(""));//espacio
       
-      document.add(formato.subtitulo("Remate Nº : "+"890"));
+      document.add(formato.subtitulo("ID Remate : "+nro_id_remate));
       document.add(new Phrase(""));//espacio
       
-      document.add(formato.subtitulo("Comisión : "+"890"));
+      document.add(formato.subtitulo("Comisión : "+datos_remate.get(5)+"%"));
       document.add(new Phrase(""));//espacio
       
-      document.add(formato.texto_normal("Ciudad/Lugar : "+"ciudad"));
+      document.add(formato.texto_normal("Ciudad/Lugar : "+datos_remate.get(6)));
       document.add(new Phrase("\n"));//espacio
-      document.add(formato.texto_normal("Fecha : "+"xx/xx/xx"));
+      document.add(formato.texto_normal("Fecha : "+datos_remate.get(3)));
       document.add(new Phrase("\n"));//espacio
       
       document.add(CrearTabla());
@@ -52,37 +62,29 @@ public class Imprimir_Planilla_Remate
         
     public static PdfPTable CrearTabla()
     {
-            PdfPTable table = new PdfPTable(12);
+            PdfPTable table = new PdfPTable(10);
             table.setWidthPercentage(100);
             
-            for(int ee=0;ee<=8;ee++)
-            {
-             PdfPCell cell = new PdfPCell();
-             cell.setBorder(Rectangle.NO_BORDER);
-             table.addCell(cell);
-            }
-            
-            table.addCell(formato.celda_titulo("Adjudicano\n",4));
-            
-            //12
-            table.addCell(formato.celda_titulo("Num. Lote"));
-            table.addCell(formato.celda_titulo("Descripción Lote",5));
-            table.addCell(formato.celda_titulo("Juzgado"));
-            table.addCell(formato.celda_titulo("Rol/Causa"));
-            table.addCell(formato.celda_titulo("Valor Mínimo"));
-            table.addCell(formato.celda_titulo("Valor"));
-            table.addCell(formato.celda_titulo("Nombre",2));
+            //10
+            table.addCell(formato.celda_titulo("ID Producto"));
+            table.addCell(formato.celda_titulo("Lote"));
+            table.addCell(formato.celda_titulo("Descripción Producto",4));
+            table.addCell(formato.celda_titulo("Cantidad"));
+            table.addCell(formato.celda_titulo("Precio Unitario"));
+            table.addCell(formato.celda_titulo("Garantía"));
+            table.addCell(formato.celda_titulo("Total"));
 
             //
-            for(int i=1;i<=100;i++)
+            for (Iterator it = lista_productos.iterator(); it.hasNext();)
             {
-                table.addCell(formato.celda_normal(""+i));
-                table.addCell(formato.celda_normal("Descripción Lote",5));
-                table.addCell(formato.celda_normal("Juzgado"));
-                table.addCell(formato.celda_normal("Rol/Causa"));
-                table.addCell(formato.celda_normal("Valor Mínimo"));
-                table.addCell(formato.celda_normal("Valor"));
-                table.addCell(formato.celda_normal("Nombre",2));
+                ArrayList object = (ArrayList) it.next(); // castea
+                table.addCell(formato.celda_normal(object.get(0).toString()));
+                table.addCell(formato.celda_normal(object.get(1).toString()));
+                table.addCell(formato.celda_normal((String)object.get(2),4));
+                table.addCell(formato.celda_normal(object.get(3).toString()));
+                table.addCell(formato.celda_normal("$"+object.get(4).toString()));
+                table.addCell(formato.celda_normal("$"+object.get(5).toString()));
+                table.addCell(formato.celda_normal("$"+object.get(6).toString()));
             }
             return table;
         }

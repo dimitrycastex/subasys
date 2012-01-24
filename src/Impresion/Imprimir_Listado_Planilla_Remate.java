@@ -19,7 +19,7 @@ import java.io.FileOutputStream;
  */
 public class Imprimir_Listado_Planilla_Remate
 {
-    //@param ruta: ruta absoluta o relativa en donde crear el archivos
+   //@param ruta: ruta absoluta o relativa en donde crear el archivos
     public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
     {
     Document document = new Document();

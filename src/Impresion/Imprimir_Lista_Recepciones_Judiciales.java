@@ -10,6 +10,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 
@@ -19,11 +21,17 @@ import java.io.FileOutputStream;
  */
 public class Imprimir_Lista_Recepciones_Judiciales
 {
+    
+    public static ArrayList lista_causa_rj;
+    public static ArrayList lista_recepcion;
+    public static ArrayList lista_productos;
+    
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
     public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
     {
     Document document = new Document();
       PdfWriter.getInstance(document,new FileOutputStream(ruta+"listado_de_recepciones_judiciales.pdf"));
+      
       //abrir el pdf
       document.open();
       //ir escribiendo en el pdf
@@ -33,16 +41,26 @@ public class Imprimir_Lista_Recepciones_Judiciales
       document.add(formato.titulo("Listado de Recepciones Judiciales"));
       document.add(new Phrase(""));//espacio
       
-      for(int j=0;j<=3;j++)//for para crear cada tabla
+      lista_causa_rj = Modelo.Causa.get_Lista(); // obtengo el arraylist de arraylist con las recepciones judiciales
+      
+      for (Iterator it = lista_causa_rj.iterator(); it.hasNext();) //for para crear cada tabla
       {
-       document.add(CrearTablaCodigo(j));
+       ArrayList object = (ArrayList) it.next(); // castea
+       //
+       String code_rol_causa = (String)object.get(0); // obtiene ROL de la lista
+      
+       //tomo los valores de arraylist y los vuelco en lista_recepcion y lista_productos
+       lista_recepcion = Modelo.Recepcion_Judicial.get_Lista_Causa_Recepcion_Judicial(code_rol_causa);
+       lista_productos = Modelo.Recepcion_Judicial.get_Lista_Productos(code_rol_causa);
+       
+       document.add(CrearTablaCodigo(code_rol_causa));
        document.add(new Phrase("\n"));//espacio
       }
       //cerrar el pdf
       document.close();
     }
         
-    public static PdfPTable CrearTablaCodigo(int j)
+    public static PdfPTable CrearTablaCodigo(String j)
     {
             // crear tabla con 5 columnas
             PdfPTable table = new PdfPTable(9);
@@ -58,32 +76,33 @@ public class Imprimir_Lista_Recepciones_Judiciales
             
             //recibir datos
             
-            table.addCell(formato.celda_normal(""+j));
-            table.addCell(formato.celda_normal("1017-97"));           
-            table.addCell(formato.celda_normal("DEMANDANTE PEREZ",2));           
-            table.addCell(formato.celda_normal("DEMANDADO DAVID",2));           
-            table.addCell(formato.celda_normal("xx/xx/xx"));           
-            table.addCell(formato.celda_normal("yy/yy/yy"));           
-            table.addCell(formato.celda_normal("$9000"));            
+            table.addCell(formato.celda_normal("asd")); //codigo RJ
+            table.addCell(formato.celda_normal(j)); // codigo rol - causa          
+            table.addCell(formato.celda_normal((String)lista_recepcion.get(3),2));           
+            table.addCell(formato.celda_normal((String)lista_recepcion.get(4),2));           
+            table.addCell(formato.celda_normal((String)lista_recepcion.get(2)));           
+            table.addCell(formato.celda_normal((String)lista_recepcion.get(7)));           
+            table.addCell(formato.celda_normal(lista_recepcion.get(8).toString()));            
 
             //celda vacia
             PdfPCell cell = new PdfPCell();
             cell.setBorder(Rectangle.NO_BORDER);
             table.addCell(cell);
             //
-            table.addCell(formato.celda_titulo("Núm. Lote"));
+            table.addCell(formato.celda_titulo("Id producto"));
             table.addCell(formato.celda_titulo("Descripción",7));
                 
                 
-            for(int i=1;i<=13;i++) // for para los productos de cada tabla
+            for (Iterator it = lista_productos.iterator(); it.hasNext();) // for para los productos de cada tabla
             {
+                ArrayList object2 = (ArrayList) it.next(); // castea
                 //celda vacia
                 cell = new PdfPCell();
                 cell.setBorder(Rectangle.NO_BORDER);
                 table.addCell(cell);
                 //
-                table.addCell(formato.celda_normal("numlote"));
-                table.addCell(formato.celda_normal("Descripcosudhjags",7));
+                table.addCell(formato.celda_normal(object2.get(1).toString()));
+                table.addCell(formato.celda_normal((String)object2.get(2),7));
 
             }
             return table;
