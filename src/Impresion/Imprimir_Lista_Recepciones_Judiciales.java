@@ -75,7 +75,7 @@ public class Imprimir_Lista_Recepciones_Judiciales
             table.addCell(formato.celda_titulo("Monto Bodegaje"));
             
             //recibir datos
-            
+            /*CODIGO DE RJ*/
             table.addCell(formato.celda_normal("asd")); //codigo RJ
             table.addCell(formato.celda_normal(j)); // codigo rol - causa          
             table.addCell(formato.celda_normal((String)lista_recepcion.get(3),2));           
