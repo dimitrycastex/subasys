@@ -40,14 +40,14 @@ public class Recepcion_Voluntaria {
         }
     }
    
-   public static ArrayList getDatos(String ID_RJ){
+   public static ArrayList getDatos(String ID_RV){
 
         ReVoluntaria.clear();
         boolean flag = false;
         try {
 
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-          ResultSet rs = stat.executeQuery("select * from Recepcion_Voluntaria where ID_RJ="+ID_RJ+"");
+          ResultSet rs = stat.executeQuery("select * from Recepcion_Voluntaria where ID_RV="+ID_RV+"");
           
           while (rs.next()) {
           ReVoluntaria.add(rs.getInt("ID_RV"));    
