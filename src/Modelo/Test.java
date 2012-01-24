@@ -29,13 +29,10 @@ public class Test {
         // Busqueda.getDatos("Juan");
         //Busqueda.busca_cliente("juan geraldo");
         // Modelo.Producto.get_Lista_Busqueda_Facturados();
-        ArrayList<ArrayList> _Lista_Productos = Remate.get_Lista_Productos("162C");
-        for (Iterator<ArrayList> it = _Lista_Productos.iterator(); it.hasNext();) {
-            ArrayList arrayList = it.next();
-            for (Iterator it1 = arrayList.iterator(); it1.hasNext();) {
-                Object object = it1.next();
-                System.out.println(object);
-            }
+        ArrayList datos = Recepcion_Judicial.getDatos("20");
+        for (Iterator it = datos.iterator(); it.hasNext();) {
+            Object object = it.next();
+            System.out.println(object);
         }
     }
     

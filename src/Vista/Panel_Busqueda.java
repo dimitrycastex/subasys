@@ -12,6 +12,7 @@ package Vista;
 
 import Modelo.Busqueda;
 import Modelo.ExcelTableExporter;
+import Modelo.Remate;
 import Vista.Tablas.Modelos.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JViewport;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,6 +42,7 @@ public class Panel_Busqueda extends javax.swing.JPanel {
     DefaultTableModel tmodel_recepcion_judicial = new Recepcion_Judicial_Busqueda();
     DefaultTableModel tmodel_recepcion_voluntaria = new Recepcion_Voluntaria_Busqueda();
     DefaultTableModel tmodel_producto_facturado = new Producto_Facturado_Busqueda();
+    DefaultTableModel tmodel_remate_productos = new Remate_Productos_Busqueda();
     
     public static ArrayList<ArrayList> lista_seleccionados = new ArrayList();
     /** Creates new form Buscador */
@@ -52,92 +55,9 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         tread.start();
        
        
+       
     }
 
-    private void initTableModels(){
-        
-        tmodel_cliente.addColumn("SEL");
-        tmodel_cliente.addColumn("RUT");
-        tmodel_cliente.addColumn("Apellido P");
-        tmodel_cliente.addColumn("Apellido M");
-        tmodel_cliente.addColumn("Nombre");
-        tmodel_cliente.addColumn("Telefono");
-        tmodel_cliente.addColumn("Direccion");
-        tmodel_cliente.addColumn("Email");
-        
-        tmodel_factura.addColumn("SEL");
-        tmodel_factura.addColumn("Factura");
-        tmodel_factura.addColumn("Rut");
-        tmodel_factura.addColumn("Apellido P");
-        tmodel_factura.addColumn("Apellido M");
-        tmodel_factura.addColumn("Nombre");
-        tmodel_factura.addColumn("Total");
-        tmodel_factura.addColumn("Garantia");
-        tmodel_factura.addColumn("Fecha");
-        tmodel_factura.addColumn("Estado");
-        tmodel_factura.addColumn("Exento");
-        tmodel_factura.addColumn("Neto");
-        tmodel_factura.addColumn("Impuestos");
-        tmodel_factura.addColumn("Comision");
-        tmodel_factura.addColumn("IVA");
-        tmodel_factura.addColumn("Comison factura");
-       
-        
-        
-        tmodel_remate.addColumn("SEL");
-        tmodel_remate.addColumn("RUT");
-        tmodel_remate.addColumn("Nombre");
-        tmodel_remate.addColumn("Telefono");
-        tmodel_remate.addColumn("Direccion");
-        tmodel_remate.addColumn("Id factura");
-        tmodel_remate.addColumn("Total Factura");
-      
-        tmodel_producto.addColumn("SEL");
-        tmodel_producto.addColumn("Lote");
-        tmodel_producto.addColumn("ID REMATE");
-        tmodel_producto.addColumn("Descripcion");
-        tmodel_producto.addColumn("Cantidad");
-        tmodel_producto.addColumn("Precio");
-        tmodel_producto.addColumn("Total");
-        tmodel_producto.addColumn("Garantia");
-       
-        tmodel_causa.addColumn("SEL");
-        tmodel_causa.addColumn("ROL");
-        tmodel_causa.addColumn("Receptor");
-        tmodel_causa.addColumn("Abogado");
-        tmodel_causa.addColumn("Caratulado como");
-        tmodel_causa.addColumn("Juzgado");
-        tmodel_causa.addColumn("Remate");
-        tmodel_causa.addColumn("ID RJ");
-        
-        tmodel_recepcion_judicial.addColumn("SEL");      
-        tmodel_recepcion_judicial.addColumn("ROL");
-        tmodel_recepcion_judicial.addColumn("ID_RJ");
-        tmodel_recepcion_judicial.addColumn("ID PRODUCTO");
-        tmodel_recepcion_judicial.addColumn("Descripcion Producto");
-        tmodel_recepcion_judicial.addColumn("Garantia");
-        tmodel_recepcion_judicial.addColumn("Total");
-                
-        tmodel_recepcion_voluntaria.addColumn("SEL");
-        tmodel_recepcion_voluntaria.addColumn("ID PRODUCTO");
-        tmodel_recepcion_voluntaria.addColumn("Descripcion Producto");
-        tmodel_recepcion_voluntaria.addColumn("Garantia");
-        tmodel_recepcion_voluntaria.addColumn("Total");
-            
-        tmodel_producto_facturado.addColumn("SEL");
-        tmodel_producto_facturado.addColumn("ID_FACTURA");
-        tmodel_producto_facturado.addColumn("RUT");
-        tmodel_producto_facturado.addColumn("ApellidoP");
-        tmodel_producto_facturado.addColumn("ApellidoM");
-        tmodel_producto_facturado.addColumn("Nombre");
-        tmodel_producto_facturado.addColumn("ID_PRODUCTO");
-        tmodel_producto_facturado.addColumn("Descripcion producto");
-        tmodel_producto_facturado.addColumn("Precio unitario");
-        tmodel_producto_facturado.addColumn("Garantia");
-        tmodel_producto_facturado.addColumn("Total");
-         
-        
-    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -148,15 +68,27 @@ public class Panel_Busqueda extends javax.swing.JPanel {
     private void initComponents() {
 
         parametro_busqueda = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         Campo = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabla = new javax.swing.JTable();
-        jComboBox2 = new javax.swing.JComboBox();
+        Tabla = new javax.swing.JTable(){
+
+            @Override
+            public boolean getScrollableTracksViewportWidth() {
+
+                if (autoResizeMode != AUTO_RESIZE_OFF) {
+                    if (getParent() instanceof JViewport) {
+                        return (((JViewport)getParent()).getWidth() > getPreferredSize().width);
+                    }
+
+                }return false;
+
+            }
+        };
         jLabel2 = new javax.swing.JLabel();
-        label = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        selectAll = new javax.swing.JCheckBox();
+        barra = new javax.swing.JProgressBar();
+        label_Buscar481 = new Vista.Imagenes_Label.buscar.Label_Buscar48();
 
         parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,27 +107,16 @@ public class Panel_Busqueda extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         Campo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cliente",
-            "Factura", "Remate", "Causa" ,"Producto", "Recepcion Judicial", "Recepcion Voluntaria","Productos Facturados"}));
+            "Factura", "Remate", "Causa" ,"Producto", "Recepcion Judicial", "Recepcion Voluntaria","Productos Facturados","Remate Productos"}));
 Campo.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {
         CampoActionPerformed(evt);
     }
     });
 
-    jLabel1.setText("Modo de Busqueda");
-
     Tabla.setModel(model);
     jScrollPane1.setViewportView(Tabla);
-
-    jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal","Plus" }));
 
     jLabel2.setText("Campo a buscar");
 
@@ -203,6 +124,13 @@ Campo.addActionListener(new java.awt.event.ActionListener() {
     jButton2.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton2ActionPerformed(evt);
+        }
+    });
+
+    selectAll.setText("Seleccionar Todos");
+    selectAll.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            selectAllActionPerformed(evt);
         }
     });
 
@@ -218,42 +146,38 @@ Campo.addActionListener(new java.awt.event.ActionListener() {
                     .addComponent(Campo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel2)))
+            .addGap(26, 26, 26)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabel1))
-                .addGroup(layout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jButton1)
-                    .addGap(150, 150, 150)
-                    .addComponent(jButton2)
-                    .addContainerGap(243, Short.MAX_VALUE))))
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
-        .addGroup(layout.createSequentialGroup()
-            .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selectAll, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 355, Short.MAX_VALUE)
+            .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
+        .addComponent(barra, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(Campo, javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selectAll))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(15, 15, 15)))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton1)
-                .addComponent(jButton2))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-            .addGap(2, 2, 2)
-            .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -300,7 +224,7 @@ private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-F
       
         if(!parametro_busqueda.getText().isEmpty()){
           cleanModel(model);
-          Busqueda.busqueda_recepcion_judicial(parametro_busqueda.getText().toUpperCase(),model);
+          Busqueda.busqueda_recepcion_judicial(parametro_busqueda.getText().toLowerCase(),model);
     }
     
    }
@@ -309,7 +233,7 @@ private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-F
       
         if(!parametro_busqueda.getText().isEmpty()){
           cleanModel(model);
-          Busqueda.busqueda_recepcion_voluntaria(parametro_busqueda.getText().toUpperCase(),model);
+          Busqueda.busqueda_recepcion_voluntaria(parametro_busqueda.getText().toLowerCase(),model);
     }
     
    }
@@ -318,11 +242,21 @@ private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-F
       
         if(!parametro_busqueda.getText().isEmpty()){
           cleanModel(model);
-          Busqueda.busqueda_producto_facturado(parametro_busqueda.getText().toUpperCase(),model);
+          Busqueda.busqueda_producto_facturado(parametro_busqueda.getText().toLowerCase(),model);
     }
     
    }
    
+   else if(campo==8){
+       if(!parametro_busqueda.getText().isEmpty()){
+         cleanModel(model);
+         if(Modelo.Remate.isRemate(parametro_busqueda.getText().toUpperCase())){
+          Busqueda.busqueda_remate_productos(parametro_busqueda.getText().toLowerCase(),model);
+           
+         }
+        
+    }
+   }
    
 }//GEN-LAST:event_parametro_busquedaKeyReleased
 
@@ -341,16 +275,6 @@ public static ArrayList getSelectedRowsID(DefaultTableModel model){
 /*
  * HOLA
  */
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        ArrayList selectedRows = getSelectedRowsID(model);
-        for (Iterator it = selectedRows.iterator(); it.hasNext();) {
-        Object object = it.next();
-            System.out.println(object);
-    }
-    
-}//GEN-LAST:event_jButton1ActionPerformed
-
 private void parametro_busquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_parametro_busquedaKeyPressed
 // TODO add your handling code here: 
    
@@ -408,6 +332,12 @@ private void CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 
    }
    
+   else if(campo==8){
+       model = tmodel_remate_productos;
+       Tabla.setModel(model);
+
+   }
+   
 }//GEN-LAST:event_CampoActionPerformed
 
 private void parametro_busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parametro_busquedaActionPerformed
@@ -430,6 +360,21 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
 }//GEN-LAST:event_jButton2ActionPerformed
 
+private void selectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAllActionPerformed
+// TODO add your handling code here:
+    if(selectAll.isSelected()){
+        for (int i = 0; i < model.getRowCount(); i++) {
+        model.setValueAt(true, i, 0);
+        
+    }
+    }else{
+        for (int i = 0; i < model.getRowCount(); i++) {
+        model.setValueAt(false, i, 0);
+        
+    }
+    }
+}//GEN-LAST:event_selectAllActionPerformed
+
 public void cleanModel(DefaultTableModel model){
     int a =model.getRowCount()-1;
 
@@ -449,36 +394,39 @@ class taskInitContents extends Thread{
          
          // barra.setVisible(true);
         // Modelo.Busqueda.initAll();
-          //barra.setMaximum(7);
+           barra.setMaximum(7);
            Modelo.Busqueda.initClientes();
-           label.setText("Clientes Cargados..");
-          // barra.setValue(1);
+           //label.setText("Clientes Cargados..");
+           barra.setValue(1);
+           barra.setStringPainted(true);
+           barra.setString("Clientes Cargados..15%");
            Modelo.Busqueda.initCausas();
-           label.setText("Causas Cargadas..");
-          // barra.setValue(barra.getValue()+1);
+           //label.setText("Causas Cargadas..");
+           barra.setValue(barra.getValue()+1);
+           barra.setString("Causas Cargadas..30%");
            Modelo.Busqueda.initFacturas();
-           label.setText("Facturas Cargadas..");
-          // barra.setValue(barra.getValue()+1);
+           //label.setText("Facturas Cargadas..");
+           barra.setValue(barra.getValue()+1);
+           barra.setString("Facturas Cargadas..45%");
            Modelo.Busqueda.initProductos();
-           label.setText("Productos Cargados..");
-          // barra.setValue(barra.getValue()+1);
+           //label.setText("Productos Cargados..");
+           barra.setValue(barra.getValue()+1);
+           barra.setString("Productos Cargados..60%");
            Modelo.Busqueda.initProductosFac();
-           label.setText("Productos Facturados Cargados..");
-           //barra.setValue(barra.getValue()+1);
+           //label.setText("Productos Facturados Cargados..");
+           barra.setValue(barra.getValue()+1);
+           barra.setString("Productos Facturados Cargados..75%");
            Modelo.Busqueda.initRJ();
-           label.setText("Recepciones Judiciales Cargadas..");
-          // barra.setValue(barra.getValue()+1);
+           //label.setText("Recepciones Judiciales Cargadas..");
+           barra.setValue(barra.getValue()+1);
+           barra.setString("Recepciones Judiciales Cargadas..90%");
            Modelo.Busqueda.initRV();
-           label.setText("Recepciones Voluntarias Cargadas..");
-           //barra.setValue(barra.getValue()+1);
-           //barra.setVisible(false);
-           label.setText("Fuentes cargadas con exito!");
-            try {
-                sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Panel_Busqueda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            label.setText("");
+           //label.setText("Recepciones Voluntarias Cargadas..");
+           barra.setValue(barra.getValue()+1);
+           barra.setString("Recepciones Voluntarias Cargadas..100%");
+           barra.setVisible(false);
+           //label.setText("Fuentes cargadas con exito!");
+           
            
         }
     }
@@ -488,13 +436,12 @@ class taskInitContents extends Thread{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Campo;
     private javax.swing.JTable Tabla;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JProgressBar barra;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JLabel label;
+    private Vista.Imagenes_Label.buscar.Label_Buscar48 label_Buscar481;
     private javax.swing.JTextField parametro_busqueda;
+    private javax.swing.JCheckBox selectAll;
     // End of variables declaration//GEN-END:variables
 }

@@ -64,6 +64,7 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         Bar = new javax.swing.JProgressBar();
         label_Buscar481 = new Vista.Imagenes_Label.buscar.Label_Buscar48();
+        label_Cliente481 = new Vista.Imagenes_Label.cliente.Label_Cliente48();
 
         parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +114,9 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(selectAll, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addComponent(label_Cliente481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -130,7 +133,9 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
                             .addComponent(selectAll)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_Cliente481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -237,6 +242,7 @@ class taskInitContents extends Thread{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private Vista.Imagenes_Label.buscar.Label_Buscar48 label_Buscar481;
+    private Vista.Imagenes_Label.cliente.Label_Cliente48 label_Cliente481;
     private javax.swing.JTextField parametro_busqueda;
     private javax.swing.JCheckBox selectAll;
     // End of variables declaration//GEN-END:variables

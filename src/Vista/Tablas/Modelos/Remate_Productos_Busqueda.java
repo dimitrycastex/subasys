@@ -12,20 +12,19 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Deico
  */
-public class Remate_Busqueda extends DefaultTableModel{
+public class Remate_Productos_Busqueda extends DefaultTableModel{
 
     //Tabla Vacia
-    public Remate_Busqueda(){
+    public Remate_Productos_Busqueda(){
         super();
         this.addColumn("SEL");
-        this.addColumn("RUT");
-        this.addColumn("APELLIDOP");
-        this.addColumn("APELLIDOM");
-        this.addColumn("NOMBRE");
-        this.addColumn("TELEFONO");
-        this.addColumn("DIRECCION");
-        this.addColumn("ID FACTURA");
-        this.addColumn("TOTAL FACTURA");
+        this.addColumn("ID_PRODUCTO");
+        this.addColumn("LOTE");
+        this.addColumn("DESCRIPCION");
+        this.addColumn("CANTIDAD");
+        this.addColumn("PRECIO UNITARIA");
+        this.addColumn("GARANTIA");
+        this.addColumn("TOTAL");
     }
      
       @Override

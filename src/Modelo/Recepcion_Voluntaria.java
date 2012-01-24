@@ -40,7 +40,7 @@ public class Recepcion_Voluntaria {
         }
     }
    
-   public static ArrayList getDatos(String ID_RV){
+   public static ArrayList getDatos(int ID_RV){
 
         ReVoluntaria.clear();
         boolean flag = false;
@@ -88,6 +88,41 @@ public class Recepcion_Voluntaria {
             } catch (SQLException ex) {
             System.out.println(ex);
         }
+    }
+  
+  public static ArrayList<ArrayList> get_Lista_Productos(int ID_RV){
+
+       ArrayList<ArrayList> list = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("SELECT cliente.rut,cliente.direccion,producto.cantidad,producto.descripcion,producto.precio_unitario "+
+          "FROM  cliente,(recepcion_voluntaria NATURAL JOIN recepcion_voluntaria_has_producto) AS recepcion_v,producto "+
+          "WHERE cliente.rut = recepcion_v.rut AND recepcion_v.id_producto = producto.id_producto AND recepcion_v.id_rv="+ID_RV+";");
+          
+          while (rs.next()) {
+         
+          ArrayList ReVoluntaria= new ArrayList();     
+          ReVoluntaria.add(rs.getString("RUT"));
+          ReVoluntaria.add(rs.getString("Direccion"));    
+          ReVoluntaria.add(rs.getInt("Cantidad"));
+          ReVoluntaria.add(rs.getString("Descripcion"));
+          ReVoluntaria.add(rs.getInt("Precio_unitario"));         
+          list.add(ReVoluntaria);
+
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el Recepcion Voluntaria", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return list;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return list;
     }
   
   public static ArrayList<ArrayList> get_Lista(){

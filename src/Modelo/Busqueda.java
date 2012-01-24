@@ -33,6 +33,7 @@ public class Busqueda {
     static ArrayList<ArrayList> lista_recepcion_judicial = new ArrayList();
     static ArrayList<ArrayList> lista_recepcion_voluntaria = new ArrayList();
     static ArrayList<ArrayList> lista_producto_facturado = new ArrayList();
+    static ArrayList<ArrayList> lista_remate_productos = new ArrayList();
     public static ArrayList buffer = new ArrayList();
    
     public static void initClientes(){lista_cliente = Modelo.Cliente.get_Lista_Busqueda();}
@@ -121,9 +122,9 @@ public class Busqueda {
         int i=0;
         for (Iterator<ArrayList> it = lista_producto.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
-            lote = arrayList.get(0).toString();
-            ID_REMATE = arrayList.get(1).toString();
-            Descripcion = arrayList.get(2).toString();
+            lote = arrayList.get(1).toString();
+            ID_REMATE = arrayList.get(2).toString();
+            Descripcion = arrayList.get(3).toString();
             if((lote+" "+ID_REMATE).toLowerCase().contains(parametro) ||
                     (ID_REMATE+" "+lote).toLowerCase().contains(parametro)
                     || Descripcion.toLowerCase().contains(parametro)){
@@ -150,20 +151,19 @@ public class Busqueda {
         int i=0;
         for (Iterator<ArrayList> it = lista_producto_facturado.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
-            RUT = arrayList.get(1).toString();
-            ID_FACTURA = arrayList.get(0).toString();
+            RUT = arrayList.get(2).toString();
+            ID_FACTURA = arrayList.get(1).toString();
             Descripcion = arrayList.get(6).toString();
-            if(ID_FACTURA.toLowerCase().equalsIgnoreCase(parametro) || 
-                  RUT.equalsIgnoreCase(parametro) ||
-               Descripcion.toLowerCase().equalsIgnoreCase(parametro)){
+            if(ID_FACTURA.toLowerCase().equalsIgnoreCase(parametro) ){
                  
                 buffer.clear();
                 buffer.add(false);
                 buffer.addAll(arrayList);
                 model.insertRow(i, buffer.toArray());
                 i++;
-                break;
+               
             }
+            
             else if(ID_FACTURA.toLowerCase().contains(parametro) ||
                RUT.contains(parametro) ||
                Descripcion.toLowerCase().contains(parametro)){
@@ -236,6 +236,20 @@ public class Busqueda {
         }
     }
     
+    public static void busqueda_remate_productos(String parametro,DefaultTableModel model){
+             
+        lista_remate_productos = Modelo.Remate.get_Lista_Productos(parametro.toUpperCase());
+        int i=0;
+        for (Iterator<ArrayList> it = lista_remate_productos.iterator(); it.hasNext();) {
+            ArrayList arrayList = it.next();
+                buffer.clear();
+                buffer.add(false);
+                buffer.addAll(arrayList);
+                model.insertRow(i, buffer.toArray());
+            i++;
+        }
+    }
+    
      public static void busqueda_recepcion_judicial(String parametro,DefaultTableModel model){
         
         
@@ -243,7 +257,7 @@ public class Busqueda {
         int i=0;
         for (Iterator<ArrayList> it = lista_recepcion_judicial.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
-            ROL = arrayList.get(0).toString();
+            ROL = arrayList.get(1).toString().toLowerCase();
             if(ROL.contains(parametro)){
                 buffer.clear();
                 buffer.add(false);
