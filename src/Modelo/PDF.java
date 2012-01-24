@@ -29,12 +29,12 @@ public class PDF {
  
  public static ArrayList get_Lista_Recepcion_Judicial(){
      
-     return Modelo.ReJudicial.get_Lista();
+     return Modelo.Recepcion_Judicial.get_Lista();
  }
  
  public static ArrayList get_Lista_Recepcion_Voluntaria(){
      
-     return Modelo.ReVoluntaria.get_Lista();
+     return Modelo.Recepcion_Voluntaria.get_Lista();
  }
  
  public static ArrayList get_Lista_Remate(){

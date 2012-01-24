@@ -43,7 +43,7 @@ boolean flag = true;
 for (int columna = 0; columna < numColumnas; columna++) {                                                                               
 data = hoja.getCell(columna, fila).getContents(); 
 if(columna==0){
-    RUT = convert(data);
+    RUT = filtraRut(convert(data));
 }
 else if(columna==1){
     
@@ -89,6 +89,25 @@ ioe.printStackTrace();
 } 
 
 } 
+
+public static String filtraRut(String rut){
+        
+        String rut_aux = "";
+        boolean flag = true;
+        for (int i = 0; i < rut.length(); i++) {
+           
+            if(rut.charAt(i)=='0' && flag){
+               
+            }else{
+                flag=false;
+            }
+             if(!flag){
+                  rut_aux+=rut.charAt(i);
+             }
+        }
+        return rut_aux;
+        
+    }
 
 public static String convert(String unString){
     

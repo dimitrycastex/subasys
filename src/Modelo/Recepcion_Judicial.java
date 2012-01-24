@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class ReJudicial {
+public class Recepcion_Judicial {
     
    public static ArrayList ReJudicial = new ArrayList();
    
@@ -120,6 +120,43 @@ public class ReJudicial {
           ReJudicial.add(rs.getString("Demandante"));
           ReJudicial.add(rs.getInt("Demandado"));         
           ReJudicial.add(rs.getInt("Bodegaje_Pagado"));
+          lista_rjudicial.add(ReJudicial);
+
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_rjudicial;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_rjudicial;
+    }
+  
+  
+  public static ArrayList<ArrayList> get_Lista_Busqueda(){
+
+       ArrayList<ArrayList> lista_rjudicial = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("SELECT *"+
+          "FROM (select ROL,id_rj from causa) as causa_r NATURAL JOIN recepcion_judicial_has_producto "+
+          "NATURAL JOIN (SELECT id_producto,descripcion,garantia,total from producto) AS producto_r;");
+          
+          while (rs.next()) {
+          ArrayList ReJudicial = new ArrayList();     
+          
+          ReJudicial.add(rs.getString("ROL"));
+          ReJudicial.add(rs.getInt("ID_RJ"));
+          ReJudicial.add(rs.getInt("ID_PRODUCTO"));    
+          ReJudicial.add(rs.getString("Descripcion"));
+          ReJudicial.add(rs.getInt("Garantia"));
+          ReJudicial.add(rs.getInt("Total"));         
           lista_rjudicial.add(ReJudicial);
 
           flag=true;

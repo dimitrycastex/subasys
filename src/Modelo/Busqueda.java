@@ -12,8 +12,12 @@ package Modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -25,11 +29,16 @@ public class Busqueda {
     static ArrayList<ArrayList> lista_remate = new ArrayList();
     static ArrayList<ArrayList> lista_producto = new ArrayList();
     static ArrayList<ArrayList> lista_causa = new ArrayList();
+    static ArrayList<ArrayList> lista_recepcion_judicial = new ArrayList();
     
    
     public static void initClientes(){
     lista_cliente = Modelo.Cliente.get_Lista_Busqueda();
-    lista_factura = Modelo.Factura.get_Lista_Busqueda();
+   // lista_factura = Modelo.Factura.get_Lista_Busqueda();
+    //lista_producto = Modelo.Producto.get_Lista_Busqueda();
+    //lista_causa = Modelo.Causa.get_Lista_Busqueda();
+    lista_recepcion_judicial=Modelo.Recepcion_Judicial.get_Lista_Busqueda();
+    
 }
     public static void busca_cliente(String parametro,DefaultTableModel tmodel_cliente){
         
@@ -62,39 +71,46 @@ public class Busqueda {
         
     }
     
-    public static void busqueda_causa(String parametro){
+    public static void busqueda_causa(String parametro,DefaultTableModel model){
         
-        lista_causa = Modelo.Causa.get_Lista();
+        
         String ROL = "";
         String Caratulado_como = "";
-        
-        for (Iterator<ArrayList> it = lista_cliente.iterator(); it.hasNext();) {
+        int i=0;
+        for (Iterator<ArrayList> it = lista_causa.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
             ROL = arrayList.get(0).toString();
-            Caratulado_como = arrayList.get(3).toString();
-            if(ROL.toLowerCase().contains(parametro) || 
-                    Caratulado_como.toLowerCase().contains(parametro))
-                System.out.println(ROL);
+            Caratulado_como = arrayList.get(3).toString().toLowerCase();
+            if(ROL.contains(parametro) || 
+                    Caratulado_como.contains(parametro)){
+                model.insertRow(i, arrayList.toArray());
+            i++;
         }
         
-    }
+    }}
     
-    public static void busqueda_producto(String parametro){
+    public static void busqueda_producto(String parametro,DefaultTableModel model){
         
-        lista_producto = Modelo.Producto.get_Lista_Busqueda();
+        
         
         String lote = "";
         String ID_REMATE = "";
         String Descripcion = "";
-        for (Iterator<ArrayList> it = lista_cliente.iterator(); it.hasNext();) {
+        int i=0;
+        for (Iterator<ArrayList> it = lista_producto.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
             lote = arrayList.get(0).toString();
             ID_REMATE = arrayList.get(1).toString();
             Descripcion = arrayList.get(2).toString();
             if((lote+" "+ID_REMATE).toLowerCase().contains(parametro) ||
                     (ID_REMATE+" "+lote).toLowerCase().contains(parametro)
-                    || Descripcion.toLowerCase().contains(parametro))
-                System.out.println(arrayList.get(3));
+                    || Descripcion.toLowerCase().contains(parametro)){
+                
+                model.insertRow(i, arrayList.toArray());
+                i++;
+                
+            }
+               
             
         }
     }
@@ -121,35 +137,43 @@ public class Busqueda {
             
             if(parametro.equalsIgnoreCase(arrayList.get(0).toString()))
             {
-                model.insertRow(i, new Object[]{arrayList.get(0),arrayList.get(1),
-                arrayList.get(2)+" "+arrayList.get(3)+" "+arrayList.get(4),arrayList.get(5),
-                arrayList.get(6),arrayList.get(7),arrayList.get(8),arrayList.get(9),
-                arrayList.get(10),arrayList.get(11),arrayList.get(12),arrayList.get(13)});
+                model.insertRow(i,arrayList.toArray());
                 i++;
             }
         
             else if(nombre_c_d.toLowerCase().contains(parametro) || nombre_c_a.toLowerCase().contains(parametro)
                     || RUT.contains(parametro)) {
-                 model.insertRow(i, new Object[]{arrayList.get(0),arrayList.get(1),
-                arrayList.get(2)+" "+arrayList.get(3)+" "+arrayList.get(4),arrayList.get(5),
-                arrayList.get(6),arrayList.get(7),arrayList.get(8),arrayList.get(9),
-                arrayList.get(10),arrayList.get(11),arrayList.get(12),arrayList.get(13)});
+                model.insertRow(i,arrayList.toArray());
                 i++;
             }
             
         }
     }
     
-    public static void remate(String parametro){
-        
-        lista_remate = Modelo.Remate.get_Lista_Busqueda(parametro);
-        for (Iterator<ArrayList> it = lista_cliente.iterator(); it.hasNext();) {
+    public static void busqueda_remate(String parametro,DefaultTableModel model){
+             
+        lista_remate = Modelo.Remate.get_Lista_Busqueda(parametro.toUpperCase());
+        int i=0;
+        for (Iterator<ArrayList> it = lista_remate.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
-            System.out.println(arrayList.get(0));
-            if(arrayList.get(0).toString().equalsIgnoreCase(parametro)){
-                System.out.println(arrayList.get(0));
-            }
+            model.insertRow(i, arrayList.toArray());
+            i++;
         }
     }
+    
+     public static void busqueda_recepcion_judicial(String parametro,DefaultTableModel model){
+        
+        
+        String ROL = "";
+        int i=0;
+        for (Iterator<ArrayList> it = lista_recepcion_judicial.iterator(); it.hasNext();) {
+            ArrayList arrayList = it.next();
+            ROL = arrayList.get(1).toString();
+            if(ROL.contains(parametro)){
+            model.insertRow(i, arrayList.toArray());
+            i++;
+        }
+        
+    }}
     
 }

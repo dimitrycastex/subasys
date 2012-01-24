@@ -57,7 +57,7 @@ public class Factura {
           ResultSet rs = stat.executeQuery("select * from Factura where ID_FACTURA="+ID_FACTURA+"");
           
           while (rs.next()) {
-          factura.add(rs.getInt("RUT"));
+          factura.add(rs.getInt("ID_FACTURA"));
           factura.add(rs.getLong("Total"));
           factura.add(rs.getLong("Garantia"));
           factura.add(rs.getDate("Fecha_Emision"));

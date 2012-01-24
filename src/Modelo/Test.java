@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,6 +33,29 @@ public class Test {
         
         
         //Cliente.get_Lista();
-        Busqueda.busqueda_factura("8754", null);
+       String rut = "00172945007";
+       System.out.println(filtraRut(rut));
+        
+        
+        
+    }
+    
+    public static String filtraRut(String rut){
+        
+        String rut_aux = "";
+        boolean flag = true;
+        for (int i = 0; i < rut.length(); i++) {
+           
+            if(rut.charAt(i)=='0' && flag){
+               
+            }else{
+                flag=false;
+            }
+             if(!flag){
+                  rut_aux+=rut.charAt(i);
+             }
+        }
+        return rut_aux;
+        
     }
 }

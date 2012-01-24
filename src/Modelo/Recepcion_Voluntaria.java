@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class ReVoluntaria {
+public class Recepcion_Voluntaria {
     
      public static ArrayList ReVoluntaria = new ArrayList();
    
@@ -28,7 +28,7 @@ public class ReVoluntaria {
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
-            "insert into Recepcion_Voluntaria (Fecha_Ingreso,Direccion,Nombre) values (?,?,?);");
+            "insert into Recepcion_Voluntaria (Fecha_Ingreso,Descripcion,RUT) values (?,?,?);");
 
             prep.setDate(1, fechaIngreso);
             prep.setString(2, unaLista.get(2).toString());  
@@ -52,8 +52,8 @@ public class ReVoluntaria {
           while (rs.next()) {
           ReVoluntaria.add(rs.getInt("ID_RV"));    
           ReVoluntaria.add(rs.getDate("Fecha_Ingreso"));
-          ReVoluntaria.add(rs.getString("Direccion"));
-          ReVoluntaria.add(rs.getString("Nombre"));
+          ReVoluntaria.add(rs.getString("Descripcion"));
+          ReVoluntaria.add(rs.getString("RUT"));
 
           flag=true;
           }
@@ -77,7 +77,7 @@ public class ReVoluntaria {
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
-            "update Recepcion_Voluntaria set Fecha_Ingreso=?,Direccion=?,Nombre=?"
+            "update Recepcion_Voluntaria set Fecha_Ingreso=?,Descripcion=?,RUT=?"
                     + " where ID_RV="+unaLista.get(0)+";");
 
             prep.setDate(1, fechaIngreso);
@@ -104,8 +104,8 @@ public class ReVoluntaria {
           ReVoluntaria.clear();
           ReVoluntaria.add(rs.getInt("ID_RV"));    
           ReVoluntaria.add(rs.getDate("Fecha_Ingreso"));
-          ReVoluntaria.add(rs.getString("Direccion"));
-          ReVoluntaria.add(rs.getString("Nombre"));
+          ReVoluntaria.add(rs.getString("Descripcion"));
+          ReVoluntaria.add(rs.getString("RUT"));
           lista_rvoluntaria.add(ReVoluntaria);
                   
           flag=true;
@@ -120,6 +120,43 @@ public class ReVoluntaria {
          JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
          }
          return lista_rvoluntaria;
+    }
+  
+  public static ArrayList<ArrayList> get_Lista_Busqueda(){
+
+       ArrayList<ArrayList> lista_rjudicial = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("SELECT *"+
+          "FROM (select RUT,apellidoP,apellidoM,Nombre from cliente) as cliente_r NATURAL JOIN "
+                  + "cliente_has_recepcion_voluntaria "+
+          "NATURAL JOIN (SELECT id_producto,descripcion,garantia,total from producto) AS producto_r;");
+          
+          while (rs.next()) {
+          ArrayList ReJudicial = new ArrayList();     
+          
+          ReJudicial.add(rs.getString("ROL"));
+          ReJudicial.add(rs.getInt("ID_RJ"));
+          ReJudicial.add(rs.getInt("ID_PRODUCTO"));    
+          ReJudicial.add(rs.getString("Descripcion"));
+          ReJudicial.add(rs.getInt("Garantia"));
+          ReJudicial.add(rs.getInt("Total"));         
+          lista_rjudicial.add(ReJudicial);
+
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_rjudicial;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_rjudicial;
     }
     
 }

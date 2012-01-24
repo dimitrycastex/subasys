@@ -39,36 +39,21 @@ public class Postgresql {
        
         //Excel_to_SQL.cliente("-", "-", "-", "-","-", "-", "-", "-");
         Producto.get_Lista();
-        /*  ArrayList lista = new ArrayList();
-        lista.add("rol2");
-        lista.add("receptor2");
-        lista.add("abogado");
-        lista.add("caratulado_como");
-        lista.add("juzgado");
-        lista.add(1234567);
-        Causa.setUpdate(lista);
-        //Causa.nueva(lista);
-        lista = Causa.getDatos("rol2");
-        for (Iterator it = lista.iterator(); it.hasNext();) {
-        Object object = it.next();
-        System.out.println(object);
-        }*/
-        /*
-        java.util.Date fecha = new Date();
-        Object ob1 = fecha;
-        Date ob2 = (Date)ob1;
-        System.out.println(fecha.getTime());
-        System.out.println(ob2.getTime());*/
+        System.out.println(Modelo.Cliente.get_Lista().size());
         
     }
     
      public static Connection getConnection(){
       
      String driver = "org.postgresql.Driver";
-     String dbname = "subasys";
-     String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
-     String username = "subasys";
-     String password = "cscv$38l";
+     String dbname = "Subasys";
+    // String dbname = "subasys";
+     //String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
+     String url = "jdbc:postgresql://localhost/" +  dbname;
+     //String username = "subasys";
+     //String password = "cscv$38l";
+     String username = "postgres";
+     String password = "subasys";
         Connection conData = null;
        
         try {
@@ -104,7 +89,7 @@ public class Postgresql {
 	"Email varchar,"+
 	"Web varchar,"+
 	"Telefono varchar,"+
-	"CodigoPostal int4,"+
+	"CodigoPostal varchar,"+
 	"Direccion varchar,"+
 	"Ciudad varchar,"+
 	"Comuna varchar,"+
@@ -113,8 +98,8 @@ public class Postgresql {
         stat.executeUpdate("CREATE TABLE Recepcion_Voluntaria ("+
 	"ID_RV SERIAL NOT NULL,"+
 	"Fecha_Ingreso date,"+
-	"Direccion varchar,"+
-	"Nombre varchar,"+
+	"Descripcion varchar,"+
+	"RUT varchar NOT NULL,"+
 	"PRIMARY KEY(ID_RV));");
         
         stat.executeUpdate("CREATE TABLE Causa ("+
@@ -191,12 +176,6 @@ public class Postgresql {
 	"NMID SERIAL NOT NULL,"+
 	"RUT varchar NOT NULL,"+
 	"ID_FACTURA int4 NOT NULL,"+
-	"PRIMARY KEY(NMID));");
-        
-        stat.executeUpdate("CREATE TABLE Cliente_has_Recepcion_Voluntaria ("+
-	"NMID SERIAL NOT NULL,"+
-	"RUT varchar NOT NULL,"+
-	"ID_RV int4 NOT NULL,"+
 	"PRIMARY KEY(NMID));");
         
         stat.executeUpdate("CREATE TABLE Remate_has_Factura ("+

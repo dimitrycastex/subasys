@@ -26,6 +26,8 @@ public class Panel_Busqueda extends javax.swing.JPanel {
     DefaultTableModel tmodel_remate = new DefaultTableModel();
     DefaultTableModel tmodel_producto = new DefaultTableModel();
     DefaultTableModel tmodel_causa = new DefaultTableModel();
+    DefaultTableModel tmodel_recepcion_judicial = new DefaultTableModel();
+    DefaultTableModel tmodel_recepcion_voluntaria = new DefaultTableModel();
     
     /** Creates new form Buscador */
     
@@ -50,7 +52,9 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         
         tmodel_factura.addColumn("Factura");
         tmodel_factura.addColumn("Rut");
-        tmodel_factura.addColumn("Nombre Cliente");
+        tmodel_factura.addColumn("Apellido P");
+        tmodel_factura.addColumn("Apellido M");
+        tmodel_factura.addColumn("Nombre");
         tmodel_factura.addColumn("Total");
         tmodel_factura.addColumn("Garantia");
         tmodel_factura.addColumn("Fecha");
@@ -61,6 +65,37 @@ public class Panel_Busqueda extends javax.swing.JPanel {
         tmodel_factura.addColumn("Comision");
         tmodel_factura.addColumn("IVA");
         tmodel_factura.addColumn("Comison factura");
+        
+        tmodel_remate.addColumn("RUT");
+        tmodel_remate.addColumn("Nombre");
+        tmodel_remate.addColumn("Telefono");
+        tmodel_remate.addColumn("Direccion");
+        tmodel_remate.addColumn("Id factura");
+        tmodel_remate.addColumn("Total Factura");
+        
+        tmodel_producto.addColumn("Lote");
+        tmodel_producto.addColumn("ID REMATE");
+        tmodel_producto.addColumn("Descripcion");
+        tmodel_producto.addColumn("Cantidad");
+        tmodel_producto.addColumn("Precio");
+        tmodel_producto.addColumn("Total");
+        tmodel_producto.addColumn("Garantia");
+        
+        tmodel_causa.addColumn("ROL");
+        tmodel_causa.addColumn("Receptor");
+        tmodel_causa.addColumn("Abogado");
+        tmodel_causa.addColumn("Caratulado como");
+        tmodel_causa.addColumn("Juzgado");
+        tmodel_causa.addColumn("Remate");
+        tmodel_causa.addColumn("ID RJ");
+              
+        tmodel_recepcion_judicial.addColumn("ROL");
+        tmodel_recepcion_judicial.addColumn("ID_RJ");
+        tmodel_recepcion_judicial.addColumn("ID PRODUCTO");
+        tmodel_recepcion_judicial.addColumn("Descripcion Producto");
+        tmodel_recepcion_judicial.addColumn("Garantia");
+        tmodel_recepcion_judicial.addColumn("Total");
+        
         
     }
     /** This method is called from within the constructor to
@@ -182,13 +217,34 @@ private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-F
     }
    }
    else if(campo==2){
-      
+       if(!parametro_busqueda.getText().isEmpty()){
+          cleanModel(model);
+         if(Modelo.Remate.isRemate(parametro_busqueda.getText().toUpperCase()))
+          Busqueda.busqueda_remate(parametro_busqueda.getText().toLowerCase(),model);
+    }
    }
    else if(campo==3){
-     
+    
+       if(!parametro_busqueda.getText().isEmpty()){
+          cleanModel(model);
+          Busqueda.busqueda_causa(parametro_busqueda.getText().toUpperCase(),model);
+    }
+       
    }
    else if(campo==4){
       
+        if(!parametro_busqueda.getText().isEmpty()){
+          cleanModel(model);
+          Busqueda.busqueda_producto(parametro_busqueda.getText().toLowerCase(),model);
+    }
+   }
+    else if(campo==5){
+      
+        if(!parametro_busqueda.getText().isEmpty()){
+          cleanModel(model);
+          Busqueda.busqueda_recepcion_judicial(parametro_busqueda.getText().toUpperCase(),model);
+    }
+    
    }
    
    
@@ -196,8 +252,7 @@ private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-F
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 // TODO add your handling code here:
-        cleanModel(tmodel_cliente);
-        System.out.println("------------------------------------->");
+      
     
 }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -233,6 +288,10 @@ private void CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
    }
    else if(campo==4){
        model = tmodel_producto;
+       Tabla.setModel(model);
+   }
+   else if(campo==5){
+       model = tmodel_recepcion_judicial;
        Tabla.setModel(model);
    }
    

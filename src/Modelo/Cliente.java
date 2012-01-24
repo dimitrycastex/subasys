@@ -33,7 +33,7 @@ public class Cliente {
             prep.setString(5, unaLista.get(4).toString());
             prep.setString(6, unaLista.get(5).toString());
             prep.setString(7, unaLista.get(6).toString());            
-            prep.setInt(8, Integer.parseInt(unaLista.get(7).toString()));
+            prep.setString(8, unaLista.get(7).toString());
             prep.setString(9, unaLista.get(8).toString());   
             prep.setString(10, unaLista.get(9).toString());
             prep.setString(11, unaLista.get(10).toString());
@@ -64,7 +64,7 @@ public class Cliente {
           cliente.add(rs.getString("Email"));
           cliente.add(rs.getString("Web"));
           cliente.add(rs.getString("Telefono"));         
-          cliente.add(rs.getInt("CodigoPostal"));
+          cliente.add(rs.getString("CodigoPostal"));
           cliente.add(rs.getString("Direccion")); 
           cliente.add(rs.getString("Ciudad"));
           cliente.add(rs.getString("Comuna")); 
@@ -84,7 +84,7 @@ public class Cliente {
    
    public static boolean isCliente(String RUT){
 
-        cliente.clear();
+
         boolean flag = false;
         try {
 
@@ -121,10 +121,10 @@ public class Cliente {
             prep.setString(4, unaLista.get(4).toString());
             prep.setString(5, unaLista.get(5).toString());
             prep.setString(6, unaLista.get(6).toString());            
-            prep.setInt(7, Integer.parseInt(unaLista.get(7).toString()));
+            prep.setString(7, unaLista.get(7).toString());
             prep.setString(8, unaLista.get(8).toString());   
             prep.setString(9, unaLista.get(9).toString());
-            prep.setInt(10, Integer.parseInt(unaLista.get(10).toString()));
+            prep.setString(10, unaLista.get(10).toString());
             prep.executeUpdate();
             
             } catch (SQLException ex) {
@@ -150,7 +150,7 @@ public class Cliente {
           cliente.add(rs.getString("Email"));
           cliente.add(rs.getString("Web"));
           cliente.add(rs.getString("Telefono"));         
-          cliente.add(rs.getInt("CodigoPostal"));
+          cliente.add(rs.getString("CodigoPostal"));
           cliente.add(rs.getString("Direccion")); 
           cliente.add(rs.getString("Ciudad"));
           cliente.add(rs.getString("Comuna"));

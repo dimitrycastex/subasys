@@ -40,7 +40,7 @@ factura[columna]=convert(data);
 
 }
 Excel_to_SQL.factura(factura);
-Excel_to_SQL.cliente_has_factura(factura[3], convertNumber(factura[0]));
+Excel_to_SQL.cliente_has_factura(filtraRut(factura[3]), convertNumber(factura[0]));
 Excel_to_SQL.remate_has_factura(factura[2], convertNumber(factura[0]));
 } 
 System.out.println("FACTURAS DONE");
@@ -53,6 +53,24 @@ ioe.printStackTrace();
 
 } 
 
+public static String filtraRut(String rut){
+        
+        String rut_aux = "";
+        boolean flag = true;
+        for (int i = 0; i < rut.length(); i++) {
+           
+            if(rut.charAt(i)=='0' && flag){
+               
+            }else{
+                flag=false;
+            }
+             if(!flag){
+                  rut_aux+=rut.charAt(i);
+             }
+        }
+        return rut_aux;
+        
+    }
 public static String convert(String unString){
     
     String buffer="";
