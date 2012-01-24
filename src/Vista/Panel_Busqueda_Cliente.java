@@ -31,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
 
 
+
     DefaultTableModel model = new DefaultTableModel();
     DefaultTableModel tmodel_cliente = new Cliente_Busqueda();
     
@@ -62,6 +63,7 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
         selectAll = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         Bar = new javax.swing.JProgressBar();
+        label_Buscar481 = new Vista.Imagenes_Label.buscar.Label_Buscar48();
 
         parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +83,11 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
         });
 
         Tabla.setModel(model);
+        Tabla.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                TablaPropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabla);
 
         selectAll.setText("Seleccionar Todos");
@@ -96,28 +103,34 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(selectAll, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(386, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(722, Short.MAX_VALUE))
             .addComponent(Bar, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(selectAll, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
+                .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectAll))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectAll)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -136,17 +149,15 @@ private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-F
    
 }//GEN-LAST:event_parametro_busquedaKeyReleased
 
-public static ArrayList getSelectedRowsID(DefaultTableModel model){
-        ArrayList lista = new ArrayList();
+public static String getSelectedRowsID(DefaultTableModel model){
+
         for (int i = 0; i < model.getRowCount(); i++) {
             boolean sel = (Boolean)model.getValueAt(i, 0);
-            if(sel){
-                 
-                lista.add(model.getValueAt(i, 1));
-            }
-            
+            if(sel){                
+                return (model.getValueAt(i, 1)).toString();
+            }     
         }
-        return lista;
+        return "";
     }
 /*
  * HOLA
@@ -179,6 +190,18 @@ private void selectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }
     }
 }//GEN-LAST:event_selectAllActionPerformed
+
+private void TablaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TablaPropertyChange
+// TODO add your handling code here:
+    if(evt.getPropertyName().equalsIgnoreCase("tableCellEditor") ){
+        int row = Tabla.getEditingRow();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            if(i!=row) model.setValueAt(false, i, 0);
+            
+        }
+    }
+   
+}//GEN-LAST:event_TablaPropertyChange
 
 public void cleanModel(DefaultTableModel model){
     int a =model.getRowCount()-1;
@@ -213,6 +236,7 @@ class taskInitContents extends Thread{
     private javax.swing.JTable Tabla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private Vista.Imagenes_Label.buscar.Label_Buscar48 label_Buscar481;
     private javax.swing.JTextField parametro_busqueda;
     private javax.swing.JCheckBox selectAll;
     // End of variables declaration//GEN-END:variables
