@@ -34,7 +34,6 @@ public class Panel_Causa extends javax.swing.JPanel {
     private void Limpiar(){
         this.TextField_Abogado.setText("");
         this.TextField_Caratulado.setText("");
-        this.TextField_ID.setText("");
         this.TextField_Juzgado.setText("");
         this.TextField_ROL.setText("");
         this.TextField_Receptor.setText("");
@@ -48,7 +47,7 @@ public class Panel_Causa extends javax.swing.JPanel {
         datos.add(this.TextField_Abogado.getText());
         datos.add(this.TextField_Caratulado.getText());
         datos.add(this.TextField_Juzgado.getText());
-        datos.add(this.TextField_ID.getText());
+        
         
         return datos;
     
@@ -60,8 +59,6 @@ public class Panel_Causa extends javax.swing.JPanel {
         this.jButton_BuscarROL.setEnabled(!b);
         this.jButton_ModificarROL.setEnabled(!b);
         
-        this.TextField_ID.setEditable(b);
-        this.jButton_BuscarID.setEnabled(b);
         this.TextField_Abogado.setEditable(b);
         this.TextField_Caratulado.setEditable(b);
         this.TextField_Juzgado.setEditable(b);
@@ -77,7 +74,6 @@ public class Panel_Causa extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        TextField_ID = new javax.swing.JTextField();
         Label_Receptor = new javax.swing.JLabel();
         TextField_Receptor = new javax.swing.JTextField();
         Label_Abogado = new javax.swing.JLabel();
@@ -91,8 +87,6 @@ public class Panel_Causa extends javax.swing.JPanel {
         TextField_Caratulado = new javax.swing.JTextField();
         Label_Caratulado = new javax.swing.JLabel();
         jButton_BuscarROL = new javax.swing.JButton();
-        Label_ID = new javax.swing.JLabel();
-        jButton_BuscarID = new javax.swing.JButton();
         jButton_Aceptar = new javax.swing.JButton();
         jButton_Cancelar = new javax.swing.JButton();
         label_Justicia481 = new Vista.Imagenes_Label.justicia.Label_Justicia48();
@@ -102,13 +96,6 @@ public class Panel_Causa extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setName("Cliente");
         setPreferredSize(new java.awt.Dimension(1000, 550));
-
-        TextField_ID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        TextField_ID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TextField_IDKeyTyped(evt);
-            }
-        });
 
         Label_Receptor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Receptor.setText("Receptor");
@@ -134,7 +121,7 @@ public class Panel_Causa extends javax.swing.JPanel {
         });
 
         Label_ROL.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        Label_ROL.setText("ROL");
+        Label_ROL.setText("ROL Causa");
 
         Label_Juzgado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Juzgado.setText("Juzgado");
@@ -170,12 +157,6 @@ public class Panel_Causa extends javax.swing.JPanel {
         jButton_BuscarROL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/16.png"))); // NOI18N
         jButton_BuscarROL.setText("Buscar");
 
-        Label_ID.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        Label_ID.setText("ID Recepcion");
-
-        jButton_BuscarID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_BuscarID.setText("Buscar");
-
         jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/16.png"))); // NOI18N
         jButton_Aceptar.setText("Aceptar");
@@ -203,86 +184,70 @@ public class Panel_Causa extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Label_ROL)
-                                .addGap(82, 82, 82)
-                                .addComponent(TextField_ROL, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 764, Short.MAX_VALUE)
+                                .addComponent(jButton_Aceptar)
                                 .addGap(6, 6, 6)
-                                .addComponent(jButton_BuscarROL)
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton_ModificarROL))
+                                .addComponent(jButton_Cancelar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Label_ID)
-                                .addGap(18, 18, 18)
-                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton_BuscarID))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(204, 204, 204)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Label_Receptor)
-                                    .addComponent(TextField_Receptor, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Label_Abogado)
-                                    .addComponent(TextField_Abogado, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Label_Juzgado)
-                                    .addComponent(TextField_Juzgado, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Label_Caratulado)
-                                    .addComponent(TextField_Caratulado, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 166, Short.MAX_VALUE))
+                                .addComponent(jLabel_Causa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label_Justicia481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton_Aceptar)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton_Cancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel_Causa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(label_Justicia481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Label_Receptor)
+                            .addComponent(TextField_Receptor, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_Abogado)
+                            .addComponent(TextField_Abogado, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_Juzgado)
+                            .addComponent(TextField_Juzgado, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_Caratulado)
+                            .addComponent(TextField_Caratulado, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Label_ROL)
+                                .addGap(18, 18, 18)
+                                .addComponent(TextField_ROL, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_BuscarROL)
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton_ModificarROL)))
+                        .addGap(177, 177, 177))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel_Causa)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(Label_ROL))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(TextField_ROL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton_BuscarROL)
-                            .addComponent(jButton_ModificarROL))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_BuscarID)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Label_ID)
-                                    .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(63, 63, 63)
-                        .addComponent(Label_Receptor)
-                        .addGap(6, 6, 6)
-                        .addComponent(TextField_Receptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(Label_Abogado)
-                        .addGap(6, 6, 6)
-                        .addComponent(TextField_Abogado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Label_Juzgado)
-                        .addGap(6, 6, 6)
-                        .addComponent(TextField_Juzgado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(Label_Caratulado)
-                        .addGap(6, 6, 6)
-                        .addComponent(TextField_Caratulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_Causa)
                     .addComponent(label_Justicia481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Label_ROL)
+                            .addComponent(TextField_ROL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton_BuscarROL)
+                    .addComponent(jButton_ModificarROL))
+                .addGap(38, 38, 38)
+                .addComponent(Label_Receptor)
+                .addGap(6, 6, 6)
+                .addComponent(TextField_Receptor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(Label_Abogado)
+                .addGap(6, 6, 6)
+                .addComponent(TextField_Abogado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Label_Juzgado)
+                .addGap(6, 6, 6)
+                .addComponent(TextField_Juzgado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(Label_Caratulado)
+                .addGap(6, 6, 6)
+                .addComponent(TextField_Caratulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
@@ -294,14 +259,6 @@ public class Panel_Causa extends javax.swing.JPanel {
         // TODO add your handling code here:
         V_Principal.addPanel_BuscaCliente(1);
     }//GEN-LAST:event_jButton_BuscarActionPerformed
-
-    private void TextField_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_IDKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || this.TextField_ID.getText().length() > 10) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_TextField_IDKeyTyped
 
     private void TextField_ReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_ReceptorKeyTyped
         // TODO add your handling code here:
@@ -361,18 +318,15 @@ public class Panel_Causa extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_Abogado;
     private javax.swing.JLabel Label_Caratulado;
-    private javax.swing.JLabel Label_ID;
     private javax.swing.JLabel Label_Juzgado;
     private javax.swing.JLabel Label_ROL;
     private javax.swing.JLabel Label_Receptor;
     private javax.swing.JTextField TextField_Abogado;
     private javax.swing.JTextField TextField_Caratulado;
-    private javax.swing.JTextField TextField_ID;
     private javax.swing.JTextField TextField_Juzgado;
     private javax.swing.JTextField TextField_ROL;
     private javax.swing.JTextField TextField_Receptor;
     private javax.swing.JButton jButton_Aceptar;
-    private javax.swing.JButton jButton_BuscarID;
     private javax.swing.JButton jButton_BuscarROL;
     private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JButton jButton_ModificarROL;

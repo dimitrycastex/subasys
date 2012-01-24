@@ -29,17 +29,17 @@ public class ProductoModel extends DefaultTableModel{
         
         Object[] Row = new Object[7];
         Row[0]=false;
-        for (int i = 1; i < datos.size(); i++) {
+        /*for (int i = 1; i < datos.size(); i++) {
             Row[i]=datos.get(i-1).toString();
             
-        }
-        /*
+        }*/
+        
         Row[1]=datos.get(0).toString();
-        Row[2]=datos.get(3).toString();
-        Row[3]=datos.get(6).toString();
-        Row[4]=datos.get(5).toString();
-        Row[5]=datos.get(1).toString();
-        Row[6]=datos.get(4).toString();*/
+        Row[2]=datos.get(1).toString();
+        Row[3]=datos.get(2).toString();
+        Row[4]=datos.get(3).toString();
+        Row[5]=datos.get(5).toString();
+        Row[6]=datos.get(4).toString();
         
         this.addRow(Row);
     }
@@ -55,7 +55,7 @@ public class ProductoModel extends DefaultTableModel{
     
     }
     
-    public void BorraProductos(){
+    public void BorraProductosSeleccionados(){
         
         ArrayList<ArrayList> temp = new ArrayList<ArrayList>();
         boolean eliminar;
@@ -72,7 +72,7 @@ public class ProductoModel extends DefaultTableModel{
         }
     }
     
-    public ArrayList<ArrayList> getSeleccionados(){
+    public ArrayList<ArrayList> getProductosSeleccionados(){
     
         Seleccionados.clear();
         for (int i = 0; i < Productos.size(); i++) {

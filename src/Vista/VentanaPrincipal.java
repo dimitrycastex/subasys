@@ -107,6 +107,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.addPanel_Bienvenido();
     }
     
+    protected void bloquearPanel_ReJudicial(){
+        this.jTabbedPane_Pestanas.setEnabledAt(0, false);
+        this.jTabbedPane_Pestanas.setSelectedIndex(1);
+    }
+    
+    protected void desbloquearPanel_ReJudicial(){
+        this.jTabbedPane_Pestanas.setEnabledAt(0, true);
+        //this.jTabbedPane_Pestanas.setSelectedIndex(0);
+    }
+    
     //--------------------------------------------------------------------------
     protected void addPanel_Producto(boolean nuevo){
         String nombre;
@@ -218,6 +228,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         switch (tipo) {
             case 1: //Panel Cliente
                     this.bloquearPanel_Factura();
+                    this.panel_BuscaProducto1.esFactura();
+                    break;
+                
+            case 2: //Panel Cliente
+                    this.bloquearPanel_ReJudicial();
+                    this.panel_BuscaProducto1.esRecepcion();
                     break;
         }
         
@@ -227,6 +243,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         switch (tipo) {
             case 1: //panel factura
                     this.desbloquearPanel_Factura();
+                    break;
+            case 2: //panel factura
+                    this.desbloquearPanel_ReJudicial();
                     break;
                 
         }
@@ -371,7 +390,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         
-        /*
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -387,7 +406,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }*/
+        }
         //</editor-fold>
 
         /*
@@ -396,11 +415,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                try {
+                /*try {
                     UIManager.setLookAndFeel(new org.pushingpixels.substance.api.skin.SubstanceBusinessBlueSteelLookAndFeel());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,"Substance Graphite failed to initialize");
-                }
+                }*/
 
                 new VentanaPrincipal().setVisible(true);
             }

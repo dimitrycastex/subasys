@@ -55,8 +55,8 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
     
     protected void ReJudicialNueva(boolean b){
         this.Limpiar();
-        this.jButton_Buscar.setEnabled(!b);
-        this.jButton_Modificar.setEnabled(!b);
+        this.jButton_BuscarRecepcion.setVisible(!b);
+        this.jButton_ModificarRecepcion.setVisible(!b);
         this.TextField_ID.setEditable(!b);
         
         this.jDateChooser_FeIngreso.setEnabled(b);
@@ -87,15 +87,20 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
         jLabel_Demandado = new javax.swing.JLabel();
         jTextField_Demandado = new javax.swing.JTextField();
         jLabel_Bodegaje = new javax.swing.JLabel();
-        Label_ID = new javax.swing.JLabel();
-        TextField_ID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTextField_Bodegaje = new javax.swing.JTextField();
-        jButton_Modificar = new javax.swing.JButton();
-        jButton_Buscar = new javax.swing.JButton();
         jButton_Aceptar = new javax.swing.JButton();
         jButton_Cancelar = new javax.swing.JButton();
         label_Justicia481 = new Vista.Imagenes_Label.justicia.Label_Justicia48();
+        TextField_Rol = new javax.swing.JTextField();
+        Label_Rol = new javax.swing.JLabel();
+        jButton_BuscarRecepcion = new javax.swing.JButton();
+        Label_ID = new javax.swing.JLabel();
+        TextField_ID = new javax.swing.JTextField();
+        jButton_ModificarRecepcion = new javax.swing.JButton();
+        jButton_BuscarCausa = new javax.swing.JButton();
+        jButton_AgregarProductos = new javax.swing.JButton();
+        jButton_BorrarProductos = new javax.swing.JButton();
 
         setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         setMaximumSize(new java.awt.Dimension(1000, 550));
@@ -140,16 +145,6 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
         jLabel_Bodegaje.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Bodegaje.setText("Bodegaje Pagado ($)");
 
-        Label_ID.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        Label_ID.setText("ID Recepción");
-
-        TextField_ID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        TextField_ID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TextField_IDKeyTyped(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel1.setText("Recepcion Judicial");
 
@@ -159,13 +154,6 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
                 jTextField_BodegajeKeyTyped(evt);
             }
         });
-
-        jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Modificar.setText("Modificar");
-
-        jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/16.png"))); // NOI18N
-        jButton_Buscar.setText("Buscar");
 
         jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/16.png"))); // NOI18N
@@ -185,6 +173,45 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
             }
         });
 
+        TextField_Rol.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_Rol.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_RolKeyTyped(evt);
+            }
+        });
+
+        Label_Rol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        Label_Rol.setText("ROL Causa");
+
+        jButton_BuscarRecepcion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_BuscarRecepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/16.png"))); // NOI18N
+        jButton_BuscarRecepcion.setText("Buscar");
+
+        Label_ID.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        Label_ID.setText("ID Recepción");
+
+        TextField_ID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        jButton_ModificarRecepcion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_ModificarRecepcion.setText("Modificar");
+
+        jButton_BuscarCausa.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_BuscarCausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/16.png"))); // NOI18N
+        jButton_BuscarCausa.setText("Buscar");
+
+        jButton_AgregarProductos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_AgregarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/producto/24.png"))); // NOI18N
+        jButton_AgregarProductos.setText("Añadir Productos");
+        jButton_AgregarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AgregarProductosActionPerformed(evt);
+            }
+        });
+
+        jButton_BorrarProductos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_BorrarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/no_disponible/24.png"))); // NOI18N
+        jButton_BorrarProductos.setText("Borrar todos los productos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,16 +224,27 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(label_Justicia481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(209, 209, 209)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(209, 209, 209)
+                                .addComponent(Label_Rol)
+                                .addGap(35, 35, 35)
+                                .addComponent(TextField_Rol, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(Label_ID)
                                 .addGap(18, 18, 18)
-                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TextField_ID)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton_BuscarRecepcion)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton_Buscar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton_Modificar))
+                                .addComponent(jButton_ModificarRecepcion))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton_BuscarCausa)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(209, 209, 209)
                                 .addComponent(jLabel_FeIngreso)
@@ -225,21 +263,24 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
                                 .addGap(209, 209, 209)
                                 .addComponent(jLabel_Demandante))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(209, 209, 209)
-                                .addComponent(jTextField_Demandante, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(209, 209, 209)
-                                .addComponent(jLabel_Demandado))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(209, 209, 209)
-                                .addComponent(jTextField_Demandado, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(756, 756, 756)
                                 .addComponent(jButton_Aceptar)
                                 .addGap(6, 6, 6)
-                                .addComponent(jButton_Cancelar)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButton_Cancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(209, 209, 209)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_Demandado)
+                                    .addComponent(jTextField_Demandante, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField_Demandado, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 4, Short.MAX_VALUE)))
+                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jButton_AgregarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_BorrarProductos)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,38 +289,45 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(65, 65, 65)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_Buscar)
-                            .addComponent(jButton_Modificar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Label_ID)
-                                    .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_FeIngreso)
-                            .addComponent(jLabel_FeDevolucion)
-                            .addComponent(jLabel_Bodegaje))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField_Bodegaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateChooser_FeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser_FeDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel_Demandante)
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextField_Demandante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel_Demandado)
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextField_Demandado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Label_ID)
+                            .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_BuscarRecepcion)
+                            .addComponent(jButton_ModificarRecepcion))
+                        .addGap(1, 1, 1))
                     .addComponent(label_Justicia481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextField_Rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Rol)
+                    .addComponent(jButton_BuscarCausa))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_FeIngreso)
+                    .addComponent(jLabel_FeDevolucion)
+                    .addComponent(jLabel_Bodegaje))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_Bodegaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser_FeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooser_FeDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel_Demandante)
+                .addGap(6, 6, 6)
+                .addComponent(jTextField_Demandante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel_Demandado)
+                .addGap(6, 6, 6)
+                .addComponent(jTextField_Demandado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_BorrarProductos)
+                    .addComponent(jButton_AgregarProductos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
@@ -310,15 +358,6 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField_DemandadoKeyTyped
 
-    private void TextField_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_IDKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-
-        if (!Character.isDigit(c) || this.TextField_ID.getText().length() > 10) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_TextField_IDKeyTyped
-
     private void jTextField_BodegajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BodegajeKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
@@ -338,13 +377,27 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
         V_Principal.removePanel_ReJudicial();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
+    private void TextField_RolKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_RolKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextField_RolKeyTyped
+
+    private void jButton_AgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarProductosActionPerformed
+        // TODO add your handling code here:
+        this.V_Principal.addPanel_BuscaProducto(2);
+    }//GEN-LAST:event_jButton_AgregarProductosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_ID;
+    private javax.swing.JLabel Label_Rol;
     private javax.swing.JTextField TextField_ID;
+    private javax.swing.JTextField TextField_Rol;
     private javax.swing.JButton jButton_Aceptar;
-    private javax.swing.JButton jButton_Buscar;
+    private javax.swing.JButton jButton_AgregarProductos;
+    private javax.swing.JButton jButton_BorrarProductos;
+    private javax.swing.JButton jButton_BuscarCausa;
+    private javax.swing.JButton jButton_BuscarRecepcion;
     private javax.swing.JButton jButton_Cancelar;
-    private javax.swing.JButton jButton_Modificar;
+    private javax.swing.JButton jButton_ModificarRecepcion;
     private com.toedter.calendar.JDateChooser jDateChooser_FeDevolucion;
     private com.toedter.calendar.JDateChooser jDateChooser_FeIngreso;
     private javax.swing.JLabel jLabel1;

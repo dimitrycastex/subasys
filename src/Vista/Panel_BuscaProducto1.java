@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import Modelo.Cliente;
+import Modelo.Producto;
+import java.util.Iterator;
+import java.util.TreeSet;
 
 /**
  *
@@ -25,11 +28,24 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
     }
     
     private VentanaPrincipal V_Principal;
+    private boolean desdeFactura, desdeRecepcion;
     
     public void setFrame(JFrame f){
         this.V_Principal= (VentanaPrincipal) f;
+        desdeFactura = false;
+        desdeRecepcion = false;
     }
-
+    
+    public void esRecepcion(){
+        desdeRecepcion=true;
+        desdeFactura = false;
+    
+    }
+    
+    public void esFactura(){
+        desdeFactura = true;
+        desdeRecepcion = false;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,14 +55,14 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButton_NumLote = new javax.swing.JRadioButton();
+        jRadioButton_IDProducto = new javax.swing.JRadioButton();
         jRadioButton_Descripcion = new javax.swing.JRadioButton();
         label_Buscar481 = new Vista.Imagenes_Label.buscar.Label_Buscar48();
         jLabel_BuscarCliente = new javax.swing.JLabel();
         jRadioButton_Precio = new javax.swing.JRadioButton();
         jTextField_Buscar = new javax.swing.JTextField();
         jButton_Buscar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButton_Agregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel_BusquedaProductos = new javax.swing.JLabel();
         jLabel_ProductosSeleccionados = new javax.swing.JLabel();
@@ -63,11 +79,11 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
         setName("Cliente");
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        jRadioButton_NumLote.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jRadioButton_NumLote.setText("Buscar por Nº de Lote");
-        jRadioButton_NumLote.addItemListener(new java.awt.event.ItemListener() {
+        jRadioButton_IDProducto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jRadioButton_IDProducto.setText("Buscar por ID Producto");
+        jRadioButton_IDProducto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jRadioButton_NumLoteItemStateChanged(evt);
+                jRadioButton_IDProductoItemStateChanged(evt);
             }
         });
 
@@ -96,9 +112,6 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField_BuscarFocusGained(evt);
             }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField_BuscarFocusLost(evt);
-            }
         });
         jTextField_Buscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -115,8 +128,13 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/flechas/adelante/24.png"))); // NOI18N
+        jButton_Agregar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/flechas/adelante/24.png"))); // NOI18N
+        jButton_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AgregarActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/flechas/atras/24.png"))); // NOI18N
@@ -163,7 +181,7 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
                                 .addGap(664, 664, 664)
                                 .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton_NumLote)
+                                .addComponent(jRadioButton_IDProducto)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButton_Descripcion)
                                 .addGap(18, 18, 18)
@@ -172,14 +190,14 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
                                 .addComponent(jTextField_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton_Buscar)))
-                        .addContainerGap())
+                        .addContainerGap(14, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_BusquedaProductos)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +221,7 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
                         .addComponent(jLabel_BuscarCliente)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton_NumLote)
+                            .addComponent(jRadioButton_IDProducto)
                             .addComponent(jRadioButton_Descripcion)
                             .addComponent(jRadioButton_Precio))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -220,12 +238,12 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(jButton1)
+                        .addComponent(jButton_Agregar)
                         .addGap(32, 32, 32)
                         .addComponent(jButton2))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
@@ -233,18 +251,9 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton_NumLoteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton_NumLoteItemStateChanged
-        // TODO add your handling code here:
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            this.jRadioButton_Descripcion.setSelected(false);
-            this.jRadioButton_Precio.setSelected(false);
-        }
-    }//GEN-LAST:event_jRadioButton_NumLoteItemStateChanged
-
     private void jRadioButton_DescripcionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton_DescripcionItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            this.jRadioButton_NumLote.setSelected(false);
             this.jRadioButton_Precio.setSelected(false);
         }
     }//GEN-LAST:event_jRadioButton_DescripcionItemStateChanged
@@ -253,7 +262,6 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             this.jRadioButton_Descripcion.setSelected(false);
-            this.jRadioButton_NumLote.setSelected(false);
         }
     }//GEN-LAST:event_jRadioButton_PrecioItemStateChanged
 
@@ -263,13 +271,6 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
             this.jTextField_Buscar.setText("");
         }
     }//GEN-LAST:event_jTextField_BuscarFocusGained
-
-    private void jTextField_BuscarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_BuscarFocusLost
-        // TODO add your handling code here:
-        if (!this.jTextField_Buscar.getText().equals("Escriba lo que quiere encontrar...")) {
-            this.jTextField_Buscar.setText("Escriba lo que quiere encontrar...");
-        }
-    }//GEN-LAST:event_jTextField_BuscarFocusLost
 
     private void jTextField_BuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_BuscarKeyTyped
         // TODO add your handling code here:
@@ -281,13 +282,7 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
             }
         }
 
-        if (this.jRadioButton_NumLote.isSelected()) {
-            if (!Character.isDigit(c) || this.jTextField_Buscar.getText().length() > 5) {
-                evt.consume();
-            }
-
-        }
-
+        
         if (this.jRadioButton_Precio.isSelected()) {
             if (!Character.isDigit(c) || this.jTextField_Buscar.getText().length() > 10) {
                 evt.consume();
@@ -298,15 +293,28 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
 
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
         // TODO add your handling code here:
-        if (!this.jRadioButton_NumLote.isSelected() && !this.jRadioButton_Precio.isSelected()
-                && !this.jRadioButton_Descripcion.isSelected()) {
+        if (!this.jRadioButton_Precio.isSelected()
+                && !this.jRadioButton_Descripcion.isSelected() &&
+                !this.jRadioButton_IDProducto.isSelected()) {
             JOptionPane.showMessageDialog(V_Principal, "Seleccione algún criterio de búsqueda", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        if(this.jRadioButton_IDProducto.isSelected()){
+            ArrayList<ArrayList> temp = new ArrayList<ArrayList>();
+            
+            temp.add(Producto.getDatos(this.jTextField_Buscar.getText()));
+            this.tabla_Producto_BusquedaProductos.AgregaProductos(temp);
+            this.tabla_Producto_BusquedaProductos.repaint();
         }
     }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
         // TODO add your handling code here:
+        if(desdeFactura)
         V_Principal.removePanel_BuscaProducto(1);
+        
+        else if(desdeRecepcion)
+        V_Principal.removePanel_BuscaProducto(2);
 
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
@@ -315,17 +323,33 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
         //ENVIAR INFORMACION
     }//GEN-LAST:event_jButton_AceptarActionPerformed
 
+    private void jRadioButton_IDProductoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton_IDProductoItemStateChanged
+        // TODO add your handling code here:
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            this.jRadioButton_Descripcion.setSelected(false);
+            this.jRadioButton_Precio.setSelected(false);
+        }
+    }//GEN-LAST:event_jRadioButton_IDProductoItemStateChanged
+
+    private void jButton_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarActionPerformed
+        // TODO add your handling code here:
+        ArrayList<ArrayList> temp = this.tabla_Producto_BusquedaProductos.getProductosSeleccionados();
+        
+        this.tabla_Producto_ProductosSeleccionados.AgregaProductos(temp);
+        this.tabla_Producto_ProductosSeleccionados.repaint();
+    }//GEN-LAST:event_jButton_AgregarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton_Aceptar;
+    private javax.swing.JButton jButton_Agregar;
     private javax.swing.JButton jButton_Buscar;
     private javax.swing.JButton jButton_Cancelar;
     private javax.swing.JLabel jLabel_BuscarCliente;
     private javax.swing.JLabel jLabel_BusquedaProductos;
     private javax.swing.JLabel jLabel_ProductosSeleccionados;
     private javax.swing.JRadioButton jRadioButton_Descripcion;
-    private javax.swing.JRadioButton jRadioButton_NumLote;
+    private javax.swing.JRadioButton jRadioButton_IDProducto;
     private javax.swing.JRadioButton jRadioButton_Precio;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

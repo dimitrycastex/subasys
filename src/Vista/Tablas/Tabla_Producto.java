@@ -6,6 +6,8 @@ package Vista.Tablas;
 
 import Vista.Tablas.Modelos.ProductoModel;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeSet;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 
@@ -16,6 +18,7 @@ import javax.swing.JViewport;
 public class Tabla_Producto extends JTable{
     
     private ArrayList<ArrayList> Productos;
+    private TreeSet<ArrayList> Productos2 ;
     private ArrayList<ArrayList> Seleccionados;
     private ArrayList temp;
     private ProductoModel Modelo;
@@ -28,6 +31,7 @@ public class Tabla_Producto extends JTable{
         Seleccionados = new ArrayList<ArrayList>();
         this.getTableHeader().setReorderingAllowed(false) ;
         temp = new ArrayList();
+        Productos2 = new TreeSet<ArrayList>();
     }
     
     public void setProductos(ArrayList<ArrayList> p){
@@ -42,7 +46,7 @@ public class Tabla_Producto extends JTable{
     public void AgregaProductos(){
         
         
-        temp.add("0000000000");
+        /*temp.add("0000000000");
         temp.add("qwertyuiopasdfghjklñzxcvbnmqwertyuiopasdfghjklñzxvqwertyuiopasdfghjklñzxcvbnmqwertyuiopasdfghjklñzxv");
         temp.add("1000");
         temp.add("0000000000");
@@ -51,7 +55,23 @@ public class Tabla_Producto extends JTable{
         
         for (int i = 0; i < 10; i++) {
             Productos.add(temp);
+        }*/
+        Modelo = new ProductoModel();
+        Modelo.setProductos(Productos);
+        Modelo.AgregarProductos();
+        this.setModel(Modelo);
+        this.AsignaColumn();
+    }
+    
+    public void AgregaProductos(ArrayList<ArrayList> p){
+        
+        //Transformar ese treeset en arraylist
+        for (Iterator<ArrayList> it = p.iterator(); it.hasNext();) {
+            ArrayList arrayList = it.next();
+            this.Productos.add(arrayList);
         }
+        
+        Modelo = new ProductoModel();
         Modelo.setProductos(Productos);
         Modelo.AgregarProductos();
         this.setModel(Modelo);
@@ -59,14 +79,21 @@ public class Tabla_Producto extends JTable{
     }
     
     public void BorraProductos(){
+        Modelo = new ProductoModel();
+        this.setModel(Modelo);
+        this.AsignaColumn();  
+    }
+    
+    public void BorraProductosSeleccionados(){
         
-        Modelo.BorraProductos();
+        Modelo.BorraProductosSeleccionados();
         this.Productos = Modelo.getProductos();
         Modelo = new ProductoModel();
         Modelo.setProductos(Productos);
         Modelo.AgregarProductos();
         this.setModel(Modelo);
         this.AsignaColumn();
+    
     
     
     }
@@ -110,6 +137,10 @@ public class Tabla_Producto extends JTable{
         
         this.setColumnSelectionAllowed(false);
         this.setAutoscrolls(false);
+    }
+    
+    public ArrayList<ArrayList> getProductosSeleccionados(){
+        return Modelo.getProductosSeleccionados();
     }
     
     @Override

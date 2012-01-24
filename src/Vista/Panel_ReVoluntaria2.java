@@ -52,8 +52,8 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
     protected void ReVoluntariaNueva(boolean b){
         this.Limpiar();
         this.TextField_ID.setEditable(!b);
-        this.jButton_BuscarRec.setEnabled(!b);
-        this.jButton_ModificarRec.setEnabled(!b);
+        this.jButton_BuscarRec.setVisible(!b);
+        this.jButton_ModificarRec.setVisible(!b);
         this.TextField_RUT.setEditable(b);
     }
 
@@ -84,6 +84,11 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
         jLabel_FeIngreso = new javax.swing.JLabel();
         jButton_BuscarRec = new javax.swing.JButton();
         label_Justicia481 = new Vista.Imagenes_Label.justicia.Label_Justicia48();
+        TextField_Rol = new javax.swing.JTextField();
+        Label_Rol = new javax.swing.JLabel();
+        jButton_BuscarCausa = new javax.swing.JButton();
+        jButton_AgregarProductos = new javax.swing.JButton();
+        jButton_BorrarProductos = new javax.swing.JButton();
 
         setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         setMaximumSize(new java.awt.Dimension(1000, 550));
@@ -92,6 +97,7 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
         jButton_Agregar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar_cliente/16.png"))); // NOI18N
         jButton_Agregar.setText("Agregar");
 
         TextField_RUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -170,6 +176,28 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
         jButton_BuscarRec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/16.png"))); // NOI18N
         jButton_BuscarRec.setText("Buscar");
 
+        TextField_Rol.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        TextField_Rol.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextField_RolKeyTyped(evt);
+            }
+        });
+
+        Label_Rol.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        Label_Rol.setText("ROL Causa");
+
+        jButton_BuscarCausa.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_BuscarCausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/16.png"))); // NOI18N
+        jButton_BuscarCausa.setText("Buscar");
+
+        jButton_AgregarProductos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_AgregarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/producto/24.png"))); // NOI18N
+        jButton_AgregarProductos.setText("Añadir Productos");
+
+        jButton_BorrarProductos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_BorrarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/no_disponible/24.png"))); // NOI18N
+        jButton_BorrarProductos.setText("Borrar todos los productos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,15 +207,7 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(192, 192, 192)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Label_ID)
-                                .addGap(18, 18, 18)
-                                .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(jButton_BuscarRec)
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton_ModificarRec))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel_FeIngreso)
                                 .addGap(10, 10, 10)
@@ -199,7 +219,7 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton_BuscarRUT)
                                 .addGap(10, 10, 10)
-                                .addComponent(jButton_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton_Agregar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel_Nombre)
                                 .addGap(54, 54, 54)
@@ -207,8 +227,28 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel_Direccion)
                                 .addGap(44, 44, 44)
-                                .addComponent(jTextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 179, Short.MAX_VALUE))
+                                .addComponent(jTextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Label_ID)
+                                    .addComponent(Label_Rol))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TextField_Rol)
+                                    .addComponent(TextField_ID, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton_BuscarRec)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jButton_ModificarRec))
+                                    .addComponent(jButton_BuscarCausa)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(jButton_AgregarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_BorrarProductos)))
+                        .addGap(0, 183, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton_Aceptar)
@@ -234,39 +274,50 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
                                 .addComponent(Label_ID))
                             .addComponent(TextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_BuscarRec)
-                            .addComponent(jButton_ModificarRec))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel_FeIngreso))
-                            .addComponent(jDateChooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(Label_RUT))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jButton_BuscarRUT))
-                            .addComponent(jButton_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel_Nombre))
-                            .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel_Direccion))
-                            .addComponent(jTextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton_ModificarRec)))
                     .addComponent(label_Justicia481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextField_Rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Rol)
+                    .addComponent(jButton_BuscarCausa))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel_FeIngreso))
+                    .addComponent(jDateChooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(Label_RUT))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(43, 43, 43)
+                            .addComponent(jButton_BuscarRUT))))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel_Nombre))
+                    .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel_Direccion))
+                    .addComponent(jTextField_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_AgregarProductos)
+                    .addComponent(jButton_BorrarProductos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
@@ -311,13 +362,22 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
         V_Principal.removePanel_ReVoluntaria();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
+    private void TextField_RolKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_RolKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextField_RolKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_ID;
     private javax.swing.JLabel Label_RUT;
+    private javax.swing.JLabel Label_Rol;
     private javax.swing.JTextField TextField_ID;
     private javax.swing.JTextField TextField_RUT;
+    private javax.swing.JTextField TextField_Rol;
     private javax.swing.JButton jButton_Aceptar;
     private javax.swing.JButton jButton_Agregar;
+    private javax.swing.JButton jButton_AgregarProductos;
+    private javax.swing.JButton jButton_BorrarProductos;
+    private javax.swing.JButton jButton_BuscarCausa;
     private javax.swing.JButton jButton_BuscarRUT;
     private javax.swing.JButton jButton_BuscarRec;
     private javax.swing.JButton jButton_Cancelar;
