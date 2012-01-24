@@ -173,4 +173,81 @@ public class Recepcion_Judicial {
          return lista_rjudicial;
     }
   
+  
+  public static ArrayList<ArrayList> get_Lista_Causa_Recepcion_Judicial(String ROL_CAUSA){
+
+       ArrayList<ArrayList> lista_rjudicial = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("SELECT *"+
+          "FROM causa,recepcion_judicial "+
+          "where ROL='"+ROL_CAUSA+"' AND causa.id_rj = recepcion_judicial.id_rj;");
+          
+          while (rs.next()) {
+          ArrayList ReJudicial = new ArrayList();     
+          
+          ReJudicial.add(rs.getString("ROL"));
+          ReJudicial.add(rs.getString("Juzgado"));
+          ReJudicial.add(rs.getDate("Fecha_Ingreso"));    
+          ReJudicial.add(rs.getString("Demandante"));
+          ReJudicial.add(rs.getString("Demandado"));
+          ReJudicial.add(rs.getString("Abogado"));   
+          ReJudicial.add(rs.getString("Receptor"));
+          ReJudicial.add(rs.getDate("Fecha_Devolucion"));
+          ReJudicial.add(rs.getInt("Bodegaje_Pagado"));    
+          lista_rjudicial.add(ReJudicial);
+
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_rjudicial;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_rjudicial;
+    }
+  
+  
+   public static ArrayList<ArrayList> get_Lista_Productos(String ROL_CAUSA){
+
+       ArrayList<ArrayList> lista_rjudicial = new ArrayList();
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("SELECT *"+
+          "FROM (select ROL,id_rj from causa) as causa_r NATURAL JOIN recepcion_judicial_has_producto "+
+          "NATURAL JOIN (SELECT id_producto,descripcion,garantia,total from producto) AS producto_r "
+                  + "WHERE causa_r.ROL='"+ROL_CAUSA+"';");
+          
+          while (rs.next()) {
+          ArrayList ReJudicial = new ArrayList();     
+          
+          ReJudicial.add(rs.getInt("ID_RJ"));
+          ReJudicial.add(rs.getInt("ID_PRODUCTO"));    
+          ReJudicial.add(rs.getString("Descripcion"));
+          ReJudicial.add(rs.getInt("Garantia"));
+          ReJudicial.add(rs.getInt("Total"));         
+          lista_rjudicial.add(ReJudicial);
+
+          flag=true;
+          }
+          rs.close();
+          
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
+          
+         return lista_rjudicial;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return lista_rjudicial;
+    }
+  
 }

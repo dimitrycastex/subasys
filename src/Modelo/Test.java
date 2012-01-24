@@ -29,13 +29,7 @@ public class Test {
         // Busqueda.getDatos("Juan");
        
         //Busqueda.busca_cliente("juan geraldo");
-        Producto.get_Lista();
-        
-        
-        //Cliente.get_Lista();
-       String rut = "00172945007";
-       System.out.println(filtraRut(rut));
-        
+        Recepcion_Judicial.get_Lista_Causa_Recepcion_Judicial("2106-98");
         
         
     }
