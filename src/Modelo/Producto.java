@@ -72,6 +72,33 @@ public class Producto {
          }
          return producto;
     }
+   
+   public static int getID_Producto(String remate,int lote){
+
+       int id_producto  = 0;
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select id_producto from Remate_has_Producto where id_remate='"+remate+"' AND "
+                  + "Lote="+lote+";");
+          
+          while (rs.next()) {
+         id_producto = (rs.getInt("ID_PRODUCTO"));
+
+          flag=true;
+          }
+          rs.close();
+          
+        
+          
+         return id_producto;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return id_producto;
+    }
     
   
   public static void setUpdate(ArrayList unaLista)
@@ -89,6 +116,27 @@ public class Producto {
             prep.setInt(4, Integer.parseInt(unaLista.get(4).toString()));
             prep.setInt(5, Integer.parseInt(unaLista.get(5).toString()));
             prep.setString(6, unaLista.get(6).toString());    
+            prep.executeUpdate();
+            } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+  
+  
+  public static void setUpdateMigracion(ArrayList unaLista)
+ {
+                
+        try {
+
+            PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
+            "UPDATE Producto set Cantidad = ?,Precio_Unitario=?,"
+                    + "Garantia=?,Total=? where id_producto="+unaLista.get(0)+";");
+          
+            prep.setInt(1, Integer.parseInt(unaLista.get(1).toString()));
+            prep.setInt(2, Integer.parseInt(unaLista.get(2).toString()));
+            prep.setInt(3, Integer.parseInt(unaLista.get(3).toString()));
+            prep.setInt(4, Integer.parseInt(unaLista.get(4).toString()));
+            prep.executeUpdate();
             
             } catch (SQLException ex) {
             System.out.println(ex);
@@ -182,25 +230,21 @@ public class Producto {
             "FROM (SELECT rut,id_factura from cliente_has_factura) AS cliente_f,"+
             "(SELECT id_factura,id_producto FROM factura_has_producto) AS factura_p,"+
             "(SELECT apellidoP,apellidoM,nombre,rut FROM cliente) AS mini_cliente,"+
-            "(SELECT id_producto,descripcion,precio_unitario,garantia,total cantidad from producto) AS mini_producto"+
-            "where cliente_f.id_factura = factura_p.id_factura"+
-            "AND"+
-            "cliente_f.rut = mini_cliente.rut"+
-            "AND"+
-            "mini_producto.id_producto = factura_p.id_producto;");
+            "(SELECT id_producto,descripcion,precio_unitario,garantia,total,cantidad from producto) AS mini_producto"+
+            " where cliente_f.id_factura = factura_p.id_factura AND cliente_f.rut = mini_cliente.rut AND mini_producto.id_producto = factura_p.id_producto;");
           
           while (rs.next()) {
           ArrayList producto = new ArrayList();
           producto.add(rs.getInt("ID_FACTURA"));
           producto.add(rs.getString("RUT"));
-          producto.add(rs.getInt("ID_FACTURA"));
+          producto.add(rs.getString("ApellidoP"));
+          producto.add(rs.getString("ApellidoM"));
+          producto.add(rs.getString("Nombre"));
+          producto.add(rs.getInt("ID_PRODUCTO"));
           producto.add(rs.getString("Descripcion"));
           producto.add(rs.getInt("Precio_Unitario"));
           producto.add(rs.getInt("Garantia"));
           producto.add(rs.getInt("Total"));
-          producto.add(rs.getString("ApellidoP"));
-          producto.add(rs.getString("ApellidoM"));
-          producto.add(rs.getString("Nombre"));
           
           lista_productos.add(producto);
           flag=true;

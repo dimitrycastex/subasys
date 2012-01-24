@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.sql.Connection;
@@ -36,11 +37,9 @@ public class Postgresql {
     public static void main(String[] args) {
         // TODO code application logic here
         //PDF.get_Lista_Clientes();
-       
         //Excel_to_SQL.cliente("-", "-", "-", "-","-", "-", "-", "-");
-        Producto.get_Lista();
-        System.out.println(Modelo.Cliente.get_Lista().size());
         
+       
     }
     
      public static Connection getConnection(){
@@ -213,7 +212,7 @@ public class Postgresql {
 
         java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
 
-        stat.executeUpdate("ALTER TABLE integrantes ALTER COLUMN ci TYPE varchar(25);");
+        stat.executeUpdate("UPDATE producto SET total='100' WHERE id_producto='2'");
       
         
         return true;

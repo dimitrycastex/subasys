@@ -30,16 +30,27 @@ public class Busqueda {
     static ArrayList<ArrayList> lista_producto = new ArrayList();
     static ArrayList<ArrayList> lista_causa = new ArrayList();
     static ArrayList<ArrayList> lista_recepcion_judicial = new ArrayList();
-    
+    static ArrayList<ArrayList> lista_recepcion_voluntaria = new ArrayList();
+    static ArrayList<ArrayList> lista_producto_facturado = new ArrayList();
    
-    public static void initClientes(){
-    lista_cliente = Modelo.Cliente.get_Lista_Busqueda();
-   // lista_factura = Modelo.Factura.get_Lista_Busqueda();
-    //lista_producto = Modelo.Producto.get_Lista_Busqueda();
-    //lista_causa = Modelo.Causa.get_Lista_Busqueda();
-    lista_recepcion_judicial=Modelo.Recepcion_Judicial.get_Lista_Busqueda();
+    public static void initClientes(){lista_cliente = Modelo.Cliente.get_Lista_Busqueda();}
+    public static void initProductosFac(){lista_producto_facturado = Modelo.Producto.get_Lista_Busqueda_Facturados();}
+    public static void initRV(){lista_recepcion_voluntaria = Modelo.Recepcion_Voluntaria.get_Lista_Busqueda();}
+    public static void initCausas(){lista_causa = Modelo.Causa.get_Lista_Busqueda();}
+    public static void initFacturas(){lista_factura = Modelo.Factura.get_Lista_Busqueda();}
+    public static void initProductos(){lista_producto = Modelo.Producto.get_Lista_Busqueda();}
+    public static void initRJ(){lista_recepcion_judicial=Modelo.Recepcion_Judicial.get_Lista_Busqueda();}
     
-}
+    public static void initAll(){
+        lista_cliente = Modelo.Cliente.get_Lista_Busqueda();
+        lista_producto_facturado = Modelo.Producto.get_Lista_Busqueda_Facturados();
+        lista_recepcion_voluntaria = Modelo.Recepcion_Voluntaria.get_Lista_Busqueda();
+        lista_causa = Modelo.Causa.get_Lista_Busqueda();
+        lista_factura = Modelo.Factura.get_Lista_Busqueda();
+        lista_producto = Modelo.Producto.get_Lista_Busqueda();
+        lista_recepcion_judicial=Modelo.Recepcion_Judicial.get_Lista_Busqueda();
+    }
+    
     public static void busca_cliente(String parametro,DefaultTableModel tmodel_cliente){
         
         String nombre = "";
@@ -73,7 +84,7 @@ public class Busqueda {
     
     public static void busqueda_causa(String parametro,DefaultTableModel model){
         
-        
+        System.out.println(model.getRowCount());
         String ROL = "";
         String Caratulado_como = "";
         int i=0;
@@ -81,13 +92,17 @@ public class Busqueda {
             ArrayList arrayList = it.next();
             ROL = arrayList.get(0).toString();
             Caratulado_como = arrayList.get(3).toString().toLowerCase();
-            if(ROL.contains(parametro) || 
-                    Caratulado_como.contains(parametro)){
+           if(ROL.contains(parametro) 
+            ){
+               System.out.println(ROL+" "+parametro);
                 model.insertRow(i, arrayList.toArray());
             i++;
-        }
+            }
         
-    }}
+    }
+    System.out.println("->"+model.getRowCount());
+    
+    }
     
     public static void busqueda_producto(String parametro,DefaultTableModel model){
         
@@ -105,6 +120,40 @@ public class Busqueda {
             if((lote+" "+ID_REMATE).toLowerCase().contains(parametro) ||
                     (ID_REMATE+" "+lote).toLowerCase().contains(parametro)
                     || Descripcion.toLowerCase().contains(parametro)){
+                
+                model.insertRow(i, arrayList.toArray());
+                i++;
+                
+            }
+               
+            
+        }
+    }
+    
+    public static void busqueda_producto_facturado(String parametro,DefaultTableModel model){
+        
+        
+        
+        String RUT = "";
+        String ID_FACTURA = "";
+        String Descripcion = "";
+        int i=0;
+        for (Iterator<ArrayList> it = lista_producto_facturado.iterator(); it.hasNext();) {
+            ArrayList arrayList = it.next();
+            RUT = arrayList.get(1).toString();
+            ID_FACTURA = arrayList.get(0).toString();
+            Descripcion = arrayList.get(6).toString();
+            if(ID_FACTURA.toLowerCase().equalsIgnoreCase(parametro) || 
+                  RUT.equalsIgnoreCase(parametro) ||
+               Descripcion.toLowerCase().equalsIgnoreCase(parametro)){
+                 
+                model.insertRow(i, arrayList.toArray());
+                i++;
+                break;
+            }
+            else if(ID_FACTURA.toLowerCase().contains(parametro) ||
+               RUT.contains(parametro) ||
+               Descripcion.toLowerCase().contains(parametro)){
                 
                 model.insertRow(i, arrayList.toArray());
                 i++;
@@ -139,6 +188,7 @@ public class Busqueda {
             {
                 model.insertRow(i,arrayList.toArray());
                 i++;
+                break;
             }
         
             else if(nombre_c_d.toLowerCase().contains(parametro) || nombre_c_a.toLowerCase().contains(parametro)
@@ -175,5 +225,30 @@ public class Busqueda {
         }
         
     }}
+     
+     
+      public static void busqueda_recepcion_voluntaria(String parametro,DefaultTableModel model){
+        
+        
+        String ROL = "";
+        int i=0;
+        for (Iterator<ArrayList> it = lista_recepcion_voluntaria.iterator(); it.hasNext();) {
+            ArrayList arrayList = it.next();
+            ROL = arrayList.get(1).toString();
+            if(ROL.contains(parametro)){
+            model.insertRow(i, arrayList.toArray());
+            i++;
+        }
+        
+    }}
+    public static void cleanModel(DefaultTableModel model){
+    int a =model.getRowCount()-1;
+
+    for (int i = a; i >=0; i--) {
+        model.removeRow(i);
+        
+    }
+
     
+}
 }
