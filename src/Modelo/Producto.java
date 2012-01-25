@@ -272,7 +272,7 @@ public class Producto {
         try {
 
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-          ResultSet rs = stat.executeQuery("select * from Factura_has_Producto where ID_PRODUCTO="+ID_PRODUCTO+";");
+          ResultSet rs = stat.executeQuery("select ID_PRODUCTO from Factura_has_Producto where ID_PRODUCTO="+ID_PRODUCTO+";");
           
           while (rs.next()) {
         
@@ -286,6 +286,25 @@ public class Producto {
          JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
          }
          return flag;
+    }
+  
+  public static int get_ID_Factura(String ID_PRODUCTO){
+
+
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select ID_FACTURA from Factura_has_Producto where ID_PRODUCTO="+ID_PRODUCTO+";");
+          
+          while (rs.next()) {
+          return rs.getInt("ID_FACTURA");   
+          }
+          rs.close();
+        
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return 0;
     }
   
   public static String[] getJuzgado_Causa(String ID_PRODUCTO){
