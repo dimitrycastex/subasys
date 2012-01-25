@@ -4,21 +4,36 @@
  */
 
 /*
- * Panel_Sel_Impresión.java
+ * Panel_Sel_Impresion.java
  *
  * Created on 25-ene-2012, 11:48:18
  */
 package Vista;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Dimitry
  */
-public class Panel_Sel_Impresión extends javax.swing.JPanel {
+public class Panel_Sel_Impresion extends javax.swing.JPanel {
 
-    /** Creates new form Panel_Sel_Impresión */
-    public Panel_Sel_Impresión() {
+    /** Creates new form Panel_Sel_Impresion */
+    public Panel_Sel_Impresion() {
         initComponents();
+    }
+    
+    private VentanaPrincipal V_Principal;
+    private Panel_VisorPDF P_PDF;
+
+    
+    public void setFrame(JFrame f){
+        this.V_Principal= (VentanaPrincipal) f;
+    }
+    
+     public void setPanel_PDF(JPanel p){
+        this.P_PDF= (Panel_VisorPDF) p;
     }
 
     /** This method is called from within the constructor to
@@ -31,7 +46,7 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButton_ListaClientes = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -49,7 +64,7 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
+        jButton_Volver = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1000, 550));
         setMinimumSize(new java.awt.Dimension(1000, 550));
@@ -57,12 +72,12 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Imprimir Listas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cliente/48.png"))); // NOI18N
-        jButton1.setText("Imprimir Lista de Clientes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_ListaClientes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_ListaClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cliente/48.png"))); // NOI18N
+        jButton_ListaClientes.setText("Imprimir Lista de Clientes");
+        jButton_ListaClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_ListaClientesActionPerformed(evt);
             }
         });
 
@@ -98,7 +113,7 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                        .addComponent(jButton_ListaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
@@ -122,7 +137,7 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(jButton_ListaClientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,7 +150,7 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
                 .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Imprimir Documentos Individuales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
@@ -227,12 +242,17 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
                 .addComponent(jButton10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton9)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jButton18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/flechas/atras/24.png"))); // NOI18N
-        jButton18.setText("Volver");
+        jButton_Volver.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/flechas/atras/24.png"))); // NOI18N
+        jButton_Volver.setText("Volver");
+        jButton_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_VolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -243,9 +263,9 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton18)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Volver))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,19 +274,27 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_Volver)
+                        .addGap(5, 5, 5))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_ListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ListaClientesActionPerformed
+        //
+        
+        P_PDF.setRutaArchivo("");
+    }//GEN-LAST:event_jButton_ListaClientesActionPerformed
+
+    private void jButton_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VolverActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        V_Principal.removePanel_Sel_Impresion();
+        V_Principal.addPanel_Bienvenido();
+    }//GEN-LAST:event_jButton_VolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -275,7 +303,6 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -284,6 +311,8 @@ public class Panel_Sel_Impresión extends javax.swing.JPanel {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButton_ListaClientes;
+    private javax.swing.JButton jButton_Volver;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

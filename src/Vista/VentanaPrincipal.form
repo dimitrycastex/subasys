@@ -162,10 +162,6 @@
           </Constraints>
         </Component>
         <Component class="Vista.Panel_VisorPDF" name="panel_VisorPDF1">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
-          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Visor PDF">
@@ -209,6 +205,15 @@
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Buscar Clientes">
                 <Property name="tabTitle" type="java.lang.String" value="Buscar Clientes"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vista.Panel_Sel_Impresion" name="panel_Sel_Impresion1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Impresi&#xf3;n Documentos">
+                <Property name="tabTitle" type="java.lang.String" value="Impresi&#xf3;n Documentos"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

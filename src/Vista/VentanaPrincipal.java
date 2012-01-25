@@ -36,7 +36,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_BuscaProducto1.setFrame(this);
         this.panel_VisorPDF1.setFrame(this);
         this.panel_ResumenRecepcion1.setFrame(this);
-        this.panel_VisorPDF1.setRutaArchivo("EasyNote_MX_Disassembly_Manual.pdf");
+        this.panel_Sel_Impresion1.setFrame(this);
+        this.panel_Sel_Impresion1.setPanel_PDF(panel_VisorPDF1);
         
         this.panel_Producto1.setPanelResumen(panel_ResumenRecepcion1);
         this.panel_Causa1.setPanel_Rejudicial(this.panel_ReJudicial1);
@@ -45,6 +46,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_Busqueda_Cliente1.setPaneles(panel_ReVoluntaria1, panel_Factura1);
     }
     
+    //--------------------------------------------------------------------------
+    protected void addPanel_Sel_Impresion(){
+        jTabbedPane_Pestanas.addTab("Impresión Documentos", panel_Sel_Impresion1);
+        this.removePanel_Bienvenido();
+    }
+    
+    protected void removePanel_Sel_Impresion(){
+        jTabbedPane_Pestanas.remove(panel_Sel_Impresion1);
+    }
     
     
     //--------------------------------------------------------------------------
@@ -338,14 +348,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panel_BuscaProducto1 = new Vista.Panel_BuscaProducto1();
         panel_ResumenRecepcion1 = new Vista.Panel_ResumenRecepcion();
         panel_Busqueda_Cliente1 = new Vista.Panel_Busqueda_Cliente();
+        panel_Sel_Impresion1 = new Vista.Panel_Sel_Impresion();
         jToolBar1 = new javax.swing.JToolBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SUBASYS - Ventana Principal");
         setIconImage(new ImageIcon(this.getClass().getResource("/Vista/Imagenes_Files/martillo/128.png")).getImage());
-        setMaximumSize(new java.awt.Dimension(1000, 650));
         setMinimumSize(new java.awt.Dimension(1000, 650));
-        setName("Ventana Principal");
+        setName("Ventana Principal"); // NOI18N
         setResizable(false);
 
         jTabbedPane_Pestanas.setMaximumSize(new java.awt.Dimension(1000, 560));
@@ -380,10 +390,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /*
         jTabbedPane_Pestanas.addTab("Factura", panel_Factura1);
         */
-
-        /*
         jTabbedPane_Pestanas.addTab("Visor PDF", panel_VisorPDF1);
-        */
 
         /*
         jTabbedPane_Pestanas.addTab("Buscar Producto", panel_BuscaProducto1);
@@ -396,6 +403,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /*
         jTabbedPane_Pestanas.addTab("Buscar Clientes", panel_Busqueda_Cliente1);
         */
+        jTabbedPane_Pestanas.addTab("Impresión Documentos", panel_Sel_Impresion1);
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -405,7 +413,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,6 +502,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Vista.Panel_ReVoluntaria panel_ReVoluntaria1;
     private Vista.Panel_Remate panel_Remate1;
     private Vista.Panel_ResumenRecepcion panel_ResumenRecepcion1;
+    private Vista.Panel_Sel_Impresion panel_Sel_Impresion1;
     private Vista.Panel_VisorPDF panel_VisorPDF1;
     // End of variables declaration//GEN-END:variables
 }
