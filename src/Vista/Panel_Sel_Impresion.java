@@ -75,7 +75,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Imprimir Listas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
-        jButton_ListaClientes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_ListaClientes.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_ListaClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cliente/48.png"))); // NOI18N
         jButton_ListaClientes.setText("Imprimir Lista de Clientes");
         jButton_ListaClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +84,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             }
         });
 
-        jButton_listadeproductos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_listadeproductos.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_listadeproductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/canasto/48.png"))); // NOI18N
         jButton_listadeproductos.setText("Imprimir Lista de Productos");
         jButton_listadeproductos.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +96,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         jButton_listarecepcionesjudiciales.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_listarecepcionesjudiciales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/justicia/48.png"))); // NOI18N
         jButton_listarecepcionesjudiciales.setText("Imprimir Lista de Recepciones Judiciales");
+        jButton_listarecepcionesjudiciales.setEnabled(false);
         jButton_listarecepcionesjudiciales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_listarecepcionesjudicialesActionPerformed(evt);
@@ -111,7 +112,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             }
         });
 
-        jButton_listaderemates.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_listaderemates.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_listaderemates.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/modificar/documentos/48.png"))); // NOI18N
         jButton_listaderemates.setText("Imprimir Lista de Remates");
         jButton_listaderemates.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +121,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             }
         });
 
-        jButton_listaderolescausas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_listaderolescausas.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_listaderolescausas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/modificar/documentos/48.png"))); // NOI18N
         jButton_listaderolescausas.setText("Imprimir Lista de Roles/Causas");
         jButton_listaderolescausas.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +130,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             }
         });
 
-        jButton_listadeplanillaremates.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_listadeplanillaremates.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_listadeplanillaremates.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/modificar/documentos/48.png"))); // NOI18N
         jButton_listadeplanillaremates.setText("Imprimir Lista de Planilla de Remates");
         jButton_listadeplanillaremates.addActionListener(new java.awt.event.ActionListener() {
@@ -143,28 +144,15 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton_ListaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton_listadeproductos, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton_listarecepcionesjudiciales, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton_listaderecepcionesvoluntarias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton_listaderemates, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton_listaderolescausas, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton_listadeplanillaremates, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)))
+                    .addComponent(jButton_ListaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(jButton_listadeproductos, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(jButton_listarecepcionesjudiciales, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(jButton_listaderecepcionesvoluntarias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_listaderemates, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(jButton_listaderolescausas, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(jButton_listadeplanillaremates, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -188,7 +176,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Imprimir Documentos Individuales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
-        jButton_cajaremate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_cajaremate.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_cajaremate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/imprimir/48.png"))); // NOI18N
         jButton_cajaremate.setText("Imprimir Caja Remate");
         jButton_cajaremate.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +185,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             }
         });
 
-        jButton_detalledelotesrematados.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_detalledelotesrematados.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_detalledelotesrematados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/imprimir/48.png"))); // NOI18N
         jButton_detalledelotesrematados.setText("Imprimir Detalle de Lotes Rematados");
         jButton_detalledelotesrematados.addActionListener(new java.awt.event.ActionListener() {
@@ -206,11 +194,11 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             }
         });
 
-        jButton_plantilladeremate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_plantilladeremate.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_plantilladeremate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/modificar/documentos/48.png"))); // NOI18N
         jButton_plantilladeremate.setText("Imprimir Planilla de Remate");
 
-        jButton_planilladeremate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_planilladeremate.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_planilladeremate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/modificar/documentos/48.png"))); // NOI18N
         jButton_planilladeremate.setText("Imprimir Planilla de Remate (Lote)");
         jButton_planilladeremate.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +207,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             }
         });
 
-        jButton_recepcionjudicial.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_recepcionjudicial.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_recepcionjudicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/justicia/48.png"))); // NOI18N
         jButton_recepcionjudicial.setText("Imprimir Recepción Judicial");
         jButton_recepcionjudicial.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +216,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             }
         });
 
-        jButton_recepcionvoluntaria.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_recepcionvoluntaria.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_recepcionvoluntaria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/justicia/48.png"))); // NOI18N
         jButton_recepcionvoluntaria.setText("Imprimir Recepción Voluntaria");
         jButton_recepcionvoluntaria.addActionListener(new java.awt.event.ActionListener() {
@@ -271,7 +259,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
-        jButton_Volver.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Volver.setFont(new java.awt.Font("Arial", 0, 14));
         jButton_Volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/flechas/atras/24.png"))); // NOI18N
         jButton_Volver.setText("Volver");
         jButton_Volver.addActionListener(new java.awt.event.ActionListener() {
@@ -512,7 +500,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
         }
         
-        P_PDF.setRutaArchivo(path+"anexo_planilla_remate.pdf");
+        P_PDF.setRutaArchivo(path+"anexo_plantilla_remate.pdf");
         
     }//GEN-LAST:event_jButton_planilladeremateActionPerformed
 

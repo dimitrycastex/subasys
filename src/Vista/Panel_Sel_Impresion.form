@@ -73,35 +73,15 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton_ListaClientes" pref="349" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton_listadeproductos" pref="349" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton_listarecepcionesjudiciales" pref="349" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton_listaderecepcionesvoluntarias" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton_listaderemates" pref="349" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton_listaderolescausas" pref="349" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton_listadeplanillaremates" pref="349" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jButton_ListaClientes" alignment="0" pref="349" max="32767" attributes="0"/>
+                      <Component id="jButton_listadeproductos" alignment="0" pref="349" max="32767" attributes="0"/>
+                      <Component id="jButton_listarecepcionesjudiciales" alignment="0" pref="349" max="32767" attributes="0"/>
+                      <Component id="jButton_listaderecepcionesvoluntarias" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButton_listaderemates" alignment="0" pref="349" max="32767" attributes="0"/>
+                      <Component id="jButton_listaderolescausas" alignment="0" pref="349" max="32767" attributes="0"/>
+                      <Component id="jButton_listadeplanillaremates" alignment="0" pref="349" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -166,6 +146,7 @@
               <Image iconType="3" name="/Vista/Imagenes_Files/justicia/48.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Lista de Recepciones Judiciales"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_listarecepcionesjudicialesActionPerformed"/>
