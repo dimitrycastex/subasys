@@ -17,6 +17,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -24,11 +26,23 @@ import java.io.FileOutputStream;
  */
 public class Imprimir_Planilla_Remate_Lote {
     
+    public static ArrayList remate;
+    public static ArrayList<ArrayList> producto;
+    public static ArrayList<ArrayList> clientes;
+    public static String[] JusgadoRolCausa;
+    
+    public static String id_remate;
+    
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
-    public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
+    public static void imprimir(String ruta, String id_remt) throws DocumentException, FileNotFoundException
     {
       Document document = new Document();
       PdfWriter.getInstance(document,new FileOutputStream(ruta+"anexo_plantilla_remate.pdf"));
+      id_remate = id_remt;
+      
+      remate = Modelo.Remate.getDatos(id_remate);
+      
+      
       //abrir el pdf
       document.open();
       //ir escribiendo en el pdf
@@ -38,20 +52,21 @@ public class Imprimir_Planilla_Remate_Lote {
       document.add(formato.titulo("ANEXO PLANTILLA DE REMATES"));
       document.add(new Phrase(""));//espacio
       
-      document.add(formato.subtitulo("REMATE N°100 : JUDICIAL COQUIMBO"));
+      
+      document.add(formato.subtitulo(remate.get(4).toString()));
       document.add(new Phrase(""));//espacio
       
-      document.add(formato.subtitulo("Comision : 10%"));
+      document.add(formato.subtitulo("Comision : "+remate.get(5).toString()+"%"));
       document.add(new Phrase("\n\n"));//espacio
       
       //Paragraph pp = new Paragraph("Dirección/Lugar",new Font(FontFamily.TIMES_ROMAN, 8, Font.BOLD));
       
       document.add(formato.texto_normal("Ciudad/Lugar : ",Font.BOLD));
-      document.add(formato.texto_normal("BUIN/BENAVENTE N°6"));
+      document.add(formato.texto_normal(remate.get(6).toString()+"/"+remate.get(1)));
       document.add(new Phrase("\n"));//espacio
       
       document.add(formato.texto_normal("Fecha               : ",Font.BOLD));
-      document.add(formato.texto_normal("21/10/2005"));
+      document.add(formato.texto_normal(remate.get(3).toString()));
       
       document.add(CrearTabla());
       //cerrar el pdf
@@ -67,9 +82,11 @@ public class Imprimir_Planilla_Remate_Lote {
             // separación del parrafo de texto con la tabla
             table.setSpacingBefore(10);
             
+            producto = Modelo.Remate.get_Lista_Productos(id_remate);
+            
             // agregar titulo Nombre [ necesita mas espacio ]
             table.addCell(celda_normal(" ",13,Element.ALIGN_UNDEFINED,1));
-            table.addCell(celda_titulo("Adjudicario",4,Element.ALIGN_CENTER));
+            table.addCell(celda_titulo("Adjudicano",4,Element.ALIGN_CENTER));
             table.addCell(celda_titulo("Num. Lote",1,Element.ALIGN_CENTER));
             table.addCell(celda_titulo("Descripción Lote",8,Element.ALIGN_LEFT));
             table.addCell(celda_titulo("Juzgado",1,Element.ALIGN_CENTER));
@@ -78,16 +95,45 @@ public class Imprimir_Planilla_Remate_Lote {
             table.addCell(celda_titulo("Valor",1,Element.ALIGN_CENTER));
             table.addCell(celda_titulo("Nombre",4,Element.ALIGN_CENTER));
             
-            for(int i=1;i<=10;i++)
+            
+            
+            for (Iterator it = producto.iterator(); it.hasNext();) // itera
+                /*remate.add(rs.getInt("ID_PRODUCTO"));
+          remate.add(rs.getInt("Lote"));
+          remate.add(rs.getString("Descripcion"));
+          remate.add(rs.getInt("Cantidad"));
+          remate.add(rs.getInt("Precio_unitario"));  
+          remate.add(rs.getInt("Garantia"));     
+          remate.add(rs.getInt("Total"));*/
             {
-                table.addCell(celda_normal("4"+i,1,Element.ALIGN_CENTER,0));
-                table.addCell(celda_normal("AUTOMOVIL MARCA LADA MODELO 32"+i,8,Element.ALIGN_LEFT,0));
-                table.addCell(celda_normal("1PLSL",1,Element.ALIGN_CENTER,0));
-                table.addCell(celda_normal("105233-2",1,Element.ALIGN_CENTER,0));
+                ArrayList object = (ArrayList) it.next(); // castea
+                
+                table.addCell(celda_normal(object.get(1).toString(),1,Element.ALIGN_CENTER,0));
+                table.addCell(celda_normal(object.get(2).toString(),8,Element.ALIGN_LEFT,0));
+                
+                JusgadoRolCausa = Modelo.Producto.getJuzgado_Causa(object.get(0).toString());
+                
+                table.addCell(celda_normal(JusgadoRolCausa[0],1,Element.ALIGN_CENTER,0));
+                table.addCell(celda_normal(JusgadoRolCausa[1],1,Element.ALIGN_CENTER,0));
                 table.addCell(celda_normal(" ",1,Element.ALIGN_CENTER,0));
-                table.addCell(celda_normal(" ",1,Element.ALIGN_CENTER,0));
+                table.addCell(celda_normal(object.get(6).toString(),1,Element.ALIGN_CENTER,0));
                 table.addCell(celda_normal(" ",4,Element.ALIGN_CENTER,0));
+                
+                //System.out.println("ID_PRODUCTO :"+object.get(0).toString());
+                //System.out.println(Modelo.Producto.get_Adjudicario(object.get(0).toString()));
+                
+                //System.out.println("ID_PRODUCTO :"+object.get(0).toString());
+                //System.out.println("Lote :"+object.get(1).toString());
+                //System.out.println("Descripcion :"+object.get(2).toString());
+                //System.out.println("Cantidad :"+object.get(3).toString());
+                //System.out.println("Precio_unitario :"+object.get(4).toString());
+                //System.out.println("Garantia :"+object.get(5).toString());
+                //System.out.println("Total :"+object.get(6).toString());
+               // System.out.println("");
+                //System.out.println("");
+                
             }
+            
             
             return table;
     }

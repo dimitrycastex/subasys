@@ -16,12 +16,15 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 /**
  *
  * @author Boris
  */
 public class Imprimir_Gastos_Remate {
+    
+    public static ArrayList remate;
     
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
     public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
@@ -37,20 +40,20 @@ public class Imprimir_Gastos_Remate {
       document.add(formato.titulo("GASTOS DEL REMATE"));
       document.add(new Phrase(""));//espacio
       
-      document.add(formato.subtitulo("REMATE N°09 : JUDICIAL OVALLE"));
+      document.add(formato.subtitulo(remate.get(4).toString()));
       document.add(new Phrase(""));//espacio
       
-      document.add(formato.subtitulo("Comision : 10%"));
+      document.add(formato.subtitulo("Comision : "+remate.get(5).toString()+"%"));
       document.add(new Phrase("\n\n"));//espacio
       
       //Paragraph pp = new Paragraph("Dirección/Lugar",new Font(FontFamily.TIMES_ROMAN, 8, Font.BOLD));
       
       document.add(formato.texto_normal("Ciudad/Lugar : ",Font.BOLD));
-      document.add(formato.texto_normal("ANGOL/TANGUE 596"));
+      document.add(formato.texto_normal(remate.get(6).toString()+"/"+remate.get(1)));
       document.add(new Phrase("\n"));//espacio
       
       document.add(formato.texto_normal("Fecha               : ",Font.BOLD));
-      document.add(formato.texto_normal("10/08/200O"));
+      document.add(formato.texto_normal(remate.get(3).toString()));
       
       document.add(CrearTabla());
       //cerrar el pdf

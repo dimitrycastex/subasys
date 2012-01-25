@@ -16,6 +16,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,11 +24,18 @@ import java.io.FileOutputStream;
  */
 public class Imprimir_Factura {
     
+    public static ArrayList remate;
+    public static ArrayList<ArrayList> factura;
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
     public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
     {
       Document document = new Document();
       PdfWriter.getInstance(document,new FileOutputStream(ruta+"factura.pdf"));
+      
+      remate = Modelo.Remate.getDatos("162C");
+      factura = Modelo.Remate.get_Lista_Caja_Remate("162C");
+      
+      
       //abrir el pdf
       document.open();
       //ir escribiendo en el pdf
