@@ -246,25 +246,15 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton_notacreditos" pref="280" max="32767" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton_plantilladeremate" pref="280" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton_cajaremate" pref="282" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton_factura" pref="282" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jButton_plantilladeremate" alignment="1" pref="570" max="32767" attributes="0"/>
+                      <Component id="jButton_cajaremate" alignment="0" pref="570" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jButton_recepcionjudicial" pref="282" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton_recepcionvoluntaria" pref="282" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jButton_planilladeremate" alignment="1" pref="570" max="32767" attributes="0"/>
-                      <Component id="jButton_liquidacionderemate" alignment="0" pref="570" max="32767" attributes="0"/>
                       <Component id="jButton_detalledelotesrematados" alignment="1" pref="570" max="32767" attributes="0"/>
-                      <Component id="jButton_colillasdeloteremates" alignment="1" pref="570" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -273,15 +263,9 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton_cajaremate" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton_factura" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jButton_cajaremate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton_notacreditos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton_plantilladeremate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jButton_plantilladeremate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton_recepcionjudicial" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -290,12 +274,8 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButton_planilladeremate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton_liquidacionderemate" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButton_detalledelotesrematados" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton_colillasdeloteremates" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace pref="141" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -311,17 +291,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Caja Remate"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton_colillasdeloteremates">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Vista/Imagenes_Files/imprimir/48.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Imprimir Colillas de Lote Remates"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_cajaremateActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_detalledelotesrematados">
           <Properties>
@@ -332,39 +304,6 @@
               <Image iconType="3" name="/Vista/Imagenes_Files/imprimir/48.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Detalle de Lotes Rematados"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton_factura">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Vista/Imagenes_Files/imprimir/48.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Imprimir Factura"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton_liquidacionderemate">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Vista/Imagenes_Files/imprimir/48.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Imprimir Liquidaci&#xf3;n de Remate"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton_notacreditos">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Vista/Imagenes_Files/imprimir/48.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Imprimir Nota de Cr&#xe9;ditos"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_plantilladeremate">
@@ -399,6 +338,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Recepci&#xf3;n Judicial"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_recepcionjudicialActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_recepcionvoluntaria">
           <Properties>
@@ -410,6 +352,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Recepci&#xf3;n Voluntaria"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_recepcionvoluntariaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
