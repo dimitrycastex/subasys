@@ -25,6 +25,7 @@ public class Imprimir_Lista_Recepciones_Judiciales
     public static ArrayList lista_causa_rj;
     public static ArrayList lista_recepcion;
     public static ArrayList lista_productos;
+    public static ArrayList causa_rj;
     
     //@param ruta: ruta absoluta o relativa en donde crear el archivos
     public static void imprimir(String ruta) throws DocumentException, FileNotFoundException
@@ -52,6 +53,9 @@ public class Imprimir_Lista_Recepciones_Judiciales
        //tomo los valores de arraylist y los vuelco en lista_recepcion y lista_productos
        lista_recepcion = Modelo.Recepcion_Judicial.get_Lista_Causa_Recepcion_Judicial(code_rol_causa);
        lista_productos = Modelo.Recepcion_Judicial.get_Lista_Productos(code_rol_causa);
+       causa_rj = Modelo.Causa.getDatos(code_rol_causa);
+       
+       System.out.println(code_rol_causa);
        
        document.add(CrearTablaCodigo(code_rol_causa));
        document.add(new Phrase("\n"));//espacio
@@ -75,8 +79,9 @@ public class Imprimir_Lista_Recepciones_Judiciales
             table.addCell(formato.celda_titulo("Monto Bodegaje"));
             
             //recibir datos
-            /*CODIGO DE RJ*/
-            table.addCell(formato.celda_normal("asd")); //codigo RJ
+            
+            table.addCell(formato.celda_normal(causa_rj.get(5).toString())); //codigo ID_RJ
+            //table.addCell(formato.celda_normal("asd"));
             table.addCell(formato.celda_normal(j)); // codigo rol - causa          
             table.addCell(formato.celda_normal((String)lista_recepcion.get(3),2));           
             table.addCell(formato.celda_normal((String)lista_recepcion.get(4),2));           

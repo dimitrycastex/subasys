@@ -16,7 +16,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Boris
+ * @author DimitryCastex
  */
 public class Imprimir_Recepcion_Judicial
 {
