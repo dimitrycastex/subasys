@@ -55,8 +55,6 @@ public class Imprimir_Lista_Recepciones_Judiciales
        lista_productos = Modelo.Recepcion_Judicial.get_Lista_Productos(code_rol_causa);
        causa_rj = Modelo.Causa.getDatos(code_rol_causa);
        
-       System.out.println(code_rol_causa);
-       
        document.add(CrearTablaCodigo(code_rol_causa));
        document.add(new Phrase("\n"));//espacio
       }
@@ -82,12 +80,19 @@ public class Imprimir_Lista_Recepciones_Judiciales
             
             table.addCell(formato.celda_normal(causa_rj.get(5).toString())); //codigo ID_RJ
             //table.addCell(formato.celda_normal("asd"));
-            table.addCell(formato.celda_normal(j)); // codigo rol - causa          
-            table.addCell(formato.celda_normal((String)lista_recepcion.get(3),2));           
-            table.addCell(formato.celda_normal((String)lista_recepcion.get(4),2));           
-            table.addCell(formato.celda_normal((String)lista_recepcion.get(2)));           
-            table.addCell(formato.celda_normal((String)lista_recepcion.get(7)));           
-            table.addCell(formato.celda_normal(lista_recepcion.get(8).toString()));            
+            table.addCell(formato.celda_normal(j)); // codigo rol - causa
+            System.out.println(j);
+            table.addCell(formato.celda_normal((String)lista_recepcion.get(3),2));
+            System.out.println((String)lista_recepcion.get(3));
+            table.addCell(formato.celda_normal((String)lista_recepcion.get(4),2));
+            System.out.println((String)lista_recepcion.get(4));
+            table.addCell(formato.celda_normal((String)lista_recepcion.get(2)));
+            System.out.println((String)lista_recepcion.get(2));
+            table.addCell(formato.celda_normal((String)lista_recepcion.get(7)));
+            System.out.println((String)lista_recepcion.get(7));
+            table.addCell(formato.celda_normal(lista_recepcion.get(8).toString()));
+            System.out.println(lista_recepcion.get(8).toString());
+            System.out.println("------------------------------------------");
 
             //celda vacia
             PdfPCell cell = new PdfPCell();
