@@ -21,26 +21,27 @@ public class Recepcion_Judicial {
    
    public static void nuevo(ArrayList unaLista)
  {
-        java.util.Date fecha = (java.sql.Date)unaLista.get(1);
+        java.util.Date fecha = (java.util.Date)unaLista.get(1);
         java.sql.Date fechaIngreso = new java.sql.Date(fecha.getTime());
-        fecha = (java.sql.Date)unaLista.get(2);
+        fecha = (java.util.Date)unaLista.get(2);
         java.sql.Date fechaDevolucion =  new java.sql.Date(fecha.getTime());
             
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
-            "insert into Recepcion_Judicial (Fecha_Ingreso,Fecha_Devolucion,"
-                    + "Demandante,Demandado,Bodegaje_Pagado) values (?,?,?,?,?);");
+            "insert into Recepcion_Judicial (ID_RJ,Fecha_Ingreso,Fecha_Devolucion,"
+                    + "Demandante,Demandado,Bodegaje_Pagado) values (?,?,?,?,?,?);");
 
-            prep.setDate(1, fechaIngreso);
-            prep.setDate(2, fechaDevolucion);
-            prep.setString(3, unaLista.get(3).toString());  
-            prep.setString(4, unaLista.get(4).toString());  
-            prep.setInt(5, Integer.parseInt(unaLista.get(5).toString()));
+            prep.setInt(1, Integer.parseInt(unaLista.get(0).toString()));
+            prep.setDate(2, fechaIngreso);
+            prep.setDate(3, fechaDevolucion);
+            prep.setString(4, unaLista.get(3).toString());  
+            prep.setString(5, unaLista.get(4).toString());  
+            prep.setInt(6, Integer.parseInt(unaLista.get(5).toString()));
             prep.executeUpdate();
             
             } catch (SQLException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Error en la base de datos: "+ ex, "Error: Recepción Judicial", JOptionPane.ERROR_MESSAGE);
         }
     }
    
@@ -237,7 +238,7 @@ public class Recepcion_Judicial {
           }
           rs.close();
           
-          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el Recepcion Judicial", "Error", JOptionPane.WARNING_MESSAGE);
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
           
          return list;
 

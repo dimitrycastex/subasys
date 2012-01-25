@@ -27,13 +27,16 @@ public class Panel_Cliente extends javax.swing.JPanel {
     
     private VentanaPrincipal V_Principal;
     private ValidaCliente validador;
-    private boolean desdePrincipal, desdeFactura, nuevo;
+    private boolean desdePrincipal, desdeFactura, nuevo, modificar;
+    private ArrayList datos;
     
     public void setFrame(JFrame f){
         this.V_Principal= (VentanaPrincipal) f;
         this.validador = new ValidaCliente();
         desdePrincipal = false;
         desdeFactura = false;
+        modificar = false;
+        datos = new ArrayList();
     }
     
     public ArrayList getDatos(){
@@ -51,6 +54,25 @@ public class Panel_Cliente extends javax.swing.JPanel {
         Datos.add(this.jTextField_Ciudad.getText());
         Datos.add(this.jTextField_Comuna.getText());
         return Datos;
+    }
+    
+    public void setDatos(ArrayList cliente){
+        
+        this.jTextField_RUT.setText(cliente.get(0).toString());
+        this.jTextField_ApMaterno.setText(cliente.get(1).toString());
+        this.jTextField_ApPaterno.setText(cliente.get(2).toString());
+        this.jTextField_Nombre.setText(cliente.get(3).toString());
+        this.jTextField_Email.setText(cliente.get(4).toString());
+        this.jTextField_Web.setText(cliente.get(5).toString());
+        this.jTextField_Telefono.setText(cliente.get(6).toString());
+        this.jTextField_CodPostal.setText(cliente.get(7).toString());
+        this.jTextField_Direccion.setText(cliente.get(8).toString());
+        this.jTextField_Ciudad.setText(cliente.get(9).toString());
+        this.jTextField_Comuna.setText(cliente.get(10).toString());
+        
+       this.datos = cliente;
+    
+    
     }
     
     private void Limpiar(){
@@ -76,7 +98,11 @@ public class Panel_Cliente extends javax.swing.JPanel {
         this.nuevo=b;
         this.jButton_Modificar.setVisible(!b);
         this.jButton_Buscar.setVisible(!b);
-        this.jTextField_RUT.setEditable(b);
+        this.habilitar(b);
+    }
+    
+    private void habilitar(boolean b){
+         this.jTextField_RUT.setEditable(b);
         this.jTextField_Nombre.setEditable(b);
         this.jTextField_ApPaterno.setEditable(b);
         this.jTextField_ApMaterno.setEditable(b);
@@ -236,10 +262,16 @@ public class Panel_Cliente extends javax.swing.JPanel {
         });
 
         jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/modificar/cliente/24.png"))); // NOI18N
         jButton_Modificar.setText("Modificar");
+        jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ModificarActionPerformed(evt);
+            }
+        });
 
         jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/16.png"))); // NOI18N
+        jButton_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/24.png"))); // NOI18N
         jButton_Buscar.setText("Buscar");
 
         jTextField_CodPostal.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -274,7 +306,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
         });
 
         jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/16.png"))); // NOI18N
+        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/24.png"))); // NOI18N
         jButton_Cancelar.setText("Cancelar");
         jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +315,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
         });
 
         jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/16.png"))); // NOI18N
+        jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/24.png"))); // NOI18N
         jButton_Aceptar.setText("Aceptar");
         jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,7 +402,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
                                 .addComponent(jButton_Buscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton_Modificar)))
-                        .addGap(0, 51, Short.MAX_VALUE))
+                        .addGap(0, 53, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(Label_Cliente)
@@ -444,7 +476,7 @@ public class Panel_Cliente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField_Web, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(label_Cliente481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
@@ -511,21 +543,36 @@ public class Panel_Cliente extends javax.swing.JPanel {
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         // TODO add your handling code here:
-        //ENVIAR INFORMACION
+        
         boolean esValido = validador.ClienteValido(this.getDatos());
        
+        //Saber si los datos ingresados son validos
         if(esValido)
             JOptionPane.showMessageDialog(V_Principal, "Cliente Validado", "Información", JOptionPane.INFORMATION_MESSAGE);
         
         else
             JOptionPane.showMessageDialog(V_Principal, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
         
+        //Si es valido y nuevo cliente
+        
         if(esValido && nuevo){
-            Cliente.nuevo(this.getDatos());
-            JOptionPane.showMessageDialog(V_Principal, "Cliente Validado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            
+            String run = this.jTextField_RUT.getText();
+            run = run.replace("-","");
+            
+            //Se revisa si el cliente ya esta en la BD
+            if(Cliente.isCliente(run)){
+                JOptionPane.showMessageDialog(V_Principal, "Cliente ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            else{
+                Cliente.nuevo(this.getDatos());
+                JOptionPane.showMessageDialog(V_Principal, "Cliente Validado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
         
         }
         
+        //Si se van a modificar datos de un cliente
         else if(esValido && !nuevo){
             int opcion = JOptionPane.showConfirmDialog(V_Principal, "Está seguro de actualizar los datos del Cliente"
                     + "", "Modificar Cliente", JOptionPane.YES_NO_OPTION);
@@ -630,8 +677,25 @@ public class Panel_Cliente extends javax.swing.JPanel {
 
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
         // TODO add your handling code here:
-        V_Principal.addPanel_BuscaCliente(1);
+        V_Principal.addPanel_Busqueda_Cliente(1);
     }//GEN-LAST:event_jButton_BuscarActionPerformed
+
+    private void jButton_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarActionPerformed
+        // TODO add your handling code here:
+        if(modificar){
+            modificar = false;
+            //this.setDatos(datos);
+            this.habilitar(false);
+            this.repaint();
+        }
+        
+        else{
+            modificar = true;
+            this.habilitar(true);
+            this.repaint();
+            
+        }
+    }//GEN-LAST:event_jButton_ModificarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_ApMaterno;

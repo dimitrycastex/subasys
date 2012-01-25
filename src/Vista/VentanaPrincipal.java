@@ -4,7 +4,9 @@
  */
 package Vista;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import org.pushingpixels.substance.api.skin.*;
 
@@ -27,12 +29,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_Producto1.setFrame(this);
         this.panel_Causa1.setFrame(this);
         this.panel_Factura1.setFrame(this);
-        this.panel_BuscaCliente1.setFrame(this);
+        //this.panel_Busqueda_Cliente1.setFrame(this);
+        //this.panel_BuscaCliente1.setFrame(this);
         this.panel_BuscaProducto1.setFrame(this);
         this.panel_VisorPDF1.setFrame(this);
+        this.panel_ResumenRecepcion1.setFrame(this);
         this.panel_VisorPDF1.setRutaArchivo("EasyNote_MX_Disassembly_Manual.pdf");
+        this.panel_Producto1.setPanelResumen(panel_ResumenRecepcion1);
+        this.panel_Causa1.setPanel_Rejudicial(this.panel_ReJudicial1);
+        this.panel_ReJudicial1.setPanel_ResumenRecepcion(this.panel_ResumenRecepcion1);
     }
     
+    
+    
+    //--------------------------------------------------------------------------
+    protected void bloquearPanel(){
+        this.jTabbedPane_Pestanas.setEnabledAt(0, false);
+        this.jTabbedPane_Pestanas.setSelectedIndex(1);
+    }
+    
+    protected void desbloquearPanel(){
+        this.jTabbedPane_Pestanas.setEnabledAt(0, true);
+        //this.jTabbedPane_Pestanas.setSelectedIndex(0);
+    }
+    
+    protected void bloquearPanel(int panel){
+        this.jTabbedPane_Pestanas.setEnabledAt(panel, false);
+        this.jTabbedPane_Pestanas.setSelectedIndex(panel+1);
+    }
+    
+    protected void desbloquearPanel(int panel){
+        this.jTabbedPane_Pestanas.setEnabledAt(panel, true);
+        //this.jTabbedPane_Pestanas.setSelectedIndex(0);
+    }
+    
+    protected void removePanel(JPanel p){
+        jTabbedPane_Pestanas.remove(p);
+    
+    }
     //--------------------------------------------------------------------------
     protected void addPanel_Cliente(boolean nuevo, int caso){
         String nombre;
@@ -96,7 +130,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     protected void addPanel_ReJudicial(boolean nuevo){
         String nombre;
         this.panel_ReJudicial1.ReJudicialNueva(nuevo);
-        nombre = (nuevo==true)? "Nuevo Remate" : "Modificar Remate";
+        nombre = (nuevo==true)? "Nueva Recepción Judicial" : "Modificar Recepción Judicial";
         jTabbedPane_Pestanas.addTab(nombre, panel_ReJudicial1);
         jTabbedPane_Pestanas.setEnabledAt(0, false);
         this.removePanel_Bienvenido();
@@ -115,6 +149,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     protected void desbloquearPanel_ReJudicial(){
         this.jTabbedPane_Pestanas.setEnabledAt(0, true);
         //this.jTabbedPane_Pestanas.setSelectedIndex(0);
+    }
+    
+    //--------------------------------------------------------------------------
+    protected void addPanel_ResumenRecepcion(boolean esJudicial){
+        
+        if(esJudicial) panel_ResumenRecepcion1.esJudicial();
+        
+        else panel_ResumenRecepcion1.esVoluntaria();
+        
+        jTabbedPane_Pestanas.addTab("Resumen Recepcion", panel_ResumenRecepcion1);
+    }
+    
+    protected void removePanel_ResumenRecepcion(){
+        jTabbedPane_Pestanas.remove(panel_ResumenRecepcion1);
     }
     
     //--------------------------------------------------------------------------
@@ -189,25 +237,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     //--------------------------------------------------------------------------
-    protected void addPanel_BuscaCliente(int tipo){
-        String nombre = "Buscar Cliente";
-        jTabbedPane_Pestanas.addTab(nombre, panel_BuscaCliente1);
-        //this.removePanel_Cliente();
+    protected void addPanel_Busqueda_Cliente(int tipo){
+        /*String nombre = "Buscar Cliente";
+        jTabbedPane_Pestanas.addTab(nombre, panel_Busqueda_Cliente1);
+        this.removePanel_Cliente();
         
         switch (tipo) {
             case 1: //Panel Cliente
-                    panel_BuscaCliente1.esCliente();
+                    //panel_BuscaCliente1.esCliente();
                     this.bloquearPanel_Cliente();
                     break;
             case 2: //panel factura
-                    panel_BuscaCliente1.esFactura();
+                    //panel_BuscaCliente1.esFactura();
                     this.bloquearPanel_Factura();
                     break;
-        }
+        }*/
         
     }
     
-    protected void removePanel_BuscaCliente(int tipo){
+    protected void removePanel_Busqueda_Cliente(int tipo){
         switch (tipo) {
             case 1: //Panel Cliente
                     this.desbloquearPanel_Cliente();
@@ -217,7 +265,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     break;
                 
         }
-        jTabbedPane_Pestanas.remove(panel_BuscaCliente1);        
+        //jTabbedPane_Pestanas.remove(panel_BuscaCliente1);        
     }
     
     //--------------------------------------------------------------------------
@@ -281,15 +329,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panel_Producto1 = new Vista.Panel_Producto2();
         panel_Factura1 = new Vista.Panel_Factura1();
         panel_VisorPDF1 = new Vista.Panel_VisorPDF();
-        panel_BuscaCliente1 = new Vista.Panel_BuscaCliente1();
         panel_BuscaProducto1 = new Vista.Panel_BuscaProducto1();
+        panel_ResumenRecepcion1 = new Vista.Panel_ResumenRecepcion();
         jToolBar1 = new javax.swing.JToolBar();
-        jMenuBar_Principal = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SUBASYS - Ventana Principal");
+        setIconImage(new ImageIcon(this.getClass().getResource("/Vista/Imagenes_Files/martillo/128.png")).getImage());
         setMaximumSize(new java.awt.Dimension(1000, 650));
         setMinimumSize(new java.awt.Dimension(1000, 650));
         setName("Ventana Principal");
@@ -297,7 +343,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane_Pestanas.setMaximumSize(new java.awt.Dimension(1000, 560));
         jTabbedPane_Pestanas.setMinimumSize(new java.awt.Dimension(1000, 560));
-        jTabbedPane_Pestanas.setPreferredSize(new java.awt.Dimension(1000, 560));
+        jTabbedPane_Pestanas.setPreferredSize(new java.awt.Dimension(1000, 650));
         jTabbedPane_Pestanas.addTab("Bienvenido a SUBASYS", panel_Bienvenido1);
 
         /*
@@ -333,23 +379,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         */
 
         /*
-        jTabbedPane_Pestanas.addTab("Buscar Cliente", panel_BuscaCliente1);
+        jTabbedPane_Pestanas.addTab("Buscar Producto", panel_BuscaProducto1);
         */
 
         /*
-        jTabbedPane_Pestanas.addTab("Buscar Producto", panel_BuscaProducto1);
+        jTabbedPane_Pestanas.addTab("Resumen Recepción", panel_ResumenRecepcion1);
         */
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
-
-        jMenu1.setText("Archivo");
-        jMenuBar_Principal.add(jMenu1);
-
-        jMenu2.setText("Acerca de");
-        jMenuBar_Principal.add(jMenu2);
-
-        setJMenuBar(jMenuBar_Principal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -361,9 +399,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -415,24 +452,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                /*try {
-                    UIManager.setLookAndFeel(new org.pushingpixels.substance.api.skin.SubstanceBusinessBlueSteelLookAndFeel());
+                try {
+                    UIManager.setLookAndFeel(new org.pushingpixels.substance.api.skin.SubstanceOfficeSilver2007LookAndFeel());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,"Substance Graphite failed to initialize");
-                }*/
+                }
 
                 new VentanaPrincipal().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar_Principal;
     private javax.swing.JTabbedPane jTabbedPane_Pestanas;
     private javax.swing.JToolBar jToolBar1;
     private Vista.Panel_Bienvenido panel_Bienvenido1;
-    private Vista.Panel_BuscaCliente1 panel_BuscaCliente1;
     private Vista.Panel_BuscaProducto1 panel_BuscaProducto1;
     private Vista.Panel_Causa panel_Causa1;
     private Vista.Panel_Cliente panel_Cliente1;
@@ -441,6 +474,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Vista.Panel_ReJudicial2 panel_ReJudicial1;
     private Vista.Panel_ReVoluntaria2 panel_ReVoluntaria1;
     private Vista.Panel_Remate panel_Remate1;
+    private Vista.Panel_ResumenRecepcion panel_ResumenRecepcion1;
     private Vista.Panel_VisorPDF panel_VisorPDF1;
     // End of variables declaration//GEN-END:variables
 }

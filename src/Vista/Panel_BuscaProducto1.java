@@ -303,7 +303,7 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
             ArrayList<ArrayList> temp = new ArrayList<ArrayList>();
             
             temp.add(Producto.getDatos(this.jTextField_Buscar.getText()));
-            this.tabla_Producto_BusquedaProductos.AgregaProductos(temp);
+            this.tabla_Producto_BusquedaProductos.AgregaProductos(temp,true);
             this.tabla_Producto_BusquedaProductos.repaint();
         }
     }//GEN-LAST:event_jButton_BuscarActionPerformed
@@ -335,7 +335,7 @@ public class Panel_BuscaProducto1 extends javax.swing.JPanel {
         // TODO add your handling code here:
         ArrayList<ArrayList> temp = this.tabla_Producto_BusquedaProductos.getProductosSeleccionados();
         
-        this.tabla_Producto_ProductosSeleccionados.AgregaProductos(temp);
+        this.tabla_Producto_ProductosSeleccionados.AgregaProductos(temp,false);
         this.tabla_Producto_ProductosSeleccionados.repaint();
     }//GEN-LAST:event_jButton_AgregarActionPerformed
 

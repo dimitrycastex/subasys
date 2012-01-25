@@ -45,12 +45,12 @@ public class Postgresql {
      String driver = "org.postgresql.Driver";
      //String dbname = "Subasys";
      String dbname = "subasys";
-      //String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
-     String url = "jdbc:postgresql://localhost/" +  dbname;
-      //String username = "subasys";
-     // String password = "cscv$38l";
-     String username = "postgres";
-     String password = "subasys";
+      String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
+     //String url = "jdbc:postgresql://localhost/" +  dbname;
+      String username = "subasys";
+      String password = "cscv$38l";
+     //String username = "postgres";
+     //String password = "subasys";
         Connection conData = null;
        
         try {
@@ -62,7 +62,8 @@ public class Postgresql {
             conData = DriverManager.getConnection(url,username,password);
             return conData;
         } catch (SQLException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Error en la base de datos: "+ ex, "Error: PostgreSQL", JOptionPane.ERROR_MESSAGE);
+            //System.out.println(ex);
             return conData;
         }
         

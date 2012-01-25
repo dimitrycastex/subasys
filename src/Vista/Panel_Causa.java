@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import Modelo.Cliente;
+import Validacion.ValidaCausa;
+import javax.swing.JPanel;
 
 /**
  *
@@ -26,9 +28,14 @@ public class Panel_Causa extends javax.swing.JPanel {
     
     
     private VentanaPrincipal V_Principal;
+    private Panel_ReJudicial2 R_Judicial;
     
     public void setFrame(JFrame f){
         this.V_Principal= (VentanaPrincipal) f;
+    }
+    
+    public void setPanel_Rejudicial (JPanel p){
+        R_Judicial = (Panel_ReJudicial2) p;
     }
     
     private void Limpiar(){
@@ -55,9 +62,8 @@ public class Panel_Causa extends javax.swing.JPanel {
     
     protected void CausaNueva(boolean b){
         this.Limpiar();
-        this.TextField_ROL.setEditable(!b);
+        
         this.jButton_BuscarROL.setEnabled(!b);
-        this.jButton_ModificarROL.setEnabled(!b);
         
         this.TextField_Abogado.setEditable(b);
         this.TextField_Caratulado.setEditable(b);
@@ -77,7 +83,6 @@ public class Panel_Causa extends javax.swing.JPanel {
         Label_Receptor = new javax.swing.JLabel();
         TextField_Receptor = new javax.swing.JTextField();
         Label_Abogado = new javax.swing.JLabel();
-        jButton_ModificarROL = new javax.swing.JButton();
         TextField_Abogado = new javax.swing.JTextField();
         Label_ROL = new javax.swing.JLabel();
         Label_Juzgado = new javax.swing.JLabel();
@@ -87,9 +92,9 @@ public class Panel_Causa extends javax.swing.JPanel {
         TextField_Caratulado = new javax.swing.JTextField();
         Label_Caratulado = new javax.swing.JLabel();
         jButton_BuscarROL = new javax.swing.JButton();
-        jButton_Aceptar = new javax.swing.JButton();
         jButton_Cancelar = new javax.swing.JButton();
         label_Justicia481 = new Vista.Imagenes_Label.justicia.Label_Justicia48();
+        jButton_RecepcionJudicial = new javax.swing.JButton();
 
         setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         setMaximumSize(new java.awt.Dimension(1000, 550));
@@ -109,9 +114,6 @@ public class Panel_Causa extends javax.swing.JPanel {
 
         Label_Abogado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Label_Abogado.setText("Abogado");
-
-        jButton_ModificarROL.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_ModificarROL.setText("Modificar");
 
         TextField_Abogado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         TextField_Abogado.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -154,24 +156,24 @@ public class Panel_Causa extends javax.swing.JPanel {
         Label_Caratulado.setText("Caratulado como");
 
         jButton_BuscarROL.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_BuscarROL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/16.png"))); // NOI18N
+        jButton_BuscarROL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/24.png"))); // NOI18N
         jButton_BuscarROL.setText("Buscar");
 
-        jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/16.png"))); // NOI18N
-        jButton_Aceptar.setText("Aceptar");
-        jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_AceptarActionPerformed(evt);
-            }
-        });
-
         jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/16.png"))); // NOI18N
+        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/24.png"))); // NOI18N
         jButton_Cancelar.setText("Cancelar");
         jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CancelarActionPerformed(evt);
+            }
+        });
+
+        jButton_RecepcionJudicial.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_RecepcionJudicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/justicia/24.png"))); // NOI18N
+        jButton_RecepcionJudicial.setText("Agregar Recepción Judicial");
+        jButton_RecepcionJudicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RecepcionJudicialActionPerformed(evt);
             }
         });
 
@@ -185,9 +187,9 @@ public class Panel_Causa extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 764, Short.MAX_VALUE)
-                                .addComponent(jButton_Aceptar)
-                                .addGap(6, 6, 6)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton_RecepcionJudicial)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton_Cancelar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel_Causa)
@@ -195,7 +197,7 @@ public class Panel_Causa extends javax.swing.JPanel {
                                 .addComponent(label_Justicia481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 207, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Label_Receptor)
                             .addComponent(TextField_Receptor, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,9 +212,7 @@ public class Panel_Causa extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(TextField_ROL, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton_BuscarROL)
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton_ModificarROL)))
+                                .addComponent(jButton_BuscarROL)))
                         .addGap(177, 177, 177))))
         );
         layout.setVerticalGroup(
@@ -229,8 +229,7 @@ public class Panel_Causa extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Label_ROL)
                             .addComponent(TextField_ROL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton_BuscarROL)
-                    .addComponent(jButton_ModificarROL))
+                    .addComponent(jButton_BuscarROL))
                 .addGap(38, 38, 38)
                 .addComponent(Label_Receptor)
                 .addGap(6, 6, 6)
@@ -247,17 +246,17 @@ public class Panel_Causa extends javax.swing.JPanel {
                 .addComponent(Label_Caratulado)
                 .addGap(6, 6, 6)
                 .addComponent(TextField_Caratulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_Aceptar)
-                    .addComponent(jButton_Cancelar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Cancelar)
+                    .addComponent(jButton_RecepcionJudicial))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
         // TODO add your handling code here:
-        V_Principal.addPanel_BuscaCliente(1);
+        V_Principal.addPanel_Busqueda_Cliente(1);
     }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     private void TextField_ReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_ReceptorKeyTyped
@@ -304,16 +303,28 @@ public class Panel_Causa extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_TextField_CaratuladoKeyTyped
 
-    private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
-        // TODO add your handling code here:
-        //ENVIAR INFORMACION
-    }//GEN-LAST:event_jButton_AceptarActionPerformed
-
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
         // TODO add your handling code here:
         this.Limpiar();
         V_Principal.removePanel_Causa();
     }//GEN-LAST:event_jButton_CancelarActionPerformed
+
+    private void jButton_RecepcionJudicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RecepcionJudicialActionPerformed
+        // TODO add your handling code here:
+        
+        //REVISAR SI LA CAUSA YA EXISTE
+        if(ValidaCausa.CausaValida(this.getDatos())){
+            R_Judicial.Causa = this.getDatos();
+            R_Judicial.TextField_Rol.setText(this.TextField_ROL.getText());
+            R_Judicial.TextField_Rol.setEditable(false);
+
+            V_Principal.addPanel_ReJudicial(true);
+            V_Principal.bloquearPanel();
+        }
+        
+        else
+            JOptionPane.showMessageDialog(V_Principal, "Datos Incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_jButton_RecepcionJudicialActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_Abogado;
@@ -326,10 +337,9 @@ public class Panel_Causa extends javax.swing.JPanel {
     private javax.swing.JTextField TextField_Juzgado;
     private javax.swing.JTextField TextField_ROL;
     private javax.swing.JTextField TextField_Receptor;
-    private javax.swing.JButton jButton_Aceptar;
     private javax.swing.JButton jButton_BuscarROL;
     private javax.swing.JButton jButton_Cancelar;
-    private javax.swing.JButton jButton_ModificarROL;
+    private javax.swing.JButton jButton_RecepcionJudicial;
     private javax.swing.JLabel jLabel_Causa;
     private Vista.Imagenes_Label.justicia.Label_Justicia48 label_Justicia481;
     // End of variables declaration//GEN-END:variables

@@ -121,7 +121,7 @@ public class Panel_Factura1 extends javax.swing.JPanel {
         jTextField_Total.setEditable(false);
 
         jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/16.png"))); // NOI18N
+        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/24.png"))); // NOI18N
         jButton_Cancelar.setText("Cancelar");
         jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +130,7 @@ public class Panel_Factura1 extends javax.swing.JPanel {
         });
 
         jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/16.png"))); // NOI18N
+        jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/24.png"))); // NOI18N
         jButton_Aceptar.setText("Aceptar");
         jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -406,7 +406,7 @@ public class Panel_Factura1 extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton_AgregarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton_EliminarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
@@ -420,7 +420,7 @@ public class Panel_Factura1 extends javax.swing.JPanel {
          * SE DEBE ABRIR UNA PESTAÑA DE BUSQUEDA DE CLIENTES, MIENTRAS ESTE
          * PANEL PERMANECE ABIERTO PERO DESHABILITADO
          */
-        V_Principal.addPanel_BuscaCliente(2);
+        V_Principal.addPanel_Busqueda_Cliente(2);
     }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     private void jButton_EliminarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminarProductosActionPerformed

@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Vista.fuente.Harabara;
 import com.sun.pdfview.PDFFile;
 import com.sun.pdfview.PDFPage;
 import java.io.File;
@@ -29,9 +30,18 @@ public class Panel_VisorPDF extends javax.swing.JPanel {
     private int NumeroPaginas;
     private int PaginaActual;
     private String RutaArchivo;
+    private Harabara fuente;
     public Panel_VisorPDF() {
+       
+        fuente = new Harabara();
         initComponents();
         this.NumeroPaginas=1;
+        jButton_Anterior.setFont(fuente.getFont(14));
+        jButton_Imprimir.setFont(fuente.getFont(14));
+        jButton_Siguiente.setFont(fuente.getFont(14));
+        jButton_Volver.setFont(fuente.getFont(14));
+        jLabel_BuscarCliente.setFont(fuente.getFont(24));
+        
     }
     
     private VentanaPrincipal V_Principal;
@@ -111,14 +121,14 @@ public class Panel_VisorPDF extends javax.swing.JPanel {
         jLabel_BuscarCliente.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel_BuscarCliente.setText("Visor de PDF");
 
-        jButton_Anterior.setText("Pág. Anterior");
+        jButton_Anterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/flechas/atras/24.png"))); // NOI18N
         jButton_Anterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_AnteriorActionPerformed(evt);
             }
         });
 
-        jButton_Siguiente.setText("Pág. Siguiente");
+        jButton_Siguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/flechas/adelante/24.png"))); // NOI18N
         jButton_Siguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_SiguienteActionPerformed(evt);
@@ -147,7 +157,7 @@ public class Panel_VisorPDF extends javax.swing.JPanel {
         jScrollPane1.setViewportView(pagePanel1);
 
         jButton_Imprimir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Imprimir.setText("Imprimir");
+        jButton_Imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/imprimir/24.png"))); // NOI18N
         jButton_Imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ImprimirActionPerformed(evt);
@@ -155,6 +165,7 @@ public class Panel_VisorPDF extends javax.swing.JPanel {
         });
 
         jButton_Volver.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/24.png"))); // NOI18N
         jButton_Volver.setText("Volver");
         jButton_Volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,37 +177,40 @@ public class Panel_VisorPDF extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_BuscarCliente)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton_Anterior)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Siguiente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Imprimir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_Volver)))
-                .addContainerGap())
+                        .addComponent(jLabel_BuscarCliente)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton_Anterior)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_Siguiente)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_Imprimir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton_Volver))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(31, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel_BuscarCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton_Imprimir)
-                        .addComponent(jButton_Volver))
+                    .addComponent(jButton_Imprimir)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton_Anterior)
-                        .addComponent(jButton_Siguiente)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addComponent(jButton_Siguiente))
+                    .addComponent(jButton_Volver))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

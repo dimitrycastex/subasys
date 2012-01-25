@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import Modelo.Cliente;
+import Validacion.ValidaProducto;
+import javax.swing.JPanel;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -26,9 +28,16 @@ public class Panel_Producto2 extends javax.swing.JPanel {
     }
     
     private VentanaPrincipal V_Principal;
+    private Panel_ResumenRecepcion P_Resumen;
+    private boolean recepcion;
     
     public void setFrame(JFrame f){
         this.V_Principal= (VentanaPrincipal) f;
+        recepcion = true;
+    }
+    
+    public void setPanelResumen(JPanel f){
+        P_Resumen= (Panel_ResumenRecepcion) f;
     }
     
     private void Limpiar(){
@@ -46,6 +55,10 @@ public class Panel_Producto2 extends javax.swing.JPanel {
         this.jSpinner_NumLote.setModel(new SpinnerNumberModel(1, 1, 1000, 1));
     }
     
+    
+    public void esRecepcion(boolean valor){
+        recepcion = valor;
+    }
     public ArrayList getDatos(){
     
         ArrayList datos = new ArrayList();
@@ -63,7 +76,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
     
     protected void ProductoNuevo(boolean b){
         this.Limpiar();
-        this.TextField_ID.setEditable(!b);
+        this.TextField_ID.setEditable(b);
         this.jButton_Buscar.setEnabled(!b);
         this.jButton_Modificar.setEnabled(!b);
         
@@ -73,6 +86,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
         this.jTextField_PrecioU.setEditable(b);
         this.jTextArea_DeLarga.setEditable(b);
         this.jTextField_Descripcion.setEditable(b);
+        this.recepcion = b;
     }
 
     /**
@@ -136,7 +150,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
         jSpinner_NumLote.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jButton_Buscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/16.png"))); // NOI18N
+        jButton_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/24.png"))); // NOI18N
         jButton_Buscar.setText("Buscar");
 
         jLabel_Garantia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -157,6 +171,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
         });
 
         jButton_Modificar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/modificar/documentos/24.png"))); // NOI18N
         jButton_Modificar.setText("Modificar");
 
         jTextArea_DeLarga.setColumns(20);
@@ -197,7 +212,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
         jLabel_PrecioT.setText("Precio Total");
 
         jButton_Aceptar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/16.png"))); // NOI18N
+        jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/24.png"))); // NOI18N
         jButton_Aceptar.setText("Aceptar");
         jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,7 +221,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
         });
 
         jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/16.png"))); // NOI18N
+        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/24.png"))); // NOI18N
         jButton_Cancelar.setText("Cancelar");
         jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +281,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(jTextField_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 886, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 45, Short.MAX_VALUE)))
+                                .addGap(0, 47, Short.MAX_VALUE)))
                         .addGap(0, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -324,7 +339,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
                 .addComponent(jLabel_DeLarga, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Aceptar)
                     .addComponent(jButton_Cancelar))
@@ -337,7 +352,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
 
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
         // TODO add your handling code here:
-        V_Principal.addPanel_BuscaCliente(1);
+        V_Principal.addPanel_Busqueda_Cliente(1);
     }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     private void jSpinner_CantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner_CantidadStateChanged
@@ -398,13 +413,25 @@ public class Panel_Producto2 extends javax.swing.JPanel {
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         // TODO add your handling code here:
-        //ENVIAR INFORMACION
+        if(recepcion && ValidaProducto.ProductoValido(this.getDatos())){
+            P_Resumen.LosProductos.add(this.getDatos());
+            P_Resumen.tabla_Producto1.setProductos(P_Resumen.LosProductos);
+            P_Resumen.tabla_Producto1.AgregaProductos();
+            JOptionPane.showMessageDialog(V_Principal, "Producto agregado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+            V_Principal.removePanel(this);
+            V_Principal.desbloquearPanel(2);
+        }
+        
+        else
+            JOptionPane.showMessageDialog(V_Principal, "Datos Incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jButton_AceptarActionPerformed
 
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
         // TODO add your handling code here:
         this.Limpiar();
-        V_Principal.removePanel_Producto();
+        V_Principal.removePanel(this);
+        V_Principal.desbloquearPanel(2);
+        
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

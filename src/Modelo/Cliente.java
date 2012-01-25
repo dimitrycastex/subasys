@@ -72,12 +72,12 @@ public class Cliente {
           }
           rs.close();
           
-          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el cliente", "Error", JOptionPane.WARNING_MESSAGE);
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el cliente", "Error", JOptionPane.ERROR_MESSAGE);
           
          return cliente;
 
          } catch (SQLException ex) { 
-         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
          }
          return cliente;
     }
@@ -88,6 +88,7 @@ public class Cliente {
         boolean flag = false;
         try {
 
+            System.out.println("RUT en iscliente: "+RUT);
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
           ResultSet rs = stat.executeQuery("select RUT from Cliente where RUT='"+RUT+"';");
           
@@ -100,7 +101,7 @@ public class Cliente {
           return flag;
 
          } catch (SQLException ex) { 
-         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
          }
          return flag;
     }

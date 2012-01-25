@@ -319,7 +319,7 @@ public class Panel_Remate extends javax.swing.JPanel {
 
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
         // TODO add your handling code here:
-        V_Principal.addPanel_BuscaCliente(1);
+        V_Principal.addPanel_Busqueda_Cliente(1);
     }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     private void TextField_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_IDKeyTyped

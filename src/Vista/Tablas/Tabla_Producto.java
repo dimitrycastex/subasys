@@ -38,6 +38,10 @@ public class Tabla_Producto extends JTable{
         this.Productos=p;
     }
     
+    public ArrayList<ArrayList>  getProductos(){
+        return Productos;
+    }
+    
     public int getCantidadProductos(){
         return this.Productos.size();
     }
@@ -63,12 +67,26 @@ public class Tabla_Producto extends JTable{
         this.AsignaColumn();
     }
     
-    public void AgregaProductos(ArrayList<ArrayList> p){
+    public void AgregaProductos(ArrayList<ArrayList> p, boolean busqueda){
         
-        //Transformar ese treeset en arraylist
+        
+        if(busqueda) this.Productos.clear();
+        
         for (Iterator<ArrayList> it = p.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
+            System.out.println("\nPrimer for");
+            System.out.println("Busqueda: "+busqueda);
+            System.out.println("descripcion: "+arrayList.get(1));
             this.Productos.add(arrayList);
+        }
+        
+        System.out.println("\nSegundo for - Lista de productos");
+        for (Iterator<ArrayList> it = Productos.iterator(); it.hasNext();) {
+            ArrayList arrayList = it.next();
+            
+            System.out.println("Busqueda: "+busqueda);
+            System.out.println("descripcion: "+arrayList.get(1));
+            
         }
         
         Modelo = new ProductoModel();
