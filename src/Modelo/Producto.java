@@ -25,19 +25,20 @@ public class Producto {
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
-            "insert into Producto (Descripcion,Cantidad,Precio_Unitario,"
-                    + "Total,Garantia,Descripcion_Larga) values (?,?,?,?,?,?);");
+            "insert into Producto (ID_PRODUCTO,Descripcion,Cantidad,Precio_Unitario,"
+                    + "Total,Garantia,Descripcion_Larga) values (?,?,?,?,?,?,?);");
 
-            prep.setString(1, unaLista.get(1).toString());               
-            prep.setInt(2, Integer.parseInt(unaLista.get(2).toString()));
-            prep.setInt(3, Integer.parseInt(unaLista.get(3).toString()));
-            prep.setInt(4, Integer.parseInt(unaLista.get(4).toString()));
-            prep.setInt(5, Integer.parseInt(unaLista.get(5).toString()));
-            prep.setString(6, unaLista.get(6).toString());    
+            prep.setInt(1,Integer.parseInt(unaLista.get(0).toString()));
+            prep.setString(2, unaLista.get(1).toString());               
+            prep.setInt(3, Integer.parseInt(unaLista.get(2).toString()));
+            prep.setInt(4, Integer.parseInt(unaLista.get(3).toString()));
+            prep.setInt(5, Integer.parseInt(unaLista.get(4).toString()));
+            prep.setInt(6, Integer.parseInt(unaLista.get(5).toString()));
+            prep.setString(7, unaLista.get(6).toString());    
             prep.executeUpdate();
             
             } catch (SQLException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Error en la base de datos: "+ ex, "Error: Producto", JOptionPane.ERROR_MESSAGE);
         }
     }
    

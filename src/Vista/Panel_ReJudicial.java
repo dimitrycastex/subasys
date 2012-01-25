@@ -17,12 +17,12 @@ import javax.swing.JPanel;
  *
  * @author bastian
  */
-public class Panel_ReJudicial2 extends javax.swing.JPanel {
+public class Panel_ReJudicial extends javax.swing.JPanel {
 
     /**
      * Creates new form Panel_Cliente
      */
-    public Panel_ReJudicial2() {
+    public Panel_ReJudicial() {
         initComponents();
     }
     
@@ -45,7 +45,7 @@ public class Panel_ReJudicial2 extends javax.swing.JPanel {
         this.jTextField_Bodegaje.setText("");
         this.jTextField_Demandado.setText("");
         this.jTextField_Demandante.setText("");
-        this.jDateChooser_FeDevolucion.setDate(null);
+        this.jDateChooser_FeDevolucion.setDate(new java.util.Date());
         this.jDateChooser_FeIngreso.setDate(null);
     
     }

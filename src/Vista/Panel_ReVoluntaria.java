@@ -10,26 +10,33 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import Modelo.Cliente;
+import Validacion.ValidaReVoluntaria;
+import javax.swing.JPanel;
 
 /**
  *
  * @author bastian
  */
-public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
+public class Panel_ReVoluntaria extends javax.swing.JPanel {
 
     /**
      * Creates new form Panel_Cliente
      */
-    public Panel_ReVoluntaria2() {
+    public Panel_ReVoluntaria() {
         initComponents();
     }
     
     private VentanaPrincipal V_Principal;
+    private Panel_ResumenRecepcion P_Resumen;
     
     public void setFrame(JFrame f){
         this.V_Principal= (VentanaPrincipal) f;
     }
     
+    public void setPanel_ResumenRecepcion(JPanel p){
+        P_Resumen = (Panel_ResumenRecepcion)p;
+    }
+        
     private void Limpiar(){
         this.TextField_ID.setText("");
         this.TextField_RUT.setText("");
@@ -54,7 +61,7 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
         this.TextField_ID.setEditable(b);
         this.jButton_BuscarRec.setVisible(!b);
         this.jButton_ModificarRec.setVisible(!b);
-        this.TextField_RUT.setEditable(b);
+        this.jDateChooser_Fecha.setDate(new java.util.Date());
     }
 
     /**
@@ -95,6 +102,7 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
         jButton_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar_cliente/24.png"))); // NOI18N
         jButton_Agregar.setText("Agregar");
 
+        TextField_RUT.setEditable(false);
         TextField_RUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         TextField_RUT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -130,11 +138,15 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
         jButton_BuscarRUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_BuscarRUT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/24.png"))); // NOI18N
         jButton_BuscarRUT.setText("Buscar");
+        jButton_BuscarRUT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BuscarRUTActionPerformed(evt);
+            }
+        });
 
         jLabel_Descripcion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel_Descripcion.setText("Descripcion");
 
-        jTextField_Descripcion.setEditable(false);
         jTextField_Descripcion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -311,15 +323,30 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
 
     private void jButton_AgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarProductosActionPerformed
         // TODO add your handling code here:
-        this.V_Principal.addPanel_ResumenRecepcion(false);
-        V_Principal.bloquearPanel(1);
+        if(ValidaReVoluntaria.ReVoluntariaValida(this.getDatos())){
+            this.P_Resumen.LaRecepcion = this.getDatos();
+            this.P_Resumen.esVoluntaria();
+            this.P_Resumen.Inicializar();
+            this.V_Principal.addPanel_ResumenRecepcion(false);
+            V_Principal.bloquearPanel();
+        }
+        
+        else
+            JOptionPane.showMessageDialog(V_Principal, "Datos Incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jButton_AgregarProductosActionPerformed
+
+    private void jButton_BuscarRUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarRUTActionPerformed
+        // TODO add your handling code here:
+        V_Principal.addPanel_Busqueda_Cliente(1);
+        V_Principal.bloquearPanel();
+        
+    }//GEN-LAST:event_jButton_BuscarRUTActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Label_ID;
     private javax.swing.JLabel Label_RUT;
     private javax.swing.JTextField TextField_ID;
-    private javax.swing.JTextField TextField_RUT;
+    protected javax.swing.JTextField TextField_RUT;
     private javax.swing.JButton jButton_Agregar;
     private javax.swing.JButton jButton_AgregarProductos;
     private javax.swing.JButton jButton_BuscarRUT;
@@ -332,7 +359,7 @@ public class Panel_ReVoluntaria2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_Nombre;
     private javax.swing.JLabel jLabel_ReVoluntaria;
     private javax.swing.JTextField jTextField_Descripcion;
-    private javax.swing.JTextField jTextField_Nombre;
+    protected javax.swing.JTextField jTextField_Nombre;
     private Vista.Imagenes_Label.justicia.Label_Justicia48 label_Justicia481;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,7 +22,7 @@ public class Recepcion_Voluntaria {
    
    public static void nuevo(ArrayList unaLista)
  {
-       java.util.Date fecha = (java.sql.Date)unaLista.get(1);
+       java.util.Date fecha = (java.util.Date)unaLista.get(1);
        java.sql.Date fechaIngreso = new java.sql.Date(fecha.getTime());
             
         try {
@@ -36,7 +36,7 @@ public class Recepcion_Voluntaria {
             prep.executeUpdate();
             
             } catch (SQLException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Error en la base de datos: "+ ex, "Error: Recepción Voluntaria", JOptionPane.ERROR_MESSAGE);
         }
     }
    

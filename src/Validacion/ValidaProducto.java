@@ -18,9 +18,10 @@ public class ValidaProducto {
         
         for (int i = 0; i < datos.size(); i++) {
             
-            if(i==2) continue;
+            if(i==2 || i==6) continue;
             
             String temp = datos.get(i).toString();
+            //System.out.println("i: "+i+" | temp: "+temp);
             if(temp.isEmpty()){ 
                 valido = false;
                 break;

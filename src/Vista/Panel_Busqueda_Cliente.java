@@ -11,6 +11,7 @@
 package Vista;
 
 import Modelo.Busqueda;
+import Modelo.Cliente;
 import Modelo.ExcelTableExporter;
 import Vista.Tablas.Modelos.*;
 import java.io.File;
@@ -19,7 +20,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,16 +39,53 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
     DefaultTableModel tmodel_cliente = new Cliente_Busqueda();
     
     public static ArrayList<ArrayList> lista_seleccionados = new ArrayList();
+    private VentanaPrincipal V_Principal;
+    private boolean esFactura, esReVoluntaria;
+    private Thread tread;
+    protected String RUT;
+    private Panel_ReVoluntaria P_Revoluntaria;
+    private Panel_Factura P_Factura;
+    
     /** Creates new form Buscador */
     
     public Panel_Busqueda_Cliente() {
         initComponents();
         model = tmodel_cliente;
         Tabla.setModel(model);
-        Thread tread = new taskInitContents();
-        tread.start();
-       
-       
+         
+        esFactura=false;
+        esReVoluntaria = false;       
+    }
+    
+    public void Hilo(boolean start){
+          
+        if(start){
+            tread = new taskInitContents();
+            tread.start();
+            
+        }
+        
+        else
+        tread.stop();
+    }
+    
+    public void setFrame(JFrame f){
+        this.V_Principal= (VentanaPrincipal) f;
+    }
+    
+    public void setPaneles(JPanel revoluntaria, JPanel factura){
+        P_Revoluntaria = (Panel_ReVoluntaria) revoluntaria;
+        P_Factura = (Panel_Factura) factura;
+    }
+    
+    public void esFactura(){
+        esFactura = true;
+        esReVoluntaria = false;
+    }
+    
+    public void esReVoluntaria(){
+        esReVoluntaria = true;
+        esFactura = false;
     }
 
     /** This method is called from within the constructor to
@@ -64,7 +104,13 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         Bar = new javax.swing.JProgressBar();
         label_Buscar481 = new Vista.Imagenes_Label.buscar.Label_Buscar48();
+        jButton_UsarSeleccionado = new javax.swing.JButton();
+        jButton_Cancelar = new javax.swing.JButton();
 
+        setMaximumSize(new java.awt.Dimension(1000, 550));
+        setMinimumSize(new java.awt.Dimension(1000, 550));
+
+        parametro_busqueda.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 parametro_busquedaActionPerformed(evt);
@@ -90,6 +136,7 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Tabla);
 
+        selectAll.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         selectAll.setText("Seleccionar Todos");
         selectAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,24 +144,49 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Busqueda Clientes");
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel1.setText("Búsqueda Clientes");
+
+        jButton_UsarSeleccionado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_UsarSeleccionado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar_cliente/24.png"))); // NOI18N
+        jButton_UsarSeleccionado.setText("Usar Seleccionado");
+        jButton_UsarSeleccionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_UsarSeleccionadoActionPerformed(evt);
+            }
+        });
+
+        jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/24.png"))); // NOI18N
+        jButton_Cancelar.setText("Cancelar");
+        jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Bar, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addComponent(Bar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(selectAll, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
-                .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selectAll)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_UsarSeleccionado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_Cancelar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -123,18 +195,20 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(selectAll)))
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Bar, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectAll)
+                    .addComponent(jButton_Cancelar)
+                    .addComponent(jButton_UsarSeleccionado))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(Bar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -163,7 +237,7 @@ public static String getSelectedRowsID(DefaultTableModel model){
  * HOLA
  */
 private void parametro_busquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_parametro_busquedaKeyPressed
-// TODO add your handling code here: 
+// TODO add your handling code here:
    
 }//GEN-LAST:event_parametro_busquedaKeyPressed
 
@@ -203,6 +277,32 @@ private void TablaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRS
    
 }//GEN-LAST:event_TablaPropertyChange
 
+    private void jButton_UsarSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UsarSeleccionadoActionPerformed
+        // TODO add your handling code here:
+        RUT = getSelectedRowsID(this.tmodel_cliente);
+        
+        if(!RUT.isEmpty()){
+            ArrayList Temp = Cliente.getDatos(RUT);
+            P_Revoluntaria.TextField_RUT.setText(RUT);
+            String Nombre = Temp.get(3).toString() +" "+Temp.get(1).toString() + " " + Temp.get(2).toString();
+            P_Revoluntaria.jTextField_Nombre.setText(Nombre);
+            V_Principal.removePanel(this);
+            V_Principal.desbloquearPanel();
+            this.Hilo(false);
+        }
+        
+        else
+            JOptionPane.showMessageDialog(V_Principal, "Seleccione algún criterio de búsqueda", "Error", JOptionPane.ERROR_MESSAGE);
+            
+    }//GEN-LAST:event_jButton_UsarSeleccionadoActionPerformed
+
+    private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
+        // TODO add your handling code here:
+        V_Principal.removePanel(this);
+        V_Principal.desbloquearPanel();
+        this.Hilo(false);
+    }//GEN-LAST:event_jButton_CancelarActionPerformed
+
 public void cleanModel(DefaultTableModel model){
     int a =model.getRowCount()-1;
 
@@ -215,7 +315,6 @@ public void cleanModel(DefaultTableModel model){
 }
 
 class taskInitContents extends Thread{
-        
       
       public void run() {
        
@@ -234,6 +333,8 @@ class taskInitContents extends Thread{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar Bar;
     private javax.swing.JTable Tabla;
+    private javax.swing.JButton jButton_Cancelar;
+    private javax.swing.JButton jButton_UsarSeleccionado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private Vista.Imagenes_Label.buscar.Label_Buscar48 label_Buscar481;

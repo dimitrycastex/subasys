@@ -74,7 +74,7 @@ public class Panel_ResumenRecepcion extends javax.swing.JPanel {
             this.TextField_ID.setText(LaRecepcion.get(0).toString());
             this.jDateChooser_Fecha.setDate((java.util.Date)LaRecepcion.get(1));
         //Panel ReVoluntaria
-            this.TextField_RUT.setText("");
+            this.TextField_RUT.setText(LaRecepcion.get(3).toString());
         }
     
     }
@@ -451,10 +451,11 @@ public class Panel_ResumenRecepcion extends javax.swing.JPanel {
         //ENVIAR INFORMACION
         
         //Guardar Causa
-        Causa.nueva(LaCausa);
+        
         
         //Guardar Recepcion
         if(esJudicial){
+            Causa.nueva(LaCausa);
             Recepcion_Judicial.nuevo(LaRecepcion);
         }
         
@@ -582,8 +583,16 @@ public class Panel_ResumenRecepcion extends javax.swing.JPanel {
          * A MEDIDA QUE SE AGREGAN PRODUTOS TIENEN QUE CALCULARSE LOS VALORES DE
          * COMISION, IVA, SUBTOTAL Y PRECIO TOTAL
          */
-        V_Principal.addPanel_Producto(true);
-        V_Principal.bloquearPanel(2);
+        
+        if(esJudicial){
+            V_Principal.addPanel_Producto(true,1);
+            V_Principal.bloquearPanel(2);
+        }
+        
+        else if(esVoluntaria){
+            V_Principal.addPanel_Producto(true,2);
+            V_Principal.bloquearPanel(1);
+        }
     }//GEN-LAST:event_jButton_AgregarProductosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

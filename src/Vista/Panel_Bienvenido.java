@@ -62,11 +62,11 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
         jMenuItem_ModificarCausa = new javax.swing.JMenuItem();
         jButton_Remate = new javax.swing.JButton();
         jButton_NuevoCliente = new javax.swing.JButton();
-        jButton_Configuracion = new javax.swing.JButton();
         jButton_Salir = new javax.swing.JButton();
         jButton_Factura = new javax.swing.JButton();
         jButton_Causa = new javax.swing.JButton();
         subasys2_Logo1 = new Vista.Imagenes_Label.Subasys2_Logo();
+        jButton_ReVoluntaria = new javax.swing.JButton();
 
         jMenuItem_NuevoCliente.setText("Nuevo Cliente");
         jMenuItem_NuevoCliente.setToolTipText("Agrega un nuevo cliente");
@@ -219,19 +219,7 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
             }
         });
 
-        jButton_Configuracion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton_Configuracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/tick/32.png"))); // NOI18N
-        jButton_Configuracion.setText("Configuracion");
-        jButton_Configuracion.setMaximumSize(new java.awt.Dimension(107, 33));
-        jButton_Configuracion.setMinimumSize(new java.awt.Dimension(107, 33));
-        jButton_Configuracion.setPreferredSize(new java.awt.Dimension(107, 33));
-        jButton_Configuracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ConfiguracionActionPerformed(evt);
-            }
-        });
-
-        jButton_Salir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton_Salir.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButton_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/salir/32.png"))); // NOI18N
         jButton_Salir.setText("Salir");
         jButton_Salir.setMaximumSize(new java.awt.Dimension(107, 33));
@@ -261,6 +249,15 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
             }
         });
 
+        jButton_ReVoluntaria.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_ReVoluntaria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/producto/64.png"))); // NOI18N
+        jButton_ReVoluntaria.setText("Recepcion Voluntaria");
+        jButton_ReVoluntaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ReVoluntariaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -268,28 +265,26 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton_Remate, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Factura, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(subasys2_Logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 218, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jButton_Causa, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_NuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton_Configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(319, 319, 319))))
+                        .addComponent(jButton_ReVoluntaria)
+                        .addGap(165, 165, 165))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(subasys2_Logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton_Remate, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(248, 248, 248)
+                                .addComponent(jButton_NuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton_Factura, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                    .addComponent(jButton_Salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,20 +292,18 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(171, 171, 171)
-                        .addComponent(subasys2_Logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton_Configuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(subasys2_Logo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton_Factura)
-                            .addComponent(jButton_Remate))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                            .addComponent(jButton_Causa)
+                            .addComponent(jButton_ReVoluntaria))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_NuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_Causa))
+                    .addComponent(jButton_Remate)
+                    .addComponent(jButton_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -328,11 +321,6 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton_SalirActionPerformed
-
-    private void jButton_ConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConfiguracionActionPerformed
-        // TODO add your handling code here:
-        this.Pronto();
-    }//GEN-LAST:event_jButton_ConfiguracionActionPerformed
 
     private void jButton_RemateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RemateActionPerformed
         // TODO add your handling code here:
@@ -403,12 +391,12 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
 
     private void jMenuItem_NuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_NuevoProductoActionPerformed
         // TODO add your handling code here:
-        V_Principal.addPanel_Producto(true);
+        V_Principal.addPanel_Producto(true,0);
     }//GEN-LAST:event_jMenuItem_NuevoProductoActionPerformed
 
     private void jMenuItem_ModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ModificarProductoActionPerformed
         // TODO add your handling code here:
-        V_Principal.addPanel_Producto(false);
+        V_Principal.addPanel_Producto(false,0);
     }//GEN-LAST:event_jMenuItem_ModificarProductoActionPerformed
 
     private void jMenuItem_NuevaCausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_NuevaCausaActionPerformed
@@ -421,11 +409,16 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
         V_Principal.addPanel_Causa(false);
     }//GEN-LAST:event_jMenuItem_ModificarCausaActionPerformed
 
+    private void jButton_ReVoluntariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ReVoluntariaActionPerformed
+        // TODO add your handling code here:
+        V_Principal.addPanel_ReVoluntaria(true);
+    }//GEN-LAST:event_jButton_ReVoluntariaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Causa;
-    private javax.swing.JButton jButton_Configuracion;
     private javax.swing.JButton jButton_Factura;
     private javax.swing.JButton jButton_NuevoCliente;
+    private javax.swing.JButton jButton_ReVoluntaria;
     private javax.swing.JButton jButton_Remate;
     private javax.swing.JButton jButton_Salir;
     private javax.swing.JMenuItem jMenuItem_AnularFactura;

@@ -112,7 +112,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vista.Panel_ReVoluntaria2" name="panel_ReVoluntaria1">
+        <Component class="Vista.Panel_ReVoluntaria" name="panel_ReVoluntaria1">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
@@ -125,7 +125,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vista.Panel_ReJudicial2" name="panel_ReJudicial1">
+        <Component class="Vista.Panel_ReJudicial" name="panel_ReJudicial1">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
@@ -138,7 +138,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vista.Panel_Producto2" name="panel_Producto1">
+        <Component class="Vista.Panel_Producto" name="panel_Producto1">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
@@ -151,7 +151,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vista.Panel_Factura1" name="panel_Factura1">
+        <Component class="Vista.Panel_Factura" name="panel_Factura1">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
@@ -199,6 +199,19 @@
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Resumen Recepci&#xf3;n">
                 <Property name="tabTitle" type="java.lang.String" value="Resumen Recepci&#xf3;n"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vista.Panel_Busqueda_Cliente" name="panel_Busqueda_Cliente1">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="/*"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Buscar Clientes">
+                <Property name="tabTitle" type="java.lang.String" value="Buscar Clientes"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

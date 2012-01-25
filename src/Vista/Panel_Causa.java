@@ -28,14 +28,14 @@ public class Panel_Causa extends javax.swing.JPanel {
     
     
     private VentanaPrincipal V_Principal;
-    private Panel_ReJudicial2 R_Judicial;
+    private Panel_ReJudicial R_Judicial;
     
     public void setFrame(JFrame f){
         this.V_Principal= (VentanaPrincipal) f;
     }
     
     public void setPanel_Rejudicial (JPanel p){
-        R_Judicial = (Panel_ReJudicial2) p;
+        R_Judicial = (Panel_ReJudicial) p;
     }
     
     private void Limpiar(){
@@ -280,8 +280,7 @@ public class Panel_Causa extends javax.swing.JPanel {
     private void TextField_JuzgadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_JuzgadoKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if ((!Character.isWhitespace(c)
-                && !Character.isLetter(c)) || this.TextField_Juzgado.getText().length() > 100) {
+        if (this.TextField_Juzgado.getText().length() > 100) {
             evt.consume();
         }
     }//GEN-LAST:event_TextField_JuzgadoKeyTyped
@@ -289,7 +288,7 @@ public class Panel_Causa extends javax.swing.JPanel {
     private void TextField_ROLKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_ROLKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c) || this.TextField_ROL.getText().length() > 10) {
+        if ( (c!='-' && !Character.isDigit(c)) || this.TextField_ROL.getText().length() > 10) {
             evt.consume();
         }
     }//GEN-LAST:event_TextField_ROLKeyTyped

@@ -15,12 +15,12 @@ import Modelo.Cliente;
  *
  * @author bastian
  */
-public class Panel_Factura1 extends javax.swing.JPanel {
+public class Panel_Factura extends javax.swing.JPanel {
 
     /**
      * Creates new form Panel_Cliente
      */
-    public Panel_Factura1() {
+    public Panel_Factura() {
         initComponents();
     }
     

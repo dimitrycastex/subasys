@@ -17,7 +17,7 @@ public class Prueba extends javax.swing.JFrame {
      */
     public Prueba() {
         initComponents();
-        this.setContentPane(this.inicioAsistenteRecepción1);
+        //this.setContentPane(this.inicioAsistenteRecepción1);
     }
 
     /**
@@ -29,27 +29,23 @@ public class Prueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        inicioAsistenteRecepción1 = new Vista.Asistente.Recepcion.InicioAsistenteRecepción();
+        panel_Busqueda_Cliente1 = new Vista.Panel_Busqueda_Cliente();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 560));
-        setMinimumSize(new java.awt.Dimension(1000, 560));
-        setPreferredSize(new java.awt.Dimension(1000, 560));
+        setMaximumSize(new java.awt.Dimension(1000, 550));
+        setMinimumSize(new java.awt.Dimension(1000, 550));
+        setPreferredSize(new java.awt.Dimension(1000, 550));
         setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(inicioAsistenteRecepción1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(panel_Busqueda_Cliente1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(inicioAsistenteRecepción1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+            .addComponent(panel_Busqueda_Cliente1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
 
         pack();
@@ -97,6 +93,6 @@ public class Prueba extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Vista.Asistente.Recepcion.InicioAsistenteRecepción inicioAsistenteRecepción1;
+    private Vista.Panel_Busqueda_Cliente panel_Busqueda_Cliente1;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import Modelo.Cliente;
+import Modelo.Producto;
 import Validacion.ValidaProducto;
 import javax.swing.JPanel;
 import javax.swing.SpinnerNumberModel;
@@ -18,22 +19,21 @@ import javax.swing.SpinnerNumberModel;
  *
  * @author bastian
  */
-public class Panel_Producto2 extends javax.swing.JPanel {
+public class Panel_Producto extends javax.swing.JPanel {
 
     /**
      * Creates new form Panel_Cliente
      */
-    public Panel_Producto2() {
+    public Panel_Producto() {
         initComponents();
     }
     
     private VentanaPrincipal V_Principal;
     private Panel_ResumenRecepcion P_Resumen;
-    private boolean recepcion;
+    private boolean esReJudicial, esReVoluntaria, esOtro;
     
     public void setFrame(JFrame f){
         this.V_Principal= (VentanaPrincipal) f;
-        recepcion = true;
     }
     
     public void setPanelResumen(JPanel f){
@@ -56,8 +56,22 @@ public class Panel_Producto2 extends javax.swing.JPanel {
     }
     
     
-    public void esRecepcion(boolean valor){
-        recepcion = valor;
+    public void esReJudicial(){
+        esReJudicial = true;
+        esReVoluntaria = false;
+        esOtro= false;
+    }
+    
+    public void esReVoluntaria(){
+        esReVoluntaria = true;
+        esReJudicial = false;
+        esOtro = false;
+    }
+    
+    public void esOtro(){
+        esOtro = true;
+        esReVoluntaria = false;
+        esReJudicial = false;
     }
     public ArrayList getDatos(){
     
@@ -76,7 +90,8 @@ public class Panel_Producto2 extends javax.swing.JPanel {
     
     protected void ProductoNuevo(boolean b){
         this.Limpiar();
-        this.TextField_ID.setEditable(b);
+        this.TextField_ID.setVisible(b);
+        this.Label_ID.setVisible(b);
         this.jButton_Buscar.setEnabled(!b);
         this.jButton_Modificar.setEnabled(!b);
         
@@ -86,7 +101,7 @@ public class Panel_Producto2 extends javax.swing.JPanel {
         this.jTextField_PrecioU.setEditable(b);
         this.jTextArea_DeLarga.setEditable(b);
         this.jTextField_Descripcion.setEditable(b);
-        this.recepcion = b;
+        this.esReJudicial = b;
     }
 
     /**
@@ -413,13 +428,27 @@ public class Panel_Producto2 extends javax.swing.JPanel {
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         // TODO add your handling code here:
-        if(recepcion && ValidaProducto.ProductoValido(this.getDatos())){
-            P_Resumen.LosProductos.add(this.getDatos());
-            P_Resumen.tabla_Producto1.setProductos(P_Resumen.LosProductos);
-            P_Resumen.tabla_Producto1.AgregaProductos();
-            JOptionPane.showMessageDialog(V_Principal, "Producto agregado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
-            V_Principal.removePanel(this);
-            V_Principal.desbloquearPanel(2);
+        
+        
+        if(ValidaProducto.ProductoValido(this.getDatos())){
+            
+            if(Producto.isExist(Integer.parseInt(this.TextField_ID.getText()))){
+                JOptionPane.showMessageDialog(V_Principal, "ID ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+            }         
+            
+            else{
+                P_Resumen.LosProductos.add(this.getDatos());
+                P_Resumen.tabla_Producto1.setProductos(P_Resumen.LosProductos);
+                P_Resumen.tabla_Producto1.AgregaProductos();
+                JOptionPane.showMessageDialog(V_Principal, "Producto agregado correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+                V_Principal.removePanel(this);
+
+                if(esReJudicial)
+                    V_Principal.desbloquearPanel(2);
+
+                else if(esReVoluntaria)
+                    V_Principal.desbloquearPanel(1);
+            }
         }
         
         else
@@ -430,7 +459,12 @@ public class Panel_Producto2 extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.Limpiar();
         V_Principal.removePanel(this);
+        
+        if(esReJudicial)
         V_Principal.desbloquearPanel(2);
+        
+        else if(esReVoluntaria)
+            V_Principal.desbloquearPanel(1);
         
     }//GEN-LAST:event_jButton_CancelarActionPerformed
 

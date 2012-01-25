@@ -29,15 +29,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_Producto1.setFrame(this);
         this.panel_Causa1.setFrame(this);
         this.panel_Factura1.setFrame(this);
-        //this.panel_Busqueda_Cliente1.setFrame(this);
+        this.panel_Busqueda_Cliente1.setFrame(this);
         //this.panel_BuscaCliente1.setFrame(this);
         this.panel_BuscaProducto1.setFrame(this);
         this.panel_VisorPDF1.setFrame(this);
         this.panel_ResumenRecepcion1.setFrame(this);
         this.panel_VisorPDF1.setRutaArchivo("EasyNote_MX_Disassembly_Manual.pdf");
+        
         this.panel_Producto1.setPanelResumen(panel_ResumenRecepcion1);
         this.panel_Causa1.setPanel_Rejudicial(this.panel_ReJudicial1);
         this.panel_ReJudicial1.setPanel_ResumenRecepcion(this.panel_ResumenRecepcion1);
+        this.panel_ReVoluntaria1.setPanel_ResumenRecepcion(this.panel_ResumenRecepcion1);
+        this.panel_Busqueda_Cliente1.setPaneles(panel_ReVoluntaria1, panel_Factura1);
     }
     
     
@@ -166,18 +169,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     //--------------------------------------------------------------------------
-    protected void addPanel_Producto(boolean nuevo){
+    protected void addPanel_Producto(boolean nuevo, int caso){
         String nombre;
         this.panel_Producto1.ProductoNuevo(nuevo);
         nombre = (nuevo==true)? "Nuevo Producto" : "Modificar Producto";
         jTabbedPane_Pestanas.addTab(nombre, panel_Producto1);
-        jTabbedPane_Pestanas.setEnabledAt(0, false);
-        this.removePanel_Bienvenido();
+        
+        
+        if(caso ==1) panel_Producto1.esReJudicial();
+        else if (caso == 2 ) panel_Producto1.esReVoluntaria();
+        
+        else panel_Producto1.esOtro();
+        
     }
     
     protected void removePanel_Producto(){
         jTabbedPane_Pestanas.remove(panel_Producto1);
-        this.addPanel_Bienvenido();
     }
     
     //--------------------------------------------------------------------------
@@ -201,7 +208,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_ReVoluntaria1.ReVoluntariaNueva(nuevo);
         nombre = (nuevo==true)? "Nueva Recepción Voluntaria" : "Modificar Recepción Voluntaria";
         jTabbedPane_Pestanas.addTab(nombre, panel_ReVoluntaria1);
-        jTabbedPane_Pestanas.setEnabledAt(0, false);
+        //jTabbedPane_Pestanas.setEnabledAt(0, false);
         this.removePanel_Bienvenido();
     }
     
@@ -238,20 +245,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     //--------------------------------------------------------------------------
     protected void addPanel_Busqueda_Cliente(int tipo){
-        /*String nombre = "Buscar Cliente";
+        String nombre = "Buscar Cliente";
         jTabbedPane_Pestanas.addTab(nombre, panel_Busqueda_Cliente1);
-        this.removePanel_Cliente();
+        //this.removePanel_Cliente();
         
+        panel_Busqueda_Cliente1.Hilo(true);
         switch (tipo) {
-            case 1: //Panel Cliente
-                    //panel_BuscaCliente1.esCliente();
-                    this.bloquearPanel_Cliente();
+            case 1: panel_Busqueda_Cliente1.esReVoluntaria();
                     break;
-            case 2: //panel factura
-                    //panel_BuscaCliente1.esFactura();
-                    this.bloquearPanel_Factura();
-                    break;
-        }*/
+            case 2: panel_Busqueda_Cliente1.esFactura();
+                break;
+        }
         
     }
     
@@ -324,13 +328,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panel_Cliente1 = new Vista.Panel_Cliente();
         panel_Remate1 = new Vista.Panel_Remate();
         panel_Causa1 = new Vista.Panel_Causa();
-        panel_ReVoluntaria1 = new Vista.Panel_ReVoluntaria2();
-        panel_ReJudicial1 = new Vista.Panel_ReJudicial2();
-        panel_Producto1 = new Vista.Panel_Producto2();
-        panel_Factura1 = new Vista.Panel_Factura1();
+        panel_ReVoluntaria1 = new Vista.Panel_ReVoluntaria();
+        panel_ReJudicial1 = new Vista.Panel_ReJudicial();
+        panel_Producto1 = new Vista.Panel_Producto();
+        panel_Factura1 = new Vista.Panel_Factura();
         panel_VisorPDF1 = new Vista.Panel_VisorPDF();
         panel_BuscaProducto1 = new Vista.Panel_BuscaProducto1();
         panel_ResumenRecepcion1 = new Vista.Panel_ResumenRecepcion();
+        panel_Busqueda_Cliente1 = new Vista.Panel_Busqueda_Cliente();
         jToolBar1 = new javax.swing.JToolBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -384,6 +389,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         /*
         jTabbedPane_Pestanas.addTab("Resumen Recepción", panel_ResumenRecepcion1);
+        */
+
+        /*
+        jTabbedPane_Pestanas.addTab("Buscar Clientes", panel_Busqueda_Cliente1);
         */
 
         jToolBar1.setFloatable(false);
@@ -452,11 +461,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                try {
+                /*try {
                     UIManager.setLookAndFeel(new org.pushingpixels.substance.api.skin.SubstanceOfficeSilver2007LookAndFeel());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,"Substance Graphite failed to initialize");
-                }
+                }*/
 
                 new VentanaPrincipal().setVisible(true);
             }
@@ -467,12 +476,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private Vista.Panel_Bienvenido panel_Bienvenido1;
     private Vista.Panel_BuscaProducto1 panel_BuscaProducto1;
+    private Vista.Panel_Busqueda_Cliente panel_Busqueda_Cliente1;
     private Vista.Panel_Causa panel_Causa1;
     private Vista.Panel_Cliente panel_Cliente1;
-    private Vista.Panel_Factura1 panel_Factura1;
-    private Vista.Panel_Producto2 panel_Producto1;
-    private Vista.Panel_ReJudicial2 panel_ReJudicial1;
-    private Vista.Panel_ReVoluntaria2 panel_ReVoluntaria1;
+    private Vista.Panel_Factura panel_Factura1;
+    private Vista.Panel_Producto panel_Producto1;
+    private Vista.Panel_ReJudicial panel_ReJudicial1;
+    private Vista.Panel_ReVoluntaria panel_ReVoluntaria1;
     private Vista.Panel_Remate panel_Remate1;
     private Vista.Panel_ResumenRecepcion panel_ResumenRecepcion1;
     private Vista.Panel_VisorPDF panel_VisorPDF1;
