@@ -332,6 +332,33 @@ public class Producto {
          return aux;
     }
   
+  
+   public static String get_Adjudicario(String ID_PRODUCTO){
+
+        String aux ="";
+
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select cliente.nombre,cliente.apellidop "
+                  + "from (select cliente.nombre,cliente.apellidop,cliente.rut from cliente) as cliente_p "
+                  + "NATURAL JOIN cliente_has_factura, "
+                  + "where ID_PRODUCTO="+ID_PRODUCTO+" AND Causa.ID_RJ = Recepcion_judicial_has_producto.ID_RJ;");
+          
+          while (rs.next()) {
+          aux=rs.getString("Juzgado");
+        
+          }
+          rs.close();       
+         // if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.WARNING_MESSAGE);       
+         return aux;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return aux;
+    }
+  
   public static boolean borrar(int id_producto) {
 
         try {
