@@ -166,14 +166,14 @@ public class Recepcion_Voluntaria {
         try {
 
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-          ResultSet rs = stat.executeQuery("SELECT *"+
-          "FROM Recepcion_voluntaria NATURAL JOIN Recepcion_voluntaria_has_producto NATURAL JOIN Producto;");
+          ResultSet rs = stat.executeQuery("SELECT id_rv,Producto.id_producto,Producto.descripcion,garantia,total "+
+          "FROM (Recepcion_voluntaria NATURAL JOIN Recepcion_voluntaria_has_producto) as recepv,Producto "
+                  + "where recepv.id_producto = producto.id_producto;");
           
           while (rs.next()) {
           ArrayList ReJudicial = new ArrayList();     
           
           ReJudicial.add(rs.getInt("ID_RV"));
-          ReJudicial.add(rs.getInt("RUT"));
           ReJudicial.add(rs.getInt("ID_PRODUCTO"));
           ReJudicial.add(rs.getString("Descripcion"));
           ReJudicial.add(rs.getInt("Garantia"));
