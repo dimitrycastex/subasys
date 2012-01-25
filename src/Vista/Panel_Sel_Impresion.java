@@ -200,6 +200,11 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         jButton_detalledelotesrematados.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_detalledelotesrematados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/imprimir/48.png"))); // NOI18N
         jButton_detalledelotesrematados.setText("Imprimir Detalle de Lotes Rematados");
+        jButton_detalledelotesrematados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_detalledelotesrematadosActionPerformed(evt);
+            }
+        });
 
         jButton_plantilladeremate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_plantilladeremate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/modificar/documentos/48.png"))); // NOI18N
@@ -208,6 +213,11 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         jButton_planilladeremate.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_planilladeremate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/modificar/documentos/48.png"))); // NOI18N
         jButton_planilladeremate.setText("Imprimir Planilla de Remate (Lote)");
+        jButton_planilladeremate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_planilladeremateActionPerformed(evt);
+            }
+        });
 
         jButton_recepcionjudicial.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton_recepcionjudicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/justicia/48.png"))); // NOI18N
@@ -484,6 +494,47 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         P_PDF.setRutaArchivo(path+"recepcion_voluntaria.pdf");
     
     }//GEN-LAST:event_jButton_recepcionvoluntariaActionPerformed
+
+    private void jButton_planilladeremateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_planilladeremateActionPerformed
+        
+        String st = JOptionPane.showInputDialog("Ingrese ID del remate");
+        
+        try
+        {      
+            Imprimir_Planilla_Remate_Lote.imprimir(path,st);
+        }
+        catch(DocumentException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        catch(FileNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        P_PDF.setRutaArchivo(path+"anexo_planilla_remate.pdf");
+        
+    }//GEN-LAST:event_jButton_planilladeremateActionPerformed
+
+    private void jButton_detalledelotesrematadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_detalledelotesrematadosActionPerformed
+        
+        String st = JOptionPane.showInputDialog("Ingrese ID del remate");
+        
+        try
+        {      
+            Imprimir_Detalle_Lotes_Rematados.imprimir(path,st);
+        }
+        catch(DocumentException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        catch(FileNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        P_PDF.setRutaArchivo(path+"detalle_lotes_rematados.pdf");
+    }//GEN-LAST:event_jButton_detalledelotesrematadosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_ListaClientes;

@@ -305,6 +305,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Detalle de Lotes Rematados"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_detalledelotesrematadosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_plantilladeremate">
           <Properties>
@@ -327,6 +330,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Planilla de Remate (Lote)"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_planilladeremateActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton_recepcionjudicial">
           <Properties>
