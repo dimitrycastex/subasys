@@ -4,6 +4,9 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  *
  * @author Deico
@@ -20,6 +23,15 @@ public class Test {
         // Modelo.Producto.get_Lista_Busqueda_Facturados();
         //System.out.println(Producto.get_ID_Factura("234"));
         Modelo.Recepcion_Judicial.get_Lista_Productos("23-97");
+        ArrayList<ArrayList> _Lista_Busqueda = Modelo.Recepcion_Voluntaria.get_Lista_Busqueda();
+        for (Iterator<ArrayList> it = _Lista_Busqueda.iterator(); it.hasNext();) {
+            ArrayList arrayList = it.next();
+            for (Iterator it1 = arrayList.iterator(); it1.hasNext();) {
+                Object object = it1.next();
+                 System.out.println(object);
+            }
+            
+        }
     }
     
     public static String filtraRut(String rut){

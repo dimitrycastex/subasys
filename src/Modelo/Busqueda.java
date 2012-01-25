@@ -279,6 +279,7 @@ public class Busqueda {
                 buffer.clear();
                 buffer.add(false);
                 buffer.addAll(arrayList);
+                System.out.println(arrayList.add(0));
                 model.insertRow(i, buffer.toArray());
             i++;
         }
