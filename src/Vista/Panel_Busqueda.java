@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
@@ -346,18 +347,31 @@ private void parametro_busquedaActionPerformed(java.awt.event.ActionEvent evt) {
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 // TODO add your handling code here:
-   try {
+    
+    JFileChooser fileChooser = new JFileChooser();
+   // fileChooser.setSelectionMode();
+    //fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    fileChooser.setApproveButtonText("Guardar");
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+          File selectedFile = fileChooser.getSelectedFile();
+          System.out.println(selectedFile.getName());
+            System.out.println(selectedFile.getAbsolutePath());
+            
+            try {
             List<JTable> tables = new ArrayList<JTable>();
             List<String> sheetsName = new ArrayList<String>();
             tables.add(Tabla);
             sheetsName.add("Planilla");
-            ExcelTableExporter excelExporter = new ExcelTableExporter(tables, new File("exportar.xls"), sheetsName);
+            ExcelTableExporter excelExporter = new ExcelTableExporter(tables, new File(selectedFile.getAbsolutePath().replace(".xls", "")+".xls"), sheetsName);
             if (excelExporter.export()) {
                 JOptionPane.showMessageDialog(null, "Exportado con exito!");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        }
+   
 }//GEN-LAST:event_jButton2ActionPerformed
 
 private void selectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAllActionPerformed

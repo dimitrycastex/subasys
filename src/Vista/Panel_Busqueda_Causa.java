@@ -13,6 +13,7 @@ package Vista;
 import Modelo.Busqueda;
 import Modelo.Cliente;
 import Modelo.ExcelTableExporter;
+import Modelo.Recepcion_Judicial;
 import Vista.Tablas.Modelos.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -32,12 +33,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Deico
  */
 
-public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
+public class Panel_Busqueda_Causa extends javax.swing.JPanel {
 
 
 
     DefaultTableModel model = new DefaultTableModel();
-    DefaultTableModel tmodel_cliente = new Cliente_Busqueda();
+    DefaultTableModel tmodel_causa = new Causa_Busqueda();
     
     public static ArrayList<ArrayList> lista_seleccionados = new ArrayList();
     private VentanaPrincipal V_Principal;
@@ -49,13 +50,14 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
     
     /** Creates new form Buscador */
     
-    public Panel_Busqueda_Cliente() {
+    public Panel_Busqueda_Causa() {
         initComponents();
-        model = tmodel_cliente;
+        model = tmodel_causa;
         Tabla.setModel(model);
          
         esFactura=false;
-        esReVoluntaria = false;       
+        esReVoluntaria = false;
+        
     }
     
     public void Hilo(boolean start){
@@ -113,6 +115,7 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
                 }return false;
 
             }};
+            selectAll = new javax.swing.JCheckBox();
             jLabel1 = new javax.swing.JLabel();
             Bar = new javax.swing.JProgressBar();
             label_Buscar481 = new Vista.Imagenes_Label.buscar.Label_Buscar48();
@@ -148,8 +151,16 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
             });
             jScrollPane1.setViewportView(Tabla);
 
+            selectAll.setFont(new java.awt.Font("Arial", 1, 14));
+            selectAll.setText("Seleccionar Todos");
+            selectAll.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    selectAllActionPerformed(evt);
+                }
+            });
+
             jLabel1.setFont(new java.awt.Font("Arial", 0, 36));
-            jLabel1.setText("Búsqueda Clientes");
+            jLabel1.setText("Búsqueda Causas");
 
             jButton_UsarSeleccionado.setFont(new java.awt.Font("Arial", 0, 14));
             jButton_UsarSeleccionado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar_cliente/24.png"))); // NOI18N
@@ -179,12 +190,14 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 635, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 641, Short.MAX_VALUE)
                             .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(187, 187, 187)
+                            .addGap(26, 26, 26)
+                            .addComponent(selectAll)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jButton_UsarSeleccionado)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jButton_Cancelar)
@@ -204,6 +217,7 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selectAll)
                         .addComponent(jButton_Cancelar)
                         .addComponent(jButton_UsarSeleccionado))
                     .addGap(18, 18, 18)
@@ -217,22 +231,23 @@ private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-F
 // TODO add your handling code here:
        if(!parametro_busqueda.getText().isEmpty()){
           cleanModel(model);
-          Busqueda.busca_cliente(parametro_busqueda.getText().toLowerCase(),model);
+          Busqueda.busqueda_causa(parametro_busqueda.getText().toLowerCase(),model);
     }
    
    
    
 }//GEN-LAST:event_parametro_busquedaKeyReleased
 
-public static String getSelectedRowsID(DefaultTableModel model){
+public static ArrayList<String> getSelectedRowsID(DefaultTableModel model){
 
+    ArrayList<String> lista = new ArrayList();
         for (int i = 0; i < model.getRowCount(); i++) {
             boolean sel = (Boolean)model.getValueAt(i, 0);
             if(sel){                
-                return (model.getValueAt(i, 1)).toString();
+                lista.add((model.getValueAt(i, 1)).toString());
             }     
         }
-        return "";
+        return lista;
     }
 /*
  * HOLA
@@ -252,23 +267,22 @@ private void parametro_busquedaActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_parametro_busquedaActionPerformed
 
 private void TablaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TablaPropertyChange
-// TODO add your handling code here:
-    if(evt.getPropertyName().equalsIgnoreCase("tableCellEditor") ){
-        int row = Tabla.getEditingRow();
-        for (int i = 0; i < model.getRowCount(); i++) {
-            if(i!=row) model.setValueAt(false, i, 0);
-            
-        }
-    }
+// TODO add your handling code here
    
 }//GEN-LAST:event_TablaPropertyChange
 
     private void jButton_UsarSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UsarSeleccionadoActionPerformed
         // TODO add your handling code here:
-        RUT = getSelectedRowsID(this.tmodel_cliente);
-        
-        if(!RUT.isEmpty()){
-            ArrayList Temp = Cliente.getDatos(RUT);
+        ArrayList<ArrayList> lista_causas_productos = new ArrayList();
+        ArrayList<String> selectedRowsID = getSelectedRowsID(this.tmodel_causa);
+        for (Iterator<String> it = selectedRowsID.iterator(); it.hasNext();) {
+            String string = it.next();
+            ArrayList Temp = Recepcion_Judicial.get_Lista_Productos(string);
+            lista_causas_productos.add(Temp);
+        }
+        /*
+        if(!selectedRowsID.isEmpty()){
+            ArrayList Temp = Recepcion_Judicial.get_Lista_Productos(RUT);
             P_Revoluntaria.TextField_RUT.setText(RUT);
             String Nombre = Temp.get(3).toString() +" "+Temp.get(1).toString() + " " + Temp.get(2).toString();
             P_Revoluntaria.jTextField_Nombre.setText(Nombre);
@@ -279,7 +293,7 @@ private void TablaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRS
         
         else
             JOptionPane.showMessageDialog(V_Principal, "Seleccione algún criterio de búsqueda", "Error", JOptionPane.ERROR_MESSAGE);
-            
+          */  
     }//GEN-LAST:event_jButton_UsarSeleccionadoActionPerformed
 
     private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
@@ -288,6 +302,21 @@ private void TablaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRS
         V_Principal.desbloquearPanel();
         this.Hilo(false);
     }//GEN-LAST:event_jButton_CancelarActionPerformed
+
+private void selectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAllActionPerformed
+// TODO add your handling code here:
+    if(selectAll.isSelected()){
+        for (int i = 0; i < model.getRowCount(); i++) {
+        model.setValueAt(true, i, 0);
+        
+    }
+    }else{
+        for (int i = 0; i < model.getRowCount(); i++) {
+        model.setValueAt(false, i, 0);
+        
+    }
+    }
+}//GEN-LAST:event_selectAllActionPerformed
 
 public void cleanModel(DefaultTableModel model){
     int a =model.getRowCount()-1;
@@ -307,7 +336,7 @@ class taskInitContents extends Thread{
            Bar.setVisible(true);
            Bar.setMaximum(1);
            Bar.setIndeterminate(true);
-           Modelo.Busqueda.initClientes();
+           Modelo.Busqueda.initCausas();
            Bar.setIndeterminate(true);
            Bar.setValue(1);
            Bar.setVisible(false);
@@ -325,5 +354,6 @@ class taskInitContents extends Thread{
     private javax.swing.JScrollPane jScrollPane1;
     private Vista.Imagenes_Label.buscar.Label_Buscar48 label_Buscar481;
     private javax.swing.JTextField parametro_busqueda;
+    private javax.swing.JCheckBox selectAll;
     // End of variables declaration//GEN-END:variables
 }

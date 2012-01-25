@@ -13,6 +13,7 @@ package Vista;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author Deico
@@ -26,6 +27,7 @@ public class Login extends javax.swing.JDialog {
         this.setTitle("Subasys");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
         //this.setUndecorated(true);
       
     }
