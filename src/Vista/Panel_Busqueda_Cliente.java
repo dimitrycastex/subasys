@@ -122,7 +122,7 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
             setMaximumSize(new java.awt.Dimension(1000, 550));
             setMinimumSize(new java.awt.Dimension(1000, 550));
 
-            parametro_busqueda.setFont(new java.awt.Font("Arial", 0, 14));
+            parametro_busqueda.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
             parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     parametro_busquedaActionPerformed(evt);
@@ -148,10 +148,10 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
             });
             jScrollPane1.setViewportView(Tabla);
 
-            jLabel1.setFont(new java.awt.Font("Arial", 0, 36));
+            jLabel1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
             jLabel1.setText("Búsqueda Clientes");
 
-            jButton_UsarSeleccionado.setFont(new java.awt.Font("Arial", 0, 14));
+            jButton_UsarSeleccionado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
             jButton_UsarSeleccionado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar_cliente/24.png"))); // NOI18N
             jButton_UsarSeleccionado.setText("Usar Seleccionado");
             jButton_UsarSeleccionado.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +160,7 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
                 }
             });
 
-            jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14));
+            jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
             jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/24.png"))); // NOI18N
             jButton_Cancelar.setText("Cancelar");
             jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -184,11 +184,11 @@ public class Panel_Busqueda_Cliente extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(187, 187, 187)
+                            .addGap(18, 18, 18)
                             .addComponent(jButton_UsarSeleccionado)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jButton_Cancelar)
-                            .addGap(0, 216, Short.MAX_VALUE)))
+                            .addGap(0, 0, Short.MAX_VALUE)))
                     .addContainerGap())
             );
             layout.setVerticalGroup(

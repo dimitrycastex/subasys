@@ -28,11 +28,12 @@ public class Recepcion_Voluntaria {
         try {
 
             PreparedStatement prep = Postgresql.DB_CONNECTION.prepareStatement(
-            "insert into Recepcion_Voluntaria (Fecha_Ingreso,Descripcion,RUT) values (?,?,?);");
+            "insert into Recepcion_Voluntaria (ID_RV,Fecha_Ingreso,Descripcion,RUT) values (?,?,?,?);");
 
-            prep.setDate(1, fechaIngreso);
-            prep.setString(2, unaLista.get(2).toString());  
-            prep.setString(3, unaLista.get(3).toString());  
+            prep.setInt(1, Integer.parseInt(unaLista.get(0).toString()));
+            prep.setDate(2, fechaIngreso);
+            prep.setString(3, unaLista.get(2).toString());  
+            prep.setString(4, unaLista.get(3).toString());  
             prep.executeUpdate();
             
             } catch (SQLException ex) {

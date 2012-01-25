@@ -32,17 +32,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel_Busqueda_Cliente1" alignment="0" pref="1000" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="panel_Busqueda_Causa1" min="-2" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel_Busqueda_Cliente1" alignment="0" pref="604" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="panel_Busqueda_Causa1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="Vista.Panel_Busqueda_Cliente" name="panel_Busqueda_Cliente1">
+    <Component class="Vista.Panel_Busqueda_Causa" name="panel_Busqueda_Causa1">
     </Component>
   </SubComponents>
 </Form>

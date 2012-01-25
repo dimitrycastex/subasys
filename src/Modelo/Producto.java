@@ -49,7 +49,7 @@ public class Producto {
         try {
 
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-          ResultSet rs = stat.executeQuery("select * from Producto where ID_PRODUCTO="+ID_PRODUCTO+"");
+          ResultSet rs = stat.executeQuery("select * from Producto where ID_PRODUCTO='"+ID_PRODUCTO+"'");
           
           while (rs.next()) {
           producto.add(rs.getInt("ID_PRODUCTO"));
@@ -69,7 +69,7 @@ public class Producto {
          return producto;
 
          } catch (SQLException ex) { 
-         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         JOptionPane.showMessageDialog(null,"Producto: Error de Base de Datos" + ex, "Error", JOptionPane.WARNING_MESSAGE);
          }
          return producto;
     }

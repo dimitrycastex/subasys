@@ -12,6 +12,7 @@ package Vista;
 
 import Modelo.Busqueda;
 import Modelo.ExcelTableExporter;
+import Modelo.Recepcion_Voluntaria;
 import Vista.Tablas.Modelos.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -19,7 +20,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,7 +37,11 @@ public class Panel_Busqueda_Recepcion_Voluntaria extends javax.swing.JPanel {
 
     DefaultTableModel model = new DefaultTableModel();
     DefaultTableModel tmodel_recepcion_voluntaria = new Recepcion_Voluntaria_Busqueda();
+    private Thread tread;
+    private ArrayList<ArrayList> LosProductos;
+    private Panel_Remate P_Remate;
     
+    private String ID_RV;
   
     /** Creates new form Buscador */
     
@@ -42,10 +49,28 @@ public class Panel_Busqueda_Recepcion_Voluntaria extends javax.swing.JPanel {
         initComponents();
         model = tmodel_recepcion_voluntaria;
         Tabla.setModel(model);
-        Thread tread = new taskInitContents();
-        tread.start();
-       
-       
+        LosProductos = new ArrayList<ArrayList>();
+    }
+    
+    private VentanaPrincipal V_Principal;
+    
+    public void setFrame(JFrame f){
+        this.V_Principal= (VentanaPrincipal) f;
+    }
+    
+    public void setPanel(JPanel p){
+        P_Remate = (Panel_Remate) p;
+    }
+    
+    public void Hilo(boolean start){
+          
+        if(start){
+            tread = new taskInitContents();
+            tread.start();
+        }
+        
+        else
+        tread.stop();
     }
 
     /** This method is called from within the constructor to
@@ -61,10 +86,15 @@ public class Panel_Busqueda_Recepcion_Voluntaria extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
         selectAll = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
         Bar = new javax.swing.JProgressBar();
         label_Buscar481 = new Vista.Imagenes_Label.buscar.Label_Buscar48();
         label_Cliente481 = new Vista.Imagenes_Label.cliente.Label_Cliente48();
+        jButton_Cancelar = new javax.swing.JButton();
+        jButton_UsarSeleccionado = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        setMaximumSize(new java.awt.Dimension(1000, 550));
+        setMinimumSize(new java.awt.Dimension(1000, 550));
 
         parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,48 +129,76 @@ public class Panel_Busqueda_Recepcion_Voluntaria extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Busqueda Productos Recepcion Voluntaria");
+        jButton_Cancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/cruz/24.png"))); // NOI18N
+        jButton_Cancelar.setText("Cancelar");
+        jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CancelarActionPerformed(evt);
+            }
+        });
+
+        jButton_UsarSeleccionado.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton_UsarSeleccionado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar_cliente/24.png"))); // NOI18N
+        jButton_UsarSeleccionado.setText("Usar Seleccionado");
+        jButton_UsarSeleccionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_UsarSeleccionadoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel1.setText("Búsqueda Recepción Voluntaria");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Bar, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addComponent(Bar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label_Cliente481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(selectAll, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
-                .addComponent(label_Cliente481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(selectAll, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_UsarSeleccionado)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_Cancelar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(label_Cliente481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(selectAll)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label_Cliente481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton_UsarSeleccionado)
+                        .addComponent(jButton_Cancelar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Bar, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Bar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -209,6 +267,20 @@ private void TablaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRS
    
 }//GEN-LAST:event_TablaPropertyChange
 
+    private void jButton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CancelarActionPerformed
+        // TODO add your handling code here:
+        V_Principal.removePanel(this);
+        V_Principal.desbloquearPanel();
+    }//GEN-LAST:event_jButton_CancelarActionPerformed
+
+    private void jButton_UsarSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UsarSeleccionadoActionPerformed
+        // TODO add your handling code here:
+        ID_RV = this.getSelectedRowsID(tmodel_recepcion_voluntaria);
+        this.LosProductos = Recepcion_Voluntaria.get_Lista_Productos(Integer.parseInt(ID_RV));
+        //P_Remate.tabla_Producto1.setProductos(LosProductos);
+        //P_Remate.tabla_Producto1.AgregaProductos();
+    }//GEN-LAST:event_jButton_UsarSeleccionadoActionPerformed
+
 public void cleanModel(DefaultTableModel model){
     int a =model.getRowCount()-1;
 
@@ -240,6 +312,8 @@ class taskInitContents extends Thread{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar Bar;
     private javax.swing.JTable Tabla;
+    private javax.swing.JButton jButton_Cancelar;
+    private javax.swing.JButton jButton_UsarSeleccionado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private Vista.Imagenes_Label.buscar.Label_Buscar48 label_Buscar481;

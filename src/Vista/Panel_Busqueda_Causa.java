@@ -13,6 +13,7 @@ package Vista;
 import Modelo.Busqueda;
 import Modelo.Cliente;
 import Modelo.ExcelTableExporter;
+import Modelo.Producto;
 import Modelo.Recepcion_Judicial;
 import Vista.Tablas.Modelos.*;
 import java.io.File;
@@ -42,11 +43,9 @@ public class Panel_Busqueda_Causa extends javax.swing.JPanel {
     
     public static ArrayList<ArrayList> lista_seleccionados = new ArrayList();
     private VentanaPrincipal V_Principal;
-    private boolean esFactura, esReVoluntaria;
     private Thread tread;
     protected String RUT;
-    private Panel_ReVoluntaria P_Revoluntaria;
-    private Panel_Factura P_Factura;
+    private Panel_Remate  P_Remate;
     
     /** Creates new form Buscador */
     
@@ -54,9 +53,6 @@ public class Panel_Busqueda_Causa extends javax.swing.JPanel {
         initComponents();
         model = tmodel_causa;
         Tabla.setModel(model);
-         
-        esFactura=false;
-        esReVoluntaria = false;
         
     }
     
@@ -76,20 +72,10 @@ public class Panel_Busqueda_Causa extends javax.swing.JPanel {
         this.V_Principal= (VentanaPrincipal) f;
     }
     
-    public void setPaneles(JPanel revoluntaria, JPanel factura){
-        P_Revoluntaria = (Panel_ReVoluntaria) revoluntaria;
-        P_Factura = (Panel_Factura) factura;
+    public void setPanel(JPanel remate){
+        P_Remate = (Panel_Remate) remate;
     }
     
-    public void esFactura(){
-        esFactura = true;
-        esReVoluntaria = false;
-    }
-    
-    public void esReVoluntaria(){
-        esReVoluntaria = true;
-        esFactura = false;
-    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -273,13 +259,26 @@ private void TablaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRS
 
     private void jButton_UsarSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UsarSeleccionadoActionPerformed
         // TODO add your handling code here:
-        ArrayList<ArrayList> lista_causas_productos = new ArrayList();
+        ArrayList<ArrayList> lista_causas_productos = new ArrayList<ArrayList>();
         ArrayList<String> selectedRowsID = getSelectedRowsID(this.tmodel_causa);
+        ArrayList IDProductos = new ArrayList();
+        ArrayList temp2 = new ArrayList();
         for (Iterator<String> it = selectedRowsID.iterator(); it.hasNext();) {
             String string = it.next();
             ArrayList Temp = Recepcion_Judicial.get_Lista_Productos(string);
-            lista_causas_productos.add(Temp);
+            IDProductos.add(Temp.get(1));
         }
+        for (int i = 0; i < IDProductos.size(); i++) {
+            temp2 = Producto.getDatos(IDProductos.get(i).toString());
+            lista_causas_productos.add(temp2);
+        }
+        
+        //P_Remate.tabla_Producto1.AgregaProductos(lista_causas_productos,false);
+        //P_Remate.tabla_Producto1.AgregaProductos();
+        
+        V_Principal.removePanel(this);
+        V_Principal.desbloquearPanel();
+        this.Hilo(false);
         /*
         if(!selectedRowsID.isEmpty()){
             ArrayList Temp = Recepcion_Judicial.get_Lista_Productos(RUT);

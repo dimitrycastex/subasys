@@ -73,7 +73,6 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton_Agregar = new javax.swing.JButton();
         TextField_RUT = new javax.swing.JTextField();
         jTextField_Nombre = new javax.swing.JTextField();
         jDateChooser_Fecha = new com.toedter.calendar.JDateChooser();
@@ -97,10 +96,6 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setName("Cliente");
         setPreferredSize(new java.awt.Dimension(1000, 550));
-
-        jButton_Agregar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar_cliente/24.png"))); // NOI18N
-        jButton_Agregar.setText("Agregar");
 
         TextField_RUT.setEditable(false);
         TextField_RUT.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -215,9 +210,7 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
                                 .addGap(83, 83, 83)
                                 .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton_BuscarRUT)
-                                .addGap(10, 10, 10)
-                                .addComponent(jButton_Agregar))
+                                .addComponent(jButton_BuscarRUT))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Label_ID)
                                 .addGap(18, 18, 18)
@@ -270,9 +263,7 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(TextField_RUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton_Agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_BuscarRUT)))
+                    .addComponent(jButton_BuscarRUT))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -347,7 +338,6 @@ public class Panel_ReVoluntaria extends javax.swing.JPanel {
     private javax.swing.JLabel Label_RUT;
     private javax.swing.JTextField TextField_ID;
     protected javax.swing.JTextField TextField_RUT;
-    private javax.swing.JButton jButton_Agregar;
     private javax.swing.JButton jButton_AgregarProductos;
     private javax.swing.JButton jButton_BuscarRUT;
     private javax.swing.JButton jButton_BuscarRec;

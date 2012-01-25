@@ -25,7 +25,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.panel_Bienvenido1.setFrame(this);
         this.panel_Cliente1.setFrame(this);
+        
         this.panel_Remate1.setFrame(this);
+        this.panel_Remate1.setPaneles(panel_Busqueda_Causa1, panel_Busqueda_Recepcion_Voluntaria1);
+        
         this.panel_ReJudicial1.setFrame(this);
         this.panel_ReVoluntaria1.setFrame(this);
         this.panel_Producto1.setFrame(this);
@@ -44,6 +47,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_ReJudicial1.setPanel_ResumenRecepcion(this.panel_ResumenRecepcion1);
         this.panel_ReVoluntaria1.setPanel_ResumenRecepcion(this.panel_ResumenRecepcion1);
         this.panel_Busqueda_Cliente1.setPaneles(panel_ReVoluntaria1, panel_Factura1);
+        this.panel_Busqueda_Causa1.setFrame(this);
+        this.panel_Busqueda_Causa1.setPanel(panel_Remate1);
+        this.panel_Busqueda_Recepcion_Voluntaria1.setFrame(this);
+        this.panel_Busqueda_Recepcion_Voluntaria1.setPanel(panel_Remate1);
     }
     
     //--------------------------------------------------------------------------
@@ -325,6 +332,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTabbedPane_Pestanas.remove(panel_VisorPDF1);
     }
     
+    //--------------------------------------------------------------------------
+    protected void addPanel_Busqueda_Recepcion_Voluntaria(){
+        jTabbedPane_Pestanas.addTab("Búsqueda Recepción Voluntaria", panel_Busqueda_Recepcion_Voluntaria1);
+    }
+    
+    protected void removePanel_Busqueda_Recepcion_Voluntaria(){
+        jTabbedPane_Pestanas.remove(panel_Busqueda_Recepcion_Voluntaria1);
+    }
+    
+    //--------------------------------------------------------------------------
+    protected void addPanel_Busqueda_Causa(){
+        jTabbedPane_Pestanas.addTab("Búsqueda Causa", panel_Busqueda_Causa1);
+    }
+    
+    protected void removePanel_Busqueda_Causa(){
+        jTabbedPane_Pestanas.remove(panel_Busqueda_Causa1);
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -349,6 +374,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panel_ResumenRecepcion1 = new Vista.Panel_ResumenRecepcion();
         panel_Busqueda_Cliente1 = new Vista.Panel_Busqueda_Cliente();
         panel_Sel_Impresion1 = new Vista.Panel_Sel_Impresion();
+        panel_Busqueda_Recepcion_Voluntaria1 = new Vista.Panel_Busqueda_Recepcion_Voluntaria();
+        panel_Busqueda_Causa1 = new Vista.Panel_Busqueda_Causa();
         jToolBar1 = new javax.swing.JToolBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -390,7 +417,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /*
         jTabbedPane_Pestanas.addTab("Factura", panel_Factura1);
         */
+
+        /*
         jTabbedPane_Pestanas.addTab("Visor PDF", panel_VisorPDF1);
+        */
 
         /*
         jTabbedPane_Pestanas.addTab("Buscar Producto", panel_BuscaProducto1);
@@ -403,7 +433,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /*
         jTabbedPane_Pestanas.addTab("Buscar Clientes", panel_Busqueda_Cliente1);
         */
+
+        /*
         jTabbedPane_Pestanas.addTab("Impresión Documentos", panel_Sel_Impresion1);
+        */
+
+        /*
+        jTabbedPane_Pestanas.addTab("Búsqueda Recepción Voluntaria", panel_Busqueda_Recepcion_Voluntaria1);
+        */
+
+        /*
+        jTabbedPane_Pestanas.addTab("Búsqueda Causa", panel_Busqueda_Causa1);
+        */
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -413,7 +454,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane_Pestanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,7 +534,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private Vista.Panel_Bienvenido panel_Bienvenido1;
     private Vista.Panel_BuscaProducto1 panel_BuscaProducto1;
+    private Vista.Panel_Busqueda_Causa panel_Busqueda_Causa1;
     private Vista.Panel_Busqueda_Cliente panel_Busqueda_Cliente1;
+    private Vista.Panel_Busqueda_Recepcion_Voluntaria panel_Busqueda_Recepcion_Voluntaria1;
     private Vista.Panel_Causa panel_Causa1;
     private Vista.Panel_Cliente panel_Cliente1;
     private Vista.Panel_Factura panel_Factura1;

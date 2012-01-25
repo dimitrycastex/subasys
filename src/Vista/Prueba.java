@@ -18,6 +18,7 @@ public class Prueba extends javax.swing.JFrame {
     public Prueba() {
         initComponents();
         //this.setContentPane(this.inicioAsistenteRecepción1);
+        panel_Busqueda_Causa1.Hilo(true);
     }
 
     /**
@@ -29,7 +30,7 @@ public class Prueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel_Busqueda_Cliente1 = new Vista.Panel_Busqueda_Cliente();
+        panel_Busqueda_Causa1 = new Vista.Panel_Busqueda_Causa();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 550));
@@ -41,11 +42,15 @@ public class Prueba extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_Busqueda_Cliente1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panel_Busqueda_Causa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_Busqueda_Cliente1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel_Busqueda_Causa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 54, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,6 +98,6 @@ public class Prueba extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Vista.Panel_Busqueda_Cliente panel_Busqueda_Cliente1;
+    private Vista.Panel_Busqueda_Causa panel_Busqueda_Causa1;
     // End of variables declaration//GEN-END:variables
 }
