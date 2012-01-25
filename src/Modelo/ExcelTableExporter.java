@@ -31,9 +31,11 @@ public class ExcelTableExporter {
                 WritableSheet s = w.createSheet(nombreTabs.get(index), 0);
 
                 for (int i = 0; i < table.getColumnCount(); i++) {
+                    
                     for (int j = 0; j < table.getRowCount(); j++) {
                         Object objeto = table.getValueAt(j, i);
-                        if(objeto!=null)s.addCell(new Label(i, j, String.valueOf(objeto)));
+                        
+                        if(objeto!=null && i!=0)s.addCell(new Label(i, j, String.valueOf(objeto)));
                     }
                 }
             }

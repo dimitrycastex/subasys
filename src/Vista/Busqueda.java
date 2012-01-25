@@ -4,27 +4,22 @@
  */
 
 /*
- * Test_3.java
+ * Busqueda.java
  *
- * Created on 25-ene-2012, 12:37:19
+ * Created on 25-ene-2012, 14:51:32
  */
 package Vista;
-
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.WindowConstants;
 
 /**
  *
  * @author Deico
  */
-public class Test_3 extends javax.swing.JFrame {
+public class Busqueda extends javax.swing.JDialog {
 
-    /** Creates new form Test_3 */
-    public Test_3() {
+    /** Creates new form Busqueda */
+    public Busqueda(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        
     }
 
     /** This method is called from within the constructor to
@@ -38,7 +33,7 @@ public class Test_3 extends javax.swing.JFrame {
 
         panel_Busqueda1 = new Vista.Panel_Busqueda();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,23 +52,7 @@ public class Test_3 extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        
-
-         try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (Exception ex) {
-             System.out.println("");
-        } 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new Test_3().setVisible(true);
-            }
-        });
-    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Vista.Panel_Busqueda panel_Busqueda1;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -67,6 +68,7 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
         jButton_Causa = new javax.swing.JButton();
         subasys2_Logo1 = new Vista.Imagenes_Label.Subasys2_Logo();
         jButton_ReVoluntaria = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jMenuItem_NuevoCliente.setText("Nuevo Cliente");
         jMenuItem_NuevoCliente.setToolTipText("Agrega un nuevo cliente");
@@ -198,7 +200,7 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        jButton_Remate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_Remate.setFont(new java.awt.Font("Arial", 0, 18));
         jButton_Remate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/martillo/64.png"))); // NOI18N
         jButton_Remate.setText("Remate");
         jButton_Remate.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +209,7 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
             }
         });
 
-        jButton_NuevoCliente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_NuevoCliente.setFont(new java.awt.Font("Arial", 0, 18));
         jButton_NuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/agregar_cliente/64.png"))); // NOI18N
         jButton_NuevoCliente.setText("Cliente");
         jButton_NuevoCliente.setMaximumSize(new java.awt.Dimension(107, 33));
@@ -219,7 +221,7 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
             }
         });
 
-        jButton_Salir.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_Salir.setFont(new java.awt.Font("Arial", 0, 18));
         jButton_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/salir/32.png"))); // NOI18N
         jButton_Salir.setText("Salir");
         jButton_Salir.setMaximumSize(new java.awt.Dimension(107, 33));
@@ -231,7 +233,7 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
             }
         });
 
-        jButton_Factura.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_Factura.setFont(new java.awt.Font("Arial", 0, 18));
         jButton_Factura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/factura/64.png"))); // NOI18N
         jButton_Factura.setText("Factura");
         jButton_Factura.addActionListener(new java.awt.event.ActionListener() {
@@ -240,7 +242,7 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
             }
         });
 
-        jButton_Causa.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_Causa.setFont(new java.awt.Font("Arial", 0, 18));
         jButton_Causa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/justicia/64.png"))); // NOI18N
         jButton_Causa.setText("Causa");
         jButton_Causa.addActionListener(new java.awt.event.ActionListener() {
@@ -249,7 +251,7 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
             }
         });
 
-        jButton_ReVoluntaria.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton_ReVoluntaria.setFont(new java.awt.Font("Arial", 0, 18));
         jButton_ReVoluntaria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/producto/64.png"))); // NOI18N
         jButton_ReVoluntaria.setText("Recepcion Voluntaria");
         jButton_ReVoluntaria.addActionListener(new java.awt.event.ActionListener() {
@@ -258,16 +260,25 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes_Files/buscar/48.png"))); // NOI18N
+        jButton1.setText("Busqueda");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton_Causa, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                         .addComponent(jButton_ReVoluntaria)
                         .addGap(165, 165, 165))
                     .addGroup(layout.createSequentialGroup()
@@ -282,6 +293,7 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
                                 .addComponent(jButton_NuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(24, 24, 24)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_Factura, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                     .addComponent(jButton_Salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -299,7 +311,9 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
                             .addComponent(jButton_Factura)
                             .addComponent(jButton_Causa)
                             .addComponent(jButton_ReVoluntaria))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_NuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Remate)
@@ -414,7 +428,14 @@ public class Panel_Bienvenido extends javax.swing.JPanel {
         V_Principal.addPanel_ReVoluntaria(true);
     }//GEN-LAST:event_jButton_ReVoluntariaActionPerformed
 
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         // TODO add your handling code here:
+         JDialog frame = new Busqueda(new JFrame(),true);
+         frame.setVisible(true);
+}//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Causa;
     private javax.swing.JButton jButton_Factura;
     private javax.swing.JButton jButton_NuevoCliente;
