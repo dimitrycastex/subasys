@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Vista.VentanaPrincipal;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.panel_Bienvenido1.setFrame(this);
         this.panel_Cliente1.setFrame(this);
         this.panel_Remate1.setFrame(this);
@@ -425,6 +427,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        
         /*
          * Set the Nimbus look and feel
          */
@@ -460,14 +464,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            
             public void run() {
                 /*try {
                     UIManager.setLookAndFeel(new org.pushingpixels.substance.api.skin.SubstanceOfficeSilver2007LookAndFeel());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,"Substance Graphite failed to initialize");
                 }*/
-
-                new VentanaPrincipal().setVisible(true);
+                Login dialog = new Login(new javax.swing.JFrame(), true);
+                VentanaPrincipal ventana = new VentanaPrincipal();
+                ventana.setVisible(true);
+                dialog.setVisible(true);
+               
+                
             }
         });
     }
