@@ -149,7 +149,7 @@ public class Recepcion_Voluntaria {
           }
           rs.close();
           
-          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el Recepcion Voluntaria", "Error", JOptionPane.WARNING_MESSAGE);
           
          return lista_rvoluntaria;
 
