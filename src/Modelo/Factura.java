@@ -217,4 +217,28 @@ public class Factura {
         return false;
         }
     }
+    
+    
+    public static boolean isExist(int id_factura){
+
+
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select id_factura from Factura where id_factura="+id_factura+";");
+          
+          while (rs.next()) {
+        
+          flag=true;
+          }
+          rs.close();
+          
+          return flag;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return flag;
+    }
 }

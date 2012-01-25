@@ -89,7 +89,7 @@ public class Cliente {
         try {
 
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-          ResultSet rs = stat.executeQuery("select RUT from Cliente where RUT="+"'"+RUT+"'");
+          ResultSet rs = stat.executeQuery("select RUT from Cliente where RUT='"+RUT+"';");
           
           while (rs.next()) {
         

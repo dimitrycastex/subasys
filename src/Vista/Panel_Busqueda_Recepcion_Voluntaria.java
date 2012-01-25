@@ -12,7 +12,6 @@ package Vista;
 
 import Modelo.Busqueda;
 import Modelo.ExcelTableExporter;
-import Modelo.Remate;
 import Vista.Tablas.Modelos.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JViewport;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,27 +28,23 @@ import javax.swing.table.DefaultTableModel;
  * @author Deico
  */
 
-public class Panel_Busqueda_Productos extends javax.swing.JPanel {
+public class Panel_Busqueda_Recepcion_Voluntaria extends javax.swing.JPanel {
+
 
 
     DefaultTableModel model = new DefaultTableModel();
-    DefaultTableModel tmodel_cliente = new Cliente_Busqueda();
-    DefaultTableModel tmodel_factura = new Factura_Busqueda();
-    DefaultTableModel tmodel_remate = new Remate_Busqueda();
-    DefaultTableModel tmodel_producto = new Producto_Busqueda();
-    DefaultTableModel tmodel_causa = new Causa_Busqueda();
-    DefaultTableModel tmodel_recepcion_judicial = new Recepcion_Judicial_Busqueda();
     DefaultTableModel tmodel_recepcion_voluntaria = new Recepcion_Voluntaria_Busqueda();
-    DefaultTableModel tmodel_producto_facturado = new Producto_Facturado_Busqueda();
-    DefaultTableModel tmodel_remate_productos = new Remate_Productos_Busqueda();
     
-    public static ArrayList<ArrayList> lista_seleccionados = new ArrayList();
+  
     /** Creates new form Buscador */
     
-    public Panel_Busqueda_Productos() {
+    public Panel_Busqueda_Recepcion_Voluntaria() {
         initComponents();
-        model = tmodel_cliente;
-        Tabla.setModel(model);       
+        model = tmodel_recepcion_voluntaria;
+        Tabla.setModel(model);
+        Thread tread = new taskInitContents();
+        tread.start();
+       
        
     }
 
@@ -65,24 +59,12 @@ public class Panel_Busqueda_Productos extends javax.swing.JPanel {
 
         parametro_busqueda = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabla = new javax.swing.JTable(){
-
-            @Override
-            public boolean getScrollableTracksViewportWidth() {
-
-                if (autoResizeMode != AUTO_RESIZE_OFF) {
-                    if (getParent() instanceof JViewport) {
-                        return (((JViewport)getParent()).getWidth() > getPreferredSize().width);
-                    }
-
-                }return false;
-
-            }
-        };
+        Tabla = new javax.swing.JTable();
         selectAll = new javax.swing.JCheckBox();
-        label_Buscar481 = new Vista.Imagenes_Label.buscar.Label_Buscar48();
         jLabel1 = new javax.swing.JLabel();
-        label_Producto481 = new Vista.Imagenes_Label.producto.Label_Producto48();
+        Bar = new javax.swing.JProgressBar();
+        label_Buscar481 = new Vista.Imagenes_Label.buscar.Label_Buscar48();
+        label_Cliente481 = new Vista.Imagenes_Label.cliente.Label_Cliente48();
 
         parametro_busqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,8 +82,14 @@ public class Panel_Busqueda_Productos extends javax.swing.JPanel {
                 parametro_busquedaKeyTyped(evt);
             }
         });
+        parametro_busqueda.setToolTipText("Busque por el RUT o ID asociado a cada recepcion\n");
 
         Tabla.setModel(model);
+        Tabla.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                TablaPropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabla);
 
         selectAll.setText("Seleccionar Todos");
@@ -111,72 +99,71 @@ public class Panel_Busqueda_Productos extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Busqueda Productos");
+        jLabel1.setText("Busqueda Productos Recepcion Voluntaria");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Bar, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(26, 26, 26)
                         .addComponent(selectAll, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
-                .addComponent(label_Producto481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addComponent(label_Cliente481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(parametro_busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(selectAll)))
-                    .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_Producto481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_Cliente481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_Buscar481, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Bar, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 private void parametro_busquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_parametro_busquedaKeyReleased
 // TODO add your handling code here:
-
-       if(!parametro_busqueda.getText().isEmpty()){
-         cleanModel(model);
-         if(Modelo.Remate.isRemate(parametro_busqueda.getText().toUpperCase())){
-          Busqueda.busqueda_remate_productos(parametro_busqueda.getText().toLowerCase(),model);
-           
-         }
-        
-    
-   }
+     if(!parametro_busqueda.getText().isEmpty()){
+          cleanModel(model);
+          Busqueda.busqueda_recepcion_voluntaria(parametro_busqueda.getText().toLowerCase(),model);
+    }
+   
+   
    
 }//GEN-LAST:event_parametro_busquedaKeyReleased
 
-public static ArrayList getSelectedRowsID(DefaultTableModel model){
-        ArrayList lista = new ArrayList();
+public static String getSelectedRowsID(DefaultTableModel model){
+
         for (int i = 0; i < model.getRowCount(); i++) {
             boolean sel = (Boolean)model.getValueAt(i, 0);
-            if(sel){
-                 
-                lista.add(model.getValueAt(i, 1));
-            }
-            
+            if(sel){                
+                return (model.getValueAt(i, 2)).toString();
+            }     
         }
-        return lista;
+        return "";
     }
 /*
  * HOLA
@@ -210,6 +197,18 @@ private void selectAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     }
 }//GEN-LAST:event_selectAllActionPerformed
 
+private void TablaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TablaPropertyChange
+// TODO add your handling code here:
+    if(evt.getPropertyName().equalsIgnoreCase("tableCellEditor") ){
+        int row = Tabla.getEditingRow();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            if(i!=row) model.setValueAt(false, i, 0);
+            
+        }
+    }
+   
+}//GEN-LAST:event_TablaPropertyChange
+
 public void cleanModel(DefaultTableModel model){
     int a =model.getRowCount()-1;
 
@@ -221,16 +220,30 @@ public void cleanModel(DefaultTableModel model){
     
 }
 
-
+class taskInitContents extends Thread{
+        
+      
+      public void run() {
+       
+           Bar.setVisible(true);
+           Bar.setMaximum(1);
+           Bar.setIndeterminate(true);
+           Modelo.Busqueda.initRV();
+           Bar.setIndeterminate(true);
+           Bar.setValue(1);
+           Bar.setVisible(false);
+        }
+    }
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar Bar;
     private javax.swing.JTable Tabla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private Vista.Imagenes_Label.buscar.Label_Buscar48 label_Buscar481;
-    private Vista.Imagenes_Label.producto.Label_Producto48 label_Producto481;
+    private Vista.Imagenes_Label.cliente.Label_Cliente48 label_Cliente481;
     private javax.swing.JTextField parametro_busqueda;
     private javax.swing.JCheckBox selectAll;
     // End of variables declaration//GEN-END:variables

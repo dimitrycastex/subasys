@@ -277,7 +277,7 @@ public class Busqueda {
         for (Iterator<ArrayList> it = lista_recepcion_voluntaria.iterator(); it.hasNext();) {
             ArrayList arrayList = it.next();
             RUT = arrayList.get(1).toString();
-            if(RUT.contains(parametro)){
+            if(RUT.contains(parametro) || arrayList.get(0).toString().contains(parametro)){
                 buffer.clear();
                 buffer.add(false);
                 buffer.addAll(arrayList);

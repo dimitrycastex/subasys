@@ -35,9 +35,7 @@ public class Postgresql {
     public static  Connection DB_CONNECTION = getConnection();
     
     public static void main(String[] args) {
-        // TODO code application logic here
-        //PDF.get_Lista_Clientes();
-        //Excel_to_SQL.cliente("-", "-", "-", "-","-", "-", "-", "-");
+       //crearDBASE();
         
        
     }
@@ -47,12 +45,12 @@ public class Postgresql {
      String driver = "org.postgresql.Driver";
      //String dbname = "Subasys";
      String dbname = "subasys";
-      String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
-     //String url = "jdbc:postgresql://localhost/" +  dbname;
-      String username = "subasys";
-      String password = "cscv$38l";
-     //String username = "postgres";
-     //String password = "subasys";
+      //String url = "jdbc:postgresql://146.83.144.58:302/" +  dbname;
+     String url = "jdbc:postgresql://localhost/" +  dbname;
+      //String username = "subasys";
+     // String password = "cscv$38l";
+     String username = "postgres";
+     String password = "subasys";
         Connection conData = null;
        
         try {

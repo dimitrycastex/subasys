@@ -331,4 +331,27 @@ public class Producto {
         }
     }
   
+  public static boolean isExist(int id_producto){
+
+
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select id_producto from Producto where id_producto="+id_producto+";");
+          
+          while (rs.next()) {
+        
+          flag=true;
+          }
+          rs.close();
+          
+          return flag;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return flag;
+    }
+  
 }

@@ -42,7 +42,7 @@ causa[columna]=convert(data);
 
 }
 
-//Excel_to_SQL.causa(causa[2],causa[1],causa[3]);
+Excel_to_SQL.causa(causa[2],causa[1],causa[3]);
 Excel_to_SQL.remate_has_causa(causa[0], causa[2]);
 
 }

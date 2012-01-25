@@ -297,5 +297,27 @@ public class Remate {
         }
     }
      
+     public static boolean isExist(String id_remate){
+
+
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select id_remate from Remate where id_remate='"+id_remate+"';");
+          
+          while (rs.next()) {
+        
+          flag=true;
+          }
+          rs.close();
+          
+          return flag;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return flag;
+    }
   
 }

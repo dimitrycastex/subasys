@@ -22,20 +22,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel_Busqueda_Cliente1" alignment="0" pref="840" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="panel_Busqueda_Recepcion_Voluntaria1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="panel_Busqueda_Cliente1" pref="433" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="panel_Busqueda_Recepcion_Voluntaria1" min="-2" pref="422" max="-2" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="Vista.Panel_Busqueda_Cliente" name="panel_Busqueda_Cliente1">
+    <Component class="Vista.Panel_Busqueda_Recepcion_Voluntaria" name="panel_Busqueda_Recepcion_Voluntaria1">
     </Component>
   </SubComponents>
 </Form>

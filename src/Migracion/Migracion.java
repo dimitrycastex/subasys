@@ -26,6 +26,6 @@ public class Migracion {
        E_Factura_has_Producto.leerArchivoExcel("Factura_has_Producto.xls"); 
        Excel_to_SQL.get_Recepcion_Judicial_Table();
        E_Recepcion_judicial_has_producto.leerArchivoExcel("Causa_has_Producto.xls"); 
-        
+       E_Producto_Update.leerArchivoExcel("UPDATE_PRODUCTOS.xls");  
     }
 }

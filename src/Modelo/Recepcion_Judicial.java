@@ -264,5 +264,28 @@ public class Recepcion_Judicial {
         return false;
         }
     }
+   
+   public static boolean isExist(int id_rj){
+
+
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select id_rj from Recepcion_judicial where id_rj="+id_rj+";");
+          
+          while (rs.next()) {
+        
+          flag=true;
+          }
+          rs.close();
+          
+          return flag;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return flag;
+    }
   
 }

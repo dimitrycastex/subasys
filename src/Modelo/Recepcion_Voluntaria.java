@@ -211,4 +211,27 @@ public class Recepcion_Voluntaria {
         return false;
         }
     }
+  
+  public static boolean isExist(int id_rv){
+
+
+        boolean flag = false;
+        try {
+
+          java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+          ResultSet rs = stat.executeQuery("select id_rv from Recepcion_voluntaria where id_rv="+id_rv+";");
+          
+          while (rs.next()) {
+        
+          flag=true;
+          }
+          rs.close();
+          
+          return flag;
+
+         } catch (SQLException ex) { 
+         JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
+         }
+         return flag;
+    }
 }
