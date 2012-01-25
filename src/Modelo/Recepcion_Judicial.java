@@ -237,7 +237,7 @@ public class Recepcion_Judicial {
           }
           rs.close();
           
-          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el RecepcionJudicial", "Error", JOptionPane.WARNING_MESSAGE);
+          if(!flag)JOptionPane.showMessageDialog(null, "No se encontro el Recepcion Judicial", "Error", JOptionPane.WARNING_MESSAGE);
           
          return list;
 

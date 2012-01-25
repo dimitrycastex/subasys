@@ -4,17 +4,6 @@
  */
 package Modelo;
 
-import Vista.Panel_Busqueda;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Deico
@@ -29,11 +18,8 @@ public class Test {
         // Busqueda.getDatos("Juan");
         //Busqueda.busca_cliente("juan geraldo");
         // Modelo.Producto.get_Lista_Busqueda_Facturados();
-        ArrayList datos = Recepcion_Judicial.getDatos("20");
-        for (Iterator it = datos.iterator(); it.hasNext();) {
-            Object object = it.next();
-            System.out.println(object);
-        }
+        //System.out.println(Producto.get_ID_Factura("234"));
+        Modelo.Recepcion_Judicial.get_Lista_Productos("23-97");
     }
     
     public static String filtraRut(String rut){
