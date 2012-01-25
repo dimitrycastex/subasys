@@ -80,27 +80,27 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton2" pref="349" max="32767" attributes="0"/>
+                          <Component id="jButton_listadeproductos" pref="349" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton3" pref="349" max="32767" attributes="0"/>
+                          <Component id="jButton_listarecepcionesjudiciales" pref="349" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton4" max="32767" attributes="0"/>
+                          <Component id="jButton_listaderecepcionesvoluntarias" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton5" pref="349" max="32767" attributes="0"/>
+                          <Component id="jButton_listaderemates" pref="349" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton6" pref="349" max="32767" attributes="0"/>
+                          <Component id="jButton_listaderolescausas" pref="349" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton7" pref="349" max="32767" attributes="0"/>
+                          <Component id="jButton_listadeplanillaremates" pref="349" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -112,17 +112,17 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jButton_ListaClientes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_listadeproductos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_listarecepcionesjudiciales" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_listaderecepcionesvoluntarias" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_listaderemates" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton6" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_listaderolescausas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_listadeplanillaremates" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -143,7 +143,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_ListaClientesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jButton_listadeproductos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -153,8 +153,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Lista de Productos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_listadeproductosActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="jButton_listarecepcionesjudiciales">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -164,8 +167,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Lista de Recepciones Judiciales"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_listarecepcionesjudicialesActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="jButton_listaderecepcionesvoluntarias">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -175,8 +181,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Lista de Recepciones Voluntarias"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_listaderecepcionesvoluntariasActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
+        <Component class="javax.swing.JButton" name="jButton_listaderemates">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -186,8 +195,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Lista de Remates"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_listaderematesActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton6">
+        <Component class="javax.swing.JButton" name="jButton_listaderolescausas">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -197,8 +209,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Lista de Roles/Causas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_listaderolescausasActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton7">
+        <Component class="javax.swing.JButton" name="jButton_listadeplanillaremates">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -208,6 +223,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Lista de Planilla de Remates"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_listadeplanillarematesActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -229,24 +247,24 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton13" pref="280" max="32767" attributes="0"/>
+                          <Component id="jButton_notacreditos" pref="280" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton14" pref="280" max="32767" attributes="0"/>
+                          <Component id="jButton_plantilladeremate" pref="280" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton8" pref="282" max="32767" attributes="0"/>
+                          <Component id="jButton_cajaremate" pref="282" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton11" pref="282" max="32767" attributes="0"/>
+                          <Component id="jButton_factura" pref="282" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton16" pref="282" max="32767" attributes="0"/>
+                          <Component id="jButton_recepcionjudicial" pref="282" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton17" pref="282" max="32767" attributes="0"/>
+                          <Component id="jButton_recepcionvoluntaria" pref="282" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jButton15" alignment="1" pref="570" max="32767" attributes="0"/>
-                      <Component id="jButton12" alignment="0" pref="570" max="32767" attributes="0"/>
-                      <Component id="jButton10" alignment="1" pref="570" max="32767" attributes="0"/>
-                      <Component id="jButton9" alignment="1" pref="570" max="32767" attributes="0"/>
+                      <Component id="jButton_planilladeremate" alignment="1" pref="570" max="32767" attributes="0"/>
+                      <Component id="jButton_liquidacionderemate" alignment="0" pref="570" max="32767" attributes="0"/>
+                      <Component id="jButton_detalledelotesrematados" alignment="1" pref="570" max="32767" attributes="0"/>
+                      <Component id="jButton_colillasdeloteremates" alignment="1" pref="570" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -256,34 +274,34 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_cajaremate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_factura" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton13" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_notacreditos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_plantilladeremate" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton16" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton17" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_recepcionjudicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton_recepcionvoluntaria" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jButton15" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_planilladeremate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton12" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_liquidacionderemate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_detalledelotesrematados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton9" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton_colillasdeloteremates" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton8">
+        <Component class="javax.swing.JButton" name="jButton_cajaremate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -294,7 +312,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir Caja Remate"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton9">
+        <Component class="javax.swing.JButton" name="jButton_colillasdeloteremates">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -305,7 +323,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir Colillas de Lote Remates"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton10">
+        <Component class="javax.swing.JButton" name="jButton_detalledelotesrematados">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -316,7 +334,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir Detalle de Lotes Rematados"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton11">
+        <Component class="javax.swing.JButton" name="jButton_factura">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -327,7 +345,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir Factura"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton12">
+        <Component class="javax.swing.JButton" name="jButton_liquidacionderemate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -338,7 +356,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir Liquidaci&#xf3;n de Remate"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton13">
+        <Component class="javax.swing.JButton" name="jButton_notacreditos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -349,7 +367,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir Nota de Cr&#xe9;ditos"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton14">
+        <Component class="javax.swing.JButton" name="jButton_plantilladeremate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -360,7 +378,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir Planilla de Remate"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton15">
+        <Component class="javax.swing.JButton" name="jButton_planilladeremate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -371,7 +389,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir Planilla de Remate (Lote)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton16">
+        <Component class="javax.swing.JButton" name="jButton_recepcionjudicial">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
@@ -382,7 +400,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir Recepci&#xf3;n Judicial"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton17">
+        <Component class="javax.swing.JButton" name="jButton_recepcionvoluntaria">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
