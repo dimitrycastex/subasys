@@ -246,5 +246,23 @@ public class Recepcion_Judicial {
          }
          return list;
     }
+   
+   public static boolean borrar(int rj) {
+
+        try {
+
+        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+
+        stat.executeUpdate("DELETE FROM recepcion_judicial WHERE id_rj="+rj+";");
+      
+        
+        return true;
+
+        } catch (SQLException ex) {
+
+        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
+        return false;
+        }
+    }
   
 }

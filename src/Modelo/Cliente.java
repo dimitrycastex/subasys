@@ -204,4 +204,22 @@ public class Cliente {
          return lista_clientes;
     }
    
+   public static boolean borrar(String rut) {
+
+        try {
+
+        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+
+        stat.executeUpdate("DELETE FROM Cliente WHERE RUT='"+rut+"';");
+      
+        
+        return true;
+
+        } catch (SQLException ex) {
+
+        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
+        return false;
+        }
+    }
+   
 }

@@ -158,5 +158,23 @@ public class Causa {
          }
          return lista_causa;
     }
+    
+    public static boolean borrar(String rol) {
+
+        try {
+
+        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+
+        stat.executeUpdate("DELETE FROM Causa WHERE ROL='"+rol+"';");
+      
+        
+        return true;
+
+        } catch (SQLException ex) {
+
+        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
+        return false;
+        }
+    }
       
 }

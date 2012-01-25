@@ -313,4 +313,22 @@ public class Producto {
          return aux;
     }
   
+  public static boolean borrar(int id_producto) {
+
+        try {
+
+        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+
+        stat.executeUpdate("DELETE FROM Producto WHERE ID_PRODUCTO="+id_producto+";");
+      
+        
+        return true;
+
+        } catch (SQLException ex) {
+
+        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
+        return false;
+        }
+    }
+  
 }

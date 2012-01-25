@@ -97,7 +97,7 @@ public class Recepcion_Voluntaria {
         try {
 
           java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
-          ResultSet rs = stat.executeQuery("SELECT cliente.rut,cliente.direccion,producto.cantidad,producto.descripcion,producto.precio_unitario "+
+          ResultSet rs = stat.executeQuery("SELECT cliente.rut,cliente.direccion,cliente.nombre,cliente.apellidoP,producto.cantidad,producto.descripcion,producto.precio_unitario "+
           "FROM  cliente,(recepcion_voluntaria NATURAL JOIN recepcion_voluntaria_has_producto) AS recepcion_v,producto "+
           "WHERE cliente.rut = recepcion_v.rut AND recepcion_v.id_producto = producto.id_producto AND recepcion_v.id_rv="+ID_RV+";");
           
@@ -105,6 +105,8 @@ public class Recepcion_Voluntaria {
          
           ArrayList ReVoluntaria= new ArrayList();     
           ReVoluntaria.add(rs.getString("RUT"));
+          ReVoluntaria.add(rs.getString("Nombre"));
+          ReVoluntaria.add(rs.getString("ApellidoP"));
           ReVoluntaria.add(rs.getString("Direccion"));    
           ReVoluntaria.add(rs.getInt("Cantidad"));
           ReVoluntaria.add(rs.getString("Descripcion"));
@@ -192,4 +194,21 @@ public class Recepcion_Voluntaria {
          return lista_rjudicial;
     }
     
+  public static boolean borrar(int rv) {
+
+        try {
+
+        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+
+        stat.executeUpdate("DELETE FROM recepcion_voluntaria WHERE id_rv="+rv+";");
+      
+        
+        return true;
+
+        } catch (SQLException ex) {
+
+        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
+        return false;
+        }
+    }
 }

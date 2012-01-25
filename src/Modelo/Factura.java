@@ -199,4 +199,22 @@ public class Factura {
          }
          return lista_facturas;
     }
+    
+    public static boolean anular(int id_factura) {
+
+        try {
+
+        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+
+        stat.executeUpdate("UPDATE Factura SET Estado = 'ANULADA' WHERE ID_FACTURA="+id_factura+";");
+      
+        
+        return true;
+
+        } catch (SQLException ex) {
+
+        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
+        return false;
+        }
+    }
 }

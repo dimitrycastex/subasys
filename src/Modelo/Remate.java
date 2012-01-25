@@ -279,7 +279,23 @@ public class Remate {
          return flag;
     }
      
-     
+     public static boolean borrar(String id_remate) {
+
+        try {
+
+        java.sql.Statement stat = Postgresql.DB_CONNECTION.createStatement();
+
+        stat.executeUpdate("DELETE FROM remate WHERE id_remate='"+id_remate+"';");
+      
+        
+        return true;
+
+        } catch (SQLException ex) {
+
+        JOptionPane.showMessageDialog(null, ex, "ERROR", JOptionPane.WARNING_MESSAGE);
+        return false;
+        }
+    }
      
   
 }
