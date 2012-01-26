@@ -42,6 +42,11 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
      public void setPanel_PDF(JPanel p){
         this.P_PDF= (Panel_VisorPDF) p;
     }
+     
+     public void addPDF(){
+         V_Principal.addPanel_VisorPDF();
+         V_Principal.bloquearPanel();
+     }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -312,6 +317,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"listado_de_clientes.pdf");
+        this.addPDF();
         
         
     }//GEN-LAST:event_jButton_ListaClientesActionPerformed
@@ -337,6 +343,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"listado_de_productos.pdf");
+        this.addPDF();
     }//GEN-LAST:event_jButton_listadeproductosActionPerformed
 
     private void jButton_listarecepcionesjudicialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listarecepcionesjudicialesActionPerformed
@@ -354,6 +361,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"listado_de_recepciones_judiciales.pdf");
+        this.addPDF();
     }//GEN-LAST:event_jButton_listarecepcionesjudicialesActionPerformed
 
     private void jButton_listaderecepcionesvoluntariasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listaderecepcionesvoluntariasActionPerformed
@@ -370,7 +378,8 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.WARNING_MESSAGE);
         }
         
-        P_PDF.setRutaArchivo(path+"listado_de_recepciones_voluntarias.pdf");// TODO add your handling code here:
+        P_PDF.setRutaArchivo(path+"listado_de_recepciones_voluntarias.pdf");
+        this.addPDF();// TODO add your handling code here:
     }//GEN-LAST:event_jButton_listaderecepcionesvoluntariasActionPerformed
 
     private void jButton_listaderematesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listaderematesActionPerformed
@@ -388,6 +397,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"listado_de_remates.pdf");
+        this.addPDF();
     }//GEN-LAST:event_jButton_listaderematesActionPerformed
 
     private void jButton_listaderolescausasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listaderolescausasActionPerformed
@@ -405,6 +415,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"listado_de_rolescausas.pdf");
+        this.addPDF();
     }//GEN-LAST:event_jButton_listaderolescausasActionPerformed
 
     private void jButton_listadeplanillarematesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_listadeplanillarematesActionPerformed
@@ -422,6 +433,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"listado_planilla_remate.pdf");
+        this.addPDF();
     }//GEN-LAST:event_jButton_listadeplanillarematesActionPerformed
 
     private void jButton_cajaremateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cajaremateActionPerformed
@@ -441,6 +453,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"caja_de_remates.pdf");
+        this.addPDF();
     }//GEN-LAST:event_jButton_cajaremateActionPerformed
 
     private void jButton_recepcionjudicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_recepcionjudicialActionPerformed
@@ -460,6 +473,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"recepcion_judicial.pdf");
+        this.addPDF();
     }//GEN-LAST:event_jButton_recepcionjudicialActionPerformed
 
     private void jButton_recepcionvoluntariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_recepcionvoluntariaActionPerformed
@@ -480,6 +494,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"recepcion_voluntaria.pdf");
+        this.addPDF();
     
     }//GEN-LAST:event_jButton_recepcionvoluntariaActionPerformed
 
@@ -501,6 +516,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"anexo_plantilla_remate.pdf");
+        this.addPDF();
         
     }//GEN-LAST:event_jButton_planilladeremateActionPerformed
 
@@ -522,6 +538,7 @@ public class Panel_Sel_Impresion extends javax.swing.JPanel {
         }
         
         P_PDF.setRutaArchivo(path+"detalle_lotes_rematados.pdf");
+        this.addPDF();
     }//GEN-LAST:event_jButton_detalledelotesrematadosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

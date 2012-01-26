@@ -1,4 +1,4 @@
-<?xml version="1.1" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
@@ -35,7 +35,7 @@
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton_Volver" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="1" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,13 +75,13 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton_ListaClientes" alignment="0" pref="349" max="32767" attributes="0"/>
-                      <Component id="jButton_listadeproductos" alignment="0" pref="349" max="32767" attributes="0"/>
-                      <Component id="jButton_listarecepcionesjudiciales" alignment="0" pref="349" max="32767" attributes="0"/>
+                      <Component id="jButton_ListaClientes" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButton_listadeproductos" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButton_listarecepcionesjudiciales" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButton_listaderecepcionesvoluntarias" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButton_listaderemates" alignment="0" pref="349" max="32767" attributes="0"/>
-                      <Component id="jButton_listaderolescausas" alignment="0" pref="349" max="32767" attributes="0"/>
-                      <Component id="jButton_listadeplanillaremates" alignment="0" pref="349" max="32767" attributes="0"/>
+                      <Component id="jButton_listaderemates" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButton_listaderolescausas" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButton_listadeplanillaremates" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -103,7 +103,7 @@
                   <Component id="jButton_listaderolescausas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButton_listadeplanillaremates" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="64" max="32767" attributes="0"/>
+                  <EmptySpace pref="67" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

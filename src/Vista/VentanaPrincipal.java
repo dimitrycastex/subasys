@@ -5,6 +5,7 @@
 package Vista;
 
 import Vista.VentanaPrincipal;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -51,6 +52,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.panel_Busqueda_Causa1.setPanel(panel_Remate1);
         this.panel_Busqueda_Recepcion_Voluntaria1.setFrame(this);
         this.panel_Busqueda_Recepcion_Voluntaria1.setPanel(panel_Remate1);
+        
+        File dir_bin = new File("imp"); 
+        dir_bin.mkdir();
     }
     
     //--------------------------------------------------------------------------
